@@ -1,16 +1,26 @@
 package com.revature.beans;
 
 public class Person {
-	private String homePlanet="earth";
+	//encapsulation
+	final String homePlanet="earth";
 	private String name;
 	private int age;
 	private int weight;
 	public String getHomePlanet() {
 		return homePlanet;
 	}
-	public void setHomePlanet(String homePlanet) {
-		this.homePlanet = homePlanet;
+	//default
+	public Person() {
+		super();
+		};
+		
+	public Person(String name, int age, int weight) {
+		super();
+		this.name=name;
+		this.age=age;
+		this.weight=weight;
 	}
+	
 	public String getName() {
 		return name;
 	}
