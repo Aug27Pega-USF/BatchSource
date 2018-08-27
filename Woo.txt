@@ -1,7 +1,1 @@
-<<<<<<< HEAD
-roll tide! Go me
-=======
-What are roll tides?
-
-Since you like them so much
->>>>>>> 89cfcb6483988fd732ef48724acf1589847ef693
+roll tide!
