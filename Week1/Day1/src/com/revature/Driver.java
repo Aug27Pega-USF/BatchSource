@@ -9,5 +9,7 @@ public class Driver {
 		Person jimbo =new Person();
 		jimbo.setName("Jimbo");
 		System.out.println(jimbo.getName() + " is from " + jimbo.getHomePlanet());
-		}
+		Person p = new Person("Thom",34, 215);
+		System.out.println(p.toString());
+	}
 }
