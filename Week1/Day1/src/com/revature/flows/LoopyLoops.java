@@ -68,6 +68,27 @@ else {<what to do if false>}
 		System.out.println(i);
 		}
 	}
+	/*Conditionals
+	 * Logical Operators
+	 * < > <= >= != ==
+	 *  OR 
+	 *  a|b - bitwise OR if one is true, return true
+	 *  a||b- short circuit OR If a is true, return true w/o b
+	 *  AND
+	 *  a&b a&&b checks boths and evaluates true iff both are true
+	 *  EQUALS
+	 *  ==
+	 *  compare values of primitives
+	 *  compare the reference for objects. NOT THE CONTENTS
+	 *  != is good for checking nulls
+	 *  .equals()
+	 *  method inherited Object
+	 *  All reference types have it
+	 *  looking at content
+	 *  
+	 *  
+	 */
+	
 	static int [] myArray= {11,21,31,14,51,16,17,18,19};
 	public static void forEachFun(int [] a) {
 		for(int i:a) {
