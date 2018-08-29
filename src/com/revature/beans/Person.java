@@ -1,8 +1,16 @@
 package com.revature.beans;
 
 public class Person {
+	{
+	//instance code block
+	// execute before constructor is called.
+		System.out.println("Static Code Block");
+	
+	}
+	
+	
 	//encapsulation
-	final String homePlanet="earth";
+	static String homePlanet="earth";
 	private String name;
 	private int age;
 	private int weight;
@@ -38,5 +46,13 @@ public class Person {
 	}
 	public void setWeight(int weight) {
 		this.weight = weight;
+	}
+	@Override
+	public String toString() {
+		return "Person" + name + "[homePlanet=" + homePlanet + "age=" + age + ", weight=" + weight + "]";
+	}
+	
+	public static void testPrint() {
+		System.out.println("Person test");
 	}
 }
