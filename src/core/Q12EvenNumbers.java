@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Q12EvenNumbers {
 	public void Q12(){
-	ArrayList<Integer> numberList = new ArrayList<Integer>();
+	int[] numberList = new int[100];
 	for (int i=1;i!=101;i++) { //array list from 1 to 100.
-		numberList.add(i);
+		numberList[i-1]=i;
 		}
 	for (int i:numberList) { //if even, print.
 		if (i%2==0) {

@@ -2,6 +2,7 @@ package core;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Driver {
 
@@ -43,32 +44,33 @@ public class Driver {
 		System.out.println();
 		
 		
-		ArrayList<Q7Employee> q7arr= new ArrayList<Q7Employee>();
+		List<Q7Employee> q7arr= new ArrayList<Q7Employee>();
 		System.out.println("Q7: Employees Comparator");
 		q7arr.add(new Q7Employee("Frank", "Accounting", 36));
 		q7arr.add(new Q7Employee("Alfred", "Manager", 45));
+		q7arr.add(new Q7Employee("Balnor","Sandwich Protector",40));
 		System.out.println("Unsorted");
-        for (int i=0; i<q7arr.size(); i++) {
-            System.out.println(q7arr.get(i).getName()+" "+ q7arr.get(i).getDepartment()+ " " +q7arr.get(i).getAge());
-            }
+        for (Q7Employee c: q7arr) {
+        	System.out.println(c.toString());
+        }
         Collections.sort(q7arr, new SortEmployeebyNameQ7());
         System.out.println();
         System.out.println("Soted by Name");
-        for (int i=0; i<q7arr.size(); i++) {
-        	System.out.println(q7arr.get(i).getName()+" "+ q7arr.get(i).getDepartment()+ " " +q7arr.get(i).getAge());
-            }            
+        for (Q7Employee c: q7arr) {
+        	System.out.println(c.toString());
+        }
         Collections.sort(q7arr, new SortEmployeebyDeptQ7());
         System.out.println();
         System.out.println("Sorted by Dept");
-        for (int i=0; i<q7arr.size(); i++) {
-        	System.out.println(q7arr.get(i).getName()+" "+ q7arr.get(i).getDepartment()+ " " +q7arr.get(i).getAge());
-            } 
+        for (Q7Employee c: q7arr) {
+        	System.out.println(c.toString());
+        }
         Collections.sort(q7arr, new SortEmployeebyAgeQ7());
         System.out.println();
         System.out.println("Sorted by Age");
-        for (int i=0; i<q7arr.size(); i++) {
-        	System.out.println(q7arr.get(i).getName()+" "+ q7arr.get(i).getDepartment()+ " " +q7arr.get(i).getAge());
-            }       
+        for (Q7Employee c: q7arr) {
+        	System.out.println(c.toString());
+        }    
 		System.out.println();
 		
 		Q8Palindrome q8pal=new Q8Palindrome();
@@ -104,13 +106,53 @@ public class Driver {
 		q13tri.Q13();
 		System.out.println();
 		
+		Q14Switch q14swi = new Q14Switch();
+		System.out.println("Q14: Switch (Input 1 is sqrt, Input 2 is Date, Input 3 is String Array");
+		for (int x=1; x < 10000; x+=1801) {
+			System.out.println("Input: " + x +"->"+x+"%3+1=" +((x%3)+1));
+			q14swi.q14switch(x);
+			System.out.println();
+		}
 		
+		System.out.println("Q15: Interface Operators. INPUT REQUIRED!");
+		Q15Tester.main(null);
+		System.out.println();
 		
+		System.out.println("Q16: String Length. (This test looks at String given to Driver Class.)");
+		Q16StringLength.main(args);
+		System.out.println();
+		
+
+		System.out.println("Q17: Interest. INPUT REQUIRED!");
+		Q17Interest.main(null);
+		System.out.println();
+		
+		System.out.println("Q18: Abstract Class and Concrete Subclass");
+		Q18Abstractclass q18abs = new Q18subclass();
+		System.out.println("Test Line 1: \"i am lowercase\"");
+		System.out.println("Test Line 2: \"Abstract Class\"");
+		System.out.println();
+		System.out.println("Check Uppercase Function:");
+		System.out.println(q18abs.uppercasecheck("i am lowercase"));
+		System.out.println(q18abs.uppercasecheck("Abstract Class"));
+		System.out.println();
+		System.out.println("Set to Uppercase Function:");
+		System.out.println(q18abs.makeUppercase("i am lowercase"));
+		System.out.println(q18abs.makeUppercase("Abstract Class"));
+		System.out.println();
+		System.out.println("Input \"18\" to add10 function:");
+		q18abs.add10("18");
+		System.out.println();
 		
 		Q19ArrayListStuff q19arr=new Q19ArrayListStuff();
 		System.out.println("Q19: Array List Manipulation");
 		q19arr.Q19();
 		System.out.println();
+		
+		Q20FileInterpreter q20fil= new Q20FileInterpreter();
+		System.out.println("Q20: File Reader");
+		q20fil.Q20();
+		
 		
 	}
 

@@ -1,5 +1,7 @@
 package core;
 
+import java.util.Comparator;
+
 public class Q7Employee {
 
 	private String name;
@@ -32,7 +34,34 @@ public class Q7Employee {
 		this.age = age;
 	}
 	
+	@Override
+	public String toString() {
+		return "Employee [name=" + name + ", department=" + department + ", age=" + age + "]";
+	}
+	
+	
+	
 
 }
 
 
+class SortEmployeebyAgeQ7 implements Comparator<Q7Employee>{
+    public int compare(Q7Employee a, Q7Employee b)
+    {
+    	return a.getAge()-b.getAge();
+    }
+}
+
+class SortEmployeebyDeptQ7 implements Comparator<Q7Employee>{
+    public int compare(Q7Employee a, Q7Employee b)
+    {
+    	return a.getDepartment().compareTo(b.getDepartment());
+    }
+}
+
+class SortEmployeebyNameQ7 implements Comparator<Q7Employee>{
+    public int compare(Q7Employee a, Q7Employee b)
+    {
+    	return a.getName().compareTo(b.getName());
+    }
+}
