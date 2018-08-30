@@ -31,6 +31,15 @@ public class CompareMain {
 		for(Student s:studentList) {
 			System.out.println(s);
 		}
+		System.out.println("============================");
+		System.out.println("Sort by name w/ lambda");
+		//Sort with a Lambda- Sort by name
+		Collections.sort(studentList,(arg0,arg1)
+			->{	return arg0.getName().compareTo(arg1.getName());}
+				);
+		for(Student s:studentList) {
+			System.out.println(s);
+		}
 	}
 
 }
