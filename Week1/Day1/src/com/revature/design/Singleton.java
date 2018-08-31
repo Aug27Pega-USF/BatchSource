@@ -5,7 +5,7 @@ package com.revature.design;
  * point of access to it
  */
 public class Singleton {
-	//static provate porpery of the self class
+	//static private property of the self class
 	private static Singleton instance;
 	//Private constuctor
 	private Singleton() {
