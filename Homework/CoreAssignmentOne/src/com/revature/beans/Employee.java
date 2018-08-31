@@ -3,7 +3,7 @@
  * ageCompartor, nameComparator, departmentComparator
  * using generics to avoid casting
  */
-package com.revature.hw;
+package com.revature.beans;
 import java.util.Comparator;
 
 public class Employee implements Comparable<Employee> {
@@ -40,7 +40,7 @@ public class Employee implements Comparable<Employee> {
     };
 	
 
-	Employee(String name, int age, String department){
+	public Employee(String name, int age, String department){
 		this.name = name;
 		this.age = age;
 		this.department = department;
