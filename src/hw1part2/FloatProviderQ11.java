@@ -1,4 +1,4 @@
-package core2;
+package hw1part2;
 
 public class FloatProviderQ11 {
 	public static float a=(float) 1.23;

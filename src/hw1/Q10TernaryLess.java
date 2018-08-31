@@ -1,4 +1,4 @@
-package core;
+package hw1;
 
 public class Q10TernaryLess {
 	public int minimum(int a, int b) {

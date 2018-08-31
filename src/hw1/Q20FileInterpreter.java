@@ -1,4 +1,4 @@
-package core;
+package hw1;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Q20FileInterpreter {
 	public void Q20(){
 	String directory= System.getProperty("user.dir");
-	File data= new File(directory+"\\src\\core\\Data.txt");
+	File data= new File(directory+"\\src\\hw1\\Data.txt");
 	Scanner sc = null;
 	try {
 		sc = new Scanner(data);

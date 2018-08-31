@@ -1,4 +1,4 @@
-package core;
+package hw1;
 
 public interface Q15InterfaceOperand {
 	public abstract double add(double a, double b);

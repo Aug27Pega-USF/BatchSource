@@ -1,4 +1,4 @@
-package core;
+package hw1;
 
 public abstract class Q18Abstractclass {
 	public abstract boolean uppercasecheck(String s);

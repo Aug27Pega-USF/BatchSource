@@ -1,5 +1,5 @@
-package core;
-import core2.FloatProviderQ11;
+package hw1;
+import hw1part2.FloatProviderQ11;
 
 public class Q11PackageAccessor {
 	
