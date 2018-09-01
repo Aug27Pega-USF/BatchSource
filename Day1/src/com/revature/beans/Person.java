@@ -1,6 +1,24 @@
 package com.revature.beans;
 
-public class Person {
+import java.io.Serializable;
+
+public class Person implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	{
+		//instance code block
+		//execute before the constructor is called
+		System.out.println("I'm in the instance code block!");
+	}
+	
+	static {
+		/*static code block executes once when the
+		 * class is loaded in the JVM*/
+		System.out.println("static block, ya burnt!");
+	}
+	//encapsulation
 	private static String homePlanet = "Earth";
 	private String name;
 	private int age;
@@ -41,10 +59,12 @@ public class Person {
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
+	@Override
+	public String toString() {
+		return "Person [name=" + name + ", age=" + age + ", weight=" + weight + "]";
+	}
+	public static void testPrint() {
+		System.out.println("Test Print!");
+	}
 	
-	
-//	public static void main(String[] args) {
-//		// TODO Auto-generated method stub
-//
-//	}
 }

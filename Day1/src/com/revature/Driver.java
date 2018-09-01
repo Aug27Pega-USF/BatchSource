@@ -10,5 +10,7 @@ public class Driver {
 		Person jim = new Person();
 		jim.setName("Jim Belushi");
 		System.out.println(jim.getName() + " is from " + jim.getHomePlanet());
+		Person j = new Person("Alma", 91, 120);
+		System.out.println(j.toString());
 	}
 }
