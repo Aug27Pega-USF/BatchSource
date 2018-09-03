@@ -7,6 +7,7 @@ import java.util.*;
 public class Question14 {
 
 	public static void switching(int n) {
+		System.out.println("Question 14:");
 		switch(n)
 		{
 		case 1:

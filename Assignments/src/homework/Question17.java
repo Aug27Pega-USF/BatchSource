@@ -6,6 +6,7 @@ public class Question17 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		System.out.println("Question 17:");
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Please enter principal:");
 		int prin = scan.nextInt();

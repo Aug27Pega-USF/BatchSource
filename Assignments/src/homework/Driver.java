@@ -79,31 +79,32 @@ public class Driver {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		System.out.println("Question 1:");
 		int[] q1 = {1,0,5,6,3,2,3,7,9,8,4};
 		bubbleSort(q1);
 		for(int i: q1)
 			System.out.print(q1[i] + " ");
 		System.out.println();
-		
+		System.out.println("Question 2:");
 		int q2 = 25;
 		for(int i = q2; i>=0; i--)
 		{
 			System.out.print(fibo(i) + " ");
 		}
 		System.out.println();
-		
+		System.out.println("Question 3:");
 		String q3 = "dlroW olleH"; 
 		System.out.println(flipIt(q3));
-		
+		System.out.println("Question 4:");
 		int q4 = 10;
 		System.out.println(factorial(q4));
-		
+		System.out.println("Question 5:");
 		String q5 = "We'll go together!";
 		System.out.println(subStr(q5, 8));
-		
+		System.out.println("Question 6:");
 		int q6 = 46;
 		evenNoMod(q6);
-		
+		System.out.println("Question 8:");
 		ArrayList<String> q8v1 = new ArrayList<String>();
 		q8v1.add("karan");
 		q8v1.add("madam");
@@ -126,7 +127,7 @@ public class Driver {
 				
 		}
 		System.out.println(Arrays.toString(q8v2.toArray()));
-		
+		System.out.println("Question 9:");
 		ArrayList<Integer> q9 = new ArrayList<Integer>();
 		for(int i = 0; i<=100; i++)
 		{
@@ -139,12 +140,12 @@ public class Driver {
 		}
 		System.out.println();
 		
-		//Q10 Ternary Operator
+		System.out.println("Question 10:");
 		int a = 10;
 		int b = 15;
 		int q10 = (b<a) ? b:a;
 		System.out.println(q10);
-		//Q12 Even Number
+		System.out.println("Question 12:");
 		int[] q12 = new int[100]; 
 		for(int i = 0; i<100; i++)
 		{
@@ -156,7 +157,31 @@ public class Driver {
 			if(x % 2 == 0)
 				System.out.print(x + " ");
 		}
-		//Question 16: command line string length
-		System.out.println("Question 16: String basketball length: " + args[0].length());
+		System.out.println("\n");
+		System.out.println("Question 19:");
+		ArrayList<Integer> arr = new ArrayList<Integer>();
+		for(Integer i=1; i<=10; i++) {
+			arr.add(i);
+		}
+		for(Integer j:arr)
+			System.out.print(j + " ");
+		Integer evensum = 0;
+		Integer oddsum = 0;
+		for(int i = 0; i<arr.size(); i++) {
+			if(arr.get(i) % 2 == 0)
+				evensum+=arr.get(i);
+			else oddsum+=arr.get(i);
+		}
+		System.out.println("\n");
+		System.out.println("All evens equal "+ evensum + " and all odds equal " + oddsum);
+		System.out.println("\n");
+		
+		for(int i = 0; i<arr.size(); i++) {
+			if(isPrime(arr.get(i)))
+				arr.remove(i);
+		}
+		for(Integer j:arr)
+			System.out.print(j);
+		System.out.println("\n");
 	}
 }
