@@ -1,0 +1,5 @@
+package com.driver.enus;
+
+public enum MenuState {
+	MAIN_MENU, LOGIN, NEW_USER_MENU, CHECK_PASSWORD, NEW_PASSWORD, CUSTOMER_MENU, EMPLOYEE_MENU, ADMIN_MENU; 
+}
