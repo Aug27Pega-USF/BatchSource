@@ -1,0 +1,4 @@
+9123456780,Customer,John Doe,jDoe@fake.com,123-456-7890,1/1/1990,123 Fake st,NW,11223,
+9123456789,Customer,Jane Doe,janeDoe@fake.com,987-654-3210,2/2/1991,321 Fake Blvd,NW,33221,
+1234567899,Employee,Jack Doe,jackDoe123@fake.com,111-222-333,12/23/1980,321 Impossible Blvd,VD,22331,
+9987654321,Admin,Elis Doe,eDoe@fake.com,444-555-666,5/15/1985,456 Rich Lane,VD,995511,
