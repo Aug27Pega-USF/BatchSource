@@ -6,14 +6,13 @@
 package com.revature.beans;
 import java.util.Comparator;
 
-public class Employee implements Comparable<Employee> {
+public class Employee {
 
 	private String department, name;
 	private int age;
 	
 	//Compare Names
 	public static final Comparator<Employee> NameComparator = new Comparator<Employee>(){
-
         @Override
         public int compare(Employee o1, Employee o2) {
             return o1.name.compareTo(o2.name); 
@@ -23,7 +22,6 @@ public class Employee implements Comparable<Employee> {
 
     //Compare Ages
 	public static final Comparator<Employee> AgeComparator = new Comparator<Employee>(){
-
         @Override
         public int compare(Employee o1, Employee o2) {
             return o1.age - o2.age;  // This will work because age is positive integer
@@ -39,7 +37,6 @@ public class Employee implements Comparable<Employee> {
     	}
     };
 	
-
 	public Employee(String name, int age, String department){
 		this.name = name;
 		this.age = age;
@@ -68,12 +65,6 @@ public class Employee implements Comparable<Employee> {
 
 	public void setAge(int age) {
 		this.age = age;
-	}
-
-	@Override
-	public int compareTo(Employee o) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override
