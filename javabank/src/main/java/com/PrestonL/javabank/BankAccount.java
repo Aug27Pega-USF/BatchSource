@@ -26,7 +26,7 @@ public class BankAccount implements Serializable{
 		this.creation=(cal.getTime());
 		application=true;
 	}
-	
+
 	public BankAccount(String name, int accountid) {
 		super();
 		this.balance = 0;
@@ -45,7 +45,7 @@ public class BankAccount implements Serializable{
 		this.creation=(cal.getTime());
 		this.accountid=accountid;
 	}
-	
+
 	public String toString() {
 		String name = "("; 
 		for (int i=0; i!=nameList.size(); i++) {
@@ -55,7 +55,7 @@ public class BankAccount implements Serializable{
 			}
 		}
 		name+=")";
-		String temp= "BankAccount [Owner(s)=" + name + ", balance= " + String.format("$%.2f", balance);
+		String temp= "BankAccount "+ this.accountid +" [Owner(s)=" + name + ", balance= " + String.format("$%.2f", balance);
 		if (application) {
 			return temp +", Applied on= " + getCreationDate() + "]";
 		}
@@ -71,29 +71,33 @@ public class BankAccount implements Serializable{
 	public boolean isApplication() {
 		return application;
 	}
-	
+
+	public void approved() {
+		this.application=false;
+	}
+
 	public double getBalance() {
 		return balance;
 	}
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-	
+
 	public boolean deposit(double amount) {
 		if (amount >= 0 && !(BigDecimal.valueOf(amount).scale() > 2)) {
-		balance=balance+amount;
-		System.out.println("Successful Deposit of "+ String.format("$%.2f", amount)+" into account " +accountid +".\nAccount " + accountid+ " current balance is " + String.format("$%.2f.", balance));
-		return true;
+			balance=balance+amount;
+			System.out.println("Successful Deposit of "+ String.format("$%.2f", amount)+" into account " +accountid +".\nAccount " + accountid+ " current balance is " + String.format("$%.2f.", balance));
+			return true;
 		}
 		System.out.println("Error. Attempt to deposit an invalid $ amount into account " + accountid+".");
 		return false;
 	}
-	
+
 	public boolean withdraw(double amount) {
 		if (amount >= 0 && !(BigDecimal.valueOf(amount).scale() > 2) && amount<=balance ) {
-		balance=balance-amount;
-		System.out.println("Successful Withdrawal of "+ String.format("$%.2f", amount)+" from account " +accountid +".\nAccount " + accountid+ " current balance is " + String.format("$%.2f.", balance));
-		return true;
+			balance=balance-amount;
+			System.out.println("Successful Withdrawal of "+ String.format("$%.2f", amount)+" from account " +accountid +".\nAccount " + accountid+ " current balance is " + String.format("$%.2f.", balance));
+			return true;
 		}
 		if (amount>balance && !(BigDecimal.valueOf(amount).scale() > 2)) {
 			System.out.println("Error. Attempt to withdraw a $ amount larger than the current balance of account " + accountid+ ".\nAccount "+ accountid+ " current balance is " + String.format("$%.2f.", balance));
@@ -102,11 +106,11 @@ public class BankAccount implements Serializable{
 		System.out.println("Error. Attempt to withdraw an invalid $ amount from account " + accountid +".");
 		return false;
 	}
-	
+
 	public ArrayList<String> getName() {
 		return nameList;
 	}
-	
+
 	public String getNameList() {
 		String name = "("; 
 		for (int i=0; i!=nameList.size(); i++) {
@@ -118,7 +122,7 @@ public class BankAccount implements Serializable{
 		name+=")";
 		return name;
 	}
-	
+
 	public void addNameList(ArrayList<String> nameList) {
 		for(int i=0;i!=nameList.size();i++) {
 			this.nameList.add(nameList.get(i));
@@ -132,7 +136,7 @@ public class BankAccount implements Serializable{
 		return accountid;
 	}
 
-	
 
-	
+
+
 }

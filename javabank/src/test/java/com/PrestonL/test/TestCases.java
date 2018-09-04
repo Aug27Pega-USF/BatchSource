@@ -22,8 +22,8 @@ public class TestCases {
 	ArrayList<Customer> customerList; 
 	ArrayList<Employee> employeeList;
 	ArrayList<Admin> adminList; 
-    ArrayList<BankAccount> accountList; 
-    ArrayList<Application> applicationList; 
+	ArrayList<BankAccount> accountList; 
+	ArrayList<Application> applicationList; 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -32,90 +32,91 @@ public class TestCases {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
+	@SuppressWarnings("unchecked")
 	@Before
 	public void setUp() throws Exception {
-    	userList = new ArrayList<User>();
-    	customerList = new ArrayList<Customer>();
-    	employeeList = new ArrayList<Employee>();
-    	adminList = new ArrayList<Admin>();
-        accountList = new ArrayList<BankAccount>();
-        applicationList = new ArrayList<Application>();
-		 myBase =new ThisCreatesTheBaseAccountsRunFirst();
-		 try {
-			 
-	            // Reading the object from a file
-	            FileInputStream file = new FileInputStream
-	                                         ("Bank.txt");
-	            ObjectInputStream in = new ObjectInputStream
-	                                         (file);
-	 
-	            // Method for deserialization of object
-	            userList = (ArrayList<User>)in.readObject();
-	 
-	            in.close();
-	            file.close();
-	            
-	            for (int i=0; i!=userList.size();i++) {
-	            	switch(userList.get(i).returnClass()){
-	            		case "Employee":
-	            			employeeList.add((Employee) userList.get(i));
-	            			break;
-	            		case "Customer":
-	            			customerList.add((Customer) userList.get(i));
-	            			break;
-	            		case "Admin":
-	            			adminList.add((Admin) userList.get(i));
-	            			break;
-	            		default:    		
-	            	}
-	            }   
-	            file = new FileInputStream
-	                    ("Bankaccount.txt");
-	            in = new ObjectInputStream
-	                    (file);           
-	            
-	            accountList=(ArrayList<BankAccount>)in.readObject();
-	            in.close();
-	            file.close();
-	            file = new FileInputStream
-	                    ("Application.txt");
-	            in = new ObjectInputStream
-	                    (file);           
-	            
-	            applicationList=(ArrayList<Application>)in.readObject();
-	            in.close();
-	            file.close();
-	        }
-	 
-	        catch (IOException ex) {
-	            System.out.println("IOException is caught");
-	        }
-	 
-	        catch (ClassNotFoundException ex) {
-	            System.out.println("ClassNotFoundException" +
-	                                " is caught");
-	        }
-	    	
-	        
-	        //Creation of Bank Class
-	        bank=new Bank(userList, customerList, employeeList, adminList, accountList, applicationList);
-		 
-		 
-		 
-		 
+		userList = new ArrayList<User>();
+		customerList = new ArrayList<Customer>();
+		employeeList = new ArrayList<Employee>();
+		adminList = new ArrayList<Admin>();
+		accountList = new ArrayList<BankAccount>();
+		applicationList = new ArrayList<Application>();
+		myBase =new ThisCreatesTheBaseAccountsRunFirst();
+		try {
+
+			// Reading the object from a file
+			FileInputStream file = new FileInputStream
+					("Bank.txt");
+			ObjectInputStream in = new ObjectInputStream
+					(file);
+
+			// Method for deserialization of object
+			userList = (ArrayList<User>)in.readObject();
+
+			in.close();
+			file.close();
+
+			for (int i=0; i!=userList.size();i++) {
+				switch(userList.get(i).returnClass()){
+				case "Employee":
+					employeeList.add((Employee) userList.get(i));
+					break;
+				case "Customer":
+					customerList.add((Customer) userList.get(i));
+					break;
+				case "Admin":
+					adminList.add((Admin) userList.get(i));
+					break;
+				default:    		
+				}
+			}   
+			file = new FileInputStream
+					("Bankaccount.txt");
+			in = new ObjectInputStream
+					(file);           
+
+			accountList=(ArrayList<BankAccount>)in.readObject();
+			in.close();
+			file.close();
+			file = new FileInputStream
+					("Application.txt");
+			in = new ObjectInputStream
+					(file);           
+
+			applicationList=(ArrayList<Application>)in.readObject();
+			in.close();
+			file.close();
+		}
+
+		catch (IOException ex) {
+			System.out.println("IOException is caught");
+		}
+
+		catch (ClassNotFoundException ex) {
+			System.out.println("ClassNotFoundException" +
+					" is caught");
+		}
+
+
+		//Creation of Bank Class
+		bank=new Bank(userList, customerList, employeeList, adminList, accountList, applicationList);
+
+
+
+
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		
+
 	}
-	
+
 	@Test
 	public void register() {
 		bank.registerCustomer("username", "password", "name");
 		User temp= bank.login("username", "password");
 		assertTrue(bank.getUserList().get(bank.getUserList().size()-1).equals(temp));
-		
+
 	}
 	@Test
 	public void testdepositwithdrawal() {
@@ -133,7 +134,7 @@ public class TestCases {
 		assertTrue(!accountList.get(1).withdraw(1.111));
 
 	}
-	
+
 	@Test
 	public void testadmindelete() {
 		int size= accountList.size();
@@ -145,7 +146,7 @@ public class TestCases {
 		customerList.get(0).apply(accountList, applicationList);
 		customerList.get(0).applyjoint(12345, accountList, applicationList);
 	}
-	
+
 	@Test
 	public void testemployeeandadminapprovedenyapplication() {
 		int appsize = applicationList.size();
@@ -158,10 +159,10 @@ public class TestCases {
 		adminList.get(0).deny(applicationList.get(0).getAccountid(), applicationList, customerList, accountList);
 		assertTrue(applicationList.size()==appsize-2);
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 
 }

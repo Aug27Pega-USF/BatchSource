@@ -12,7 +12,7 @@ public class Application implements Serializable{
 	private int accountid;
 	private ArrayList<String> nameList;
 	private String username;
-	
+
 	public boolean isJoint() {
 		return joint;
 	}
@@ -25,14 +25,14 @@ public class Application implements Serializable{
 
 	private boolean joint=false;
 	private boolean existing=false;
-	
+
 	public Application(String username, int accountid, String name) {
 		this.nameList=new ArrayList<String>();
 		this.username=username;
 		this.accountid=accountid;
 		this.nameList.add(name);
 	}
-	
+
 	public Application(String username, int accountid, String name, boolean joint, boolean existing) {
 		this(username,accountid,name);
 		this.joint=joint;
@@ -51,11 +51,11 @@ public class Application implements Serializable{
 		this.nameList.add(name);
 		this.joint=true;
 	}
-	
+
 	public ArrayList<String> getNames(){
 		return nameList;
 	}
-	
+
 	public String getNameList() {
 		String name = "("; 
 		for (int i=0; i!=nameList.size(); i++) {
@@ -81,7 +81,7 @@ public class Application implements Serializable{
 		}
 		return temp+ "Application" + temp2 +"[Applying for account " + accountid + temp3 + getNameList() +"]";
 	}
-	
-	
-	
+
+
+
 }

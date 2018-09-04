@@ -8,7 +8,7 @@ public class Customer extends User{
 	private ArrayList<Integer> accountList;
 	private ArrayList<Integer> pendingList;
 	public String name;
-	
+
 	public Customer(String username, String password, String name) {
 		super(username, password);
 		this.name=name;
@@ -21,19 +21,20 @@ public class Customer extends User{
 		boolean check=false;
 		int id;
 		do{
-		id=10000+ran.nextInt(89999);
-		for(int i=0; i!=accountList.size();i++) {
-			if (id==accountList.get(i).getAccountid()) {
-				check=true;
-				break;
+			check=true;
+			id=10000+ran.nextInt(89999);
+			for(int i=0; i!=accountList.size();i++) {
+				if (id==accountList.get(i).getAccountid()) {
+					check=false;
+					break;
+				}
 			}
-		}
-		}while(check=false);
+		}while(!check);
 		pendingList.add(id);
 		applicationList.add(new Application(this.getUsername(),id,this.name));
 		accountList.add(new BankAccount(id));
 	}
-	
+
 	public boolean applyjoint(int accountid, ArrayList<BankAccount> accountList, ArrayList<Application> applicationList) {
 		boolean check=false;
 		if (this.pendingList.contains(accountid)) {
@@ -53,7 +54,7 @@ public class Customer extends User{
 		}
 		return check;
 	}
-	
+
 	public boolean applicationjoint(int accountid, ArrayList<BankAccount> accountList, ArrayList<Application> applicationList) {
 		boolean check=false;
 		if (this.pendingList.contains(accountid)) {
@@ -71,16 +72,16 @@ public class Customer extends User{
 		}
 		return check;
 	}
-	
+
 	public ArrayList<Integer> getPending() {
 		return pendingList;
 	}
-	
+
 	public boolean hasPendingAccount(Integer accountid) {
-			if(pendingList.contains(accountid)) {
-				return true;
-			}
-			else return false;
+		if(pendingList.contains(accountid)) {
+			return true;
+		}
+		else return false;
 	}
 	public void addAccount(Integer accountid) {
 		pendingList.remove(accountid);
@@ -94,13 +95,13 @@ public class Customer extends User{
 	public void setAccountList(ArrayList<Integer> accountList) {
 		this.accountList = accountList;
 	}
-	
+
 	public void addAccountList(ArrayList<Integer> accountList) {
 		for(int i=0; i!=accountList.size();i++) {
 			this.accountList.add(accountList.get(i));
 		}
 	}
-	
+
 	public void removeAccount(Admin admin, int accountid) {
 		for(int i=0; i!=accountList.size();i++) {
 			if(accountList.get(i)==accountid) {
@@ -109,7 +110,7 @@ public class Customer extends User{
 			}
 		}
 	}
-	
+
 	public void removeAccount(Employee employee, int accountid, boolean app) {
 		for(int i=0; i<accountList.size();i++) {
 			if(accountList.get(i)==accountid) {
@@ -122,9 +123,9 @@ public class Customer extends User{
 	@Override
 	public String toString() {
 		return "Customer [username="+ super.getUsername() +", password="+super.getPassword()
-				+ "]";
+		+ "]";
 	}
-	
+
 	public String customerInfo(ArrayList<BankAccount> bankaccountlist) {
 		String accountinfo="";
 		if (accountList.isEmpty()) {
@@ -153,7 +154,7 @@ public class Customer extends User{
 		return "====================\nCustomer Information:\nUsername: " + super.getUsername() + "\nName: " + name + "\nAssociated Accounts:\n--------------------\n" + accountinfo
 				+ pendinginfo; 
 	}
-	
+
 	public String returnClass() {
 		return "Customer";
 	}
