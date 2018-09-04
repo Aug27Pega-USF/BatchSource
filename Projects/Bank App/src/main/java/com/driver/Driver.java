@@ -11,20 +11,16 @@ import com.driver.enus.MenuState;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInfo;
 
 import com.driver.func.Function;
 import com.driver.io.IO;
 
 public class Driver {
 	
+	
 	public static void main(String[] args) {
 		
+
 		//open input stream
 		Scanner scan = new Scanner(System.in);
 		
