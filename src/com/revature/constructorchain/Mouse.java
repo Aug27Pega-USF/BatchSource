@@ -1,7 +1,5 @@
 package com.revature.constructorchain;
 
-import com.revature.beans.Person;
-
 public class Mouse {
 	private int weight;
 	private int numTeeth;
