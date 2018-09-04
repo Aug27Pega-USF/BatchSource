@@ -44,10 +44,11 @@ public class ThisCreatesTheBaseAccountsRunFirst
     	userList.add(customer1);
     	userList.add(customer2);
     	userList.add(new Employee("Employee1","Employeepassword", "Cist Heffer"));
-    	userList.add(new Employee("Employee2","Employeepassword", "Stefan Job"));
-    	userList.add(new Employee("Employee3","Employeepassword", "Bob Kemp"));
+    	userList.add(new Employee("Employee2","1234567", "Stefan Job"));
+    	userList.add(new Employee("Employee3","bobkemp64", "Bob Kemp"));
     	userList.add(new Admin("AdamOverlord", "Adminpassword", "Adam Hawk"));
     	userList.add(new Admin("SeanB", "v3nd%^f2!SYd", "Sean Bishop"));
+    	
     	
     	for (int i=0;i!=bankaccountList.size();i++) {
     		bankaccountidList.add(bankaccountList.get(i).getAccountid());
@@ -68,15 +69,14 @@ public class ThisCreatesTheBaseAccountsRunFirst
         	}
         }   	
 
-        //testing here
+        //more stuff here
         
-        
-        adminList.get(0).delete(12346, customerList, bankaccountList);
         customerList.get(0).apply(bankaccountList, applicationList);
         adminList.get(0).approve(applicationList.get(0).getAccountid(), applicationList, customerList, bankaccountList);
         customerList.get(1).applyjoint(12345, bankaccountList, applicationList);
         customerList.get(0).apply(bankaccountList, applicationList);
         customerList.get(1).applicationjoint(customerList.get(0).getPending().get(0), bankaccountList, applicationList);
+        
         
         
         // Serialization
@@ -168,98 +168,98 @@ public class ThisCreatesTheBaseAccountsRunFirst
         bankaccountidList.clear();
         
         // Deserialization
-        try {
- 
-            // Reading the object from a file
-            FileInputStream file = new FileInputStream
-                                         (filename);
-            ObjectInputStream in = new ObjectInputStream
-                                         (file);
- 
-            // Method for deserialization of object
-            userList = (ArrayList<User>)in.readObject();
- 
-            in.close();
-            file.close();
-            
-            for (int i=0; i!=userList.size();i++) {
-            	switch(userList.get(i).returnClass()){
-            		case "Employee":
-            			employeeList.add((Employee) userList.get(i));
-            			break;
-            		case "Customer":
-            			customerList.add((Customer) userList.get(i));
-            			break;
-            		case "Admin":
-            			adminList.add((Admin) userList.get(i));
-            			break;
-            		default:    		
-            	}
-            }   
-            file = new FileInputStream
-                    ("Bankaccount.txt");
-            in = new ObjectInputStream
-                    (file);           
-            
-            bankaccountList=(ArrayList<BankAccount>)in.readObject();
-            in.close();
-            file.close();
-        	for (int i=0;i!=bankaccountList.size();i++) {
-        		bankaccountidList.add(bankaccountList.get(i).getAccountid());
-        	}
-        	
-            file = new FileInputStream
-                    ("Application.txt");
-            in = new ObjectInputStream
-                    (file);           
-            
-            applicationList=(ArrayList<Application>)in.readObject();
-            in.close();
-            file.close();
-            
-            System.out.println("Object has been deserialized\n"
-                                + "Data after Deserialization.");
-           
-            System.out.println("Users:");
-            for (int i=0; i!=userList.size();i++) {
-            System.out.println(userList.get(i).toString());
-            }
-            System.out.println("Customers:");
-            for (int i=0; i!=customerList.size();i++) {
-            System.out.println(customerList.get(i).toString());
-            }
-            System.out.println("Employees:");
-            for (int i=0; i!=employeeList.size();i++) {
-            System.out.println(employeeList.get(i).toString());
-            }
-            
-            System.out.println("Admin:");
-            for (int i=0; i!=adminList.size();i++) {
-            System.out.println(adminList.get(i).toString());
-            }
-            System.out.println("Bank Account:");
-            for (int i=0; i!=bankaccountList.size();i++) {
-            System.out.println(bankaccountList.get(i).toString()+" "+ bankaccountidList.get(i).toString());
-            }
-            System.out.println("Application:");
-            for (int i=0; i!=applicationList.size();i++) {
-            System.out.println(applicationList.get(i).toString());
-            }
-
-            System.out.println(customerList.get(0).customerInfo(bankaccountList));
-            System.out.println(employeeList.get(0).viewcustomerinfo(customerList.get(1).getUsername(), customerList, bankaccountList));
-
-
-        }
- 
-        catch (IOException ex) {
-            System.out.println("IOException is caught");
-        }
- 
-        catch (ClassNotFoundException ex) {
-            System.out.println("ClassNotFoundException" +
-                                " is caught");
-        }
-    }
+//        try {
+// 
+//            // Reading the object from a file
+//            FileInputStream file = new FileInputStream
+//                                         (filename);
+//            ObjectInputStream in = new ObjectInputStream
+//                                         (file);
+// 
+//            // Method for deserialization of object
+//            userList = (ArrayList<User>)in.readObject();
+// 
+//            in.close();
+//            file.close();
+//            
+//            for (int i=0; i!=userList.size();i++) {
+//            	switch(userList.get(i).returnClass()){
+//            		case "Employee":
+//            			employeeList.add((Employee) userList.get(i));
+//            			break;
+//            		case "Customer":
+//            			customerList.add((Customer) userList.get(i));
+//            			break;
+//            		case "Admin":
+//            			adminList.add((Admin) userList.get(i));
+//            			break;
+//            		default:    		
+//            	}
+//            }   
+//            file = new FileInputStream
+//                    ("Bankaccount.txt");
+//            in = new ObjectInputStream
+//                    (file);           
+//            
+//            bankaccountList=(ArrayList<BankAccount>)in.readObject();
+//            in.close();
+//            file.close();
+//        	for (int i=0;i!=bankaccountList.size();i++) {
+//        		bankaccountidList.add(bankaccountList.get(i).getAccountid());
+//        	}
+//        	
+//            file = new FileInputStream
+//                    ("Application.txt");
+//            in = new ObjectInputStream
+//                    (file);           
+//            
+//            applicationList=(ArrayList<Application>)in.readObject();
+//            in.close();
+//            file.close();
+//            
+//            System.out.println("Object has been deserialized\n"
+//                                + "Data after Deserialization.");
+//           
+//            System.out.println("Users:");
+//            for (int i=0; i!=userList.size();i++) {
+//            System.out.println(userList.get(i).toString());
+//            }
+//            System.out.println("Customers:");
+//            for (int i=0; i!=customerList.size();i++) {
+//            System.out.println(customerList.get(i).toString());
+//            }
+//            System.out.println("Employees:");
+//            for (int i=0; i!=employeeList.size();i++) {
+//            System.out.println(employeeList.get(i).toString());
+//            }
+//            
+//            System.out.println("Admin:");
+//            for (int i=0; i!=adminList.size();i++) {
+//            System.out.println(adminList.get(i).toString());
+//            }
+//            System.out.println("Bank Account:");
+//            for (int i=0; i!=bankaccountList.size();i++) {
+//            System.out.println(bankaccountList.get(i).toString()+" "+ bankaccountidList.get(i).toString());
+//            }
+//            System.out.println("Application:");
+//            for (int i=0; i!=applicationList.size();i++) {
+//            System.out.println(applicationList.get(i).toString());
+//            }
+//
+//            System.out.println(customerList.get(0).customerInfo(bankaccountList));
+//            System.out.println(employeeList.get(0).viewcustomerinfo(customerList.get(1).getUsername(), customerList, bankaccountList));
+//
+//
+//        }
+// 
+//        catch (IOException ex) {
+//            System.out.println("IOException is caught");
+//        }
+// 
+//        catch (ClassNotFoundException ex) {
+//            System.out.println("ClassNotFoundException" +
+//                                " is caught");
+//        }
+  }
     
 }
