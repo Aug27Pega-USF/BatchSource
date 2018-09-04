@@ -1,7 +1,10 @@
 /*
- * Created 3 Different nested static classes for access to private member variables
+ * QUESTION 7
+ * Employee Class for creating instances of employees to compare and sort in a collection
+ * Comparator objects implemented as nested inner classes for access to private member variables
  * ageCompartor, nameComparator, departmentComparator
- * using generics to avoid casting
+ * 
+ *
  */
 package com.revature.beans;
 import java.util.Comparator;

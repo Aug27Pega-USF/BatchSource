@@ -1,6 +1,6 @@
 package com.revature.hw;
 
-public class UsesCustomMath implements CustomMath {
+public class Q15 implements Q15Interface {
 
 	@Override
 	public int addition(int a, int b) {

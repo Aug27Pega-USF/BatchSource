@@ -1,6 +1,6 @@
 package com.revature.hw;
 
-public class MySubClass extends MyAbstractClass {
+public class Q18Child extends Q18Parent {
 
 	/*
 	 * Pass in a string
@@ -40,6 +40,4 @@ public class MySubClass extends MyAbstractClass {
 		newLong += 10;
 		return newLong;
 	}
-
-	
 }
