@@ -12,6 +12,17 @@ public class Application implements Serializable{
 	private int accountid;
 	private ArrayList<String> nameList;
 	private String username;
+	
+	public boolean isJoint() {
+		return joint;
+	}
+
+
+	public boolean isExisting() {
+		return existing;
+	}
+
+
 	private boolean joint=false;
 	private boolean existing=false;
 	

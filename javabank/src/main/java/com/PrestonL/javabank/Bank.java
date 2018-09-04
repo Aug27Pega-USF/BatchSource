@@ -25,6 +25,10 @@ public class Bank {
 		this.applicationList = applicationList;
 	}
 	
+	public ArrayList<User> getUserList() {
+		return userList;
+	}
+	
 	public void getUser() {
         System.out.println("Users:");
         for (int i=0; i!=userList.size();i++) {

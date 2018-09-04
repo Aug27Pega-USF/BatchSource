@@ -1,20 +1,22 @@
 package com.PrestonL.javabank;
 
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BankingStructure 
-{
+{	
+	private static final Logger LOGGER = LogManager.getLogger(BankingStructure.class.getName());
 	static Scanner scanner;
     public static void main( String[] args )
     {
     	scanner = new Scanner(System.in);
+    	Bank bank;
     	ArrayList<User> userList = new ArrayList<User>();
     	ArrayList<Customer> customerList = new ArrayList<Customer>();
     	ArrayList<Employee> employeeList = new ArrayList<Employee>();
@@ -23,6 +25,7 @@ public class BankingStructure
         ArrayList<Application> applicationList = new ArrayList<Application>();
         
         // Deserialization
+        
         try {
  
             // Reading the object from a file
@@ -80,7 +83,8 @@ public class BankingStructure
     	
         
         //Creation of Bank Class
-        Bank bank=new Bank(userList, customerList, employeeList, adminList, accountList, applicationList);
+        bank=new Bank(userList, customerList, employeeList, adminList, accountList, applicationList);
+        System.out.println("This is a list of users for convenience.");
         bank.getUser();
         System.out.println("Welcome to Java Bank Interface.");
         
@@ -305,11 +309,14 @@ public class BankingStructure
         	        									do {
             	        									System.out.println("Deposit amount $:");
         	        										if(scanner.hasNextDouble()) {
-        	        											if(bank.depositInto(accessaccountid, Double.parseDouble(scanner.nextLine()))) {
+        	        											double amount = Double.parseDouble(scanner.nextLine());
+        	        											if(bank.depositInto(accessaccountid, amount)) {
+        	        												LOGGER.info("Customer " +currentcustomer.getUsername()+" deposited "+ String.format("$%.2f to Account ", amount) + accessaccountid +"." );
         	        												depositcheck=true;
         	        											}
         	        										}
         	        										else {
+        	        											scanner.nextLine();
         	        											System.out.println("Please enter a valid $ amount.");
         	        										}
         	        									}while(!depositcheck);
@@ -319,11 +326,14 @@ public class BankingStructure
         	        									do {
             	        									System.out.println("Withdraw amount $:");
         	        										if(scanner.hasNextDouble()) {
-        	        											if(bank.withdrawFrom(accessaccountid, Double.parseDouble(scanner.nextLine()))) {
+        	        											double amount = Double.parseDouble(scanner.nextLine());
+        	        											if(bank.withdrawFrom(accessaccountid, amount)) {
         	        												withdrawcheck=true;
+        	        												LOGGER.info("Customer " +currentcustomer.getUsername()+" withdrew "+ String.format("$%.2f from Account ", amount) + accessaccountid +"." );
         	        											}
         	        										}
         	        										else {
+        	        											scanner.nextLine();
         	        											System.out.println("Please enter a valid $ amount.");
         	        										}
         	        									}while(!withdrawcheck);
@@ -345,6 +355,7 @@ public class BankingStructure
         	        											else {System.out.println("Could not find an account with the given acccountid.");}
         	        										}
         	        										else {
+        	        											scanner.nextLine();
         	        											System.out.println("Please enter a valid accountid.");
         	        										}
         	        									}while(!transfercheck);
@@ -355,11 +366,13 @@ public class BankingStructure
         	        											double amount=Double.parseDouble(scanner.nextLine());
         	        											if(bank.withdrawFrom(accessaccountid, amount )) {
         	        												bank.depositInto(transferid, amount);
+        	        												LOGGER.info("Customer " +currentcustomer.getUsername()+" transferred "+ String.format("$%.2f from Account ", amount)+ accessaccountid +" to Account " + transferid +".");
         	        												System.out.println("Money has been successfully transferred.");
         	        												withdrawcheck=true;
         	        											}
         	        										}
         	        										else {
+        	        											scanner.nextLine();
         	        											System.out.println("Please enter a valid $ amount.");
         	        										}
         	        									}while(!withdrawcheck);
@@ -374,6 +387,9 @@ public class BankingStructure
         	        								default:
         	        									break;
         	        								}
+        	        							}else {
+        	        								scanner.nextLine();
+        	        								System.out.println("Please enter a valid number");
         	        							}
         	        						} while (!check);
         	        					}
@@ -512,7 +528,8 @@ public class BankingStructure
 									} else {
 										System.out.println("Please give a number.");
 									}
-								} 
+								} else {scanner.nextLine();
+								System.out.println("Please give a number.");}
 							} while (!check);
 							break;
         				case "2": 
@@ -548,6 +565,7 @@ public class BankingStructure
     	        									}	
     	        								}
     	        								else {
+    	        									scanner.nextLine();
     	        									System.out.println("Please give a number.");
     	        								}
     	        							}while(!approvecheck);
@@ -557,7 +575,8 @@ public class BankingStructure
     	        					else {
     	        						System.out.println("Please give a number.");
     	        					}
-    	        				}
+    	        				}else {scanner.nextLine();
+								System.out.println("Please give a number.");}
         					}
         					break;
         				case "3":
@@ -629,11 +648,14 @@ public class BankingStructure
 						        	        									do {
 						            	        									System.out.println("Deposit amount $:");
 						        	        										if(scanner.hasNextDouble()) {
-						        	        											if(bank.depositInto(accessaccountid, Double.parseDouble(scanner.nextLine()))) {
+						        	        											double amount=Double.parseDouble(scanner.nextLine());
+						        	        											if(bank.depositInto(accessaccountid, amount)) {
 						        	        												depositcheck=true;
+						        	        												LOGGER.info("Admin " +currentadmin.getUsername()+" deposited "+ String.format("$%.2f ", amount) +"to account " + accessaccountid +".");
 						        	        											}
 						        	        										}
 						        	        										else {
+						        	        											scanner.nextLine();
 						        	        											System.out.println("Please enter a valid $ amount.");
 						        	        										}
 						        	        									}while(!depositcheck);
@@ -643,11 +665,14 @@ public class BankingStructure
 						        	        									do {
 						            	        									System.out.println("Withdraw amount $:");
 						        	        										if(scanner.hasNextDouble()) {
-						        	        											if(bank.withdrawFrom(accessaccountid, Double.parseDouble(scanner.nextLine()))) {
+						        	        											double amount=Double.parseDouble(scanner.nextLine());
+						        	        											if(bank.withdrawFrom(accessaccountid, amount )) {
 						        	        												withdrawcheck=true;
+						        	        												LOGGER.info("Admin " +currentadmin.getUsername()+" withdrew "+ String.format("$%.2f ", amount) +"from account " + accessaccountid +".");
 						        	        											}
 						        	        										}
 						        	        										else {
+						        	        											scanner.nextLine();
 						        	        											System.out.println("Please enter a valid $ amount.");
 						        	        										}
 						        	        									}while(!withdrawcheck);
@@ -662,13 +687,14 @@ public class BankingStructure
 						        	        											transferid=Integer.parseInt(scanner.nextLine());
 						        	        											if(bank.matchAccount(transferid)!=null) {
 						        	        												if(accessaccountid==transferid) {
-						        	        													System.out.println("You cannot transfer to your own account.");
+						        	        													System.out.println("You cannot transfer to the same account.");
 						        	        												}
 						        	        												else{transfercheck=true;}
 						        	        											}
 						        	        											else {System.out.println("Could not find an account with the given acccountid.");}
 						        	        										}
 						        	        										else {
+						        	        											scanner.nextLine();
 						        	        											System.out.println("Please enter a valid accountid.");
 						        	        										}
 						        	        									}while(!transfercheck);
@@ -680,10 +706,12 @@ public class BankingStructure
 						        	        											if(bank.withdrawFrom(accessaccountid, amount )) {
 						        	        												bank.depositInto(transferid, amount);
 						        	        												System.out.println("Money has been successfully transferred.");
+						        	        												LOGGER.info("Admin " +currentadmin.getUsername()+" transferred "+ String.format("$%.2f from Account ", amount)+ accessaccountid +" to Account " + transferid +".");
 						        	        												withdrawcheck=true;
 						        	        											}
 						        	        										}
 						        	        										else {
+						        	        											scanner.nextLine();
 						        	        											System.out.println("Please enter a valid $ amount.");
 						        	        										}
 						        	        									}while(!withdrawcheck);
@@ -723,7 +751,8 @@ public class BankingStructure
 						        	        								default:
 						        	        									break;
 						        	        								}
-						        	        							}
+						        	        							}else {System.out.println("Please enter a number.");
+						        	        							scanner.nextLine();}
 						        	        						} while (!check);
 						        	        					}
 						        	        					else if(temp2==currentcustomer.getAccountList().size()+1) {
@@ -750,6 +779,7 @@ public class BankingStructure
 												}
 											}
 											else {
+												scanner.nextLine();
 												System.out.println("Please enter a number.");
 											}
 										}while(!customercheck);
@@ -759,7 +789,8 @@ public class BankingStructure
 									} else {
 										System.out.println("Please give a number.");
 									}
-								} 
+								}else {scanner.nextLine();
+								System.out.println("Please give a number.");}
 							} while (!check);
 							break;
         				case "2": 
@@ -795,6 +826,7 @@ public class BankingStructure
     	        									}	
     	        								}
     	        								else {
+    	        									scanner.nextLine();
     	        									System.out.println("Please give a number.");
     	        								}
     	        							}while(!approvecheck);
@@ -804,7 +836,8 @@ public class BankingStructure
     	        					else {
     	        						System.out.println("Please give a number.");
     	        					}
-    	        				}
+    	        				}else {scanner.nextLine();
+								System.out.println("Please give a number.");}
         					}
         					break;
         				case "3":

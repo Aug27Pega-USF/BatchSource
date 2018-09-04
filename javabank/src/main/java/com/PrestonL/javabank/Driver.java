@@ -5,6 +5,14 @@ import java.util.ArrayList;
 public class Driver {
     public static void main( String[] args )
     {
+    	BankingStructure app=new BankingStructure();
+    	app.main(args);
+    	
+    	
+    	
+    	
+    	
+    	/*misc testing
     	ArrayList<String> nameList = new ArrayList<String>();
     	nameList.add("Joe Schmoe");
     	nameList.add("Jane Schmoe");
@@ -25,6 +33,6 @@ public class Driver {
         ArrayList<String> nameList3 = new ArrayList<String>();
         
         nameList3.add("James Transfer");
-        BankAccount test2 = new BankAccount(nameList3, 234354204);
+        BankAccount test2 = new BankAccount(nameList3, 234354204);*/
     }
 }

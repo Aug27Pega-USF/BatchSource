@@ -8,7 +8,7 @@
                 </Pattern>
             </PatternLayout>
         </Console>
-        <File name="File" fileName="C:/Users/Kitten/Desktop/logging.log">
+        <File name="File" fileName="C:/Users/prest_000/Desktop/Aug27Pega-USF/logging.log">
             <PatternLayout>
                 <Pattern>
                     [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
@@ -18,7 +18,7 @@
         </File>
     </Appenders>
     <Loggers>
-        <Logger name="com.revature.LoggingExample" level = "info" additivity= "false">
+        <Logger name="com.PrestonL.javabank.BankingStructure" level = "debug" additivity= "false">
             <AppenderRef ref="Console"/>
             <AppenderRef ref = "File"/>
         </Logger>
