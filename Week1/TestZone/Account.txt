@@ -1,0 +1,6 @@
+Lop, kim, pass, 100.0
+Lop, pass, Kim, 100.0
+Jimbo, pass, kim, 100.0
+Jimbo, pass, Kim, 100.0
+Jimbo
+Jimbo
