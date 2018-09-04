@@ -1,6 +1,8 @@
 package support;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable{
 	private String fname;
 	private String lname;
 	private String uname;
@@ -9,6 +11,10 @@ public class User {
 	private String acctno;
 	private double c_acct;
 	private double s_acct;
+	
+	public User() {
+		super();
+	}
 	
 	public User(String fname, String lname, String uname, String pw, String type, String acctno, double c_acct,
 			double s_acct) {
@@ -70,6 +76,12 @@ public class User {
 	}
 	public void setS_acct(double s_acct) {
 		this.s_acct = s_acct;
+	}
+
+	@Override
+	public String toString() {
+		return "User [fname=" + fname + ", lname=" + lname + ", uname=" + uname + ", pw=" + pw + ", type=" + type
+				+ ", acctno=" + acctno + ", c_acct=" + c_acct + ", s_acct=" + s_acct + "]";
 	}
 	
 }

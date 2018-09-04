@@ -1,0 +1,2 @@
+Currently, I have the following classes: User, AccountTran, Storage, LoginLogic, and TheBank. The User class stores all user data, regardless of type, the Storage class handles the reading and writing between the app and the banking_storage.txt file,
+the LoginLogic is supposed to handle the methods for a user logging in, including a register method for new customers, and the TheBank class contains the main method.
