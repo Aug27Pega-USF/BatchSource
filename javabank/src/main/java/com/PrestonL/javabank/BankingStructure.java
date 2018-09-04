@@ -91,7 +91,7 @@ public class BankingStructure
 
 
 		//THIS IS THE SCANNER INTERFACE.
-		boolean check = false, exitcheck=false, login=false, register = false, iscustomer=false, isemployee=false, isadmin=false;
+		boolean check = false, login=false, register = false, iscustomer=false, isemployee=false, isadmin=false;
 		User currentuser=null;
 		Customer currentcustomer=null;
 		Employee currentemployee=null;
@@ -991,7 +991,7 @@ public class BankingStructure
 			}
 			login=false;
 			bank.serialize();
-		} while (!exitcheck);
+		} while (true);
 		
 
 	}
