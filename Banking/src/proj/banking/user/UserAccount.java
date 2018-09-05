@@ -8,7 +8,7 @@ import proj.banking.user.bean.UserAccountInfo;
 
 public abstract class UserAccount {
 	protected UserAccountInfo accountInfo;
-	BankMain bankService;
+	public BankMain bankService;
 	
 	public abstract void userPage();
 	abstract UserAccount loggingIn();
@@ -16,7 +16,6 @@ public abstract class UserAccount {
 	abstract void selection();
 	abstract UserAccount logout();
 	public UserAccount(){
-		bankService = BankMain.getInstance(null);
 	}
 	
 	protected void headerPage() {
@@ -38,6 +37,7 @@ public abstract class UserAccount {
 		if(accountInfo == null) {
 			return null;
 		} else {
+			bankService = BankMain.getInstance(null);
 			return loggingIn();
 		}
 	}

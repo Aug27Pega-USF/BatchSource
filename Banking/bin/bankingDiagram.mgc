@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <Class name="proj.banking.BankAccounts" x="39" y="406">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="proj.banking.user.UserLogin" x="955" y="166">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="proj.banking.user.LoginInfo"
+            endpointName="loginList" kind="Simple"/>
+        <Association
+            destinationClassName="proj.banking.user.bean.UserAccountInfo"
+            endpointName="userInfoList" kind="Simple"/>
+        <Communication destinationClassName="proj.banking.user.LoginInfo"/>
+    </Class>
+    <Class name="proj.banking.user.UserAccount" x="26" y="118">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="proj.banking.user.bean.UserAccountInfo"
+            endpointName="accountInfo" kind="Simple"/>
+        <Association destinationClassName="proj.banking.BankMain"
+            endpointName="bankService" kind="Simple">
+            <Point x="335" y="289"/>
+        </Association>
+        <Communication destinationClassName="proj.banking.BankMain"/>
+    </Class>
+    <Class name="proj.banking.utils.DataFiles" x="1078" y="420">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="proj.banking.user.LoginInfo" x="1033" y="-22">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="proj.banking.BankMain" x="379" y="383">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="proj.banking.user.UserLogin"
+            endpointName="userLogin" kind="Simple">
+            <Point x="1080" y="362"/>
+        </Association>
+        <Association destinationClassName="proj.banking.BankAccounts"
+            endpointName="bankAccountList" kind="Simple"/>
+        <Association destinationClassName="proj.banking.utils.DataFiles"
+            endpointName="files" kind="Simple"/>
+        <Communication destinationClassName="proj.banking.BankAccounts"/>
+        <Communication destinationClassName="proj.banking.user.UserLogin"/>
+        <Communication destinationClassName="proj.banking.user.bean.UserAccountInfo"/>
+        <Communication destinationClassName="proj.banking.utils.DataFiles"/>
+    </Class>
+    <Class name="proj.banking.user.bean.UserAccountInfo" x="566" y="48">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+</ClassDiagram>

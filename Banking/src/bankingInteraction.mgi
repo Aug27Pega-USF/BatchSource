@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <CommunicationClass name="proj.banking.BankAccounts" x="678" y="341"/>
+    <CommunicationClass name="proj.banking.driver.Driver" x="46" y="-101">
+        <Association destinationClassName="proj.banking.utils.DataFiles"
+            endpointName="fileData" kind="Simple"/>
+        <Communication destinationClassName="proj.banking.user.UserAccount"/>
+    </CommunicationClass>
+    <CommunicationClass name="proj.banking.user.UserLogin" x="128" y="74">
+        <Association destinationClassName="proj.banking.user.LoginInfo"
+            endpointName="loginList" kind="Simple"/>
+        <Association
+            destinationClassName="proj.banking.user.bean.UserAccountInfo"
+            endpointName="userInfoList" kind="Simple"/>
+        <Communication destinationClassName="proj.banking.user.LoginInfo"/>
+    </CommunicationClass>
+    <CommunicationClass name="proj.banking.BankMain" x="412" y="74">
+        <Association destinationClassName="proj.banking.user.UserLogin"
+            endpointName="userLogin" kind="Simple"/>
+        <Association destinationClassName="proj.banking.BankAccounts"
+            endpointName="bankAccountList" kind="Simple"/>
+        <Association destinationClassName="proj.banking.utils.DataFiles"
+            endpointName="files" kind="Simple"/>
+        <Communication destinationClassName="proj.banking.BankAccounts"/>
+        <Communication destinationClassName="proj.banking.user.UserLogin"/>
+        <Communication destinationClassName="proj.banking.utils.DataFiles"/>
+        <Communication destinationClassName="proj.banking.user.bean.UserAccountInfo"/>
+    </CommunicationClass>
+    <CommunicationClass name="proj.banking.user.UserAccount" x="403" y="-100">
+        <Association
+            destinationClassName="proj.banking.user.bean.UserAccountInfo"
+            endpointName="accountInfo" kind="Simple"/>
+        <Association destinationClassName="proj.banking.BankMain"
+            endpointName="bankService" kind="Simple"/>
+        <Communication destinationClassName="proj.banking.BankMain"/>
+    </CommunicationClass>
+    <CommunicationClass name="proj.banking.utils.DataFiles" x="704" y="74"/>
+    <CommunicationClass name="proj.banking.user.bean.UserAccountInfo"
+        x="389" y="349"/>
+    <CommunicationClass name="proj.banking.user.LoginInfo" x="129" y="268"/>
+</ClassDiagram>

@@ -9,7 +9,7 @@ import proj.banking.BankMain;
 import proj.banking.user.bean.UserAccountInfo;
 
 public class EmployeeAccount extends UserAccount {
-	UserLogin userService = UserLogin.getInstance(null, null);
+	UserLogin userService;
 	List<UserAccountInfo> customerList;
 	
 	public EmployeeAccount (){
@@ -26,6 +26,7 @@ public class EmployeeAccount extends UserAccount {
 
 	@Override
 	UserAccount loggingIn() {
+		userService = UserLogin.getInstance(null, null);
 		customerList = userService.getCustomerPersonalInfo("0","Customer");
 		return this;
 	}
@@ -41,7 +42,7 @@ public class EmployeeAccount extends UserAccount {
 	}
 
 	public void approveRequest(String customerAccountNumber) {
-		BankMain.getInstance(null).approvedAccount(customerAccountNumber);
+		bankService.approvedAccount(customerAccountNumber);
 	}
 	
 	public void printAllCustomerList() {

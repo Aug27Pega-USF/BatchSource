@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <Class name="proj.banking.driver.Driver" x="31" y="399">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="proj.banking.user.UserAccount"/>
+    </Class>
+    <Class name="proj.banking.user.EmployeeAccount" x="835" y="476">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="proj.banking.user.UserAccount"/>
+        <Association destinationClassName="proj.banking.user.UserLogin"
+            endpointName="userService" kind="Simple"/>
+        <Communication destinationClassName="proj.banking.user.UserLogin"/>
+        <Communication destinationClassName="proj.banking.user.UserAccount"/>
+        <Communication destinationClassName="proj.banking.BankMain"/>
+    </Class>
+    <Class name="proj.banking.user.UserLogin" x="314" y="486">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="proj.banking.user.CustomerAccount" x="1195" y="478">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="proj.banking.user.UserAccount"/>
+        <Communication destinationClassName="proj.banking.user.UserAccount"/>
+        <Communication destinationClassName="proj.banking.BankMain"/>
+    </Class>
+    <Class name="proj.banking.BankMain" x="183" y="140">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="proj.banking.user.UserLogin"
+            endpointName="userLogin" kind="Simple"/>
+        <Communication destinationClassName="proj.banking.user.UserLogin"/>
+    </Class>
+    <Class name="proj.banking.user.UserAccount" x="860" y="202">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="proj.banking.BankMain"
+            endpointName="bankService" kind="Simple"/>
+        <Communication destinationClassName="proj.banking.BankMain"/>
+    </Class>
+</ClassDiagram>

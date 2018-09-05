@@ -2,11 +2,9 @@ package proj.banking.driver;
 
 import java.util.Scanner;
 
-import proj.banking.BankMain;
 import proj.banking.user.CustomerAccount;
 import proj.banking.user.EmployeeAccount;
 import proj.banking.user.UserAccount;
-import proj.banking.user.UserLogin;
 import proj.banking.utils.DataFiles;
 
 public class Driver {
@@ -17,8 +15,6 @@ public class Driver {
 	private static final String approvalList = "mockData/awaitingApproval.txt";
 	
 	private static DataFiles fileData = new DataFiles(transactionFile, userFile, userInfoFile, bankAccountFile);
-	static BankMain bank = BankMain.getInstance(fileData);;
-	static UserLogin userService = UserLogin.getInstance(fileData.getUserFile(), fileData.getUserInfoFile());
 	
 	public static void main(String[] args) throws Exception {
 		Scanner scan = new Scanner(System.in);
@@ -50,6 +46,7 @@ public class Driver {
 				} while (userID.charAt(0) != '0' && password.charAt(0) != '0');
 			}
 		}while(selection >= 1 && selection <= 3);
+		scan.close();
 	}
 	
 	static void welcomeMenu() {
