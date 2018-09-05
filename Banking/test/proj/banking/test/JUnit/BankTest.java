@@ -53,11 +53,17 @@ class BankTest {
 	
 	@Nested
 	class LoginTest{
-		@Test
-		void LoginSuccess() throws Exception {
-			UserAccountInfo userInfo = new UserAccountInfo("9123456780", "CustomerAccount", "John Doe", "jDoe@fake.com",
+		@Test 
+		void BankServiceLoginSuccess() throws Exception {
+			UserAccountInfo userInfo = new UserAccountInfo("9123456780", "Customer", "John Doe", "jDoe@fake.com",
 					"123-456-7890", "1/1/1990", "123 Fake st", "NW", "11223");
-			assertEquals(userInfo.toString(), bank.login("user01", "pass01").toString());
+			assertTrue(userInfo.toString().equals(bank.login("user01", "pass01").toString()) == true);
+		}
+		@Test
+		void UserServiceLoginSuccess() throws Exception {
+			UserAccountInfo userInfo = new UserAccountInfo("9123456780", "Customer", "John Doe", "jDoe@fake.com",
+					"123-456-7890", "1/1/1990", "123 Fake st", "NW", "11223");
+			assertEquals("9123456780", login.checkLogin("user01", "pass01").toString());
 		}
 		
 		@Test
@@ -75,7 +81,7 @@ class BankTest {
 		}
 		@Test
 		void GetCustomerData() throws Exception {
-			UserAccountInfo accountInfo = new UserAccountInfo("9123456780", "CustomerAccount", "John Doe", "jDoe@fake.com",
+			UserAccountInfo accountInfo = new UserAccountInfo("9123456780", "Customer", "John Doe", "jDoe@fake.com",
 					"123-456-7890", "1/1/1990", "123 Fake st", "NW", "11223");
 			assertEquals(accountInfo.toString(), bank.getUserInfo("9123456780").toString());
 		}
@@ -107,7 +113,7 @@ class BankTest {
 			@Test
 			void SuccessfulCustomerLogin() throws Exception {
 				UserAccount user = new CustomerAccount().login("user01", "pass01");
-				UserAccountInfo testUser = new UserAccountInfo("9123456780", "CustomerAccount", "John Doe", "jDoe@fake.com",
+				UserAccountInfo testUser = new UserAccountInfo("9123456780", "Customer", "John Doe", "jDoe@fake.com",
 						"123-456-7890", "1/1/1990", "123 Fake st", "NW", "11223"); 
 				assertEquals(testUser.toString(), user.getAccountInfo().toString());
 			}
@@ -130,7 +136,7 @@ class BankTest {
 			
 			@Test
 			void GetSingleCustomerInformation() {
-				UserAccountInfo userInfo = new UserAccountInfo("9123456780", "CustomerAccount", "John Doe", "jDoe@fake.com",
+				UserAccountInfo userInfo = new UserAccountInfo("9123456780", "Customer", "John Doe", "jDoe@fake.com",
 						"123-456-7890", "1/1/1990", "123 Fake st", "NW", "11223");
 				assertEquals(userInfo.toString(), ((UserAccountInfo) login.getCustomerPersonalInfo("9123456780", "Customer").get(0)).toString());
 			}
@@ -139,12 +145,14 @@ class BankTest {
 			void GetAllCustomerInformation() {
 				ArrayList<UserAccountInfo> userInfo = new ArrayList<UserAccountInfo>();
 				
-				userInfo.add(new UserAccountInfo("9123456780", "CustomerAccount", "John Doe", "jDoe@fake.com",
+				userInfo.add(new UserAccountInfo("9123456780", "Customer", "John Doe", "jDoe@fake.com",
 						"123-456-7890", "1/1/1990", "123 Fake st", "NW", "11223"));
-				userInfo.add(new UserAccountInfo("9123456789,CustomerAccount,Jane Doe,janeDoe@fake.com,987-654-3210,2/2/1991,321 Fake Blvd,NW,33221,".split(",")));
+				userInfo.add(new UserAccountInfo("9123456789,Customer,Jane Doe,janeDoe@fake.com,987-654-3210,2/2/1991,321 Fake Blvd,NW,33221,".split(",")));
 				userInfo.add(new UserAccountInfo("1234567899,Employee,Jack Doe,jackDoe123@fake.com,111-222-333,12/23/1980,321 Impossible Blvd,VD,22331,".split(",")));
 				userInfo.add(new UserAccountInfo("9987654321,Admin,Elis Doe, eDoe@fake.com, 444,555,666,5/15/1985,456 Rich Lane,VD,995511,".split(",")));
-				assertEquals(userInfo.toString(), login.getCustomerPersonalInfo("0","0").toString());
+				System.out.println(login.getCustomerPersonalInfo("0","0").toString());
+				System.out.println(userInfo.toString());
+				assertEquals(true, login.getCustomerPersonalInfo("0","0").toString().equals(userInfo.toString()));
 			}
 		}
 	}

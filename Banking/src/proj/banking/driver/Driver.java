@@ -2,6 +2,7 @@ package proj.banking.driver;
 
 import java.util.Scanner;
 
+import proj.banking.BankMain;
 import proj.banking.user.CustomerAccount;
 import proj.banking.user.EmployeeAccount;
 import proj.banking.user.UserAccount;
@@ -13,12 +14,11 @@ public class Driver {
 	private final static String userInfoFile = "mockData/userInformation.txt";
 	private final static String bankAccountFile = "mockData/bankAccountList.txt";
 	private static final String approvalList = "mockData/awaitingApproval.txt";
-	
-	private static DataFiles fileData = new DataFiles(transactionFile, userFile, userInfoFile, bankAccountFile);
-	
+	private static DataFiles fileData = new DataFiles(transactionFile, userFile, userInfoFile, bankAccountFile);;
 	public static void main(String[] args) throws Exception {
 		Scanner scan = new Scanner(System.in);
 		Integer selection;
+		BankMain.getInstance(fileData);
 		UserAccount userAcc = null;
 		
 		boolean loggedIn;

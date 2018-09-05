@@ -33,7 +33,7 @@ public abstract class UserAccount {
 	}
 	
 	public UserAccount login(String userID, String password) throws Exception {
-		accountInfo = bankService.login(userID, password);
+		accountInfo = BankMain.getInstance(null).login(userID, password);
 		if(accountInfo == null) {
 			return null;
 		} else {
