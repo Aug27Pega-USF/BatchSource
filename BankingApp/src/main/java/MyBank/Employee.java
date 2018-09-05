@@ -4,10 +4,18 @@ import java.util.Scanner;
 
 public class Employee
 {
-	Customer cust = new Customer();
+	protected String password;
+	String userName;
+	
+	Customer cust = new Customer(userName,  password);
 	int empChoice;
 	Scanner in = new Scanner(System.in);
 	
+	public Employee(String password)
+	{
+		super();
+		this.password = password;
+	}
 	void lookUpInfo()
 	{
 		cust.displayInfo();
@@ -30,4 +38,12 @@ public class Employee
 			break;	
 		}
 	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	
 }

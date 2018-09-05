@@ -6,8 +6,8 @@ public class Customer
 
 {
 
-	public String userName;
-	public String password;
+	public static String userName;
+	public static String password;
 	int userChoice;
 	boolean quit = false;
 	Scanner in = new Scanner(System.in);
@@ -16,10 +16,15 @@ public class Customer
     //make an instance of the account 
 	Account one = new Account();
 	
+	public Customer (String userName, String password)
+	{
+		this.userName = userName;
+		this.password = password;
+	}
 	
 	void displayInfo()
 	{
-		System.out.println("Account Owner: " + userName);
+		System.out.println("Account User: " + userName);
 		System.out.println("Account Number: " + one.acc_num);
 		System.out.println("Account Balance: " + one.acc_balance);
 	}
@@ -34,8 +39,7 @@ public class Customer
 		System.out.println("Enter your Choice: ");
 		userChoice = in.nextInt();
 		
-		while(quit = false)
-		{
+	
 		switch (userChoice) 
 		{
 			case 1: 
@@ -91,7 +95,23 @@ public class Customer
 				break;
 		
 			}
+			
 		}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

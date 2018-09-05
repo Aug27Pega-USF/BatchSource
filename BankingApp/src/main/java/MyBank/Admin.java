@@ -4,7 +4,12 @@ import java.util.Scanner;
 
 public class Admin extends Employee {
 
-	Customer person = new Customer();
+	public Admin(String password) {
+		super(password);
+		// TODO Auto-generated constructor stub
+	}
+
+	Customer person = new Customer(userName,password);
 	int adminChoice;
 	Scanner in = new Scanner(System.in);
     

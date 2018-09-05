@@ -9,7 +9,7 @@ public class Account {
 	public String user;
 	public String acc_type;
 	public int acc_num;
-	public int acc_balance = 0;
+	public double acc_balance = 0;
 	
 	void createAcc()
 	{
