@@ -90,6 +90,12 @@ public class Driver {
         calculator.multiplication();
         calculator.division();
         
+        //Sixteenth hw problem
+        System.out.println("\nQ16: Number of characters in a command line argument string.");
+        for (int i = 0; i < args.length; i++) {
+            System.out.println("String '"+ args[i].toString() +"' length is: " + args[i].length());
+        }
+        
         //Seventeenth hw problem
         Q17 interest = new Q17();
         interest.calculateInterest();
