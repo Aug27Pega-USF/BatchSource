@@ -2,7 +2,7 @@ package myBankingApp.Bank;
 
 import java.util.*;
 import java.io.Serializable;
-import java.lang.Throwable;
+//import java.lang.Throwable;
 
 enum Status {
 	PENDING, ACTIVE, CLOSED
@@ -16,6 +16,7 @@ public class Account implements Serializable{
 	 */
 	private static final long serialVersionUID = 2351591086812727556L;
 	
+	private BankLogger bankLogger = new BankLogger();
 	
 	private ArrayList<String> accountHolders;
 	private String accountType;
@@ -45,7 +46,6 @@ public class Account implements Serializable{
 		this.balance = 0.00f;
 		this.overDrawn = false;
 		this.stat = Status.PENDING;
-		
 	}
 	
 	// OTHER METHODS!
@@ -68,6 +68,8 @@ public class Account implements Serializable{
 			this.balance += value;
 			System.out.println("You have successfully DEPOSITED to account '" +this.accountType +"':		$" + value);
 			System.out.println("Your current balance is in this account is:		$" + this.balance);
+			bankLogger.loggerLevel("You have successfully DEPOSITED from account '" +this.accountType + "':		$" + value);
+			bankLogger.loggerLevel("Your current balance in this account is:		$" + this.balance);
 			if(this.overDrawn)
 				this.overDrawn = false;
 			return true;
@@ -92,6 +94,9 @@ public class Account implements Serializable{
 			// TODO  - IMPLEMENT LOG!
 			this.balance = 0.00f;
 			System.out.println("WARNING - The balance is now zero in account: " + this.accountType);
+			
+			bankLogger.loggerLevel("You have successfully WITHDRAWN from account '" +this.accountType + "':		$" + value);
+			bankLogger.loggerLevel("Your current balance in this account is:		$" + this.balance);
 			return true;
 		}
 		else
@@ -109,6 +114,10 @@ public class Account implements Serializable{
 			this.balance -= value;
 			System.out.println("You have successfully WITHDRAWN from account '" +this.accountType + "':		$" + value);
 			System.out.println("Your current balance in this account is:		$" + this.balance);
+			
+			bankLogger.loggerLevel("You have successfully WITHDRAWN from account '" +this.accountType + "':		$" + value);
+			bankLogger.loggerLevel("Your current balance in this account is:		$" + this.balance);
+
 			return true;
 		}
 		
@@ -125,6 +134,9 @@ public class Account implements Serializable{
 				this.getBalance());
 				System.out.println("Current balance in '" + toAccount.accountType +"' is:		$" + 
 						toAccount.getBalance());
+				
+				bankLogger.loggerLevel("The following TRANSFER will take place:");
+				
 				return true;
 			}
 			this.deposit(value);
@@ -233,7 +245,7 @@ public class Account implements Serializable{
 	@Override
 	public String toString() {
 		return "Account [accountHolders=" + accountHolders + ", accountType=" + accountType + ", accountNumber="
-				+ accountNumber + ", balance=" + balance + ", overDrawn=" + overDrawn + ", accountStatus= " + stat + "]";
+				+ accountNumber + ", balance=" + balance + ", overDrawn=" + overDrawn + ", accountStatus= " + stat + "]\n";
 	}
 	
 	

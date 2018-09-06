@@ -20,7 +20,7 @@ public class Customer implements Serializable {
 	private String password;
 	private int customerID;
 	
-	static private int accountNumber = 0;
+	private int accountNumber = 0;
 	
 	// CONSTRUCTOR
 	public Customer(String firstName, String lastName, String username, String password, int customerID) {

@@ -7,7 +7,7 @@ import myBankingApp.Bank.Bank;
 import myBankingApp.Bank.BankAdmin;
 import myBankingApp.Bank.Customer;
 import myBankingApp.Bank.Employee;
-
+import myBankingApp.Bank.BankLogger;
 
 
 public class UserInterface implements Serializable {
@@ -17,9 +17,11 @@ public class UserInterface implements Serializable {
 	 */
 	private static final long serialVersionUID = -6568791252752683877L;
 	
+	public static IOBankUI ioBankUI = new IOBankUI();
+
 	// Fields
-	public static Bank myBank;
-	static private int customerID = 0;
+	public Bank myBank;
+	private int customerID = 0;
 	
 	// CONSTRUCTOR
 	public UserInterface() {
@@ -27,8 +29,10 @@ public class UserInterface implements Serializable {
 		myBank = new Bank();
 		
 		myBank.bankAdminList.add(new BankAdmin("Luis","Doi","luisdoi","111"));
-		myBank.employeeList.add(new Employee("Luis","doi", "ldoi","111"));
+		myBank.bankAdminList.add(new BankAdmin("Matt", "Knighten","MK","111"));
 		
+		myBank.employeeList.add(new Employee("Luis","doi", "ldoi","111"));
+/*		
 		myBank.customerList.add(new Customer("Vincent", "Rogers", "vRogers", "111", customerID));
 		customerID++;
 		myBank.customerList.add(new Customer("Kevin","Medara","kMedara", "111", customerID));
@@ -37,6 +41,7 @@ public class UserInterface implements Serializable {
 		customerID++;
 		myBank.customerList.add(new Customer("Sean","Robinson","sRob", "111", customerID));
 		customerID++;
+*/
 	}
 	
 // ORDER OF OPERATIONS
@@ -62,12 +67,15 @@ public class UserInterface implements Serializable {
 					switch(X) {
 					case 1:
 						C.withdraw(SC);
+						ioBankUI.writeSerializedBankUIFile();	
 						break;
 					case 2:
 						C.deposit(SC);
+						ioBankUI.writeSerializedBankUIFile();	
 						break;
 					case 3:
 						C.applyForAccount(SC, myBank.openAccountApplications);
+						ioBankUI.writeSerializedBankUIFile();	
 						break;
 					case 4:
 						System.out.println("Please have the second customer log in to continue applying for a joint account.");
@@ -77,14 +85,17 @@ public class UserInterface implements Serializable {
 						String password = SC.nextLine();
 						
 						Customer C2 = myBank.getCustomer(username, password);
-						if(C2 != null)
+						if(C2 != null) {
 							C.applyForJointAccount(SC, myBank.openAccountApplications, C2);
+							ioBankUI.writeSerializedBankUIFile();	
+						}
 						break;
 					case 5:
 						C.viewAccountStatus(SC);
 						break;
 					case 6:
 						C.transfer(SC);
+						ioBankUI.writeSerializedBankUIFile();	
 						break;
 					default:
 						break;
@@ -118,6 +129,7 @@ public class UserInterface implements Serializable {
 					case 2:
 						E.manageOpenAppsForAccounts(SC, myBank.openAccountApplications);
 						myBank.updateOpenAccApps();
+						ioBankUI.writeSerializedBankUIFile();	
 						break;
 					default:
 						break;
@@ -153,18 +165,23 @@ public class UserInterface implements Serializable {
 					case 2:
 						BA.manageOpenAppsForAccounts(SC, myBank.openAccountApplications);
 						myBank.updateOpenAccApps();
+						ioBankUI.writeSerializedBankUIFile();	
 						break;
 					case 3:
 						BA.withdraw(SC, myBank.customerList);
+						ioBankUI.writeSerializedBankUIFile();	
 						break;
 					case 4:
 						BA.deposit(SC, myBank.customerList);
+						ioBankUI.writeSerializedBankUIFile();	
 						break;
 					case 5:
 						BA.transfer(SC, myBank.customerList);
+						ioBankUI.writeSerializedBankUIFile();	
 						break;
 					case 6:
 						BA.cancelAccount(SC, myBank.customerList);
+						ioBankUI.writeSerializedBankUIFile();	
 						break;
 					default:
 						break;
@@ -181,6 +198,8 @@ public class UserInterface implements Serializable {
 	
 	public void loginToSystem(Scanner SC) {
 		while(true) {
+			// TODO - remove customer print statement
+			//System.out.println(myBank.customerList);
 			System.out.println("LOGIN - Who are you?\n Enter '1' for CUSTOMER.\n Enter '2' for EMPLOYEE.\n"
 					+ " Enter '3' for BANK ADMINISTRATOR.\n Enter 'Q' to quit.");
 			
@@ -245,9 +264,8 @@ public class UserInterface implements Serializable {
 		}
 		
 	}
-	
+
 	public void createCustomerAccount(Scanner SC) {
-		
 		String fName = null;
 		String lName = null;
 		String uName = null;
@@ -284,8 +302,7 @@ public class UserInterface implements Serializable {
 				"Your username is: " + uName + " and your password is: " + pWord);
 				System.out.println("Your customerID is:      " + customerID);
 				customerID++;
-				IOBankUI.writeSerializedBankUIFile();	
-
+				ioBankUI.writeSerializedBankUIFile();	
 				break;
 			}
 		}
@@ -303,11 +320,9 @@ public class UserInterface implements Serializable {
 				switch(X) {
 				case 1:
 					loginToSystem(SC);
-					IOBankUI.writeSerializedBankUIFile();	
 					break;
 				case 2:
 					createCustomerAccount(SC);
-					IOBankUI.writeSerializedBankUIFile();	
 					break;
 				default:
 					break;
@@ -325,25 +340,20 @@ public class UserInterface implements Serializable {
 	public static void main(String[] args) {
 		
 
-		//UserInterface UI;	
-
-		//IOBankUI.serializedBankUI = UI;
+		// Declare reference to UI
+		UserInterface UI;
 		
 		// Read serialized object from file
-		///IOBankUI.readSerializedBankUIFile();
-		
+		ioBankUI.readSerializedBankUIFile();
+		// Assign reference to stored bankUI from text file
+		UI = IOBankUI.serializedBankUI;
+
 		// Initialize scanner
 		Scanner SC = new Scanner(System.in);
+		
 		// Initialize user interface and pass in scanner object
-		//UI.initialize(SC);
+		UI.initialize(SC);
 		
-		IOBankUI.serializedBankUI.initialize(SC);;
-		
-		
-		
-
-		
-		// Write
-				//IOBankUI.writeSerializedBankUIFile();	
+		//ioBankUI.serializedBankUI.initialize(SC);;
 	}
 }

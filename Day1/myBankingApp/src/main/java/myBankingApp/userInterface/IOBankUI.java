@@ -6,20 +6,21 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Arrays;
 
 
 public class IOBankUI {
 
 	// file we are reading and writing to/from
 	private static final String SerializedBankUIFile = "SerializedBankUI.txt";
-	static public UserInterface serializedBankUI= new UserInterface();
+	public static UserInterface serializedBankUI= new UserInterface();	
 	
 	
-	
-	public static void writeSerializedBankUIFile() {
+	public void writeSerializedBankUIFile() {
 		try {
 			ObjectOutputStream objectOut = 
 					new ObjectOutputStream( new FileOutputStream(SerializedBankUIFile));
+			//System.out.println("ATTEMPTING"+serializedBankUI.toString());
 			objectOut.writeObject(serializedBankUI);
 			objectOut.close();
 		} catch(FileNotFoundException e) {
@@ -30,7 +31,7 @@ public class IOBankUI {
 		}
 	}
 	
-	public static void readSerializedBankUIFile() {
+	public void readSerializedBankUIFile() {
 		try {
 			ObjectInputStream objectIn;
 			objectIn = new ObjectInputStream(new FileInputStream(SerializedBankUIFile));
