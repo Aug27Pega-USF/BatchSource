@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="BatchSource-BigWave/Homework/Bank/src"/>
+	<classpathentry kind="src" path="BatchSource-BigWave/Homework/Homework/src"/>
+	<classpathentry kind="src" path="BatchSource-BigWave/Homework/MavenAndLoggingBank1/src/main/java"/>
+	<classpathentry kind="src" path="BatchSource-BigWave/Homework/MavenAndLoggingBank1/src/test/java"/>
+	<classpathentry kind="src" path="BatchSource-BigWave/parlor/src/main/java"/>
+	<classpathentry kind="src" path="BatchSource-BigWave/parlor/src/test/java"/>
+	<classpathentry kind="src" path="BatchSource-BigWave/Week1/Classtypes/src"/>
+	<classpathentry kind="src" path="BatchSource-BigWave/Week1/Day1/src"/>
+	<classpathentry kind="src" path="BatchSource-BigWave/Week1/ExceptionDemo2/src"/>
+	<classpathentry kind="src" path="BatchSource-BigWave/Week1/ExceptionProject/src"/>
+	<classpathentry kind="output" path="BatchSource-BigWave/Homework/Bank/bin"/>
+</classpath>
