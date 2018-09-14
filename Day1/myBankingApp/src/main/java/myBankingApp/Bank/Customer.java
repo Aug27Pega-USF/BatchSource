@@ -2,6 +2,7 @@ package myBankingApp.Bank;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Customer implements Serializable {		
@@ -18,12 +19,10 @@ public class Customer implements Serializable {
 	private String fullName;
 	private String username;
 	private String password;
-	private int customerID;
-	
-	private int accountNumber = 0;
-	
+	private long customerID;
+		
 	// CONSTRUCTOR
-	public Customer(String firstName, String lastName, String username, String password, int customerID) {
+	public Customer(String firstName, String lastName, String username, String password, long customerID) {
 		super();
 		// Customer is initialized WITHOUT ANY ACCOUNTS
 		this.firstName = firstName;
@@ -32,16 +31,15 @@ public class Customer implements Serializable {
 		this.username = username;
 		this.password = password;
 		this.customerID = customerID;
-		this.accounts = new ArrayList<Account>();	//0
+		this.accounts = new ArrayList<Account>();
 	}
 	
 // Maybe think of implementing age, DOB, customerID, userName, 
 
 
 	// OTHER METHODS
-	public Account applyForAccount(Scanner SC, ArrayList<Account>openApps) {
+	public Account applyForAccount(Scanner SC, ArrayList<Account>openApps, ArrayList<Long>acctIDList) {
 		
-		//(String accountOwner, String accountType, int accountNumber
 		System.out.println(this.firstName + " " + this.lastName +", you are now attempting to APPLY FOR AN ACCOUNT.");
 		System.out.println("Please enter:\n '1' if you would like to APPLY for a Checking account.");
 		System.out.println(" '2' if you would like to APPLY for a Savings account.");
@@ -57,16 +55,16 @@ public class Customer implements Serializable {
 				case 1:
 					if(findAccount("Checking") == null) {	// If the account doesn't already exist, make a new one
 						String t = this.firstName + ":" + this.lastName;
-						Account A = new Account(t, "Checking", accountNumber);
+						long tempAcctID = genRandomIDNum(acctIDList);
+						acctIDList.add(tempAcctID);
+						Account A = new Account(t, "Checking", tempAcctID);
 						// Account added to customer's account list but it has a PENDING status
 						this.accounts.add(A);
 						// Account added to list of open applications waiting for employee/bankAdmin approval
 						openApps.add(A);
 						System.out.println("Congratulations! You have just applied for a CHECKING account.");
-						System.out.println("Your account number is: " + accountNumber + "\n");
+						System.out.println("Your account number is: " + A.getAccountNumber() + "\n");
 						System.out.println(A);
-						// accountNumber is static so it will keep updating as we go...universally accessed.
-						accountNumber++;
 						return A;
 					}
 					else
@@ -75,16 +73,17 @@ public class Customer implements Serializable {
 				case 2:
 					if(findAccount("Savings") == null) {	// If the account doesn't already exist, make a new one
 						String t = this.firstName + ":" + this.lastName;
-						Account A = new Account(t, "Savings", accountNumber);
+						// Generate new accountID number that hasn't been used before
+						long tempAcctID = genRandomIDNum(acctIDList);
+						acctIDList.add(tempAcctID);
+						Account A = new Account(t, "Savings", tempAcctID);
 						// Account added to customer's account list but it has a PENDING status
 						this.accounts.add(A);
 						// Account added to list of open applications waiting for employee/bankAdmin approval
 						openApps.add(A);
 						System.out.println("Congratulations! You have just applied for a SAVINGS account.");
-						System.out.println("Your account number is: " + accountNumber + "\n");
+						System.out.println("Your account number is: " + A.getAccountNumber() + "\n");
 						System.out.println(A);
-						// accountNumber is static so it will keep updating as we go...universally accessed.
-						accountNumber++;
 						return A;
 					}
 					else
@@ -105,11 +104,11 @@ public class Customer implements Serializable {
 		return null;
 	}
 	
-	public boolean applyForJointAccount(Scanner SC, ArrayList<Account>openApps, Customer C2) {	// needs a parameter!
+	public boolean applyForJointAccount(Scanner SC, ArrayList<Account>openApps, ArrayList<Long>acctIDList, Customer C2) {
 		// get names to apply for account. // call addAccountHolder
 		// get second customer info
 		// make sure she is in the system as a customer ? maybe pass in this 2nd customer's object.
-		Account A = applyForAccount(SC, openApps);
+		Account A = applyForAccount(SC, openApps, acctIDList);
 		if(A != null) {
 			A.addAccountHolder(C2.fullName);
 			C2.accounts.add(A); // Add same account (account reference) to customer2's account list.
@@ -209,8 +208,26 @@ public class Customer implements Serializable {
 	
 	
 	
+	// OTHER METHODS
+	public static long genRandomIDNum(ArrayList<Long>IDList) {
+		Random rand = new Random(); 
+		long value1;
+		long value2;
+		long value;
+		while(true) {
+			value1 = rand.nextInt(100000000);
+	        value2 = rand.nextInt(100000000);
+	        value = value1 * value2;
+	        // check if it already exists
+	        if(!IDList.contains(value))
+	        	break;
+		}
+        return value;
+	}
 	
-	// GETTERS AND SETTERS
+	
+	
+	
 	public Account findAccount(String S) {
 		if(accounts.isEmpty()) {
 			System.out.println("Sorry but you have no active accounts.\n");
@@ -229,10 +246,12 @@ public class Customer implements Serializable {
 			return false;
 		}
 		for(Account A: accounts) {
-			System.out.println(A.getAccountType() + ": " + A.getBalance());
+			System.out.println(A.getAccountType() + ":		$" + String.format("%.2f", A.getBalance()));
 		}
 		return true;
 	}
+	
+	// GETTERS AND SETTERS
 	public ArrayList<Account> getAccounts() {
 		return accounts;
 	}
@@ -269,7 +288,7 @@ public class Customer implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getCustomerID() {
+	public long getCustomerID() {
 		return customerID;
 	}
 	public void setCustomerID(int customerID) {

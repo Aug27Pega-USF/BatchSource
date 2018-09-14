@@ -14,6 +14,8 @@ public class Bank implements Serializable {
 	public ArrayList<Customer> customerList; 
 	public ArrayList<Employee> employeeList;
 	public ArrayList<BankAdmin> bankAdminList; 
+	public ArrayList<Long> accountIDList;
+	public ArrayList<Long> customerIDList;
 	public ArrayList<Account> openAccountApplications;
 
 	//	CONSTRUCTOR 
@@ -21,6 +23,8 @@ public class Bank implements Serializable {
 		customerList = new ArrayList<Customer>();
 		employeeList = new ArrayList<Employee>();
 		bankAdminList = new ArrayList<BankAdmin>();
+		accountIDList = new ArrayList<Long>();
+		customerIDList = new ArrayList<Long>();
 		openAccountApplications= new ArrayList<Account>();
 	}
 	

@@ -20,14 +20,14 @@ public class Account implements Serializable{
 	
 	private ArrayList<String> accountHolders;
 	private String accountType;
-	private int accountNumber;
+	private long accountNumber;
 	private float balance;
 	private boolean overDrawn;	
 	private Status stat;
 	
 	// CONSTRUCTOR WITH PARAMETERS
 	// This constructor may be called when a list of more-than-one owner is available to start an account...
-	public Account(ArrayList<String> accountHolders, String accountType, int accountNumber) {
+	public Account(ArrayList<String> accountHolders, String accountType, long accountNumber) {
 		super();
 		this.accountHolders = accountHolders;
 		this.accountType = accountType;
@@ -37,7 +37,7 @@ public class Account implements Serializable{
 		this.stat = Status.PENDING;
 	}
 	// This constructor may be called when a only ONE person is trying to start an account...
-	public Account(String accountOwner, String accountType, int accountNumber) {
+	public Account(String accountOwner, String accountType, long accountNumber) {
 		super();
 		this.accountHolders = new ArrayList<String>();
 		this.accountHolders.add(accountOwner);
@@ -59,17 +59,22 @@ public class Account implements Serializable{
 		}
 		// Handles user attempt to depositing negative amount
 		if(value < 0.00f) {
-			System.out.println("Error - You are trying to deposit a negative value from account: "+ this.accountType
+			System.out.println("Error - You are trying to deposit a negative value to account: "+ this.accountType
 		+ "Please try again.");
+			return false;
+		}
+		else
+		if(value == 0.00f) {
+			System.out.println("Error - Depositing zero is not valid. Please try again.");
 			return false;
 		}
 		else {
 			// TODO  - IMPLEMENT LOG!
 			this.balance += value;
-			System.out.println("You have successfully DEPOSITED to account '" +this.accountType +"':		$" + value);
-			System.out.println("Your current balance is in this account is:		$" + this.balance);
-			bankLogger.loggerLevel("You have successfully DEPOSITED from account '" +this.accountType + "':		$" + value);
-			bankLogger.loggerLevel("Your current balance in this account is:		$" + this.balance);
+			System.out.println("You have successfully DEPOSITED to account '" +this.accountType +"':		$" + String.format("%.2f",value));
+			System.out.println("Your current balance is in this account is:		$" + String.format("%.2f",this.balance));
+			bankLogger.loggerLevel("DEPOSIT made to '" +this.accountType + "' account number " + this.accountNumber +  ":		$" + value);
+			bankLogger.loggerLevel("Current balance in this account is:		$" + String.format("%.2f",this.balance));
 			if(this.overDrawn)
 				this.overDrawn = false;
 			return true;
@@ -91,17 +96,15 @@ public class Account implements Serializable{
 		}
 		else
 		if (value  == this.balance ){
-			// TODO  - IMPLEMENT LOG!
 			this.balance = 0.00f;
 			System.out.println("WARNING - The balance is now zero in account: " + this.accountType);
 			
-			bankLogger.loggerLevel("You have successfully WITHDRAWN from account '" +this.accountType + "':		$" + value);
-			bankLogger.loggerLevel("Your current balance in this account is:		$" + this.balance);
+			bankLogger.loggerLevel("WITHDRAW made from account '" +this.accountType + "' account number	"+this.accountNumber+	":		$" + String.format("%.2f",value));
+			bankLogger.loggerLevel("Current balance in this account is:		$" + String.format("%.2f",this.balance));
 			return true;
 		}
 		else
 		if (value > this.balance) {
-			// TODO  - IMPLEMENT LOG!
 			System.out.println("ERROR - The amount you are trying to withdraw is greater than what is available in account: "
 			+ this.accountType);
 			System.out.println("Please try again. ");
@@ -110,13 +113,12 @@ public class Account implements Serializable{
 		}
 		else 
 		if (value < this.balance ) {
-			// TODO  - IMPLEMENT LOG!
 			this.balance -= value;
-			System.out.println("You have successfully WITHDRAWN from account '" +this.accountType + "':		$" + value);
-			System.out.println("Your current balance in this account is:		$" + this.balance);
+			System.out.println("You have successfully WITHDRAWN from account '" +this.accountType + "':		$" + String.format("%.2f",value));
+			System.out.println("Your current balance in this account is:		$" + String.format("%.2f",this.balance));
 			
-			bankLogger.loggerLevel("You have successfully WITHDRAWN from account '" +this.accountType + "':		$" + value);
-			bankLogger.loggerLevel("Your current balance in this account is:		$" + this.balance);
+			bankLogger.loggerLevel("WITHDRAW made from account '" +this.accountType + "' account number	"+this.accountNumber+	":		$" + String.format("%.2f",value));
+			bankLogger.loggerLevel("Current balance in this account is:		$" + String.format("%.2f",this.balance));
 
 			return true;
 		}
@@ -129,14 +131,16 @@ public class Account implements Serializable{
 		
 		if(this.withdraw(value)) {
 			if(toAccount.deposit(value)) {
+				bankLogger.loggerLevel("TRANSFER placed from account #: " + this.accountNumber+ " to account #:" + toAccount.accountNumber);
+
 				System.out.println("Transfer FROM: " + this.accountType + " TO: " + toAccount.accountType + " was SUCCESSFUL.");
 				System.out.println("Current balance in '" + this.accountType +"' is:		$" + 
-				this.getBalance());
+						String.format("%.2f",this.balance));
 				System.out.println("Current balance in '" + toAccount.accountType +"' is:		$" + 
-						toAccount.getBalance());
+						String.format("%.2f",toAccount.getBalance()));
 				
-				bankLogger.loggerLevel("The following TRANSFER will take place:");
-				
+				bankLogger.loggerLevel("TRANSFER succesful.");
+
 				return true;
 			}
 			this.deposit(value);
@@ -202,7 +206,7 @@ public class Account implements Serializable{
 		this.accountType = accountType;
 	}
 
-	public int getAccountNumber() {
+	public long getAccountNumber() {
 		return accountNumber;
 	}
 
@@ -245,7 +249,7 @@ public class Account implements Serializable{
 	@Override
 	public String toString() {
 		return "Account [accountHolders=" + accountHolders + ", accountType=" + accountType + ", accountNumber="
-				+ accountNumber + ", balance=" + balance + ", overDrawn=" + overDrawn + ", accountStatus= " + stat + "]\n";
+				+ accountNumber + ", balance= $" + String.format("%.2f",balance) + ", overDrawn=" + overDrawn + ", accountStatus= " + stat + "]\n";
 	}
 	
 	
