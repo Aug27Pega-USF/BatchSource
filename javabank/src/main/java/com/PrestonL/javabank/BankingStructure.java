@@ -161,6 +161,7 @@ public class BankingStructure
 							}
 						}
 					} while (!check);
+					currentuser=null;
 					currentuser = bank.login(username, password);
 					if (currentuser != null) {
 						login = true;
@@ -528,6 +529,7 @@ public class BankingStructure
 								System.out.println("Logging out.");
 								menucheck = true;
 								check = true;
+								iscustomer=false;
 								break;
 							default:
 								System.out.println("Please enter a valid number.");
@@ -629,6 +631,7 @@ public class BankingStructure
 								System.out.println("Logging out.");
 								menucheck = true;
 								check = true;
+								isemployee=false;
 								break;
 							default:
 								System.out.println("Please enter a valid number.");
@@ -978,6 +981,7 @@ public class BankingStructure
 								System.out.println("Logging out.");
 								menucheck = true;
 								check = true;
+								isadmin=false;
 								break;
 							default:
 								System.out.println("Please enter a valid number.");

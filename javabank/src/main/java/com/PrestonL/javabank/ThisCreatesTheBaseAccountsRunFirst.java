@@ -81,60 +81,8 @@ public class ThisCreatesTheBaseAccountsRunFirst
 
 		//Serialization
 
-		try {
-
-			// Reading the object from a file
-			FileInputStream file = new FileInputStream
-					("Bank.txt");
-			ObjectInputStream in = new ObjectInputStream
-					(file);
-
-			// Method for deserialization of object
-			userList = (ArrayList<User>)in.readObject();
-
-			in.close();
-			file.close();
-
-			for (int i=0; i!=userList.size();i++) {
-				switch(userList.get(i).returnClass()){
-				case "Employee":
-					employeeList.add((Employee) userList.get(i));
-					break;
-				case "Customer":
-					customerList.add((Customer) userList.get(i));
-					break;
-				case "Admin":
-					adminList.add((Admin) userList.get(i));
-					break;
-				default:    		
-				}
-			}   
-			file = new FileInputStream
-					("Bankaccount.txt");
-			in = new ObjectInputStream
-					(file);           
-
-			accountList=(ArrayList<BankAccount>)in.readObject();
-			in.close();
-			file.close();
-			file = new FileInputStream
-					("Application.txt");
-			in = new ObjectInputStream
-					(file);           
-
-			applicationList=(ArrayList<Application>)in.readObject();
-			in.close();
-			file.close();
-		}
-
-		catch (IOException ex) {
-			System.out.println("IOException is caught");
-		}
-
-		catch (ClassNotFoundException ex) {
-			System.out.println("ClassNotFoundException" +
-					" is caught");
-		}
+		Bank bank=new Bank(userList, customerList, employeeList, adminList, accountList, applicationList);
+		bank.serialize();
 	}
 
 }

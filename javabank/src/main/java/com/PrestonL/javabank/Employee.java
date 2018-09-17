@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Employee extends Customer {
 
 	private static final long serialVersionUID = 5286670470382563398L;
-
+	
 	public Employee(String username, String password, String name) {
-		super(username, password, name );
+		super(username, password, name);
 	}
 
 	public void approve(int accountid, ArrayList<Application> applicationList, ArrayList<Customer> customerList, ArrayList<BankAccount> accountList) {
