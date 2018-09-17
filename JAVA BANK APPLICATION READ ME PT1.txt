@@ -1,0 +1,4 @@
+Everything is in Javabank/src/main/java in the com.PrestonL.javabank package.
+Run the Driver Class or the Bank Structure class. 
+
+IMPORTANT BUGS: Due to the way that scanner.hasNext() works, in most parts of the menus, if you press enter, then enter a value and enter, the program will take in an empty line "", which has a 50% chance of crashing the program depending on where you are in the menu system. However, if you were to input incorrect values instead of just creating an empty line, the program will work just fine. I could fix this, but it's annoying, so I didn't.
