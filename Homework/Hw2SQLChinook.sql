@@ -38,7 +38,7 @@ SELECT * FROM INVOICE WHERE BILLINGADDRESS LIKE 'T%';
 SELECT * FROM INVOICE WHERE TOTAL BETWEEN 15 AND 50;
 SELECT * FROM EMPLOYEE WHERE HIREDATE BETWEEN TO_DATE('2003-6-1 00:00:00','yyyy-mm-dd hh24:mi:ss') AND TO_DATE('2004-3-1 00:00:00','yyyy-mm-dd hh24:mi:ss');
 
-/*2.7*/
+/*2.7* Have to delete invoiceline first, then invoice, then customer/
 DELETE (SELECT *
         FROM invoiceline ivl
         INNER JOIN invoice iv
@@ -51,7 +51,7 @@ DELETE (SELECT *
             ON cu.customerid = iv.customerid where cu.FIRSTNAME='Robert' AND cu.LASTNAME = 'Walter');
 DELETE FROM CUSTOMER WHERE FIRSTNAME='Robert' AND LASTNAME = 'Walter';
 
-/*3.1*/
+/*3.1* This returns varchar2, could be changed to a date, but date variables are annoying./
 CREATE OR REPLACE FUNCTION DISPLAY_CURRENT_TIME
 RETURN VARCHAR2 AS
     hey VARCHAR2(10);
@@ -65,6 +65,7 @@ RETURN VARCHAR2 AS
 
 select display_current_time() from dual;    
 
+/*Creates a name object, a table of name object, and returns it in the function with a for loop*/
 CREATE OR REPLACE TYPE NAME_OBJ IS OBJECT(NAME VARCHAR2(120), NAME_LENGTH NUMBER);
 /
 CREATE OR REPLACE TYPE NUMBERS IS TABLE OF NAME_OBJ;
@@ -123,7 +124,7 @@ RETURN NUMBER AS
 
 SELECT AVG_INVOICELINE_PRICE() FROM DUAL;
 
-/*3.4*/
+/*3.4* Create a object with name, then a table, then return the table./
 
 CREATE OR REPLACE TYPE EMP_NAME FORCE IS OBJECT(FIRSTNAME VARCHAR2(20), LASTNAME VARCHAR2(20));
 /
@@ -146,7 +147,7 @@ BEGIN
     
 SELECT * FROM TABLE (BORN_AFTER_68);
 
-/*4.0*/
+/*4.0* Uses a cursor because procedures don't return anything, so you have to use a cursor to output stuff./
 CREATE OR REPLACE PACKAGE types
 AS
     TYPE ref_cursor IS REF CURSOR;
@@ -165,7 +166,7 @@ var c refcursor;
 exec get_employee_names(:c);
 
 /*4.2 Stored Procedure Input Parameters
-Task – Create a stored procedure that returns the managers of an employee .*/
+Task ?Create a stored procedure that returns the managers of an employee .*/
 
 CREATE OR REPLACE PROCEDURE UPDATE_EMPLOYEE_INFO (EMPLOYEEID1 IN NUMBER,ADDRESS1 IN VARCHAR2, CITY1 IN VARCHAR2, STATE1 IN VARCHAR2, COUNTRY1 IN VARCHAR2, POSTALCODE1 IN VARCHAR2, PHONE1 IN VARCHAR2,FAX1 IN VARCHAR2,EMAIL1 IN VARCHAR2) as
 BEGIN
@@ -176,6 +177,7 @@ BEGIN
  EXEC UPDATE_EMPLOYEE_INFO(9, '111 UNO AVENUE', 'ALBERTA', 'AB', 'Canada', 'A1A 1A1', '+1 (111) 000-0001', '+1 (111) 000-0000', 'Alpha@chinookcorp.com');
  SELECT * FROM EMPLOYEE;
  
+/*Connect by prior is better than self join in this case*/
  
 CREATE OR REPLACE PROCEDURE RETURN_MANAGERS(EMPLOYEEID1 IN NUMBER, cursor_ OUT TYPES.REF_CURSOR)
 as 
@@ -192,7 +194,7 @@ exec return_managers(9,:d);
 exec return_managers(2,:d);
 exec return_managers(1,:d);
 
-/*4.3*/
+/*4.3* Returns a cursor for same reason./
 CREATE OR REPLACE PROCEDURE RETURN_COMPANY(CUSTOMERID1 IN NUMBER, cursor_ OUT TYPES.REF_CURSOR)
 as 
 name_cursor types.ref_cursor;
@@ -206,7 +208,7 @@ var E refcursor;
 exec RETURN_COMPANY(9,:E);
 exec RETURN_COMPANY(10,:E);   
 
-/*5.0*/
+/*5.0 need to delete invoiceline before invoice*/
 CREATE OR REPLACE PROCEDURE DELETE_INVOICE(invoiceID1 IN NUMBER)
 as
 begin
@@ -283,6 +285,10 @@ select * from album,artist ORDER BY artist.name asc;
 
 /*7.5*/
 select a.firstname || ' ' || a.lastname as "Employee Name", a.employeeid as "Employee ID", b.firstname || ' ' || b.lastname as "Manager Name", b.employeeid as "Manager ID" from employee a, employee b where a.reportsto=b.employeeid;
+
+
+
+/*extra stuff below*/
 
 
 CREATE OR REPLACE TYPE CUSTOMER_NAME FORCE IS OBJECT(FIRSTNAME VARCHAR2(20),LASTNAME VARCHAR2(20));
