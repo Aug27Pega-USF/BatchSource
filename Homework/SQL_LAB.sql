@@ -27,7 +27,7 @@ INTO GENRE (GENREID, NAME) VALUES(26, 'Classic Rock')
 INTO GENRE (GENREID, NAME) VALUES(27, 'Pan Flute')
 SELECT * FROM dual;
 
-/*Task ñ Insert two new records into Employee table*/
+/*Task ‚Äì Insert two new records into Employee table*/
 INSERT ALL
 INTO EMPLOYEE (EMPLOYEEID,LASTNAME,FIRSTNAME,TITLE,REPORTSTO,BIRTHDATE,HIREDATE,ADDRESS,CITY,STATE,COUNTRY,POSTALCODE,PHONE,FAX,EMAIL) 
 VALUES(9,'Medara','Kevin','CEO',null,TO_DATE('2003/10/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2006/05/07 21:02:44', 
@@ -37,42 +37,42 @@ VALUES(10,'Knighten','Matthew','Janitor',null,TO_DATE('2003/10/03 21:02:44', 'yy
         'yyyy/mm/dd hh24:mi:ss'),'123 This Road','Tampa','FL','United States','12345','603-973-4609','111-111-1111','jason@hotmail.com')
 SELECT * FROM dual;
 
-/*Task ñ Insert two new records into Customer table*/
+/*Task ‚Äì Insert two new records into Customer table*/
 INSERT ALL 
 INTO CUSTOMER (CustomerId, FirstName, LastName, Company, Address, City, State, Country, PostalCode, Phone, Fax, Email, SupportRepId) 
 VALUES (60, 'This', 'Guy', 'Company', 'Address', 'Rochester', 'NH', 'United states', '32211-3221', '6034567896', '123-45-6789', 'myemail@company.com', 4)
 INTO CUSTOMER (CustomerId, FirstName, LastName, Company, Address, City, State, Country, PostalCode, Phone, Fax, Email, SupportRepId) 
-VALUES (61, 'New', 'Person', 'Embraer - Empresa Brasileira de Aeron·utica S.A.', 'Av. Brigadeiro Faria Lima, 2170', 'S„o JosÈ dos Campos', 'SP', 'Brazil', '12227-000', '+55 (12) 3923-5555', '+55 (12) 3923-5566', 'thisone@company.com', 5)
+VALUES (61, 'New', 'Person', 'Embraer - Empresa Brasileira de Aeron√°utica S.A.', 'Av. Brigadeiro Faria Lima, 2170', 'S√£o Jos√© dos Campos', 'SP', 'Brazil', '12227-000', '+55 (12) 3923-5555', '+55 (12) 3923-5566', 'thisone@company.com', 5)
 SELECT * FROM DUAL;
 
 /*2.4 UPDATE*/
-/*Task ñ Update Aaron Mitchell in Customer table to Robert Walter*/
+/*Task ‚Äì Update Aaron Mitchell in Customer table to Robert Walter*/
 UPDATE CUSTOMER
 SET FIRSTNAME = 'Robert',LASTNAME = 'Walter'
 WHERE FIRSTNAME ='Aaron' AND LASTNAME = 'Mitchell';
 
-/*Task ñ Update name of artist in the Artist table ìCreedence Clearwater Revivalî to ìCCRî*/
+/*Task ‚Äì Update name of artist in the Artist table ‚ÄúCreedence Clearwater Revival‚Äù to ‚ÄúCCR‚Äù*/
 UPDATE ARTIST
 SET NAME = 'CCR'
 WHERE NAME = 'Creedence Clearwater Revival';
 
 /*2.5 LIKE*/
-/*Task ñ Select all invoices with a billing address like ìT%î */
+/*Task ‚Äì Select all invoices with a billing address like ‚ÄúT%‚Äù */
 SELECT * FROM INVOICE 
 WHERE BILLINGADDRESS LIKE 'T%';
 
 /*2.6 BETWEEN*/
-/*Task ñ Select all invoices that have a total between 15 and 50*/
+/*Task ‚Äì Select all invoices that have a total between 15 and 50*/
 SELECT * FROM INVOICE 
 WHERE TOTAL BETWEEN 15 AND 20;
 
-/*Task ñ Select all employees hired between 1st of June 2003 and 1st of March 2004*/
+/*Task ‚Äì Select all employees hired between 1st of June 2003 and 1st of March 2004*/
 
 SELECT * FROM EMPLOYEE
 WHERE HIREDATE BETWEEN TO_DATE('2003/06/01', 'YYYY/MM/DD') AND TO_DATE('2005/03/01','YYYY/MM/DD');
 
 /*2.7 DELETE*/
-/*Task ñ Delete a record in Customer table where the name is Robert Walter (There may be constraints that rely on this, find out how to resolve them).*/
+/*Task ‚Äì Delete a record in Customer table where the name is Robert Walter (There may be constraints that rely on this, find out how to resolve them).*/
 DELETE FROM INVOICELINE
 WHERE INVOICEID IN (
 SELECT INVOICEID FROM INVOICE 
@@ -91,10 +91,10 @@ where FIRSTNAME='Robert' AND LASTNAME='Walter';
 /*In this section you will be using the Oracle system functions, as well as your own functions, to perform various actions against the database*/
 
 /*3.1 System Defined Functions*/
-/*Task ñ Create a function that returns the current time.*/
+/*Task ‚Äì Create a function that returns the current time.*/
 SELECT TO_CHAR(CURRENT_TIMESTAMP, ' hh12:mi:ss') FROM dual; /*did not include date because only time was asked for*/
 
-/*Task ñ create a function that returns the length of name in MEDIATYPE table*/
+/*Task ‚Äì create a function that returns the length of name in MEDIATYPE table*/
 CREATE OR REPLACE TYPE NAME_OBJECT IS OBJECT(NAME VARCHAR2(120), NAME_LENGTH NUMBER);//*Below function will return a set of NAME_OBJECTs*/
 CREATE OR REPLACE TYPE NUMBERS IS TABLE OF NAME_OBJECT;/
 
@@ -114,7 +114,7 @@ END;/
 SELECT * FROM TABLE(COLUMN_VALUE_LENGTHS);
 
 /*3.2 System Defined Aggregate Functions
-Task ñ Create a function that returns the average total of all invoices*/ 
+Task ‚Äì Create a function that returns the average total of all invoices*/ 
 CREATE OR REPLACE FUNCTION GET_AVG_TOTAL
 RETURN NUMBER AS AVG_TOTAL NUMBER;
 BEGIN 
@@ -126,7 +126,7 @@ BEGIN
 SELECT GET_AVG_TOTAL() as AVERAGE_INVOICE FROM DUAL; /*ONE USER CREATED FUNCTION, ONE SYSTEM FUNCTION*/
 SELECT ROUND(AVG(TOTAL),2) AS AVERAGE FROM INVOICE;
 
-/*Task ñ Create a function that returns the most expensive track*/
+/*Task ‚Äì Create a function that returns the most expensive track*/
 UPDATE TRACK
 SET UNITPRICE = 5.99
 WHERE NAME = 'Carolina Hard-Core Ecstasy'; /*Update a track to be the most expensive*/
@@ -142,7 +142,7 @@ SELECT EXPENSIVE_TRACK() FROM DUAL; /*ONE USER CREATED FUNCTION, ONE SYSTEM FUNC
 SELECT NAME FROM TRACK WHERE UNITPRICE = (SELECT MAX(UNITPRICE) FROM TRACK);
 
 /*3.3 User Defined Scalar Functions
-Task ñ Create a function that returns the average price of invoiceline items in the invoiceline table*/
+Task ‚Äì Create a function that returns the average price of invoiceline items in the invoiceline table*/
 CREATE OR REPLACE FUNCTION AVG_INVOICELINE
 RETURN NUMBER AS AVG_LINE NUMBER;
 BEGIN 
@@ -153,7 +153,7 @@ BEGIN
 SELECT AVG_INVOICELINE() FROM DUAL;
 
 /*3.4 User Defined Table Valued Functions
-Task ñ Create a function that returns all employees who are born after 1968.*/
+Task ‚Äì Create a function that returns all employees who are born after 1968.*/
 /*Creates new employee object with name and year born
  * Create table to fill with new objects 
  * function takes in variable of year you want to check
@@ -181,7 +181,7 @@ SELECT * FROM TABLE(BORN_AFTER_DATE(1968));
 /*4.0 Stored Procedures
  In this section you will be creating and executing stored procedures. You will be creating various types of stored procedures that take input and output parameters.
 4.1 Basic Stored Procedure
-Task ñ Create a stored procedure that selects the first and last names of all the employees.*/
+Task ‚Äì Create a stored procedure that selects the first and last names of all the employees.*/
 SET SERVEROUTPUT ON;
 --PROCEDURE UTILIZING CURSORS
 CREATE OR REPLACE PROCEDURE GETEMPLOYEENAMES
@@ -208,7 +208,7 @@ CLOSE;
 END;
 / 
 /*4.2 Stored Procedure Input Parameters
-Task ñ Create a stored procedure that updates the personal information of an employee.*/
+Task ‚Äì Create a stored procedure that updates the personal information of an employee.*/
 CREATE OR REPLACE PROCEDURE UPDATEEMPLOYEEPERSONALINFO
 (EID IN INT, FNAME IN VARCHAR2, LNAME IN VARCHAR2, BIRTH IN DATE, 
     ADDR IN VARCHAR2, ECITY IN VARCHAR2, ESTATE IN VARCHAR2, ECOUNTRY IN VARCHAR2,
@@ -235,14 +235,42 @@ END;
 
 EXECUTE UPDATEEMPLOYEEPERSONALINFO(9,'ROBERT','Medara', '08-JUL-95','10 Spring Street', 'Keene', 'NH','United States','03041','234-543-4566','555-444-6789','kmedara2015@outlook.com');
         
-/*Task ñ Create a stored procedure that returns the managers of an employee .
-4.3 Stored Procedure Output Parameters
-Task ñ Create a stored procedure that returns the name and company of a customer.*/
+/*Task ‚Äì Create a stored procedure that returns the managers of an employee .*/
+CREATE OR REPLACE PROCEDURE GETEMPLOYEEMANAGER(EMP_ID IN INT, GCC OUT SYS_REFCURSOR)
+AS 
+BEGIN
+OPEN GCC FOR
+SELECT EMPLOYEEID, (FIRSTNAME ||' '|| LASTNAME), REPORTSTO
+FROM EMPLOYEE
+WHERE EMPLOYEEID = EMP_ID;
+END;
+/
+DECLARE
+GCC SYS_REFCURSOR;
+EMPLOYEE_ID EMPLOYEE.EMPLOYEEID%TYPE;
+EMPLOYEE_NAME EMPLOYEE.FIRSTNAME%TYPE;
+EMPLOYEE_MANAGER EMPLOYEE.EMPLOYEEID%TYPE;
+
+BEGIN 
+    GETEMPLOYEEMANAGER(5,GCC);
+    LOOP
+        FETCH GCC INTO EMPLOYEE_ID, EMPLOYEE_NAME, EMPLOYEE_MANAGER; --retrieves rows of data from the result set of a multiple-row query
+        EXIT WHEN GCC%NOTFOUND; --BREAKS LOOP WHEN NO MORE ROWS ARE AVAILABLE
+        DBMS_OUTPUT.PUT_LINE('EMPLOYEE: ' ||EMPLOYEE_NAME);
+        DBMS_OUTPUT.PUT_LINE('MANAGER: ' ||EMPLOYEE_MANAGER);
+        END LOOP
+CLOSE;
+END;
+/ 
+
+/*4.3 Stored Procedure Output Parameters
+Task ‚Äì Create a stored procedure that returns the name and company of a customer.*/
+SET SERVEROUTPUT ON;
 CREATE OR REPLACE PROCEDURE GETCUSTOMERCOMPANY(CUST_ID IN INT, GCC OUT SYS_REFCURSOR)
 AS 
 BEGIN
 OPEN GCC FOR
-SELECT COMPANY,FIRSTNAME
+SELECT COMPANY,(FIRSTNAME||' '||LASTNAME)
 FROM CUSTOMER
 WHERE CUSTOMERID = CUST_ID;
 END;
@@ -265,7 +293,7 @@ END;
 
 /*5.0 Transactions
 In this section you will be working with transactions. Transactions are usually nested within a stored procedure.
-Task ñ Create a transaction that given a invoiceId will delete that invoice (There may be constraints that rely on this, find out how to resolve them).*/
+Task ‚Äì Create a transaction that given a invoiceId will delete that invoice (There may be constraints that rely on this, find out how to resolve them).*/
 CREATE OR REPLACE PROCEDURE DELETEINVOICE(ID_TO_DELETE IN INT)
 AS
 BEGIN
@@ -275,7 +303,7 @@ COMMIT;
 END;
 /
 call DELETEINVOICE(1);/*Thought it would be better utilized as a stored procedure, able to pass in id number*/
-/*Task ñ Create a transaction nested within a stored procedure that inserts a new record in the Customer table*/
+/*Task ‚Äì Create a transaction nested within a stored procedure that inserts a new record in the Customer table*/
 CREATE SEQUENCE CUSTSEQ;
 CREATE OR REPLACE PROCEDURE INSERTCUSTOMER(FIRSTNAME IN VARCHAR2, LASTNAME IN VARCHAR2, EMAIL IN VARCHAR2)
 AS
@@ -304,7 +332,7 @@ BEGIN
   END IF;  
 END;
 /
-/*Task ñ Create an after update trigger on the album table that fires after a row is inserted in the table*/
+/*Task ‚Äì Create an after update trigger on the album table that fires after a row is inserted in the table*/
 CREATE OR REPLACE TRIGGER TR_ALBUM_AFTERTITLEUPDATE /*INFORMS USER OF THEIR CHANGES WHEN TITLE IS UPDATED*/
 AFTER UPDATE ON ALBUM
 FOR EACH ROW
@@ -312,7 +340,7 @@ BEGIN
  DBMS_OUTPUT.PUT_LINE('CHANGED: '|| :OLD.TITLE || 'TO: ' || :NEW.TITLE|| ' FOR ALBUM: ' || :OLD.ALBUMID );
 END;
 /
-/*Task ñ Create an after delete trigger on the customer table that fires after a row is deleted from the table.*/
+/*Task ‚Äì Create an after delete trigger on the customer table that fires after a row is deleted from the table.*/
 CREATE OR REPLACE TRIGGER TR_CUSTOMER_AFTERDELETE
 AFTER DELETE ON CUSTOMER
 FOR EACH ROW 
@@ -322,32 +350,32 @@ END;
 /
 /*7.0 JOINS*/
 /*7.1 INNER*/
-/*Task ñ Create an inner join that joins customers and orders and specifies the name of the customer and the invoiceId.*/
+/*Task ‚Äì Create an inner join that joins customers and orders and specifies the name of the customer and the invoiceId.*/
 SELECT CUSTOMER.FIRSTNAME, CUSTOMER.LASTNAME, INVOICE.INVOICEID
 FROM CUSTOMER
 INNER JOIN INVOICE ON CUSTOMER.CUSTOMERID = INVOICE.CUSTOMERID ORDER BY FIRSTNAME ASC;
 
 /*7.2 OUTER
-Task ñ Create an outer join that joins the customer and invoice table, specifying the CustomerId, firstname, lastname, invoiceId, and total.*/
+Task ‚Äì Create an outer join that joins the customer and invoice table, specifying the CustomerId, firstname, lastname, invoiceId, and total.*/
 /*Used right because it doesn't returns customers with null invoiceid and total*/
 SELECT CUSTOMER.CUSTOMERID, CUSTOMER.FIRSTNAME, CUSTOMER.LASTNAME,INVOICE.INVOICEID, INVOICE.TOTAL
 FROM CUSTOMER
 RIGHT OUTER JOIN INVOICE ON CUSTOMER.CUSTOMERID = INVOICE.CUSTOMERID; 
 
 /*7.3 RIGHT
-Task ñ Create a right join that joins album and artist specifying artist name and title.*/
+Task ‚Äì Create a right join that joins album and artist specifying artist name and title.*/
 SELECT ARTIST.NAME, ALBUM.TITLE
 FROM ARTIST
 RIGHT JOIN ALBUM ON ARTIST.ARTISTID = ALBUM.ARTISTID;
 
 /*7.4 CROSS
-Task ñ Create a cross join that joins album and artist and sorts by artist name in ascending order.*/
+Task ‚Äì Create a cross join that joins album and artist and sorts by artist name in ascending order.*/
 SELECT * 
 FROM ARTIST
 CROSS JOIN ALBUM WHERE ARTIST.ARTISTID = ALBUM.ARTISTID ORDER BY ARTIST.NAME ASC;
 
 /*7.5 SELF
-Task ñ Perform a self-join on the employee table, joining on the reportsto column.*/
+Task ‚Äì Perform a self-join on the employee table, joining on the reportsto column.*/
 /*Concatenates names for employees, joins on reportsto, leaves out rows where A.employee is b. employee*/
 SELECT (A.FIRSTNAME ||' '|| A.LASTNAME) AS EMPLOYEENAME_1, A.REPORTSTO 
 FROM EMPLOYEE A 
