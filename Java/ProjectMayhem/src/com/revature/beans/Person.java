@@ -1,5 +1,7 @@
 package com.revature.beans;
 
+import com.revature.exceptions.IncreasedByNegativeNumberException;
+
 public class Person {
 	/*
 	 * Members of a class
@@ -63,6 +65,12 @@ public class Person {
 		return "Person [name=" + name + ", age=" + age + ", weight=" + weight + "]";
 	}
 	
-	
+	public void increaseAgeBy(int x) throws
+	IncreasedByNegativeNumberException {
+		if(x<=0) {
+			throw new IncreasedByNegativeNumberException();
+		}
+		this.age+=x;
+	}
 	
 }
