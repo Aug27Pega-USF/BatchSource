@@ -11,8 +11,7 @@ public interface Hunt {
  * classes can implement interfaces 0+
  * interfaces can extend other interfaces 0+
  * All variables are implicitly static, public, and final (java 8)
- * 
- * 
+ *  
  */
 	public abstract void findPrey();
 }

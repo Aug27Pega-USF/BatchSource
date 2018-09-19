@@ -5,7 +5,6 @@ package com.revature.abstractz;
  * special class that can't be instantiated
  * can contain concrete methods
  * "Contract based"- abstract methods MUST be overridden in the subclass.
- * 
  */
 
 public abstract class Animal {

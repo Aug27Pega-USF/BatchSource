@@ -1,6 +1,7 @@
 package com.revature.bank;
 
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import com.revature.account.*;
 
@@ -106,10 +107,21 @@ public static Scanner s= new Scanner(System.in);
 		String fname=s.nextLine();
 		System.out.print("Phone: ");
 		String p=s.nextLine();		
-		System.out.print("Account type (Type: Client, Employee, or Admin) : ");
+		System.out.print("User type (Type: Client, Employee, or Admin) : ");
 		String actype=s.nextLine();
+		double bal=0;
+		do {
+			try {
 		System.out.print("Starting Balance: ");
-		double bal=s.nextDouble();
+		bal=s.nextDouble();
+			}
+			catch(InputMismatchException e)
+			{
+				System.out.println("Please use a number.");
+			}
+			s.nextLine();
+		}while(bal<=0);
+		
 		
 		
 		if(actype.equals("Client"))
@@ -129,9 +141,23 @@ public static Scanner s= new Scanner(System.in);
 		
 		IOBank.writeAccountFile();
 		
-		IOBank.readBankFile();
-		System.out.println(IOBank.accountList.get(0).getUsername());
-		System.out.println(IOBank.accountList.size());
+		System.out.println("Registered User Saved");
+		
+//		System.out.println("Would you like to Login? (Y/N)");
+//		String input= s.nextLine();
+//		switch(input)
+//		{
+//		case "Y":
+//			BankLogin.checkLogin();
+//			break;
+//		case "N":
+//			
+//			break;			
+//		
+//		}
+		//IOBank.readBankFile();
+		//System.out.println(IOBank.accountList.get(0).getUsername());
+		//System.out.println(IOBank.accountList.size());
 		}
 		catch(Exception e)
 		{

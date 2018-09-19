@@ -14,7 +14,7 @@ import com.revature.account.Account;
 
 
 public class IOBank {
-	//file we are reading and writing to/from
+	//file reading and writing to/from
 	
 		private static final String BankFile="BankAccounts.txt";
 		

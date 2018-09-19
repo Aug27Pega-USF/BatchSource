@@ -1,10 +1,9 @@
 package com.revature.bank;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.revature.exceptions.NegativeNumberException;
-
-
 
 public class Transactions {
 
@@ -19,11 +18,15 @@ public class Transactions {
 		double balance=IOBank.accountList.get(idx).getBalance();
 		String phone=IOBank.accountList.get(idx).getPhone();
 		String actType=IOBank.accountList.get(idx).getAccountType();
+		boolean isTrue=false;
 		
 		if(actType.equals("Client"))
 		{
-		System.out.println("Will you do now "+name+"? (Withdraw/W, or Deposit/D)");
+		
+		System.out.println("What will you do now "+name+"? (Withdraw/W, or Deposit/D)");
 		String input= s.nextLine();
+		
+		
 		switch(input)
 		{
 		case "D":
@@ -31,13 +34,14 @@ public class Transactions {
 			break;
 		case "W":
 			withdraw(balance);
-			break;			
-		
+			break;	
 		}
 	}
+		
+	
 	else if(actType.equals("Employee"))
 		{
-		System.out.println("Will you do now "+name+"? (Withdraw/W, Deposit/D, View Accounts/V or Approve Accounts/A)");
+		System.out.println("What will you do now "+name+"? (Withdraw/W, Deposit/D, View Accounts/V or Approve Accounts/A)");
 		String input= s.nextLine();
 		switch(input)
 		{
@@ -59,7 +63,7 @@ public class Transactions {
 	}
 		if(actType.equals("Admin"))
 		{
-			System.out.println("Will you do now "+name+"? (Withdraw/W, Deposit/D, View Accounts/V, Approve Accounts/A) or Cancel Accounts");
+			System.out.println("What will you do now "+name+"? (Withdraw/W, Deposit/D, View Accounts/V, Approve Accounts/A) or Cancel Accounts");
 			String input= s.nextLine();
 			switch(input)
 			{
@@ -85,48 +89,88 @@ public class Transactions {
 	
 	public static void withdraw(double balance)
 	{
-		try {System.out.println("Current Balance: "+balance);
+		double w=0;
+		do
+		{
+		try 
+		{
+		
+		System.out.println("Current Balance: "+balance);
 		System.out.println("How much will you withdraw?");
-		double w=s.nextDouble();
+		w=s.nextDouble();
 		if(w<0)
 		{
 			throw new NegativeNumberException();
 		}
-		balance-=w;
+		else if(w>balance){
+			System.out.println("The withdraw amount is greater than your current balance");
+			//withdraw(balance);
+		}
+		else
+		{
+			balance-=w;
 			System.out.println("Current Balance: "+balance);
 			IOBank.accountList.get(0).setBalance(balance);
+			//IOBank.writeAccountFile();
+		}
 		}
 		catch(NegativeNumberException e)
 		{
 			System.out.println("You can not use negative numbers!");
+			//withdraw(balance);
 		} 
-			
-		
-			
+		catch(InputMismatchException e)
+		{
+			System.out.println("Please use numbers.");
+			//withdraw(balance);
+		}
+		s.nextLine();
+		}
+		while(w<=0);
+					
 	}
 	
 	public static void deposit(double balance) 
 	{
-		
+		double d=0;
+	do {
 		try {
+			
 		System.out.println("Current Balance: "+balance);
 		System.out.println("How much will you deposit?");
-		double d=s.nextDouble();
+		d=s.nextDouble();
 		if(d<0)
 		{
 			throw new NegativeNumberException();
 		}
-		
+		else
+		{
 		balance+=d;
 		System.out.println("Current Balance: "+balance);
 		IOBank.accountList.get(0).setBalance(balance);
 		}
+			
+			
+		}
+		
 		catch(NegativeNumberException e)
 		{
 			System.out.println("You can not use negative numbers!");
+			//deposit(balance);
 		}
+		catch(InputMismatchException e)
+		{
+			System.out.println("Please use numbers.");
+			//deposit(balance);
 			
 		}
+		s.nextLine();
+		}while(d<=0);
+	
+		
+		
+		
+	}
 	
 	
 	public static void approve()
@@ -164,4 +208,30 @@ public class Transactions {
 			}
 		}
 	}
+
+	public static void transfer(double balance, double balance2)
+	{
+		double w=0;
+		double d=0;
+		
+		System.out.println("Current Balance in first account: "+balance);
+		System.out.println("Current Balance in second account: "+balance2);
+		System.out.println("Which account shall receive the deposit?");
+		String input=s.nextLine();
+		switch(input)
+		{
+		case "One":
+			w=balance2;
+			d=balance;
+		break;
+		
+		case "Second":
+			w=balance;
+			d=balance2;
+		break;
+		}
+		System.out.println("How much will be withdrawn?");
+		
+	}
+			
 }

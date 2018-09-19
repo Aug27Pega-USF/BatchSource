@@ -9,9 +9,10 @@ public class BankLogin {
 		Scanner s=  new Scanner(System.in);
 		
 		IOBank.readBankFile();
-		//System.out.println(IOBank.accountList);
+		System.out.println(IOBank.accountList);
 		boolean isLogin=false;
 		int size=IOBank.accountList.size();
+		System.out.println(size);
 		
 		System.out.println("Username: ");
 		String uname= s.nextLine();
