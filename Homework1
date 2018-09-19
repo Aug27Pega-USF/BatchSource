@@ -1,0 +1,221 @@
+--2.1 SELECT-- 
+SELECT * FROM Employee;
+SELECT * FROM Employee WHERE LASTNAME = 'King'; 
+SELECT * FROM Employee WHERE FIRSTNAME = 'Andrew' AND REPORTSTO IS NULL;
+
+--2.2 ORDER BY --
+SELECT * FROM Album ORDER BY title DESC; 
+SELECT FIRSTNAME FROM Customer ORDER BY city ASC;
+
+--2.3 INSERT INTO --
+INSERT INTO Genre (GENREID,NAME) VALUES(26, 'Dancehall');
+INSERT INTO Genre (GENREID,NAME) VALUES(27, 'Gangster Rap');
+
+INSERT INTO Employee (
+    employeeid,
+    lastname,
+    firstname,
+    title,
+    reportsto,
+    birthdate,
+    hiredate,
+    address,
+    city,
+    state,
+    country,
+    postalcode,
+    phone,
+    fax,
+    email
+) VALUES (
+    '7328',
+    'Rogers',
+    'Vincent',
+    'CEO',
+    '',
+    '27-MAY-92',
+    '25-JUNE-12',
+    '18415 NW 122ND AVE',
+    'Carol City',
+    'Florida',
+    'United States',
+    '33056',
+    '305-527-5920',
+    '305-502-6764',
+    'vincent1.rogers@gmail.com'
+);
+
+INSERT INTO customer (
+    customerid,
+    firstname,
+    lastname,
+    company,
+    address,
+    city,
+    state,
+    country,
+    postalcode,
+    phone,
+    fax,
+    email,
+    supportrepid
+)  VALUES (
+    '7328',
+    'Vincent',
+    'Rogers',
+    'Revature',
+    '18415 NW 122ND AVE',
+    'Carol City',
+    'Florida',
+    'United States',
+    '33056',
+    '305-527-5920',
+    '305-502-6764',
+    'vincent1.rogers@gmail.com',
+    '5'
+);
+
+-- 2.4 UPDATE --
+UPDATE Customer SET FIRSTNAME = 'Robert' WHERE LASTNAME = 'Mitchell';
+UPDATE Customer SET LASTNAME = 'Walter' WHERE FIRSTNAME = 'Robert';
+
+UPDATE Artist SET NAME ='CCR' WHERE ARTISTID = '76';
+
+-- 2.5 LIKE --
+SELECT * FROM INVOICE WHERE BILLINGADDRESS LIKE 'T%';
+
+-- 2.6 BETWEEN --
+SELECT * FROM INVOICE WHERE TOTAL BETWEEN 15 AND 20;
+SELECT * FROM EMPLOYEE WHERE HIREDATE BETWEEN '01-JUN-03' AND '20-MAR-04';
+
+-- 2.7 DELETE --
+--DELETE FROM Customer;
+
+-- SQL Functions --
+
+-- 3.1 System Defined Functions --
+SELECT CURRENT_TIMESTAMP FROM DUAL;
+
+CREATE OR REPLACE FUNCTION GETLENGTH
+( M_ID NUMBER)
+RETURN  NUMBER IS
+MLENGTH NUMBER(10) := 0;
+BEGIN
+    SELECT LENGTH(MEDIATYPE.NAME) 
+    INTO MLENGTH
+    FROM MEDIATYPE
+    WHERE MEDIATYPEID = M_ID;
+    RETURN MLENGTH;
+END;
+/
+SELECT GETLENGTH(3) FROM DUAL;
+
+-- 3.2 SYSTEM DEFINED AGGREGATE FUNCTIONS --
+-- Create a function that returns the average total of all invoices --
+SELECT AVG(TOTAL) FROM INVOICE;
+
+-- Create a function that returns the most expensive track--
+SELECT MAX(UNITPRICE) FROM TRACK;
+
+--3.3 USER DEFINED SCALAR FUNCTIONS -- 
+SELECT AVG(UNITPRICE) FROM INVOICELINE;
+
+--3.4 USER DEFINED TABLE VALUED FUNCTIONS --
+SELECT * 
+FROM EMPLOYEE
+WHERE BIRTHDATE = '03-MAY-03';
+
+-- 4.1 BASIC STORED PROCEDURE --
+-- Create a stored procedure that selects the first and last names of all the employees. --
+CREATE OR REPLACE PROCEDURE GET_FIRST_AND_LAST_NAME
+(S OUT SYS_REFCURSOR)
+IS
+BEGIN
+OPEN S FOR
+SELECT FIRSTNAME, LASTNAME
+FROM EMPLOYEE;
+END;
+/
+
+--6.1 AFTER/FOR----
+--Create an after insert trigger on the employee table 
+--fired after a new record is inserted into the table.
+CREATE OR REPLACE TRIGGER TR_INSERT_EMPLOYEE
+AFTER INSERT ON EMPLOYEE
+FOR EACH ROW    
+BEGIN
+   IF (:NEW.COUNTRY !='JAMAICA') THEN
+       DBMS_OUTPUT.ENABLE('AH IDIOT YA TEK MEH FAH');
+   END IF;
+END TR_INSERT_EMPLOYEE;
+/
+INSERT INTO EMPLOYEE VALUES (
+    11,
+    'Rogers',
+    'Vincent',
+    'CEO',
+    10,
+    '27-MAY-92',
+    '25-JUNE-12',
+    '18415 NW 122ND AVE',
+    'Carol City',
+    'Florida',
+    'United States',
+    '33056',
+    '305-527-5920',
+    '305-502-6764',
+    'vincent1.rogers@gmail.com'
+);
+
+
+
+CREATE OR REPLACE TRIGGER TR_UPDATE_ALBUM
+AFTER UPDATE    
+   ON ALBUM
+   FOR EACH ROW
+BEGIN
+   IF(:NEW.TITLE !=:OLD.TITLE)THEN
+       DBMS_OUTPUT.PUT_LINE('Title was changed');
+   END IF;
+END TR_UPDATE_ALBUM;
+/
+UPDATE ALBUM
+SET TITLE='Facelift'
+WHERE ALBUMID=7;
+
+CREATE OR REPLACE TRIGGER TR_DELETE_CUSTOMER
+AFTER DELETE
+   ON CUSTOMER
+   FOR EACH ROW
+BEGIN
+   DBMS_OUTPUT.PUT_LINE('Customer Removed!');
+END TR_DELETE_CUSTOMER;
+/
+DELETE FROM INVOICELINE 
+WHERE INVOICEID IN
+   (SELECT INVOICEID FROM INVOICE ---INVOICEID IS A FK 
+   WHERE CUSTOMERID =12);
+DELETE FROM INVOICE
+   WHERE CUSTOMERID =12;
+DELETE FROM CUSTOMER
+       WHERE CUSTOMERID =12;
+
+--7.1 INNER
+SELECT CUSTOMER.CUSTOMERID, INVOICE.INVOICEID
+FROM CUSTOMER
+INNER JOIN INVOICE ON CUSTOMER.CUSTOMERID = INVOICE.CUSTOMERID;
+
+--7.2 OUTER
+SELECT CUSTOMER.CUSTOMERID, CUSTOMER.FIRSTNAME, CUSTOMER.LASTNAME, INVOICEID, TOTAL FROM CUSTOMER FULL OUTER JOIN INVOICE ON CUSTOMER.CUSTOMERID = INVOICE.CUSTOMERID;
+
+--7.3
+SELECT ARTIST.NAME,TITLE FROM ALBUM RIGHT JOIN ARTIST ON ALBUM.ARTISTID = ARTIST.ARTISTID;
+
+--7.4
+SELECT * FROM ALBUM CROSS JOIN ARTIST ORDER BY ARTIST.NAME ASC;
+
+--7.5
+SELECT * FROM EMPLOYEE A, EMPLOYEE B WHERE A.REPORTSTO = B.EMPLOYEEID; 
+
+
+
