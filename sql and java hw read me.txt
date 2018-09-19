@@ -1,0 +1,2 @@
+The Java Homework has been moved to One folder.
+The SQL Homework is inside Homework folder.
