@@ -14,8 +14,7 @@ public class TheBank {
 		// TODO Auto-generated method stub
 		String path = "banking_storage.txt";
 		File file = new File(path);
-		User jon = new User("Jon", "Sully", "js93", "password1", "Customer", "2020009", 75000.57,
-				2000.00);
+		User jon = new User("Jon", "Sully", "js93", "password1", "Customer", "2020009", 75000.57, 2000.00);
 		User deb = new User("Debbie", "Downer", "ddsad", "felineaids", "Customer", "20012008", 80000.57,
 				3000.00);
 		User lois = l.register();

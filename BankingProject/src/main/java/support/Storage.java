@@ -48,7 +48,6 @@ public class Storage implements Serializable{
 			}
 			//System.out.println(u.toString());
 		} catch(EOFException e) {
-			e.printStackTrace();
 			return ulist;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
