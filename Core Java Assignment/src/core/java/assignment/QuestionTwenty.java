@@ -4,13 +4,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.List;
 
 public class QuestionTwenty {
 	private static final String inFile = "Data.txt";
 	
-	ArrayList<PersonData> personList = new ArrayList<PersonData>();
+	List<PersonData> personList = new ArrayList<PersonData>();
 	
-	class PersonData{
+	public class PersonData{
 		private String name;
 		private String state;
 		private int age;
@@ -37,9 +38,15 @@ public class QuestionTwenty {
 				counter++;
 			}
 		}
+
+		@Override
+		public String toString() {
+			return "Name: " + name + "\n" + "Age: " + age + " years\n" + "State: " + state + "\n";
+		}
+		
 	}
 	
-	public void readFileLines(String regex) throws Exception{
+	public List<PersonData> readFileLines(String regex) throws Exception{
 		File file = new File(inFile);
 		BufferedReader reader = new BufferedReader(new FileReader(file));
 		String str;
@@ -48,13 +55,7 @@ public class QuestionTwenty {
 			personList.add(new PersonData(str.split(regex)));
 		}
 		reader.close();
-	}
-	
-	public void printData() {
-		for(PersonData person : personList) {
-			System.out.println("\nName: " + person.name);
-			System.out.println("Age: " + person.age + " years");
-			System.out.println("State: " + person.state);
-		}
+		
+		return personList;
 	}
 }

@@ -30,11 +30,4 @@ public class QuestionEighteen extends QuestionEighteenUtil{
 	public int toIntegerAndAdd() {
 		return Integer.parseInt(str) + 10;
 	}
-	
-	public void printMenu() {
-		System.out.println("\n=== Menu ===");
-		System.out.println(" 1. Checks if an upper case exists");
-		System.out.println(" 2. Converts all lower cases into an upper case");
-		System.out.println(" 3. Adds 10 to an integer");
-	}
 }

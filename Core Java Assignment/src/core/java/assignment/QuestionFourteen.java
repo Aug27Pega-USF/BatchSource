@@ -7,27 +7,25 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 public class QuestionFourteen {
-	public void switching(int option) throws IOException{
+	public String switching(int option, int option1, Date option2, String option3) {
 		switch(option) {
 		case 1:
-			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-			System.out.println("Enter a number to find the square root: ");
-			System.out.println(Math.sqrt(Integer.parseInt(reader.readLine())));
-			break;
+			return String.format("%.2f", Math.sqrt(option1));
 		case 2:
 			SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm");
-			System.out.println(format.format(new Date()));
-			break;
+			return format.format(new Date());
 		case 3:
-			System.out.println("I am learning Core Java");
-			String[] str = "I am learning Core Java".split(" ");
-			System.out.println(new ArrayList<String>(Arrays.asList(str)));
-			break;
+			String[] str = option3.split(" ");
+			List<String> returnStr = new ArrayList<String>();
+			for(String s : str) {
+				returnStr.add(s);
+			}
+			return returnStr.toString();
 		default:
-			System.out.println("Goodbye!");
-			break;
+			return "No option selected";
 		}
 	}
 }

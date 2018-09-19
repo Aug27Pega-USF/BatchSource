@@ -1,9 +1,10 @@
 package core.java.assignment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class QuestionNineteen {
-	ArrayList<Integer> numList = new ArrayList<Integer>();
+	List<Integer> numList = new ArrayList<Integer>();
 
 	public QuestionNineteen(int size) {
 		super();
@@ -32,7 +33,7 @@ public class QuestionNineteen {
 		return total;
 	}
 	
-	public ArrayList<Integer> removePrimes(){
+	public List<Integer> removePrimes(){
 		boolean [] marker = new boolean[numList.size()];
 		
 		for(int i = 0; i < numList.size(); i++) {

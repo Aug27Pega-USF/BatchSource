@@ -3,7 +3,7 @@ package core.java.assignment;
 public class QuestionFive {
 	class StringEditor{
 		public String substring(String str, int idx) {
-			char [] subString =  new char[idx];
+			char [] subString =  new char[idx-1];
 			for(int i = 0; i < idx - 1; i++) {
 				subString[i] = str.charAt(i);
 			}

@@ -1,9 +1,10 @@
 package core.java.assignment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class QuestionTwelve {
-	ArrayList<Integer> numList = new ArrayList<Integer>();
+	List<Integer> numList = new ArrayList<Integer>();
 	
 	public QuestionTwelve(int lastNumber) {
 		for(int i = 0; i < lastNumber; i++) {
@@ -11,12 +12,14 @@ public class QuestionTwelve {
 		}
 	}
 	
-	public void printEvenNumbers() {
-		System.out.println("Evens between 1-" + (numList.size()) + ": ");
+	public List<Integer> getEvenNumbers() {
+		List<Integer> evenNumList = new ArrayList<Integer>();
 		for(Integer i : numList) {
 			if((i & 1) == 0) {
-				System.out.print(i + ", ");
+				evenNumList.add(i);
 			}
 		}
+
+		return evenNumList;
 	}
 }

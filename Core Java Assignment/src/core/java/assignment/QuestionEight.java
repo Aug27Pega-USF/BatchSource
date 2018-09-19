@@ -1,6 +1,7 @@
 package core.java.assignment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class QuestionEight {
 	ArrayList<String> wordList = new ArrayList<String>();
@@ -11,8 +12,8 @@ public class QuestionEight {
 		}
 	}
 	
-	public ArrayList<String> findPalindromes(){
-		ArrayList<String> palindromeList = new ArrayList<String>();
+	public List<String> findPalindromes(){
+		List<String> palindromeList = new ArrayList<String>();
 		
 		for(String word : wordList) {
 			int wordLength = word.length();

@@ -3,33 +3,35 @@ package core.java.assignment;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public class QuestionSeven {
-	public ArrayList<Employee> empList = new ArrayList<Employee>();
+	public List<Employee> empList = new ArrayList<Employee>();
 	
 	public void addEmp(String name, String department, int age) {
 		empList.add(new Employee(name, department, age));
 	}
 	
-	public void printList() {
-		for(int i = 0; i < empList.size(); i++) {
-			System.out.println(empList.get(i));
-		}
+	public List<Employee> printList() {
+		return empList;
 	}
 	
-	public void SortName() {
+	public List<Employee> SortName() {
 		Collections.sort(empList, new SortByName());
+		return empList;
 	}
 	
-	public void SortDepartment() {
+	public List<Employee> SortDepartment() {
 		Collections.sort(empList, new SortByDepartment());
+		return empList;
 	}
 	
-	public void SortAge() {
+	public List<Employee> SortAge() {
 		Collections.sort(empList, new SortByAge());
+		return empList;
 	}
 	
-	class Employee{
+	public static class Employee{
 		String name;
 		String department;
 		int age;

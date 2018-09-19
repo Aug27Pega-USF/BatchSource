@@ -1,6 +1,7 @@
 package core.java.assignment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class QuestionNine {
 	ArrayList<Integer> numList = new ArrayList<Integer>();
@@ -11,8 +12,8 @@ public class QuestionNine {
 		}
 	}
 	
-	public String findPrimes() {
-		ArrayList<Integer> primeList = new ArrayList<Integer>();
+	public List<Integer> findPrimes() {
+		List<Integer> primeList = new ArrayList<Integer>();
 		for(Integer i : numList) {
 			if(i >= 2) {
 				for(int d = 2; d <= i; d++) {
@@ -24,6 +25,6 @@ public class QuestionNine {
 				}
 			}
 		}
-		return primeList.toString();
+		return primeList;
 	}
 }

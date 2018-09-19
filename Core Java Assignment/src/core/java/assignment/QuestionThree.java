@@ -8,8 +8,4 @@ public class QuestionThree {
 		}
 		return theString.substring(theString.length() / 2);
 	}
-	
-	public void printReverseString(String theString) {
-		System.out.println("Before: " + theString + ", After: " + reverseString(theString));
-	}
 }

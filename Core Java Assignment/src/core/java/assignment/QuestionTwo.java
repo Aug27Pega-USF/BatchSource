@@ -15,17 +15,15 @@ public class QuestionTwo {
 			stopSequence = sequenceNum;
 		}
 	
-		public void findFibonacciNumber() {
-			System.out.println("0: " + startNum + "\n1: " + nextNum);
-			findFibonacciNumber(startNum, nextNum, 2);
-			System.out.println();
+		public int findFibonacciNumber() {
+			return findFibonacciNumber(startNum, nextNum, 2);
 		}
 	
-		public void findFibonacciNumber(int startNum, int nextNum, int currentSequence) {
-			System.out.println(currentSequence + ": " + (startNum + nextNum));
+		int findFibonacciNumber(int startNum, int nextNum, int currentSequence) {
 			if(currentSequence < stopSequence) {
-				findFibonacciNumber(nextNum, startNum + nextNum, currentSequence + 1);
+				return findFibonacciNumber(nextNum, startNum + nextNum, currentSequence + 1);
 			}
+			return startNum + nextNum;
 		}
 	}
 	
