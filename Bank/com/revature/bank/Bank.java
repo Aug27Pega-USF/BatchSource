@@ -1,13 +1,23 @@
 package com.revature.bank;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Properties;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.stream.Stream;
 
 
 public class Bank {
@@ -19,11 +29,59 @@ public class Bank {
 	static Customer customer;
 	static Employee employee;
 	static Admin admin;
+	Connection conn = getConnection();
 
-
+	
+	public static Connection getConnection() {
+		Connection conn = null;
+		Properties prop = new Properties();
+		try {
+			prop.load(new FileReader("database.properties"));
+			Class.forName(prop.getProperty("driver"));
+			conn = DriverManager.getConnection
+					(prop.getProperty("url"),
+					 prop.getProperty("usr"), 
+					 prop.getProperty("password"));
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		
+		catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return conn;
+	}
+	
+	
+	
 	public static void main(String[] args) {
 		
-		String filename = "BankSerial.txt";
+		Connection conn = getConnection();
+		Statement stmt;
+		ResultSet rs = null;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM EMPLOYEE");
+			
+			String s = "SELECT * FROM EMPLOYEE";
+			PreparedStatement ps = conn.prepareStatement(s);
+			ps.executeQuery(s);
+			while (rs.next()) {
+				System.out.println("TEST QUERY: " + rs.getString("FirstName"));
+			}
+				
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+/*		String filename = "BankSerial.txt";
         Bank object = null;
         // Serialization 
         try
@@ -45,7 +103,7 @@ public class Bank {
         catch(IOException ex)
         {
             System.out.println("IOException is caught");
-        }
+        }*/
         
         
         
@@ -58,7 +116,7 @@ public class Bank {
         		InitialCustomerMenu();
                 break;
         	case 2://Employee
-        		System.out.println("Employee Menu:");
+        		InitialEmployeeMenu();
         		
         		break;
         	case 3:
@@ -116,7 +174,7 @@ public class Bank {
 		customerMap.put(name, customer);
 		System.out.println("Registration Successful");
 		CustomerMenu(customer);
-;
+
 		/* This prints the map containing name:password
 	    Set<Entry<String, Customer>> st = customerMap.entrySet();   
 
@@ -225,6 +283,7 @@ public class Bank {
 				System.out.println("Enter an account name: ");
 				name = sc.next();
 		        String[] usernames = new String[]{current.getName(), null};
+		        //String[] usernames = new String[]{current.getName(), name};
 		        Account account = new Account(0, null,  usernames, false);
 				accountMap.put(name, account);
 				AccountMenu(account);
@@ -241,7 +300,7 @@ public class Bank {
         //double balance = 0;
         String name = null;
        
-        System.out.println("(1)View Accounts (2)Edit an Account (2)Create Account (3)Main Menu");
+        System.out.println("(1)View Accounts (2)Edit an Account (3)Create Account (4)Main Menu");
 		int choice = sc.nextInt();
 		switch(choice) {
 			case 1:
@@ -264,9 +323,9 @@ public class Bank {
 			       }
 			      
 				System.out.println("Viewing Admin Accounts");
-				Set<Entry<String, Employee>> st3 = employeeMap.entrySet();   
+				Set<Entry<String, Admin>> st3 = adminMap.entrySet();   
 
-				    for (Map.Entry <String,Employee> me:st3)
+				    for (Map.Entry <String,Admin> me:st3)
 				    {
 				           System.out.print(me.getKey()+":");
 				           System.out.println(me.getValue());
@@ -274,9 +333,29 @@ public class Bank {
 				  AdminMenu(current);
 			
 			case 2:
+				
+				Stream.of(accountMap.keySet().toString())
+                .forEach(System.out::println);
 				System.out.println("Choose an account to edit ");
+				
 				String editaccount = sc.next();
-
+				
+				
+		        
+				
+				
+//				Set<Entry<String, Account>> acnt = accountMap.entrySet();
+//				for (Map.Entry <String, Account> acc:acnt) 
+//				{
+//					System.out.println(acc.getKey()+" : "+acc.getValue());
+//				}
+				
+				
+				
+				
+				
+				
+				
 					if (accountMap.containsKey(editaccount)) {
 						Account accounttoedit = accountMap.get(editaccount);
 						System.out.println("What would you like to edit? (1)Balance (2)Name (3)Account Name (4)Account Approval");
@@ -316,7 +395,7 @@ public class Bank {
 							}
 							AdminMenu(current);
 							break;
-						}
+						}AdminMenu(current);
 					}
 				break;
 			case 3:
