@@ -1,0 +1,390 @@
+/*********************************
+*   Core SQL Homework Assignment *
+*   Julian Welborn               *
+**********************************/
+
+/***********************
+*  Section 2: Queries  *
+***********************/
+
+--~<>~2.1 Select~<>~--
+
+-->Select all records from the Employee table.
+SELECT * FROM EMPLOYEE;
+
+-->Select all records from the Employee table where last name is King.
+SELECT * FROM EMPLOYEE WHERE LASTNAME = 'King';
+
+-->Select all records from the Employee table where first name is Andrew and REPORTSTO is NULL.
+SELECT * FROM EMPLOYEE WHERE FIRSTNAME = 'Andrew' AND REPORTSTO IS NULL;
+
+--~<>~2.2 Order By~<>~--
+
+-->Select all albums in Album table and sort result set in descending order by title.
+SELECT * FROM ALBUM ORDER BY TITLE DESC;
+
+-->Select first name from Customer and sort result set in ascending order by city
+SELECT FIRSTNAME FROM CUSTOMER ORDER BY CITY ASC;
+
+--~<>~2.3 Insert Into~<>~--
+
+-->Insert two new records into Genre table
+INSERT INTO GENRE (GENREID, NAME) VALUES (26, 'Dubstep');
+INSERT INTO GENRE (GENREID, NAME) VALUES (27, '8-bit');
+
+-->Insert two new records into Employee table
+INSERT INTO EMPLOYEE (EMPLOYEEID, LASTNAME, FIRSTNAME, TITLE, REPORTSTO,
+            BIRTHDATE, HIREDATE, ADDRESS, CITY, STATE, COUNTRY,
+            POSTALCODE, PHONE, FAX, EMAIL)
+VALUES (9, 'Strong', 'Susan', 'Diplomat', '3', '05-MAR-85', '09-OCT-10',
+        '154 SEWER CIRCLE', 'HOOMIN ISLANDS', 'MK', 'OOO', '42069',
+        '+1 (777) 555-7575', '+1 (111) 116-1123', 'strongsusan@mondonkingdom.ooo');
+INSERT INTO EMPLOYEE (EMPLOYEEID, LASTNAME, FIRSTNAME, TITLE, BIRTHDATE, HIREDATE, ADDRESS,
+            CITY, STATE, COUNTRY, POSTALCODE, PHONE, FAX, EMAIL)
+VALUES (10, 'Mertin', 'Finn', 'Hero', '05-JUN-02', '11-DEC-14', '4000 Trunk Lane',
+        'Treehouse', 'Candy Kingdom', 'OOO', '42069', '+1 (777) 666-4432',
+        '+1 (333) 987-6543', 'finnthehuman@treehouse.com');
+
+-->Insert two new records into Customer table
+INSERT INTO CUSTOMER (CUSTOMERID, FIRSTNAME, LASTNAME, COMPANY, ADDRESS, CITY,
+            STATE, COUNTRY, POSTALCODE, PHONE, FAX, EMAIL, SUPPORTREPID)
+VALUES (60, 'Evan', 'Spretcher', 'Santuari Inc', '4094 East Blighten Road',
+        'Intercourse', 'Alabama', 'United States', '28544', '+1 (954) 252-9029',
+        '+1 (777) 334-5511', 'esp@yahoo.com', 4);
+INSERT INTO CUSTOMER (CUSTOMERID, FIRSTNAME, LASTNAME, ADDRESS, CITY,
+            STATE, COUNTRY, POSTALCODE, PHONE, EMAIL, SUPPORTREPID)
+VALUES (61, 'Juju', 'Bean', '9552 SW 60th Cir', 'Brighten', 'Iowa', 'USA',
+        '55874', '+1 (800) 328-7448', 'jellybean@gmail.com', 5);
+
+--~<>~2.4 Update~<>~--
+
+-->Update Aaron Mitchell in Customer table to Robert Walter (CID is the same #, 32)
+UPDATE CUSTOMER SET FIRSTNAME = 'Robert', LASTNAME = 'Walter'
+WHERE FIRSTNAME = 'Aaron';
+
+SELECT * FROM CUSTOMER WHERE FIRSTNAME = 'Robert';
+
+-->Update name of artist in the Artist table “Creedence Clearwater Revival” to “CCR” (ArtistID is same # 76
+UPDATE ARTIST SET NAME = 'CCR'
+WHERE NAME = 'Creedence Clearwater Revival';
+
+SELECT * FROM ARTIST WHERE NAME = 'CCR';
+
+--~<>~2.5 Like~<>~--
+
+-->Select all invoices with a billing address like “T%” 
+SELECT * FROM INVOICE WHERE BILLINGADDRESS LIKE 'T%';
+
+--~<>~2.6 Between~<>~--
+
+-->Select all invoices that have a total between 15 and 50
+SELECT * FROM INVOICE WHERE TOTAL BETWEEN 15 AND 50;
+
+-->Select all employees hired between 1st of June 2003 and 1st of March 2004
+SELECT * FROM EMPLOYEE WHERE HIREDATE BETWEEN '01-JUN-03' AND '01-MAR-04';
+
+--~<>~2.7 Delete~<>~--
+
+-->Delete a record in Customer table where the name is Robert Walter (There may be constraints that rely on this, find out how to resolve them).
+DELETE FROM INVOICELINE
+WHERE INVOICEID IN (
+    SELECT INVOICEID FROM INVOICE
+    WHERE CUSTOMERID IN (
+        SELECT CUSTOMERID FROM CUSTOMER
+        WHERE FIRSTNAME = 'Robert' AND LASTNAME = 'Walter'));               
+
+DELETE FROM INVOICE 
+WHERE CUSTOMERID IN (
+    SELECT CUSTOMERID FROM CUSTOMER
+    WHERE FIRSTNAME = 'Robert' AND LASTNAME = 'Walter');
+
+DELETE FROM CUSTOMER WHERE FIRSTNAME = 'Robert' AND LASTNAME = 'Walter';
+
+SELECT * FROM CUSTOMER WHERE FIRSTNAME = 'Robert';
+
+/*****************************
+*  Section 3: SQL Functions  *
+*****************************/
+--In this section you will be using the Oracle system functions, as well as your own functions, to perform various actions against the database
+
+--~<>~3.1 System Defined Functions~<>~--
+
+-->Create a function that returns the current time.
+SELECT TO_CHAR(CURRENT_TIMESTAMP, 'HH12:MI:SS') FROM DUAL;
+
+-->Create a function that returns the length of name in MEDIATYPE table
+SELECT LENGTH(NAME) FROM MEDIATYPE;
+
+--~<>~3.2 System Defined Aggregate Functions~<>~--
+
+-->Create a function that returns the average total of all invoices 
+SELECT AVG(TOTAL) "Average" FROM INVOICE;
+
+-->Create a function that returns the most expensive track
+SELECT MAX(UNITPRICE) "Most Expensive" FROM TRACK;
+
+--~<>~3.3 User Defined Scalar Functions~<>~--
+
+-->Create a function that returns the average price of invoiceline items in the invoiceline table
+CREATE OR REPLACE FUNCTION AVG_INVOICELINE
+RETURN NUMBER AS AVG_LINE NUMBER;
+BEGIN
+    SELECT AVG(UNITPRICE) INTO AVG_LINE FROM INVOICELINE;
+    RETURN ROUND(AVG_LINE, 2);
+END; 
+/
+
+SELECT AVG_INVOICELINE() FROM DUAL;
+
+--~<>~3.4 User Defined Table Valued Functions~<>~--
+
+-->Create a function that returns all employees who are born after 1968.
+CREATE OR REPLACE TYPE EMP_OBJECT FORCE IS OBJECT(EMP_NAME VARCHAR2(200), YEAR_BORN DATE); /*Create object to store data*/
+/
+CREATE OR REPLACE TYPE EMPLOYEE_BORN IS TABLE OF EMP_OBJECT;/*Create table to store emp objects*/
+/
+CREATE OR REPLACE FUNCTION BORN_AFTER_DATE(BIRTHYEAR IN NUMBER)
+RETURN EMPLOYEE_BORN AS L_EMPS EMPLOYEE_BORN := EMPLOYEE_BORN();
+N INTEGER :=0;
+BEGIN
+    FOR i IN (SELECT (FIRSTNAME||' '|| LASTNAME) AS EMP_NAME, 
+    BIRTHDATE AS BIRTH FROM EMPLOYEE
+    WHERE BIRTHDATE > (TO_DATE(BIRTHYEAR,'YYYY')) )
+        LOOP
+        L_EMPS.EXTEND(); /*Extend(): Allocates one element space.*/
+        N:=N+1;
+        L_EMPS(N) :=EMP_OBJECT(i.EMP_NAME,i.BIRTH);
+        END LOOP;
+    RETURN L_EMPS;
+END;
+/
+
+SELECT * FROM TABLE(BORN_AFTER_DATE(1968));
+
+/********************************
+*  Section 4: Stored Procedures *
+********************************/
+--In this section you will be creating and executing stored procedures. You will be
+--creating various types of stored procedures that take input and output parameters.
+SET SERVEROUTPUT ON;
+--~<>~4.1 Basic Stored Procedure~<>~--
+
+-->Create a stored procedure that selects the first and last names of all the employees.
+CREATE OR REPLACE PROCEDURE EMPLOYEE_FULLNAMES
+(N OUT SYS_REFCURSOR)
+IS
+BEGIN
+OPEN N FOR
+SELECT FIRSTNAME, LASTNAME FROM EMPLOYEE;
+END;
+/
+
+DECLARE
+N SYS_REFCURSOR;
+FNAME EMPLOYEE.FIRSTNAME%TYPE;
+LNAME EMPLOYEE.LASTNAME%TYPE;
+BEGIN
+   EMPLOYEE_FULLNAMES(N);
+   LOOP
+   FETCH N INTO FNAME, LNAME;
+   EXIT WHEN N%NOTFOUND;
+   DBMS_OUTPUT.PUT_LINE('Customer name is ' || FNAME || ' '|| LNAME || '.');
+   END LOOP
+   CLOSE;
+END;
+/
+
+--~<>~4.2 Stored Procedure Input Parameters~<>~--
+
+-->Create a stored procedure that updates the personal information of an employee.
+CREATE OR REPLACE PROCEDURE UPDATE_EMPLOYEE
+(EID IN INT, FNAME IN VARCHAR2, LNAME IN VARCHAR2, BIRTH IN DATE, 
+ADDR IN VARCHAR2, ECITY IN VARCHAR2, ESTATE IN VARCHAR2, ECOUNTRY IN VARCHAR2,
+EPOSTALCODE IN VARCHAR2, EPHONE IN VARCHAR2,EFAX IN VARCHAR2, EEMAIL IN VARCHAR2)
+AS
+BEGIN
+UPDATE EMPLOYEE 
+    SET 
+    FIRSTNAME = FNAME,
+    LASTNAME = LNAME,
+    BIRTHDATE = BIRTH,
+    ADDRESS = ADDR,
+    CITY = ECITY,
+    STATE = ESTATE,
+    COUNTRY = ECOUNTRY,
+    POSTALCODE = EPOSTALCODE,
+    PHONE = EPHONE, 
+    FAX = EFAX, 
+    EMAIL = EEMAIL
+    WHERE EMPLOYEEID = EID;
+COMMIT;
+END;
+/
+
+EXECUTE UPDATE_EMPLOYEE(12, 'Link', 'Jeneau', '08-JUL-95', '202 Shadow Wood Lane', 'Knox', 'NM', 'USA',
+'22448', '+1 (234) 411-5115', '+1 (786) 234-4334', 'linktothepast@ymail.com');
+
+-->Create a stored procedure that returns the managers of an employee.
+CREATE OR REPLACE PROCEDURE EMPLOYEE_MANAGER(EMP_ID IN INT, GCC OUT SYS_REFCURSOR)
+AS 
+BEGIN
+OPEN GCC FOR
+SELECT EMPLOYEEID, (FIRSTNAME ||' '|| LASTNAME), REPORTSTO
+FROM EMPLOYEE
+WHERE EMPLOYEEID = EMP_ID;
+END;
+/
+
+DECLARE
+GCC SYS_REFCURSOR;
+EMPLOYEE_ID EMPLOYEE.EMPLOYEEID%TYPE;
+EMPLOYEE_NAME EMPLOYEE.FIRSTNAME%TYPE;
+EMPLOYEE_MANAGER EMPLOYEE.EMPLOYEEID%TYPE;
+BEGIN 
+    EMPLOYEE_MANAGER(5,GCC);
+    LOOP
+        FETCH GCC INTO EMPLOYEE_ID, EMPLOYEE_NAME, EMPLOYEE_MANAGER; --retrieves rows of data from the result set of a multiple-row query
+        EXIT WHEN GCC%NOTFOUND; --BREAKS LOOP WHEN NO MORE ROWS ARE AVAILABLE
+        DBMS_OUTPUT.PUT_LINE('Employee name is ' ||EMPLOYEE_NAME || '.');
+        DBMS_OUTPUT.PUT_LINE('Manager name is ' ||EMPLOYEE_MANAGER || '.');
+        END LOOP
+CLOSE;
+END;
+/
+ 
+--~<>~4.3 Stored Procedure Output Parameters~<>~--
+
+-->Create a stored procedure that returns the name and company of a customer.
+CREATE OR REPLACE PROCEDURE CUST_COMP_INFO(CUST_ID IN INT, GCC OUT SYS_REFCURSOR)
+AS 
+BEGIN
+OPEN GCC FOR
+SELECT COMPANY,(FIRSTNAME||' '||LASTNAME)
+FROM CUSTOMER
+WHERE CUSTOMERID = CUST_ID;
+END;
+/
+
+DECLARE
+GCC SYS_REFCURSOR;
+CUST_COMP CUSTOMER.COMPANY%TYPE;
+CUST_NAME CUSTOMER.FIRSTNAME%TYPE;
+BEGIN 
+    CUST_COMP_INFO(5,GCC);
+    LOOP
+        FETCH GCC INTO CUST_COMP, CUSTOMER_NAME;
+        EXIT WHEN GCC%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE('Customer name is ' ||CUST_NAME || '.');
+        DBMS_OUTPUT.PUT_LINE('Company: ' ||CUST_COMP || '.');
+        END LOOP
+CLOSE;
+END;
+/ 
+
+/****************************
+*  Section 5: Transactions  *
+****************************/
+--In this section you will be working with transactions. Transactions are usually nested within a stored procedure.
+
+-->Create a transaction that given a invoiceId will delete that invoice (There may be constraints that rely on this, find out how to resolve them).
+CREATE OR REPLACE PROCEDURE DELETE_INVOICE(ID_TO_DELETE IN INT)
+AS
+BEGIN
+DELETE FROM INVOICELINE WHERE INVOICEID = ID_TO_DELETE;
+DELETE FROM INVOICE WHERE INVOICEID = ID_TO_DELETE;
+COMMIT;
+END;
+/
+
+call DELETE_INVOICE(1);
+
+-->Create a transaction nested within a stored procedure that inserts a new record in the Customer table
+CREATE SEQUENCE CUS_SEQ;
+CREATE OR REPLACE PROCEDURE INSERT_CUST(FIRSTNAME IN VARCHAR2, LASTNAME IN VARCHAR2, EMAIL IN VARCHAR2)
+AS
+BEGIN
+INSERT INTO CUSTOMER VALUES(CUS_SEQ.NEXTVAL +60, FIRSTNAME,LASTNAME,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,EMAIL,NULL);--Used +60 because last entry starts at 60
+COMMIT;
+END;
+/
+
+call INSERTCUSTOMER('Hazel', 'Grace', 'hazelgracie@hotmail.com');
+call INSERTCUSTOMER('Isabella', 'Marcel', 'izzydance@gmail.com');
+
+/************************
+*  Section 6: Triggers  *
+************************/
+--In this section you will create various kinds of triggers that work when certain DML statements are executed on a table.
+
+--~<>~6.1 AFTER/FOR~<>~--
+
+-->Create an after insert trigger on the employee table fired after a new record is inserted into the table.
+CREATE OR REPLACE TRIGGER TR_EMPLOYEE_REPORTSTO
+AFTER INSERT ON EMPLOYEE
+FOR EACH ROW
+BEGIN
+    IF(:NEW.REPORTSTO = '' OR :NEW.REPORTSTO IS NULL) THEN
+        DBMS_OUTPUT.PUT_LINE('Remember to include to whom this employee reports!');
+    ELSE
+        INSERT INTO EMPLOYEE(EMPLOYEEID,LASTNAME,FIRSTNAME,REPORTSTO) VALUES(:NEW.EMPLOYEEID,:NEW.LASTNAME,:NEW.FIRSTNAME,:NEW.REPORTSTO);
+    END IF;  
+END;
+/
+
+-->Create an after update trigger on the album table that fires after a row is inserted in the table
+CREATE OR REPLACE TRIGGER TR_ALBUM_TITLEUPDATED
+AFTER UPDATE ON ALBUM
+FOR EACH ROW
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Changed '|| :OLD.TITLE || ' to ' || :NEW.TITLE|| ' in Album ' || :OLD.ALBUMID || '.');
+END;
+/
+
+-->Create an after delete trigger on the customer table that fires after a row is deleted from the table.
+CREATE OR REPLACE TRIGGER TR_CUSTOMER_DELETED
+AFTER DELETE ON CUSTOMER
+FOR EACH ROW 
+BEGIN 
+    DBMS_OUTPUT.PUT_LINE('Customer '||:OLD.CUSTOMERID||' '|| :OLD.FIRSTNAME || ' ' || :OLD.LASTNAME || 'has been deleted.');
+END;
+/
+
+/*********************
+*  Section 7: Joins  *
+*********************/
+--In this section you will be working with combining various tables through the use of joins. You will work with outer, inner, right, left, cross, and self joins.
+
+--~<>~7.1 INNER~<>~--
+
+-->Create an inner join that joins customers and orders and specifies the name of the customer and the invoiceId.
+SELECT CUSTOMER.FIRSTNAME, CUSTOMER.LASTNAME, INVOICE.INVOICEID
+FROM CUSTOMER INNER JOIN INVOICE
+ON CUSTOMER.CUSTOMERID = INVOICE.CUSTOMERID;
+
+--~<>~7.2 OUTER~<>~--
+
+-->Create an outer join that joins the customer and invoice table, specifying the CustomerId, firstname, lastname, invoiceId, and total.
+SELECT CUSTOMER.CUSTOMERID, CUSTOMER.FIRSTNAME, CUSTOMER.LASTNAME,
+        INVOICE.INVOICEID, INVOICE.TOTAL
+FROM CUSTOMER RIGHT OUTER JOIN INVOICE ON CUSTOMER.CUSTOMERID = INVOICE.CUSTOMERID;
+
+--~<>~7.3 RIGHT~<>~--
+
+-->Create a right join that joins album and artist specifying artist name and title.
+SELECT ARTIST.NAME, ALBUM.TITLE
+FROM ARTIST RIGHT JOIN ALBUM ON ALBUM.ARTISTID = ARTIST.ARTISTID;
+
+--~<>~7.4 CROSS~<>~--
+
+-->Create a cross join that joins album and artist and sorts by artist name in ascending order.
+SELECT * FROM ALBUM, ARTIST
+WHERE ARTIST.ARTISTID = ALBUM.ARTISTID
+ORDER BY ARTIST.NAME ASC;
+
+--~<>~7.5 SELF~<>~--
+
+-->Perform a self-join on the employee table, joining on the reportsto column.
+SELECT (A.FIRSTNAME ||' '|| A.LASTNAME) AS EMPLOYEENAME, A.REPORTSTO 
+FROM EMPLOYEE A 
+JOIN EMPLOYEE B
+ON A.REPORTSTO = B.EMPLOYEEID;

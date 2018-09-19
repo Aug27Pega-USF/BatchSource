@@ -9,6 +9,7 @@ public class Driver {
 	// Driver method to test all the homework problems.
     public static void main(String args[]) throws FileNotFoundException
     {
+    	/*
     	System.out.println("This is Julian Welborn's code for Core Java Assignment. :)\n");
     	//First hw problem
         Q1 sorted = new Q1();
@@ -120,5 +121,43 @@ public class Driver {
         readFile.readTxtFile();
         
         System.out.println("Thanks for checking out my homework. :D");
+        */
+    	
+        Scanner scan = new Scanner(System.in);
+        String str = "Matt's career ";
+        int grade;
+        //int[] a = {1,2,3,4,5,6,7,8,9,10};
+        boolean exit = true;
+        do {
+            System.out.println("Please enter either 1, 2, or 0.");
+            int choice = scan.nextInt();
+            switch(choice) {
+            case 1:
+                System.out.println("for loop:");
+                System.out.println("Enter a number:");
+                int num = scan.nextInt();
+                for(int i = 0; i <= num; i++) {
+                	System.out.println("i is now " + i);
+                }
+                break;
+            case 2:
+                System.out.println("if statement");
+                System.out.println("Enter a grade number:");
+                grade = scan.nextInt();
+                if(grade == 0)
+                {
+                	System.out.println(str + " is totally dead.");
+                }
+                else
+                {
+                	System.out.println(str + " might have a chance.");
+                }
+                break;
+            case 0:
+            	System.out.println("Leaving program now.");
+            	exit = false;
+            }
+        } while(exit);
+        scan.close();    
     }
 }
