@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>DemoSphinx</groupId>
+  <artifactId>mySpeechRecogDemo</artifactId>
+  <version>0.0.1</version>
+  
+   <repositories>
+        <repository>
+            <id>snapshots-repo</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+   <dependencies>
+
+<!-- https://mvnrepository.com/artifact/net.sf.phat/sphinx4-core -->
+<dependency>
+    <groupId>net.sf.phat</groupId>
+    <artifactId>sphinx4-core</artifactId>
+    <version>5prealpha</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/net.sf.phat/sphinx4-data -->
+<dependency>
+    <groupId>net.sf.phat</groupId>
+    <artifactId>sphinx4-data</artifactId>
+    <version>5prealpha</version>
+</dependency>
+
+   </dependencies>
+</project>
