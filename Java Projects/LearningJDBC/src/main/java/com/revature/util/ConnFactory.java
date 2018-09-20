@@ -31,7 +31,7 @@ public class ConnFactory {
 			prop.load(new FileReader("database.properties"));
 			Class.forName(prop.getProperty("driver"));
 			conn = DriverManager.getConnection(prop.getProperty("url"),prop.getProperty("usr"),prop.getProperty("password"));
-		
+
 		} catch (SQLException e) {
 			e.printStackTrace();	
 		} catch (FileNotFoundException e) {

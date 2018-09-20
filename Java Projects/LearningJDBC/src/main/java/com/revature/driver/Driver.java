@@ -11,7 +11,7 @@ public class Driver {
 		SuperHeroDAOImpl shdi = new SuperHeroDAOImpl();
 		
 		try {
-			shdi.createSuperHero("Batman");
+			shdi.createSuperHero("NUTMAN");
 			System.out.println(shdi.getSuperHeroList());
 
 		} catch (SQLException e) {

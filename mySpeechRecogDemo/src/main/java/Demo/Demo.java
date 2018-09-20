@@ -18,11 +18,12 @@ public class Demo {
         //
         //configuration.setLanguageModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us.lm.bin");
 
+        System.out.println(configuration.getSampleRate());
         
-        configuration.setGrammarPath("resource:/grammars");
+        configuration.setGrammarPath("C://Users/Luis Rivera Doi/Desktop/grammars.gram");
 		configuration.setGrammarName("grammar");
 		configuration.setUseGrammar(true);
-        
+   
         
         
         LiveSpeechRecognizer recognizer = new LiveSpeechRecognizer(configuration);
