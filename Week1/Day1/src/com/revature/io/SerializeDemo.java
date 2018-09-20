@@ -15,6 +15,7 @@ public class SerializeDemo {
 		
 		//the file that data is being read FROM must exist already!
 		//System.out.println(io.readInputStreamContents());
+		
 		Person p = new Person("Matt",32,261);
 		Person s = new Person ("Kevin",23, 600);
 		IOWithCollections.personList.add(p);

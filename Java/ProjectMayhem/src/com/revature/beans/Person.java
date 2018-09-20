@@ -1,8 +1,15 @@
 package com.revature.beans;
 
+import java.io.Serializable;
+
 import com.revature.exceptions.IncreasedByNegativeNumberException;
 
-public class Person {
+public class Person implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/*
 	 * Members of a class
 	 * Instance variables-property of one specific object
