@@ -12,9 +12,18 @@ public class Q5 {
 		
 		//print the string up to the index
 		System.out.print("String at " + idx + ": ");
-		for(int i = 0; i < idx; i++) {
-			System.out.print(str.charAt(i));
-		}
+		String res = getSubstring(str, idx);
 
+		System.out.print(res);
+	}
+	
+	public static String getSubstring(String str, int idx) {
+		StringBuilder strb = new StringBuilder();
+		
+		for(int i = 0; i < idx; i++) {
+			strb.append(str.charAt(i));
+		}
+		
+		return strb.toString();
 	}
 }

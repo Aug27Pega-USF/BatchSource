@@ -9,15 +9,22 @@ public class Q6 {
 		System.out.print(i);
 		
 		//add/subtract 2 until we get near 1
-		while(i > 1)
-			i -= 2;
-		while(i < -1)
-			i += 2;
+		
+		i = toOddEven(i);
 		
 		//print the result
 		if(i == 1 || i == -1)
 			System.out.println(" is not Even");
 		else 
 			System.out.println(" is Even");
+	}
+	
+	public static int toOddEven(int i) {
+		while(i > 1)
+			i -= 2;
+		while(i < -1)
+			i += 2;
+		
+		return i;
 	}
 }

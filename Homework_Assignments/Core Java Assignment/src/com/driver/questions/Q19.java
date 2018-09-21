@@ -24,26 +24,41 @@ public class Q19 {
 		System.out.println(intList);
 		
 		//add all the even numbers up and all the odd numbers up
-		int evenResult = 0;
-		int oddResult = 0;
-		for(int i = 0; i < intList.size(); i++) {
-			if (intList.get(i) % 2 == 0)
-				evenResult += intList.get(i);
-			else
-				oddResult += intList.get(i);
-		}
+		int evenResult = getEvensTotal(intList);
+		int oddResult = getOddsTotal(intList);
+
 		//display result
 		System.out.println("Result of all even numbers: " + evenResult);
 		System.out.println("Result of all odd numbers: " + oddResult);
 		
 		//remove all prime numberinos
 		for(int i = 0; i < intList.size(); i++) {
-			if (Functions.isPrime(intList.get(i)))
+			if (Functions.isPrime(intList.get(i))) {
 				intList.remove(i);
+				i--;
+			}
 		}
 		
 		//display the new list
 		System.out.println("Array list with no Prime Numbers: ");
 		System.out.println(intList);
+	}
+	
+	public static int getEvensTotal(ArrayList<Integer> intList) {
+		int res = 0;
+		for(int i = 0; i < intList.size(); i++) {
+			if (intList.get(i) % 2 == 0)
+				res += intList.get(i);
+		}
+		return res;
+	}
+	
+	public static int getOddsTotal(ArrayList<Integer> intList) {
+		int res = 0;
+		for(int i = 0; i < intList.size(); i++) {
+			if (intList.get(i) % 2 == 1)
+				res += intList.get(i);
+		}
+		return res;
 	}
 }

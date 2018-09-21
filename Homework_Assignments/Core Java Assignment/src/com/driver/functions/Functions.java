@@ -57,7 +57,7 @@ public class Functions {
 		else {
 			//start dividing by each number until we get to half, 
 			//if any of them have a non-zero remainder then pass fail
-			for(int iter = 2; iter < number*0.5; iter++) {
+			for(int iter = 2; iter <= number*0.5; iter++) {
 				if (number % iter == 0) {
 					return false;
 				}

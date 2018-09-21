@@ -10,6 +10,16 @@ public class Q1 {
 		Functions.displayArray(arr);
 		
 		//sort the array
+		sortArray(arr);
+		
+		//display the new sorted array
+		System.out.println("");
+		System.out.print("Sorted array: ");
+		Functions.displayArray(arr);
+	}
+	
+	public static void sortArray(int arr[]) {
+		
 		int arraySize = arr.length;
 		
 		while(arraySize > 0) {
@@ -25,10 +35,5 @@ public class Q1 {
 			//ignore last element by removing how many are left to check
 			arraySize--;
 		}
-		
-		//display the new sorted array
-		System.out.println("");
-		System.out.print("Sorted array: ");
-		Functions.displayArray(arr);
 	}
 }

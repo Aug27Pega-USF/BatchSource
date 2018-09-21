@@ -1,5 +1,6 @@
 package com.driver.questions;
 
+import question.fifteen.Q15Maths;
 
 public class Q15 {
 	
@@ -21,33 +22,5 @@ public class Q15 {
 	}
 }
 
-interface Maths {
-	public abstract int addition(int a, int b);
-	public abstract int subtraction(int a, int b);
-	public abstract int multiplication(int a, int b);
-	public abstract int division(int a, int b);
-}
 
-class Q15Maths implements Maths {
 
-	@Override
-	public int addition(int a, int b) {
-		return a + b;
-	}
-
-	@Override
-	public int subtraction(int a, int b) {
-		return a - b;
-	}
-
-	@Override
-	public int multiplication(int a, int b) {
-		return a * b;
-	}
-
-	@Override
-	public int division(int a, int b) {
-		return a / b;
-	}
-
-}

@@ -6,10 +6,11 @@ public class Q16 {
 	 * The string should be entered as a command line argument using (String [ ] args).
 	 */
 	
-	public static void question(String s) {
+	public static int question(String s) {
 		//Run > Run Configuration > [main driver class] > Arguments
 		//print results
 		System.out.println("String entered: " + s);
-		System.out.println("The number of characters in the string is " + s.length());		
+		System.out.println("The number of characters in the string is " + s.length());
+		return s.length();
 	}
 }

@@ -9,6 +9,12 @@ public class Q3 {
 		//print it forwards normally
 		System.out.println("String going forward: " + str);
 
+		str = reverseString(str);
+		
+		System.out.println("String going backward: " + str);
+	}
+	
+	public static String reverseString(String str) {
 		//now store it backwards
 		for(int i = 0; i < str.length(); i++) {
 				/*
@@ -20,6 +26,7 @@ public class Q3 {
 				 */
 			str = str.substring(1, str.length() - i) + str.substring(0, 1) + str.substring(str.length() - i, str.length());
 		}
-		System.out.println("String going backward: " + str);
+		
+		return str;
 	}
 }
