@@ -1,0 +1,37 @@
+package com.revature.javahomework;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class QuestionEight{
+	ArrayList<String> wordList = new ArrayList<String>();
+	
+	public QuestionEight(String ...strings){
+		for(String s : strings) {
+			wordList.add(s);
+		}
+	}
+	
+	public List<String> findPalindromes(){
+		List<String> palindromeList = new ArrayList<String>();
+		
+		for(String word : wordList) {
+			int wordLength = word.length();
+			int halfLength = wordLength / 2;
+			boolean palindrome = false;
+			
+			for(int i = 0; i <= halfLength; i++) {
+				if(i == halfLength) {
+					palindrome = true;
+				} else if(word.charAt(i) == word.charAt(wordLength - i - 1)) {
+					continue;
+				} else
+					break;
+			}
+			if(palindrome) {
+				palindromeList.add(word);
+			}
+		}
+		return palindromeList;
+	}
+}
