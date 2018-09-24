@@ -39,9 +39,6 @@ public class Application implements Serializable{
 		this.existing=existing;
 	}
 
-	public String getAccount() {
-		return username;
-	}
 
 	public int getAccountid() {
 		return accountid;

@@ -62,7 +62,7 @@ public class Employee extends Customer {
 
 	public void viewapplicationList(ArrayList<Application> applicationList) {
 		for (int i=0; i!=applicationList.size();i++) {
-			System.out.println(i+". " + applicationList.get(i).getAccountid() + " " + applicationList.get(i).getNameList() + " " + applicationList.get(i).getAccount());
+			System.out.println(i+". " + applicationList.get(i).getAccountid() + " " + applicationList.get(i).getNameList() + " " + applicationList.get(i).getAccountid());
 		}
 	}
 

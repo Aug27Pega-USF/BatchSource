@@ -8,7 +8,7 @@
                 </Pattern>
             </PatternLayout>
         </Console>
-        <File name="File" fileName="C:/Users/prest_000/Desktop/Aug27Pega-USF/PrestonL/BatchSource/javabank/logging.log">
+        <File name="File" fileName="C:/Users/prest_000/Desktop/Aug27Pega-USF/hmm/BatchSource/javabank/loggingsql.log">
             <PatternLayout>
                 <Pattern>
                     [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
@@ -18,7 +18,7 @@
         </File>
     </Appenders>
     <Loggers>
-        <Logger name="com.PrestonL.javabank.BankingStructure" level = "debug" additivity= "false">
+        <Logger name="com.PrestonL.sqlBank.Driver" level = "debug" additivity= "false">
             <AppenderRef ref="Console"/>
             <AppenderRef ref = "File"/>
         </Logger>
@@ -27,4 +27,7 @@
             <AppenderRef ref = "File"/>
         </Root>
     </Loggers>
+    
+    
+            
 </Configuration>

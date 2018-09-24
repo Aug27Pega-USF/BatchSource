@@ -1,9 +1,0 @@
-[INFO ] 2018-09-05 13:34:28.072 [main] BankingStructure - Customer Joe4 deposited $200.00 to Account 72923.
-[INFO ] 2018-09-05 13:35:42.179 [main] BankingStructure - Customer Joe4 withdrew $24195.00 from Account 72923.
-[INFO ] 2018-09-05 14:36:52.406 [main] BankingStructure - Customer Joe4 deposited $20.33 to Account 12348.
-[INFO ] 2018-09-05 14:37:04.167 [main] BankingStructure - Customer Joe4 withdrew $200.00 from Account 12348.
-[INFO ] 2018-09-05 14:37:16.506 [main] BankingStructure - Customer Joe4 transferred $1000.00 from Account 12348 to Account 12345.
-[INFO ] 2018-09-05 15:11:57.426 [main] BankingStructure - Admin AdamOverlord withdrew $35000.00 from account 72923.
-[INFO ] 2018-09-05 16:33:18.228 [main] BankingStructure - Admin AdamOverlord deposited $341415.00 to account 12346.
-[INFO ] 2018-09-05 16:33:22.483 [main] BankingStructure - Admin AdamOverlord withdrew $214141.00 from account 12346.
-[INFO ] 2018-09-05 16:33:28.857 [main] BankingStructure - Admin AdamOverlord transferred $3841.00 from Account 12346 to Account 12345.
