@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Random;
 
 import com.revature.dao.CustomerDAO;
@@ -14,22 +16,8 @@ import com.revature.util.ConnFactory;
 
 public class CustomerDAOImpl implements CustomerDAO {
 	public static ConnFactory cf = ConnFactory.getInstance();
-	@Override
-	public void listAccounts(int user_id) throws SQLException {
-		Connection conn= cf.getConnection();
-		String sql = "select BANK_ACCOUNT_ID, BALANCE from BANK_ACCOUNT WHERE USER_ID=? ORDER BY BANK_ACCOUNT_ID";
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, user_id);
-		System.out.println("Acc. ID : Balance");
-		System.out.println("====================");
-		ResultSet rs = 
-				stmt.executeQuery();
-		while (rs.next()) {
-			String balance = String.format("$%.2f", rs.getDouble(2));
-			System.out.println(rs.getInt(1)+ " : " + balance);
-		}
-		System.out.println();
-	}
+	
+
 
 	@Override
 	public boolean registerAccount(String username, String password) throws SQLException {
@@ -84,6 +72,41 @@ public class CustomerDAOImpl implements CustomerDAO {
 			System.out.println("Succesfully logged in " + username);
 		}
 		return account_id;
+	}
+	@Override
+	public void listAccounts(int user_id) throws SQLException {
+		Connection conn= cf.getConnection();
+		String sql = "select BANK_ACCOUNT_ID, BALANCE from BANK_ACCOUNT WHERE USER_ID=? ORDER BY BANK_ACCOUNT_ID";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, user_id);
+		System.out.println("Acc. ID : Balance");
+		System.out.println("====================");
+		ResultSet rs = 
+				stmt.executeQuery();
+		while (rs.next()) {
+			String balance = String.format("$%.2f", rs.getDouble(2));
+			System.out.println(rs.getInt(1)+ " : " + balance);
+		}
+		System.out.println();
+	}
+	
+	public void viewTransactionHistory(int user_id) throws SQLException{
+		Connection conn= cf.getConnection();
+		String sql = "SELECT BANK_ACCOUNT_ID, AMOUNT, DIRECTION, TRANSACTION_DATE FROM TRANSACTION_HISTORY WHERE USER_ID=?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, user_id);
+		System.out.println("Acc. ID : Amount : W/D : TimeStamp");
+		System.out.println("==================================");
+		ResultSet rs = 
+				stmt.executeQuery();
+		while (rs.next()) {
+			String balance = String.format("$%.2f", rs.getDouble(2));
+			Timestamp ts=rs.getTimestamp(4);
+			SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String timestamp = f.format(ts);
+			System.out.println(rs.getInt(1)+ " : " + balance + " : " + rs.getString(3) + " : " + timestamp);
+		}
+		System.out.println();
 	}
 
 }

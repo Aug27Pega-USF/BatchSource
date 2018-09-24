@@ -72,6 +72,7 @@ class BankTests {
 			cdi.listAccounts(111111);
 			System.out.println("Below should be users list.");
 			adi.viewUsers(); 
+			cdi.viewTransactionHistory(111111);
 			System.out.println("DeleteAccount works, I swear.");
 		} catch (Exception e) {
 		}	

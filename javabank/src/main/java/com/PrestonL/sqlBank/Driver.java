@@ -181,6 +181,7 @@ public class Driver {
 					break;
 				case "5":
 					menu_check=MENU_STATE.BASIC;
+					System.out.print("Logging out.");
 					check=true;
 					break;
 				default:
@@ -193,7 +194,7 @@ public class Driver {
 		if(menu_check==MENU_STATE.CUSTOMER) {
 			check=false;
 			do {
-			System.out.println("1. View All Accounts\n2. Create Account\n3. Deposit\n4. Withdraw\n5. Delete Account\n6. Logout");
+			System.out.println("1. View All Accounts\n2. Create Account\n3. Deposit\n4. Withdraw\n5. Delete Account\n6. View Transaction History\n7. Logout");
 			if (scanner.hasNextLine()) {
 				switch (scanner.nextLine()) {
 				case "1":
@@ -219,7 +220,14 @@ public class Driver {
 					check=true;
 					break;
 				case "6":
+					try {
+						cdi.viewTransactionHistory(current_user);
+					} catch (SQLException e) {
+					}
+					break;
+				case "7":
 					menu_check=MENU_STATE.BASIC;
+					System.out.print("Logging out.");
 					check=true;
 					break;
 				default:
