@@ -13,7 +13,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.PrestonL.javabank.*;
+import com.PrestonL.javabank.Admin;
+import com.PrestonL.javabank.Application;
+import com.PrestonL.javabank.Bank;
+import com.PrestonL.javabank.BankAccount;
+import com.PrestonL.javabank.Customer;
+import com.PrestonL.javabank.Employee;
+import com.PrestonL.javabank.ThisCreatesTheBaseAccountsRunFirst;
+import com.PrestonL.javabank.User;
+import com.PrestonL.sqlbank.*;
 
 public class TestCases {
 	public ThisCreatesTheBaseAccountsRunFirst myBase;

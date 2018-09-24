@@ -1,6 +1,5 @@
 package com.revature.daoimpl;
 
-import java.math.BigDecimal;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +9,6 @@ import java.util.Random;
 
 
 
-import com.PrestonL.javabank.BankingStructure;
 import com.revature.dao.AccountDAO;
 import com.revature.exceptions.*;
 import com.revature.util.ConnFactory;

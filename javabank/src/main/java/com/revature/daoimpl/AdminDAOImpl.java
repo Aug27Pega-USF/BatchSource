@@ -24,7 +24,7 @@ public class AdminDAOImpl implements AdminDAO {
 			CallableStatement call= conn.prepareCall(sql);
 			call.setInt(1, user_id);
 			call.execute();
-			System.out.print("User " + user_id + " and all associated accounts have been deleted.");
+			System.out.println("User " + user_id + " and all associated accounts have been deleted.");
 			}
 		} catch (UnassociatedException e) {
 			System.out.println(e.getMessage());

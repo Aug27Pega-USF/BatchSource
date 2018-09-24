@@ -4,7 +4,7 @@
         <Console name="Console" target="System_out">
             <PatternLayout>
                 <Pattern>
-                [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                [ %-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
                 </Pattern>
             </PatternLayout>
         </Console>
@@ -26,8 +26,5 @@
             <AppenderRef ref="Console"/>
             <AppenderRef ref = "File"/>
         </Root>
-    </Loggers>
-    
-    
-            
+    </Loggers>          
 </Configuration>
