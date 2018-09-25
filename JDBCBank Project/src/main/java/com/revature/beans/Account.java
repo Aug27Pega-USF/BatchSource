@@ -1,4 +1,4 @@
-package basicbank;
+package com.revature.beans;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -8,20 +8,11 @@ public class Account implements Serializable {
 	private double balance;
 	private String name;
 	private String[] usernames = new String[2];
-	private boolean approved;
 	
-	public Account(double balance, String name, String[] usernames, boolean approved) {
+	public Account(double balance, String name, String[] usernames) {
 		this.balance = balance;
 		this.name = name;
 		this.usernames = usernames;
-	}
-
-	public boolean isApproved() {
-		return approved;
-	}
-
-	public void setApproved(boolean approved) {
-		this.approved = approved;
 	}
 
 	public double getBalance() {
@@ -51,6 +42,6 @@ public class Account implements Serializable {
 	@Override
 	public String toString() {
 		return "Account [balance=" + balance + ", name=" + name + ", usernames=" + Arrays.toString(usernames)
-				+ ", approved=" + approved + "]";
+				+ "]";
 	}
 }

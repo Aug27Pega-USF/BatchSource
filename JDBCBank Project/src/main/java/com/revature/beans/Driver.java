@@ -1,4 +1,4 @@
-package basicbank;
+package com.revature.beans;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,15 +9,12 @@ import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
 
-
 public class Driver {
 	static Scanner sc = new Scanner(System.in);
-	static Map<String, Customer> customerMap = new HashMap<String, Customer>();
-	static Map<String, Employee> employeeMap = new HashMap<String, Employee>();	
+	static Map<String, Customer> customerMap = new HashMap<String, Customer>();	
 	static Map<String, Admin> adminMap = new HashMap<String, Admin>();
 	static Map<String, Account> accountMap = new HashMap<String, Account>();
 	static Customer customer;
-	static Employee employee;
 	static Admin admin;
 
 
@@ -59,7 +56,7 @@ public class Driver {
                 break;
         	case 2://Employee
         		//System.out.println("Employee Menu:");
-        		InitialEmployeeMenu();
+        		InitialAdminMenu();
         		break;
         	case 3:
         		System.out.println("The Iron Bank thanks you for your patronage. Have a merry day!");
@@ -84,15 +81,15 @@ public class Driver {
         }
 	}
 	
-	public static void InitialEmployeeMenu() {
+	public static void InitialAdminMenu() {
 		System.out.println("\n~~Employee Menu~~\n1 - Register \n2 - Login \n3 - Main Menu");
         int choice = sc.nextInt();
         switch (choice) {
         	case 1://Register
-        		RegisterEmployee();
+        		RegisterAdmin();
         		break;
         	case 2://Login
-        		LoginEmployee();
+        		LoginAdmin();
         		break;
         	case 3:
 				main(new String[0]);
@@ -118,8 +115,7 @@ public class Driver {
 		CustomerMenu(customer);
 	}
 	
-	private static void RegisterEmployee() {
-		
+	private static void RegisterAdmin() {
 		String password;
 		System.out.println("Enter your account name: ");
 		String name = sc.next();
@@ -131,28 +127,14 @@ public class Driver {
 			System.out.println("Invalid password. Try again:");
 			password=sc.next();
 		}
-		System.out.println("Is this an administrator account? \nY - Yes \nN - No");
-		String choice = sc.next();
-		if (choice.toString().equalsIgnoreCase("y")) {
-			Admin admin = new Admin(name, password);
-			adminMap.put(name, admin);
-			System.out.println("New admin registered successfully.");
-			AdminMenu(admin);
-		} else if (choice.toString().equalsIgnoreCase("n")) {
-			Employee employee = new Employee(name, password);
-			employeeMap.put(name, employee);
-			System.out.println("New employee registered successfully.");
-			EmployeeMenu(employee);
-		} else {
-			System.out.println("Please answer yes or no.");
-			RegisterEmployee();
-		}
+		Admin admin = new Admin(name, password);
+		adminMap.put(name, admin);
+		System.out.println("New admin registered successfully.");
+		AdminMenu(admin);
 	}
 	
 	private static void CustomerMenu(Customer current) {
-
         String name = null;
-
         System.out.println("Customer Menu: \n1 - View Accounts \n2 - Create New Account \n3 - Edit Existing Account \n4 - Main Menu");
 		int choice = sc.nextInt();
 		switch(choice) {
@@ -171,7 +153,7 @@ public class Driver {
 				System.out.println("Enter an account name: ");
 				name = sc.next();
 		        String[] usernames = new String[]{current.getName(), null};
-		        Account account = new Account(0, null,  usernames, false);
+		        Account account = new Account(0, null,  usernames);
 				accountMap.put(name, account);
 				System.out.println("New account created: " + account.getName());
 				AccountMenu(account);
@@ -194,46 +176,6 @@ public class Driver {
 		}
 	}
 	
-	private static void EmployeeMenu(Employee current) {
-        String name = null;
-        
-        System.out.println("Employee Menu: \n1 - View All Accounts \n2 - Create New Account \n3 - Main Menu");
-		int choice = sc.nextInt();
-		switch(choice) {
-			case 1:
-				System.out.println("Viewing Customer Accounts");
-			    Set<Entry<String, Customer>> st = customerMap.entrySet();   
-
-			      for (Map.Entry <String,Customer> me:st)
-			       {
-			           System.out.print(me.getKey()+":");
-			           System.out.println(me.getValue());
-			       }
-			      
-				System.out.println("Viewing Employee Accounts");
-			    Set<Entry<String, Employee>> st2 = employeeMap.entrySet();   
-
-			      for (Map.Entry <String,Employee> me:st2)
-			       {
-			           System.out.print(me.getKey()+":");
-			           System.out.println(me.getValue());
-			       }
-			      EmployeeMenu(current);
-				break;
-			case 2:
-				System.out.println("Enter an account name: ");
-				name = sc.next();
-		        String[] usernames = new String[]{current.getName(), null};
-		        Account account = new Account(0, null,  usernames, false);
-				accountMap.put(name, account);
-				AccountMenu(account);
-				break;
-			case 3:
-				main(new String[0]);
-				break;
-		}
-	}
-	
 	private static void AdminMenu(Admin current) {
         //double balance = 0;
         String name = null;
@@ -250,24 +192,6 @@ public class Driver {
 			           System.out.print(me.getKey()+":");
 			           System.out.println(me.getValue());
 			       }
-			      
-				System.out.println("Viewing Employee Accounts");
-			    Set<Entry<String, Employee>> st2 = employeeMap.entrySet();   
-
-			      for (Map.Entry <String,Employee> me:st2)
-			       {
-			           System.out.print(me.getKey()+":");
-			           System.out.println(me.getValue());
-			       }
-			      
-				System.out.println("Viewing Admin Accounts");
-				Set<Entry<String, Employee>> st3 = employeeMap.entrySet();   
-
-				    for (Map.Entry <String,Employee> me:st3)
-				    {
-				           System.out.print(me.getKey()+":");
-				           System.out.println(me.getValue());
-				    }
 				  AdminMenu(current);
 			
 			case 2:
@@ -275,7 +199,7 @@ public class Driver {
 				String editaccount = sc.next();
 				if (accountMap.containsKey(editaccount)) {
 					Account accounttoedit = accountMap.get(editaccount);
-					System.out.println("What would you  like to do? \n1 - Update Balance \n2 - Change Name \n3 - Edit Account Name \n4 - Approve Accounts");
+					System.out.println("What would you  like to do? \n1 - Update Balance \n2 - Change Name \n3 - Edit Account Name \n4 - Previous Menu");
 					int choice2 = sc.nextInt();
 					switch (choice2) {
 					case 1:
@@ -299,17 +223,6 @@ public class Driver {
 						System.out.println("Account Name updated.");
 						break;
 					case 4:
-						System.out.println("Do you want to approve this account? \nY - Yes \nN - No");
-						String accountapproval = sc.next();
-						if (accountapproval.toString().equalsIgnoreCase("y")) {
-							accounttoedit.setApproved(true);
-							System.out.println("Account approved.");
-						} else if (editaccount.toString().equalsIgnoreCase("n")) {
-							System.out.println("Account unaltered.");
-						} else {
-							System.out.println("Please answer yes or no.");
-							AdminMenu(current);
-						}
 						AdminMenu(current);
 						break;
 					}
@@ -319,7 +232,7 @@ public class Driver {
 				System.out.println("Enter an account name: ");
 				name = sc.next();
 		        String[] usernames = new String[]{current.getName(), null};
-		        Account account = new Account(0, null,  usernames, false);
+		        Account account = new Account(0, null,  usernames);
 				accountMap.put(name, account);
 				AccountMenu(account);
 				break;
@@ -352,31 +265,31 @@ public class Driver {
 		}
 	}
 	
-	private static void LoginEmployee() {
+	private static void LoginAdmin() {
 		System.out.println("Enter your account name:");
 		String name = sc.next();
 		System.out.println("Enter your password:");
 		String password = sc.next();
-		if (employeeMap.containsKey(name)) {
-			employee = employeeMap.get(name);
-			if (employee.getPassword().equals(password)) {
-				System.out.println("Welcome back " + employee.getName() + "!");
-					EmployeeMenu(employee);	
+		if (adminMap.containsKey(name)) {
+			admin = adminMap.get(name);
+			if (admin.getPassword().equals(password)) {
+				System.out.println("Welcome back " + admin.getName() + "!");
+					AdminMenu(admin);	
 			}
 			else {
 				System.out.println("Error: wrong password. Try logging in again.");
-				InitialEmployeeMenu();
+				InitialAdminMenu();
 			}
 		}
 		else {
-			System.out.println("No employee registered with that name.\nYou must log in as"
-					+ " an existing employee.\n");
+			System.out.println("No admin registered with that name.\nYou must log in as"
+					+ " an existing admin.\n");
 			main(new String[0]);
 		}
 	}
 	
 	private static void AccountMenu(Account account) {
-		System.out.println("\n~~Current Account Menu~~\n1 - View Balance \n2 - Deposit \n3 - Withdrawal \n4 - Transfer funds \n5 - Main Menu");	
+		System.out.println("\n~~Current Account Menu~~\n1 - View Balance \n2 - Deposit \n3 - Withdrawal \n4 - Transfer funds \n5 - Delete Account \n6 - Main Menu");	
 		
 		double balance = account.getBalance();
 		
@@ -434,10 +347,10 @@ public class Driver {
 				}
 				break;
 			case 5:
+				break;
+			case 6:
 				main(new String[0]);
 				break;
-
-				
 		}
 	}
 }
