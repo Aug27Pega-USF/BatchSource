@@ -1,0 +1,27 @@
+
+/**** Password Validation****/
+(					# Start of group
+  (?=.*\d)			#   must contains one digit from 0-9
+  (?=.*[a-z])		#   must contains one lowercase characters
+  (?=.*[A-Z])		#   must contains one uppercase characters
+  (?=.*[@#$%!])		#   must contains one special symbols in the list "@#$%"
+  .					#   match anything with previous condition checking
+  {6,20}			#   length at least 6 characters and maximum of 20	
+
+/**** Username Validation ****/
+[\\w-_]{8,20}  # Contains only letters, digits, or ( - / _ )
+
+
+/*****Social Security Validation ******/
+
+ ^            # Assert position at the beginning of the string.
+(?!000|666)  # Assert that neither "000" nor "666" can be matched here.
+[0-8]        # Match a digit between 0 and 8.
+[0-9]{2}     # Match a digit, exactly two times.
+-            # Match a literal "-".
+(?!00)       # Assert that "00" cannot be matched here.
+[0-9]{2}     # Match a digit, exactly two times.
+-            # Match a literal "-".
+(?!0000)     # Assert that "0000" cannot be matched here
+[0-9]{4}     # Match a digit, exactly four times.
+$            # Assert position at the end of the string.
