@@ -1,0 +1,60 @@
+[INFO ] 2018-09-24 10:50:46.041 [main] TransactionLogger - This is set to info: This is a test
+[WARN ] 2018-09-24 10:50:46.056 [main] TransactionLogger - This is set to warn: 
+[ERROR] 2018-09-24 10:50:46.056 [main] TransactionLogger - This is set to error: 
+[FATAL] 2018-09-24 10:50:46.056 [main] TransactionLogger - This is set to fatal: 
+[INFO ] 2018-09-24 10:50:46.141 [main] TransactionLogger - This is set to info: This is a test
+[WARN ] 2018-09-24 10:50:46.141 [main] TransactionLogger - This is set to warn: 
+[ERROR] 2018-09-24 10:50:46.141 [main] TransactionLogger - This is set to error: 
+[FATAL] 2018-09-24 10:50:46.141 [main] TransactionLogger - This is set to fatal: 
+[INFO ] 2018-09-24 10:50:46.241 [main] TransactionLogger - This is set to info: This is a test
+[WARN ] 2018-09-24 10:50:46.241 [main] TransactionLogger - This is set to warn: 
+[ERROR] 2018-09-24 10:50:46.241 [main] TransactionLogger - This is set to error: 
+[FATAL] 2018-09-24 10:50:46.241 [main] TransactionLogger - This is set to fatal: 
+[INFO ] 2018-09-24 10:50:46.326 [main] TransactionLogger - This is set to info: This is a test
+[WARN ] 2018-09-24 10:50:46.326 [main] TransactionLogger - This is set to warn: 
+[ERROR] 2018-09-24 10:50:46.326 [main] TransactionLogger - This is set to error: 
+[FATAL] 2018-09-24 10:50:46.326 [main] TransactionLogger - This is set to fatal: 
+[INFO ] 2018-09-24 10:50:46.442 [main] TransactionLogger - This is set to info: This is a test
+[WARN ] 2018-09-24 10:50:46.442 [main] TransactionLogger - This is set to warn: 
+[ERROR] 2018-09-24 10:50:46.442 [main] TransactionLogger - This is set to error: 
+[FATAL] 2018-09-24 10:50:46.442 [main] TransactionLogger - This is set to fatal: 
+[INFO ] 2018-09-24 10:50:46.442 [main] TransactionLogger - This is set to info: This is a test
+[WARN ] 2018-09-24 10:50:46.442 [main] TransactionLogger - This is set to warn: 
+[ERROR] 2018-09-24 10:50:46.442 [main] TransactionLogger - This is set to error: 
+[FATAL] 2018-09-24 10:50:46.442 [main] TransactionLogger - This is set to fatal: 
+[INFO ] 2018-09-24 10:50:46.542 [main] TransactionLogger - This is set to info: This is a test
+[WARN ] 2018-09-24 10:50:46.542 [main] TransactionLogger - This is set to warn: 
+[ERROR] 2018-09-24 10:50:46.542 [main] TransactionLogger - This is set to error: 
+[FATAL] 2018-09-24 10:50:46.542 [main] TransactionLogger - This is set to fatal: 
+[INFO ] 2018-09-24 10:50:46.843 [main] TransactionLogger - This is set to info: This is a test
+[WARN ] 2018-09-24 10:50:46.843 [main] TransactionLogger - This is set to warn: 
+[ERROR] 2018-09-24 10:50:46.843 [main] TransactionLogger - This is set to error: 
+[FATAL] 2018-09-24 10:50:46.843 [main] TransactionLogger - This is set to fatal: 
+[INFO ] 2018-09-24 10:50:47.021 [main] TransactionLogger - This is set to info: This is a test
+[WARN ] 2018-09-24 10:50:47.021 [main] TransactionLogger - This is set to warn: 
+[ERROR] 2018-09-24 10:50:47.021 [main] TransactionLogger - This is set to error: 
+[FATAL] 2018-09-24 10:50:47.021 [main] TransactionLogger - This is set to fatal: 
+[INFO ] 2018-09-24 10:50:47.075 [main] TransactionLogger - This is set to info: This is a test
+[WARN ] 2018-09-24 10:50:47.076 [main] TransactionLogger - This is set to warn: 
+[ERROR] 2018-09-24 10:50:47.076 [main] TransactionLogger - This is set to error: 
+[FATAL] 2018-09-24 10:50:47.076 [main] TransactionLogger - This is set to fatal: 
+[INFO ] 2018-09-24 10:50:47.109 [main] TransactionLogger - This is set to info: This is a test
+[WARN ] 2018-09-24 10:50:47.109 [main] TransactionLogger - This is set to warn: 
+[ERROR] 2018-09-24 10:50:47.109 [main] TransactionLogger - This is set to error: 
+[FATAL] 2018-09-24 10:50:47.109 [main] TransactionLogger - This is set to fatal: 
+[INFO ] 2018-09-24 10:50:47.159 [main] TransactionLogger - This is set to info: This is a test
+[WARN ] 2018-09-24 10:50:47.159 [main] TransactionLogger - This is set to warn: 
+[ERROR] 2018-09-24 10:50:47.159 [main] TransactionLogger - This is set to error: 
+[FATAL] 2018-09-24 10:50:47.159 [main] TransactionLogger - This is set to fatal: 
+[INFO ] 2018-09-24 10:50:47.291 [main] TransactionLogger - This is set to info: This is a test
+[WARN ] 2018-09-24 10:50:47.291 [main] TransactionLogger - This is set to warn: 
+[ERROR] 2018-09-24 10:50:47.291 [main] TransactionLogger - This is set to error: 
+[FATAL] 2018-09-24 10:50:47.291 [main] TransactionLogger - This is set to fatal: 
+[INFO ] 2018-09-24 10:50:47.630 [main] TransactionLogger - This is set to info: This is a test
+[WARN ] 2018-09-24 10:50:47.630 [main] TransactionLogger - This is set to warn: 
+[ERROR] 2018-09-24 10:50:47.630 [main] TransactionLogger - This is set to error: 
+[FATAL] 2018-09-24 10:50:47.630 [main] TransactionLogger - This is set to fatal: 
+[INFO ] 2018-09-24 10:50:47.677 [main] TransactionLogger - This is set to info: This is a test
+[WARN ] 2018-09-24 10:50:47.677 [main] TransactionLogger - This is set to warn: 
+[ERROR] 2018-09-24 10:50:47.677 [main] TransactionLogger - This is set to error: 
+[FATAL] 2018-09-24 10:50:47.677 [main] TransactionLogger - This is set to fatal: 
