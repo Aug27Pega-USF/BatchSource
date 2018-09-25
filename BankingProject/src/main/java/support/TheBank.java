@@ -31,6 +31,5 @@ public class TheBank {
 		for(User u: check) {
 			System.out.println(u.toString());
 		}
-		
 	}
 }

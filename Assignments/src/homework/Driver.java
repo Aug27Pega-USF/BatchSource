@@ -2,6 +2,7 @@ package homework;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Driver {
 	//Q1) bubble sort
@@ -49,12 +50,14 @@ public class Driver {
 		return news;
 	}
 	//Q6) Even, No Mod!
-	public static void evenNoMod(int n) {
+	public static String evenNoMod(int n) {
 		
 		if(((n / 2) *2) == n)
-			System.out.println("even");
+			//System.out.println("even");
+			return "even";
 		else
-			System.out.println("odd");
+			//System.out.println("odd");
+			return "odd";
 	}
 	//Q8) Palendrome ArrayList
 	public static boolean isPalindrome(String s) {
@@ -86,11 +89,15 @@ public class Driver {
 			System.out.print(q1[i] + " ");
 		System.out.println();
 		System.out.println("Question 2:");
+		List<Integer> q2ar = new ArrayList<Integer>();
 		int q2 = 25;
 		for(int i = q2; i>=0; i--)
 		{
-			System.out.print(fibo(i) + " ");
+			q2ar.add(fibo(i));
+			//System.out.print(fibo(i) + " ");
 		}
+		for (Integer i : q2ar)
+			System.out.print(i);
 		System.out.println();
 		System.out.println("Question 3:");
 		String q3 = "dlroW olleH"; 
@@ -103,7 +110,7 @@ public class Driver {
 		System.out.println(subStr(q5, 8));
 		System.out.println("Question 6:");
 		int q6 = 46;
-		evenNoMod(q6);
+		System.out.println(evenNoMod(q6));
 		System.out.println("Question 8:");
 		ArrayList<String> q8v1 = new ArrayList<String>();
 		q8v1.add("karan");
