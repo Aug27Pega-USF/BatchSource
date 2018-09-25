@@ -26,7 +26,7 @@ public class LoggingExample {
 	public static void main(String[] args) {
 		
 		LoggingExample logEx = new LoggingExample();
-		logEx.loggerLevel("mode");
+		logEx.loggerLevel("I love loggin stuff >=|");
 		
 	}
 

@@ -1,10 +1,16 @@
 package com.revature.interfaceaccount;
 
-public interface Accounts {
+public interface AccountsDAO {
 
-	public String findUsername();
+	public String findUserInfo();
 	
-	public String findPassword();
-	
+	public String findAccountInfo();
+		
 	public Double accountBalance();
+	
+	public Double withdrawBalance();
+	
+	public Double depositToBalance();
+	
+	
 }

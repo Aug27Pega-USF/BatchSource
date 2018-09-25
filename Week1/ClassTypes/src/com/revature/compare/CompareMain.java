@@ -19,12 +19,14 @@ public class CompareMain {
 							new Student(63, "Tony", 4.0)
 							}));
 		//System.out.println(studentList);
+		System.out.println("Original List");
 		for(Student s: studentList)
 		{
 			System.out.println(s);
 			
 		}
 		System.out.println("================================");
+		System.out.println("Sorted by StudentID:");
 		Collections.sort(studentList);
 		for(Student s: studentList)
 		{

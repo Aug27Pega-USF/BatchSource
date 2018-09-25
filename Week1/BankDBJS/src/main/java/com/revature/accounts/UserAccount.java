@@ -2,54 +2,65 @@ package com.revature.accounts;
 
 public class UserAccount {
 
-	private String username;
-	private String password;
-	private String fname;
-	private String lname;
-	//private double balance;
-	//private boolean status;
-	int id;
+	private int id;
+	private int userId;
+	private String accountName;
+	private double balance;
 	
-	//private String accountType;
 	
+	
+	@Override
+	public String toString() {
+		return "UserAccount [id=" + id + ", userId=" + userId + ", accountName=" + accountName + ", balance=" + balance
+				+ "]";
+	}
+
+	public UserAccount() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public UserAccount(String accountName, double balance, int userId, int id) {
+		super();
+		this.accountName = accountName;
+		this.balance = balance;
+		this.userId = userId;
+		this.id = id;
+	}
+
+	public String getAccountName() {
+		return accountName;
+	}
+
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-		
-	@Override
-	public String toString() {
-		return "UserAccount [username=" + username + ", password=" + password + ", fname=" + fname + ", lname=" + lname
-				+ ", id=" + id + "]";
-	}
-		
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getFname() {
-		return fname;
-	}
-	public void setFname(String fname) {
-		this.fname = fname;
-	}
-	public String getLname() {
-		return lname;
-	}
-	public void setLname(String lname) {
-		this.lname = lname;
-	}
-		
+	
+	
 }
 
 

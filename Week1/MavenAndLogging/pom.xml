@@ -6,6 +6,18 @@
   <name>MavenAndLogging</name>
   <description>This is a sample project</description>
   <dependencies>
+  <dependency>
+
+   <groupId>org.junit.jupiter</groupId>
+
+   <artifactId>junit-jupiter-api</artifactId>
+
+   <version>5.0.0-M6</version>
+
+   <scope>test</scope>
+
+</dependency>
+  
 	<dependency>
 
           <groupId>org.apache.logging.log4j</groupId>

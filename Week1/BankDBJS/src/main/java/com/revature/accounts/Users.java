@@ -1,26 +1,51 @@
 package com.revature.accounts;
 
-import com.revature.interfaceaccount.Accounts;
+public class Users  {
 
-public class Users implements Accounts {
-
-	@Override
-	public String findUsername() {
-		// TODO Auto-generated method stub
-		return null;
+	private String username;
+	private String password;
+	private String fname;
+	private String lname;
+	int id;
+	
+	public int getId() {
+		return id;
 	}
-
-	@Override
-	public String findPassword() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setId(int id) {
+		this.id = id;
 	}
-
+		
 	@Override
-	public Double accountBalance() {
-		// TODO Auto-generated method stub
-		return null;
+	public String toString() {
+		return "UserAccount [username=" + username + ", password=" + password + ", fname=" + fname + ", lname=" + lname
+				+ ", id=" + id + "]";
 	}
+		
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getFname() {
+		return fname;
+	}
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+	public String getLname() {
+		return lname;
+	}
+	public void setLname(String lname) {
+		this.lname = lname;
+	}
+		
 
 	
 }

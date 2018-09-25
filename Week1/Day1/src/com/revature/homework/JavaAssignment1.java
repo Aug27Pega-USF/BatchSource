@@ -103,9 +103,10 @@ public class JavaAssignment1 {
 	/*
 	 * Q6:Write a program to determine if an integer is even without using the modulus operator (%)
 	 */
-	public static void even() 
+	public static String even(int num) 
 	{
-		int num=3;
+		String a="";
+		
 		boolean even = true;
         
         for (int i = 1; i <= num; i++) 
@@ -113,10 +114,12 @@ public class JavaAssignment1 {
              
         if(even==true)
         {
-        	System.out.println(num+" is Even");
+        	a=num+" is Even";
         }
         else
-        	System.out.println(num+" is Odd");
+        	a=num+" is Odd";
+        
+        return a;
 	}
 	/*
 	 * Q7:Sort two employees based on their name, department, and age using the Comparator interface.
@@ -498,7 +501,7 @@ State: Arizona State
 		System.out.println("Q5: ");
 		strIdx("Hello",3);
 		System.out.println("Q6: ");
-		even();
+		even(3);
 		System.out.println("Q7: ");
 		employee();
 		System.out.println("Q8: ");
