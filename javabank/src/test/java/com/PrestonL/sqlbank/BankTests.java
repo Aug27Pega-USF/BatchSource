@@ -62,17 +62,18 @@ class BankTests {
 		try {
 			System.out.println("\nStuff should come out below in this test.\n");
 			
-			acdi.createAccount(111111);
+			acdi.createAccount(111111); //check this doesn't cause errors or stuff
 			assertTrue(acdi.checkAccount(111111, 111111)); //check exists
-			assertTrue(acdi.deposit(1, 111111, 111111)); //check true
-			assertTrue(acdi.withdraw(1, 111111, 111111)); //check true
-			assertTrue(!acdi.deposit(-1.111, 111111, 111111));//check false
-			assertTrue(!acdi.withdraw(-1.111, 111111, 111111));//check false
+			assertTrue(acdi.deposit(121, 100000, 123456)); //check true
+			assertTrue(acdi.withdraw(120.99, 100000, 123456)); //check true
+			assertTrue(!acdi.deposit(-1.111, 100000, 123456));//check false
+			assertTrue(!acdi.withdraw(-1.111, 100000, 123456));//check false
 			System.out.println("Below should be accounts list.");
 			cdi.listAccounts(111111);
 			System.out.println("Below should be users list.");
 			adi.viewUsers(); 
-			cdi.viewTransactionHistory(111111);
+			System.out.println("Below should be Transaction History");
+			cdi.viewTransactionHistory(100000);
 			System.out.println("DeleteAccount works, I swear.");
 		} catch (Exception e) {
 		}	

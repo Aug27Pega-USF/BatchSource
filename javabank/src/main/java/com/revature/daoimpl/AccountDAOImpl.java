@@ -27,6 +27,10 @@ public class AccountDAOImpl implements AccountDAO{
 				call.setInt(2, account_id);
 				call.setInt(3, user_id);
 				call.execute();
+				System.out.println(("You have deposited "
+						+ String.format("$%.2f to Account ",
+								amount)
+						+ account_id + "."));
 				return true;
 			}
 			else {
@@ -52,6 +56,10 @@ public class AccountDAOImpl implements AccountDAO{
 				call.setInt(2, account_id);
 				call.setInt(3, user_id);
 				call.execute();
+				System.out.println(("You have withdrew "
+							+ String.format("$%.2f from Account ",
+									amount)
+							+ account_id + "."));
 				return true;
 			}
 			else {
@@ -59,7 +67,7 @@ public class AccountDAOImpl implements AccountDAO{
 			}
 			}
 		} catch(SQLException e) {
-			System.out.println("Overdraft Error");
+			System.out.println("You are attempting to overdraft your account.");
 			return false;
 		}
 			catch (Exception e) {

@@ -32,7 +32,7 @@ public class Driver {
 		while(true) {
 		if(menu_check==MENU_STATE.BASIC) {
 		do {
-			System.out.println("Welcome to SQL BANK");
+			System.out.println("\nWelcome to SQL BANK");
 			System.out.println("1. Login\n2. Register\n3. Exit");
 			if (scanner.hasNextLine()) {
 				switch (scanner.nextLine()) {
@@ -105,16 +105,18 @@ public class Driver {
 		if(menu_check==MENU_STATE.REGISTER) {
 			String registerusername = "";
 			String registerpassword = "";
-			System.out.println(
-					"Welcome customer. Please input your desired username. Must be between 5 and 15 characters long "
-							+ "containing only alphanumeric characters. Must start with a letter.");
 			check=false;
+			System.out.println("Welcome new customer.");
 			do {
-				System.out.println("Input Username:");
-				Pattern pattern = Pattern.compile("(?=.{5,15}$)[a-zA-Z][a-zA-Z\\d]*");
-				if (scanner.hasNext(pattern)) {
+				System.out.println("Input Username. It must be between 5-15 alphanumeric characters and start with a letter:");
+				if (scanner.hasNextLine()) {
 					registerusername = scanner.nextLine();
-					check=true;
+					if (registerusername.matches("(?=.{5,15}$)[a-zA-Z][a-zA-Z\\d]*")) {
+						check=true;
+						}
+						else {
+							System.out.println("Not a valid username.");
+						}
 				} else {
 					scanner.nextLine();
 					System.out.println("Not a valid username.");
@@ -125,17 +127,21 @@ public class Driver {
 			System.out.println("Please input desired password. It must be between 8 and 32 characters long.");
 			do {
 				System.out.println("Input password:");
-				Pattern pattern = Pattern.compile("(?=.{8,32}$).*");
-				if (scanner.hasNext(pattern)) {
+				if (scanner.hasNextLine()) {
 					registerpassword = scanner.nextLine();
-					check = true;
+					if (registerpassword.matches("(?=.{8,32}$).*")) {
+						check=true;
+						}
+						else {
+							System.out.println("Not a valid password.");
+						}
 				} else {
 					scanner.nextLine();
 					System.out.println("Not a valid password.");
 				}
 				if (check) {
 					System.out.println("Type in password again:");
-					if (scanner.hasNext(pattern)) {
+					if (scanner.hasNextLine()) {
 						if (registerpassword == scanner.nextLine()) {
 							check = true;
 						}
@@ -158,7 +164,7 @@ public class Driver {
 		if(menu_check==MENU_STATE.ADMIN) {
 			check=false;
 			do {
-			System.out.println("1. View All Users\n2. Create User\n3. Update User\n4. Delete User\n5. Logout");
+			System.out.println("\n1. View All Users\n2. Create User\n3. Update User\n4. Delete User\n5. Logout");
 			if (scanner.hasNextLine()) {
 				switch (scanner.nextLine()) {
 				case "1":
@@ -181,7 +187,7 @@ public class Driver {
 					break;
 				case "5":
 					menu_check=MENU_STATE.BASIC;
-					System.out.print("Logging out.");
+					System.out.println("Logging out.");
 					check=true;
 					break;
 				default:
@@ -194,7 +200,7 @@ public class Driver {
 		if(menu_check==MENU_STATE.CUSTOMER) {
 			check=false;
 			do {
-			System.out.println("1. View All Accounts\n2. Create Account\n3. Deposit\n4. Withdraw\n5. Delete Account\n6. View Transaction History\n7. Logout");
+			System.out.println("\n1. View All Accounts\n2. Create Account\n3. Deposit\n4. Withdraw\n5. Delete Account\n6. View Transaction History\n7. Logout");
 			if (scanner.hasNextLine()) {
 				switch (scanner.nextLine()) {
 				case "1":
@@ -227,7 +233,7 @@ public class Driver {
 					break;
 				case "7":
 					menu_check=MENU_STATE.BASIC;
-					System.out.print("Logging out.");
+					System.out.println("Logging out.");
 					check=true;
 					break;
 				default:
@@ -241,11 +247,15 @@ public class Driver {
 			String newpassword = "";
 			check=false;
 			do {
-				System.out.println("Input Username:");
-				Pattern pattern = Pattern.compile("(?=.{5,15}$)[a-zA-Z][a-zA-Z\\d]*");
-				if (scanner.hasNext(pattern)) {
+				System.out.println("Input Username. It must be between 5-15 alphanumeric characters and start with a letter:");
+				if (scanner.hasNextLine()) {
 					newusername = scanner.nextLine();
-					check=true;
+					if (newusername.matches("(?=.{5,15}$)[a-zA-Z][a-zA-Z\\d]*")) {
+						check=true;
+						}
+						else {
+							System.out.println("Not a valid username.");
+						}
 				} else {
 					scanner.nextLine();
 					System.out.println("Not a valid username.");
@@ -256,10 +266,14 @@ public class Driver {
 			System.out.println("Input updated Password. It must be between 8 and 32 characters long.");
 			do {
 				System.out.println("Input new password:");
-				Pattern pattern = Pattern.compile("(?=.{8,32}$).*");
-				if (scanner.hasNext(pattern)) {
+				if (scanner.hasNextLine()) {
 					newpassword = scanner.nextLine();
-					check = true;
+					if (newpassword.matches("(?=.{8,32}$).*")) {
+						check=true;
+						}
+						else {
+							System.out.println("Not a valid password.");
+						}
 				} else {
 					scanner.nextLine();
 					System.out.println("Not a valid password.");
@@ -296,11 +310,15 @@ public class Driver {
 			} while (!check);
 			check=false;
 			do {
-				System.out.println("Input new Username:");
-				Pattern pattern = Pattern.compile("(?=.{5,15}$)[a-zA-Z][a-zA-Z\\d]*");
-				if (scanner.hasNext(pattern)) {
+				System.out.println("Input new Username. It must be between 5-15 alphanumeric characters and start with a letter:");
+				if (scanner.hasNextLine()) {
 					updateusername = scanner.nextLine();
+					if (updateusername.matches("(?=.{5,15}$)[a-zA-Z][a-zA-Z\\d]*")) {
 					check=true;
+					}
+					else {
+						System.out.println("Not a valid username.");
+					}
 				} else {
 					scanner.nextLine();
 					System.out.println("Not a valid username.");
@@ -311,10 +329,14 @@ public class Driver {
 			System.out.println("Input updated Password. It must be between 8 and 32 characters long.");
 			do {
 				System.out.println("Input new password:");
-				Pattern pattern = Pattern.compile("(?=.{8,32}$).*");
-				if (scanner.hasNext(pattern)) {
+				if (scanner.hasNextLine()) {
 					updatepassword = scanner.nextLine();
-					check = true;
+					if (updatepassword.matches("(?=.{8,32}$).*")) {
+						check=true;
+						}
+						else {
+							System.out.println("Not a valid password.");
+						}
 				} else {
 					scanner.nextLine();
 					System.out.println("Not a valid password.");

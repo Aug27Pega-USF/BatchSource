@@ -53,7 +53,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 				check=false;
 			}		
 		}while(!check);
-		System.out.println("Created user " + id);
+		System.out.println("Created user " + id + ".");
 		return check;
 		
 	}
@@ -69,7 +69,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		rs.next();
 		int account_id=rs.getInt(1);
 		if(account_id!=0) {
-			System.out.println("Succesfully logged in " + username);
+			System.out.println("Succesfully logged in " + username + ".");
 		}
 		return account_id;
 	}
@@ -87,16 +87,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 			String balance = String.format("$%.2f", rs.getDouble(2));
 			System.out.println(rs.getInt(1)+ " : " + balance);
 		}
-		System.out.println();
 	}
 	
 	public void viewTransactionHistory(int user_id) throws SQLException{
 		Connection conn= cf.getConnection();
-		String sql = "SELECT BANK_ACCOUNT_ID, AMOUNT, DIRECTION, TRANSACTION_DATE FROM TRANSACTION_HISTORY WHERE USER_ID=?";
+		String sql = "SELECT BANK_ACCOUNT_ID, AMOUNT, DIRECTION, TRANSACTION_DATE FROM TRANSACTION_HISTORY WHERE USER_ID=? ORDER BY TRANSACTION_DATE";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, user_id);
-		System.out.println("Acc. ID : Amount : W/D : TimeStamp");
-		System.out.println("==================================");
+		System.out.println("Acc. ID : Amount : Action : TimeStamp");
+		System.out.println("=====================================");
 		ResultSet rs = 
 				stmt.executeQuery();
 		while (rs.next()) {
@@ -106,7 +105,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 			String timestamp = f.format(ts);
 			System.out.println(rs.getInt(1)+ " : " + balance + " : " + rs.getString(3) + " : " + timestamp);
 		}
-		System.out.println();
 	}
 
 }

@@ -7,3 +7,9 @@
 [INFO ] 2018-09-24 18:48:51.871 [main] Driver - Customer 111111 withdrew $23.00 from Account 111111.
 [INFO ] 2018-09-24 19:05:42.215 [main] Driver - Customer 111111 deposited $11.00 to Account 111111.
 [INFO ] 2018-09-24 19:18:34.664 [main] Driver - Customer 111111 withdrew $12.00 from Account 111111.
+[ INFO ] 2018-09-25 09:20:55.987 [main] Driver - Customer 111111 deposited $12.00 to Account 111111.
+[ INFO ] 2018-09-25 09:27:18.908 [main] Driver - Customer 111111 deposited $11.00 to Account 168463.
+[ INFO ] 2018-09-25 09:27:26.494 [main] Driver - Customer 111111 deposited $2.22 to Account 168463.
+[ INFO ] 2018-09-25 09:37:32.201 [main] Driver - Customer 111111 deposited $100.00 to Account 608614.
+[ INFO ] 2018-09-25 09:37:39.715 [main] Driver - Customer 111111 withdrew $4.00 from Account 608614.
+[ INFO ] 2018-09-25 09:37:51.533 [main] Driver - Customer 111111 withdrew $96.00 from Account 608614.

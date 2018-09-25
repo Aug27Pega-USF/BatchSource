@@ -64,7 +64,6 @@ public class AdminDAOImpl implements AdminDAO {
 		while (rs.next()) {
 			System.out.println(rs.getInt(1)+ " : " + rs.getString(2));
 		}
-		System.out.println();
 	}
 
 	@Override
@@ -101,7 +100,7 @@ public class AdminDAOImpl implements AdminDAO {
 				check=false;
 			}		
 		}while(!check);
-		System.out.println("Created user " + id);
+		System.out.println("Created user " + id + ".");
 		return check;
 	}
 
@@ -116,7 +115,7 @@ public class AdminDAOImpl implements AdminDAO {
 			rs.next();
 			int account_id=rs.getInt(1);
 			if(account_id!=0) {
-				System.out.println("Succesfully logged in " + username);
+				System.out.println("Succesfully logged in " + username + ".");
 			}
 			return account_id;
 	}
