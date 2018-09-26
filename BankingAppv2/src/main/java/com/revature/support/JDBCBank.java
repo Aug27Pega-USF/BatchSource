@@ -22,6 +22,7 @@ public class JDBCBank {
 		User retUser = null;
 		Administrator admin = null;
 		String traverse = "";
+		String check = "";
 		System.out.println("Welcome to the Sullivan Bank! Are you a new user?");
 		traverse = scan.nextLine();
 		if (traverse.equals("yes"))// create new user and account
@@ -50,7 +51,9 @@ public class JDBCBank {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} else if (traverse.equals("user")) {
+				admin.toString();// currently returning null
+			}
+			else if (traverse.equals("user")) {
 				System.out.println("Please Login with your credentials.");
 				System.out.println("Please enter your username:");
 				String uname = scan.nextLine();
@@ -62,11 +65,13 @@ public class JDBCBank {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				retUser.toString();
 			}
 
 		}
 		System.out.println("check if user or admin");
-		if (retUser != null) {
+		check = scan.nextLine();
+		if (check.equals("user") && retUser != null) {
 			System.out.println("Welcome to the main menu\n" + "Here are your options:\n" + "1: view your account(s)\n"
 					+ "2: create new account\n" + "3: delete accounts with an empty balance\n"
 					+ "4: withdraw from account\n" + "5: deposit into account");
@@ -139,7 +144,7 @@ public class JDBCBank {
 				break;
 			}
 		}
-		if (admin != null) {
+		else if (check.equals("admin") && admin != null) {
 			System.out.println("Welcome to the Admin menu\n" + "Here are your options:\n" 
 					+ "1: view All users\n"
 					+ "2: create new user\n" 

@@ -13,6 +13,7 @@ import com.revature.util.ConnFactory;
 
 public class AdministratorDAOImpl implements AdministratorDAO {
 	public static ConnFactory cf = ConnFactory.getInstance();
+	Connection conn = cf.getConnection();
 
 //	public void deleteUser(String uname) throws SQLException {
 //		// TODO Auto-generated method stub
@@ -30,7 +31,7 @@ public class AdministratorDAOImpl implements AdministratorDAO {
 
 	public void deleteAccount(User gone) throws SQLException {
 		// TODO Auto-generated method stub
-		Connection conn = cf.getConnection();
+		// Connection conn = cf.getConnection();
 		String sql = "DELETE FROM ACCOUNT WHERE userid = ?";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setInt(1, gone.getUid());
@@ -40,7 +41,7 @@ public class AdministratorDAOImpl implements AdministratorDAO {
 
 	public void deleteAllUsers() throws SQLException {
 		// TODO Auto-generated method stub
-		Connection conn = cf.getConnection();
+		// Connection conn = cf.getConnection();
 		deleteAllAccounts();
 		String sql = "DELETE FROM ACCOUNTHOLDER";
 		Statement ps = conn.createStatement();
@@ -50,16 +51,16 @@ public class AdministratorDAOImpl implements AdministratorDAO {
 
 	public void deleteAllAccounts() throws SQLException {
 		// TODO Auto-generated method stub
-		Connection conn = cf.getConnection();
+		// Connection conn = cf.getConnection();
 		Statement stmt = conn.createStatement();
 		stmt.executeUpdate("TRUNCATE TABLE ACCOUNT");
 		System.out.println("Accounts Deleted");
 	}
 
 	public Administrator adminLogin(String uname, String pass) throws SQLException {
-		Connection conn = cf.getConnection();
+		// Connection conn = cf.getConnection();
 		Administrator gw = null;
-		String sql = "SELECT * FROM ADMINISTRATOR WHERE uname=? AND pass=?";
+		String sql = "SELECT * FROM ADMINISTRATOR WHERE aduname=? AND adpass=?";
 		PreparedStatement statement;
 		statement = conn.prepareStatement(sql);
 

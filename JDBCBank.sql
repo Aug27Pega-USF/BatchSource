@@ -9,6 +9,7 @@ CREATE TABLE ACCOUNT(
 	accid NUMBER PRIMARY KEY,
 	userid NUMBER,
 	bal DECIMAL(10,2),
+    acc_name VARCHAR2(30),
     CONSTRAINT fk_accountuser FOREIGN KEY(userid) 
     REFERENCES ACCOUNTHOLDER(acc_uid));
     
@@ -18,3 +19,8 @@ CREATE TABLE ADMINISTRATOR(
     adpass VARCHAR2(30),
     CONSTRAINT administrator_pk PRIMARY KEY (admid)
 );
+/
+INSERT INTO ADMINISTRATOR VALUES(NULL, 'MetroTopDog', 'luthor1superman0');
+commit;
+
+
