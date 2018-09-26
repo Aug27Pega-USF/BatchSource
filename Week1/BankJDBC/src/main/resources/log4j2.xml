@@ -15,7 +15,25 @@
 	</Pattern>
 	</PatternLayout>
 	</File>
+	
+	<!-- <JDBC name="databaseAppender" tableName="TRANSACTION_TABLE">
+
+     		 <ConnectionFactory class="com.revature.util.ConnFactory" method="getConnection" />
+
+     		 <Column name="TRANS_ID"  pattern="%x{user_id}"/>
+
+      		 <Column name="DATE_LOG" isEventTimestamp="true"/>
+
+      		 <Column name="LOGGER" pattern="%logger" />
+
+      		 <Column name="LOGLEVEL" pattern="%level"/>
+
+      		 <Column name="MESSAGE" pattern="%message" />
+
+        </JDBC> -->
 	</Appenders>
+	
+	
 	
 	<Loggers>
 		<Logger name="com.revature.daoimpl.UserAccountsDAOImpl" level="info" additivity="false">

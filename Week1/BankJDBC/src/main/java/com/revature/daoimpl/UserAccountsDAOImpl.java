@@ -50,40 +50,52 @@ public class UserAccountsDAOImpl implements UserAccountsDAO{
 		return balance;
 	}
 
-	public void withdrawBalance(int actId, double amount) throws SQLException {
+	public void withdrawBalance(int actId, double amount, int uid) throws SQLException {
 		//UsersDAOImpl user= new UsersDAOImpl();
 		Connection conn= cf.getConnection();
 		//Statement stmt= conn.createStatement();
 		double newBalance;
 		newBalance= accountBalance(actId);
+		
+		if(amount>=0 && newBalance>=amount)
+		{
 		newBalance-=amount;
 		
 			String[] primaryKeys= new String[1];
 			primaryKeys[0]= "Act_Id";
-			String sql= "UPDATE USER_ACCOUNTS SET BALANCE=? WHERE ACT_ID = ?";
+			String sql= "UPDATE USER_ACCOUNTS SET BALANCE=? WHERE ACT_ID = ? AND USER_ID= ?";
 			PreparedStatement ps = conn.prepareStatement(sql, primaryKeys);
 			ps.setDouble(1, newBalance);
 			ps.setInt(2,actId);
+			ps.setInt(3, uid);
 			ps.executeUpdate();		
 		log.info("WITHDRAW WAS MADE FROM " + actId + " FOR  $" + amount);
+		}
+		else
+			System.out.println("Invalid amount to withdraw.");
 			
 	}
 
-	public void depositToBalance(int actId, double amount) throws SQLException {
+	public void depositToBalance(int actId, double amount, int uid) throws SQLException {
 		Connection conn= cf.getConnection();
 		//Statement stmt= conn.createStatement();
 		double newBalance;
 		newBalance= accountBalance(actId);
+		if(amount>=0)
+		{
 		newBalance+=amount;
 		
 			String[] primaryKeys= new String[1];
 			primaryKeys[0]= "Act_Id";
-			String sql= "UPDATE USER_ACCOUNTS SET BALANCE=? WHERE ACT_ID = ?";
+			String sql= "UPDATE USER_ACCOUNTS SET BALANCE=? WHERE ACT_ID = ? AND USER_ID= ?";
 			PreparedStatement ps = conn.prepareStatement(sql, primaryKeys);
 			ps.setDouble(1, newBalance);
 			ps.setInt(2,actId);
+			ps.setInt(3, uid);
 			ps.executeUpdate();		
 			log.info("DEPOSIT WAS MADE FROM " + actId + " FOR  $" + amount);
+		} else
+			System.out.println("Use a number higher than zero.");
 	}
 
 	@Override
@@ -119,6 +131,7 @@ public class UserAccountsDAOImpl implements UserAccountsDAO{
 			CallableStatement call= conn.prepareCall(sql);
 			call.setInt(1, actId);
 			call.execute();
+			System.out.println("Account has been deleted");
 			}
 			else {
 				System.out.println("Account must be empty before deletion. Please withdraw all fund from account balance to proceed with deletion.");

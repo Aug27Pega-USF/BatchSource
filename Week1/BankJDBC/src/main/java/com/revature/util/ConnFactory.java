@@ -26,7 +26,7 @@ public class ConnFactory {
 		return cf;
 	}
 	
-	public Connection getConnection()
+	public static Connection getConnection()
 	{
 		Connection conn= null;
 		try {

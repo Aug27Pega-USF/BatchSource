@@ -15,9 +15,9 @@ public interface UserAccountsDAO {
 		
 	public Double accountBalance(int actId)throws SQLException;
 	
-	public void withdrawBalance(int actId, double amount)throws SQLException;
+	public void withdrawBalance(int actId, double amount, int uid)throws SQLException;
 	
-	public void depositToBalance(int actId, double amount)throws SQLException;
+	public void depositToBalance(int actId, double amount,int uid)throws SQLException;
 	
 	public abstract void deleteAccountIfEmpty(int actId);
 	

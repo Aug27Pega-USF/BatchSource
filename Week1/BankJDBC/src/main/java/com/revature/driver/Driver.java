@@ -1,6 +1,7 @@
 package com.revature.driver;
 
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.revature.accounts.Users;
@@ -28,7 +29,7 @@ public class Driver {
 		{
 			System.out.println("Please make a selection: ");
 			System.out.println("(1) Register");
-			System.out.println("(2)Login");
+			System.out.println("(2) Login");
 			System.out.println("(3) Exit");
 			int choice1=s.nextInt();
 			switch(choice1)
@@ -38,6 +39,7 @@ public class Driver {
 				break;
 			case 2:
 					System.out.println("Sign in as User(1) or Admin(2)?");
+					
 					int choice2=s.nextInt();
 					switch(choice2)
 						{
@@ -69,7 +71,7 @@ public class Driver {
 							default:
 								System.out.println("Use a proper variable");
 						}
-				break;
+					break;
 			case 3:
 				isExit=true;
 				break;
@@ -180,7 +182,9 @@ public class Driver {
 		while(!isTrue)
 			{
 		System.out.println("Login(1) or Main Menu(2)?");
+		try {
 		int op= s.nextInt();
+		
 				switch(op)
 				{
 		
@@ -215,6 +219,11 @@ public class Driver {
 						System.out.println("Please use one of the variables given above");
 				}
 		}
+				catch(InputMismatchException e)
+				{
+					System.out.println("Please use a Number for menu choice.");
+				}
+		}
 		
 		return u_id;
 	}
@@ -238,8 +247,10 @@ public class Driver {
 		pswrd= p.nextLine();
 		System.out.println("First Name: ");
 		fname=p.nextLine();
+		String chkf= fname.replaceAll("\\D+", "");
 		System.out.println("Last Name: ");
 		lname= p.nextLine();
+		String chkl= fname.replaceAll("\\D+", "");
 		
 		//checks to see if Username is already in database. If true then requests they make another user name.
 			try {
@@ -247,9 +258,18 @@ public class Driver {
 				{
 					System.out.println("That Username is already used.");
 				}
+				else if(!chkf.equals(""))
+				{
+					System.out.println("Please no numbers. In your First Name.");
+				}
+				else if(!chkl.equals(""))
+				{
+					System.out.println("Please no numbers. In your Last Name.");
+				}
 				else
 				{
 				user.createUser(fname, lname, uname, pswrd);
+				
 				isRegistered=true;
 				}
 			} catch (SQLException e) {

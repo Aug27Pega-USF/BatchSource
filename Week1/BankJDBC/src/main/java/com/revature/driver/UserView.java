@@ -19,7 +19,7 @@ public class UserView {
 		Driver m= new Driver();
 		
 		boolean isExit=false;
-		System.out.println("Welcome Admin");
+		System.out.println("Welcome User");
 		while(!isExit)
 		{
 			System.out.println("Choices:");
@@ -29,8 +29,9 @@ public class UserView {
 			System.out.println("(3) Delete Account");
 			System.out.println("(4) Withdraw/Deposit from Account");
 			System.out.println("(5) Logout");
-			int choice= s.nextInt();
 			try {
+				int choice= s.nextInt();
+			
 					switch(choice)
 					{
 					case 1:
@@ -56,7 +57,10 @@ public class UserView {
 			{
 				e.printStackTrace();
 			}
-			
+			catch(InputMismatchException e)
+			{
+				System.out.println("Please use a Number for menu choice.");
+			}
 		}
 	
 
@@ -72,9 +76,9 @@ public class UserView {
 			try
 			{
 			System.out.println("Name of Account:");
-			 n= s.nextLine();
+			 n= p.nextLine();
 			System.out.println("Balance for account:");
-			 b= p.nextDouble();
+			 b= s.nextDouble();
 			 isExit=true;
 			}catch(InputMismatchException e)
 			{
@@ -143,6 +147,7 @@ public class UserView {
 			
 			System.out.println("Which account will you choose for your transactions?");
 			t_id= p.nextInt();
+			
 			System.out.println("Will you deposit(1) or withdraw(2) or leave(3)");
 			int choice= p.nextInt();
 				switch(choice)
@@ -150,12 +155,12 @@ public class UserView {
 				case 1:
 					System.out.println("How much will you depsoit?");
 					amount= s.nextDouble();
-					uact.depositToBalance(t_id, amount);
+					uact.depositToBalance(t_id, amount, uid);
 					break;
 				case 2:
 					System.out.println("How much will you withdraw?");
 					amount= s.nextDouble();
-					uact.withdrawBalance(t_id, amount);
+					uact.withdrawBalance(t_id, amount, uid);
 					break;
 				case 3:
 					isExit=true;
@@ -170,7 +175,7 @@ public class UserView {
 				e.printStackTrace();
 			}catch (InputMismatchException e)
 			{
-				e.printStackTrace();
+				System.out.println("Please use Numbers");
 			}
 		}
 	}

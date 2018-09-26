@@ -63,7 +63,7 @@ public class AdminView {
 	
 		public void adminUpdate()
 		{	
-			
+			Scanner p= new Scanner(System.in);
 			System.out.println();
 			System.out.println("Type Id of User to Update: ");
 			int u_id= s.nextInt();
@@ -77,33 +77,35 @@ public class AdminView {
 			if(u!=null)
 				{
 				System.out.println("Enter First Name: ");
-				String fn= s.nextLine();
-					if(fn.equals(null) || fn.trim().equals(""))
+				String fn= p.nextLine();
+				String chk= fn.replaceAll("\\D+","");
+					if(fn.equals(null) || fn.trim().equals("") || !chk.equals(""))
 					{
 						fn=u.getFname();
 					}
 				
 				System.out.println("Enter Last Name: ");
-				String ln= s.nextLine();
-					if(ln.equals(null) || ln.trim().equals(""))
+				String ln= p.nextLine();
+					chk= ln.replaceAll("\\D+","");
+					if(ln.equals(null) || ln.trim().equals("")|| !chk.equals(""))
 					{
 						ln=u.getLname();
 					}
 				
 				System.out.println("Enter Username: ");
-				String un= s.nextLine();
+				String un= p.nextLine();
 					if(un.equals(null) || un.trim().equals(""))
 					{
 						un=u.getUsername();
 					}
 				
 				System.out.println("Enter password: ");
-				String pswrd= s.nextLine();
+				String pswrd= p.nextLine();
 					if(pswrd.equals(null) || pswrd.trim().equals(""))
 					{
 						pswrd=u.getPassword();
 					}				
-				System.out.println(fn+" "+ln+" "+un+" "+pswrd);				
+				System.out.println("First Name: "+fn+" | Last Name: "+ln+" | Username: "+un+" | Password: "+pswrd);				
 				try {
 					admin.updateUser(u_id, fn, ln, un, pswrd);
 					System.out.println("Updated User");
@@ -112,6 +114,8 @@ public class AdminView {
 					e.printStackTrace();
 				}
 			}
+			else
+				System.out.println("Not a user!");
 		}
 		
 }
