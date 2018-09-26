@@ -6,11 +6,11 @@ import com.revature.support.User;
 
 public class MenuLogic {
 	/*
-	 * register: Allows a new user to register and create account.
+	 * register: Allows a new user to register.
 	 * once created, not allowed to make transactions until account is approved*/
 	public User register() {
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Creating new Account...");
+		System.out.println("Creating new user...");
 		User newUser = new User();
 		System.out.println("Please Enter Your First Name:");
 		String fname = scan.nextLine();

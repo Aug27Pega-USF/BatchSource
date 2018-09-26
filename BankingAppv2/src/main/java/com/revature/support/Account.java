@@ -4,11 +4,13 @@ public class Account {
 	private int aid;
 	private int uid;
 	private double bal;
-	public Account(int aid, int uid, double bal) {
+	private String accname;
+	public Account(int aid, int uid, double bal, String accname) {
 		super();
 		this.aid = aid;
 		this.uid = uid;
 		this.bal = bal;
+		this.accname = accname;
 	}
 	public int getAid() {
 		return aid;
@@ -28,9 +30,15 @@ public class Account {
 	public void setBal(double bal) {
 		this.bal = bal;
 	}
+	public String getAccname() {
+		return accname;
+	}
+	public void setAccname(String accname) {
+		this.accname = accname;
+	}
 	@Override
 	public String toString() {
-		return "Account [aid=" + aid + ", uid=" + uid + ", bal=" + bal + "]";
+		return "Account [aid=" + aid + ", uid=" + uid + ", bal=" + bal + ", accname= " + accname + "]";
 	}
 	
 }
