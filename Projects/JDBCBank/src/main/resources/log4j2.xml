@@ -3,21 +3,19 @@
     <Appenders>
     	 <JDBC name="databaseAppender" tableName="KMEDARA.TRANSACTION_LOGS">
      		 <ConnectionFactory class="com.revature.util.ConnectionFactory" method="getConnection" />
-     		 <Column name="USER_ID"  pattern="%x{user_id}"/>
+     		 <Column name="USER_ID"  pattern="%X{user_id}"/>
       		 <Column name="DATED" isEventTimestamp="true"/>
       		 <Column name="LOGGER" pattern="%logger" />
       		 <Column name="LOGLEVEL" pattern="%level"/>
       		 <Column name="MESSAGE" pattern="%message" />
+      		 <Column name="EXCEPTION" pattern="%ex{full}" />
         </JDBC>
-        <Http name="Http" url="logging.html">
-        <PatternLayout>
-                <Pattern>
-                %highlight{%d [%t] %-5level: %msg%n%throwable}
-
-                </Pattern>
-            </PatternLayout>
+      <!--   <Http name="httpAppender" url="http://localhost/test.html">
+ 
+      <Property name="X-Java-Runtime" value="$${java:runtime}" />
       <JsonLayout properties="true"/>
-    </Http>
+      
+    </Http> -->
         <Console name="Console" target="System_out">
             <PatternLayout>
                 <Pattern>
@@ -41,18 +39,11 @@
                 </Pattern>
             </PatternLayout>
         </File>
-        <File name="htmlFile" fileName="logging.html">
-         <PatternLayout>
-                <Pattern>
-                %highlight{%d [%t] %-5level: %msg%n%throwable&lt;br&lt;}
-                </Pattern>
-            </PatternLayout>
-        </File>
     </Appenders>
     <Loggers>   
         <Logger name="Stanley" level = "trace" additivity= "false">
          <AppenderRef ref="Console"/> 
-          <AppenderRef ref="Http"/>
+        <!--<AppenderRef ref="httpAppender"/>  -->  
           <AppenderRef ref = "projectFile"/>  
           <AppenderRef ref = "databaseAppender"/>
         </Logger>

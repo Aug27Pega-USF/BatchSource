@@ -5,26 +5,17 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import com.revature.beans.Account;
-import com.revature.beans.CheckingAccount;
-import com.revature.beans.LoginInfo;
-import com.revature.beans.SavingsAccount;
-import com.revature.beans.User;
-import com.revature.daoimpl.AccountDaoImpl;
-import com.revature.daoimpl.LoginInfoDaoImpl;
-import com.revature.daoimpl.UserDaoImpl;
+import org.apache.logging.log4j.ThreadContext;
+import com.revature.beans.*;
+import com.revature.daoimpl.*;
 import com.revature.exceptions.InvalidTransactionException;
 import com.revature.login.Login;
-import com.revature.util.ConnectionFactory;
 
 public class BankDriver {
 	static Scanner keyboard = new Scanner(System.in);
 
-	public static ConnectionFactory cf = ConnectionFactory.getInstance();
 	private static User currentUser;
 	private static UserDaoImpl udi = new UserDaoImpl();
 	private static AccountDaoImpl adi = new AccountDaoImpl();
@@ -44,7 +35,6 @@ public class BankDriver {
 	}
 	
 	public static void Initialize() {
-		
 		Login login = new Login();
 		    boolean exit = false;
 		    String choice = "";
@@ -54,7 +44,7 @@ public class BankDriver {
 		      switch(choice) {
 		        case "1":
 		            currentUser = login.run();
-		        	exit = true;
+		            exit = true;
 		        	presentOptions(currentUser.getRoleTypeName());
 		        break;
 		        case "2": 
@@ -68,6 +58,7 @@ public class BankDriver {
 		      }
 		    }	
 	}
+	
 	private static void presentOptions(String rollTypeName) {	
 		    switch(rollTypeName) {
 		      case "CUSTOMER":
@@ -84,6 +75,7 @@ public class BankDriver {
 	}
 
 }
+	/*Admin Options*/
 	private static void adminOptions() {
 		Login login = new Login();
 		String choice = "";
@@ -101,17 +93,20 @@ public class BankDriver {
 	      + "8) Logout\n");
 	      choice = keyboard.nextLine();
 	      switch(choice) {
-	        case "1":
+	      
+	      case "1":
 			userMap.entrySet().forEach(e -> System.out.println(e.getValue().toBasicString()));
 			System.out.println("Enter the id of the customer you would like to view.");
 			int uid = keyboard.nextInt();
 			System.out.println(udi.get(uid));
 			
 	        	break;
-	        case "2": 
+	       
+	      case "2": 
 	        	login.createAccount();
 	        	break;
-	        case "3":
+	        
+	      case "3":
 	        	User toEdit = null;
 	        	while(toEdit == null) {
 	        		try {
@@ -131,7 +126,8 @@ public class BankDriver {
 	        	}
 	        	updateHashMap(userMap, "user");
 	        	break;
-	        case "4":
+	       
+	      case "4":
 	        	User toDelete = null;
 	        	while(toDelete == null) {
 	        		try {
@@ -149,7 +145,8 @@ public class BankDriver {
 	        	}
 	        	updateHashMap(userMap, "user");
 	        	break;
-	        case "5":
+	       
+	      case "5":
 	        	Account a = null;
 	        	String owner = null;
 	        	try {
@@ -187,7 +184,8 @@ public class BankDriver {
 					e1.printStackTrace();
 				}	
 	        	break;
-	        case "6":
+	        
+	      case "6":
 	        	Account edit = null;
 	        	while(edit == null) {
 	        		try {
@@ -206,7 +204,8 @@ public class BankDriver {
 	        	}
 	        	updateHashMap(accountMap, "account");
 	        	break;
-	        case "7":
+	        
+	      case "7":
 	        	Account delete = null;
 	        	while(delete == null) {
 	        		try {
@@ -223,14 +222,15 @@ public class BankDriver {
 	        	}
 	        	updateHashMap(accountMap, "account");
 	        	break;
-	        case "8":
+	      
+	      case "8":
 	        	System.out.println("Goodbye "+ currentUser.getFirst()+"!");
 	        	currentUser = null;
 	        	exit = true;
 	        	Initialize();
-	        default:
-	        System.out.println("Invalid Input. Expecting integer\\n*********************************");
-	        break;
+//	        default:
+//	        System.out.println("Invalid Input. Expecting integer\\n*********************************");
+//	        break;
 	      }     
 	    }
 	}
@@ -250,16 +250,19 @@ public class BankDriver {
 	      + "6) Logout\n");
 	      choice = keyboard.nextLine();
 	      switch(choice) {
-	        case "1":
+	        
+	      case "1":
 	        	System.out.println("Your Current Accounts\n******************************************");
 	        	currentUser.getAccounts().forEach(a -> System.out.println(a));
 	        	 adi.getAccountsByUser(currentUser.getId());
 	        	break;
+	      
 	        case "2": /*Deposit*/
 	        	Account acc = null;
 	        	Double amount = 0.0;
 	        	try{	
 	        		adi.getAccountsByUser(currentUser.getId());
+	        		currentUser.getAccounts().forEach(a -> System.out.println(a));
 	        		System.out.println("Select an account to deposit to by entering the account number.\n************************************************");
 	        		Integer ac = keyboard.nextInt();
 	        	    acc = adi.get(ac);
@@ -269,16 +272,21 @@ public class BankDriver {
 	        		adi.deposit(amount, acc);
 	        		acc.setBalance(acc.getBalance() + amount);
 		        	updateHashMap(accountMap,"account");
+		        	
+		        	ThreadContext.put("user_id", ((Integer)currentUser.getId()).toString());
 		        	logger.info("Deposit of $"+amount+" made to account #"+acc.getAccountNumber()+" by "+currentUser.getFirst()+" "+currentUser.getLast()
-		        	             +" New Balance is"+acc.getBalance());
+		        	             +" New Balance is "+acc.getBalance());
+		        	currentUser.setAccounts(adi.getAccountsByUser(currentUser.getId()));
 	        	} catch(InputMismatchException e) {
 	        	System.out.println("Invalid account number.");
 	        	} catch (InvalidTransactionException e) {
-	        		logger.error("Attempted Deposit of $"+amount+" made to account #"+acc.getAccountNumber()+" by "+currentUser.getFirst()+" "+currentUser.getLast());
+	        		ThreadContext.put("user_id", ((Integer)currentUser.getId()).toString());
+	        		logger.error("Attempted Deposit of $"+amount+" made to account #"+acc.getAccountNumber()
+	        						+" by "+currentUser.getFirst()+" "+currentUser.getLast(), e);
 	        		e.getMessage();
 	        	}
-	        	currentUser.setAccounts(adi.getAccountsByUser(currentUser.getId()));
 	        	break;
+	        
 	        case "3": /*Withdrawal*/
 	        	Account acc2 = null;
 	        	double amount2 = 0;
@@ -293,15 +301,22 @@ public class BankDriver {
 	        		adi.withdraw(amount2, acc2);
 	        		acc2.setBalance(acc2.getBalance() - amount2);
 		        	updateHashMap(accountMap,"account");
-		        	logger.info("Withdrawal of $"+amount2+" from account #"+acc2.getAccountNumber()+" by "+currentUser.getFirst()+" "+currentUser.getLast());
+		        
+		        	ThreadContext.put("user_id", ((Integer)currentUser.getId()).toString());
+		        	logger.info("Withdrawal of $"+amount2+" from account #"+acc2.getAccountNumber()
+		        				+" by "+currentUser.getFirst()+" "+currentUser.getLast());
+		        	currentUser.setAccounts(adi.getAccountsByUser(currentUser.getId()));
 	        	} catch(InputMismatchException e) {
 	        	System.out.println("Invalid account number.");
 	        	} catch (InvalidTransactionException e) {
-	        		logger.error("Attempted to withdraw"+amount2+"  from account #"+acc2.getAccountNumber()+" by "+currentUser.getFirst()+" "+currentUser.getLast());
+	        		ThreadContext.put("user_id", ((Integer)currentUser.getId()).toString());
+	        		logger.error("Attempted to withdraw"+amount2+"  from account #"+acc2.getAccountNumber()
+	        			+" by "+currentUser.getFirst()+" "+currentUser.getLast(), e);
 	        		e.getMessage();
 	        	}
-	        	currentUser.setAccounts(adi.getAccountsByUser(currentUser.getId()));
+	        	
 	        	break;
+	       
 	        case "4": /*Delete Empty Account*/
 	        	try{
 		        	Account acc3;
@@ -322,9 +337,13 @@ public class BankDriver {
 			}
 	        	currentUser.setAccounts(adi.getAccountsByUser(currentUser.getId()));
 	        	break;
+	      
 	        case "5":
-	        	System.out.println();
+	        	List<StringBuilder> userTrans = udi.getUserTransactions(currentUser.getId());
+	        	userTrans.forEach(t -> System.out.println(t));
+	        	System.out.println("***************************************************************");
 	        	break;
+	      
 	        case "6":
 	        	System.out.println("Goodbye "+ currentUser.getFirst()+"!");
 	        	currentUser = null;
@@ -336,8 +355,8 @@ public class BankDriver {
 	      }
 	    }
 	}
-	/*For Updating user fields, user can select as many fields as they want */
 	
+	/*For Updating user fields, user can select as many fields as they want */
 	private static void updateHashMap(HashMap<Integer,?> Map, String type){	
 		if(type.equalsIgnoreCase("user"))
 		udi.getAll().forEach(u -> userMap.put(u.getId(), u));
@@ -347,9 +366,9 @@ public class BankDriver {
 		adi.getAll().forEach(a -> accountMap.put(a.getId(), a));
 			
 	}
+	
 	private static void employeeOptions() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
 	
 }

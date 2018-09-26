@@ -11,3 +11,49 @@
                     Deposit of $100.0 made to account #22 by Luis Rivera New Balance is21320.54
 [INFO ] 2018-09-25 1216:08:34 [main] Stanley - 
                     Deposit of $1000.0 made to account #22 by Luis Rivera New Balance is22320.54
+[INFO ] 2018-09-25 1216:31:32 [main] Stanley - 
+                    Deposit of $10.0 made to account #22 by Luis Rivera New Balance is22330.54
+[INFO ] 2018-09-25 1216:43:29 [main] Stanley - 
+                    Deposit of $100.0 made to account #22 by Luis Rivera New Balance is22430.54
+[INFO ] 2018-09-25 1216:46:46 [main] Stanley - 
+                    Deposit of $100.0 made to account #22 by Luis Rivera New Balance is22530.54
+[INFO ] 2018-09-25 1216:55:20 [main] Stanley - 
+                    Deposit of $100000.0 made to account #22 by Luis Rivera New Balance is122530.54000000001
+[INFO ] 2018-09-25 1216:56:43 [main] Stanley - 
+                    Deposit of $100.0 made to account #22 by Luis Rivera New Balance is122630.54
+[INFO ] 2018-09-25 1219:05:22 [main] Stanley - 
+                    Deposit of $100.0 made to account #22 by Luis Rivera New Balance is122730.54
+[INFO ] 2018-09-25 1219:07:01 [main] Stanley - 
+                    Deposit of $200.0 made to account #22 by Luis Rivera New Balance is122930.54
+[INFO ] 2018-09-25 1219:11:18 [main] Stanley - 
+                    Deposit of $5443.0 made to account #22 by Luis Rivera New Balance is128373.54
+[INFO ] 2018-09-25 1219:14:43 [main] Stanley - 
+                    Deposit of $15.54 made to account #22 by Luis Rivera New Balance is128389.07999999999
+[INFO ] 2018-09-25 1219:20:29 [main] Stanley - 
+                    Deposit of $2000.0 made to account #22 by Luis Rivera New Balance is130389.08
+[INFO ] 2018-09-25 1219:51:51 [main] Stanley - 
+                    Withdrawal of $100000.0 from account #22 by Luis Rivera
+[ERROR] 2018-09-25 1219:54:00 [main] Stanley - 
+                    Attempted to withdraw100000.0  from account #22 by Luis Rivera
+[INFO ] 2018-09-25 1219:54:36 [main] Stanley - 
+                    Withdrawal of $30000.0 from account #22 by Luis Rivera
+[INFO ] 2018-09-25 1219:57:50 [main] Stanley - 
+                    Withdrawal of $300000.0 from account #26 by Luis Rivera
+[INFO ] 2018-09-25 1220:49:31 [main] Stanley - 
+                    Deposit of $100.0 made to account #26 by Luis Rivera New Balance is 45754.23
+[INFO ] 2018-09-25 1220:55:59 [main] Stanley - 
+                    Deposit of $100.0 made to account #22 by Luis Rivera New Balance is 489.08
+[ERROR] 2018-09-25 1221:51:44 [main] Stanley - 
+                    Attempted Deposit of $-200.0 made to account #22 by Luis Rivera
+com.revature.exceptions.InvalidTransactionException: Attempted deposit of negative number.
+	at com.revature.BankDriver.customerOptions(BankDriver.java:271) [classes/:?]
+	at com.revature.BankDriver.presentOptions(BankDriver.java:65) [classes/:?]
+	at com.revature.BankDriver.Initialize(BankDriver.java:48) [classes/:?]
+	at com.revature.BankDriver.main(BankDriver.java:34) [classes/:?]
+[ERROR] 2018-09-25 1221:54:33 [main] Stanley - 
+                    Attempted Deposit of $-200.0 made to account #22 by Luis Rivera
+com.revature.exceptions.InvalidTransactionException: Attempted deposit of negative number.
+	at com.revature.BankDriver.customerOptions(BankDriver.java:271) [classes/:?]
+	at com.revature.BankDriver.presentOptions(BankDriver.java:65) [classes/:?]
+	at com.revature.BankDriver.Initialize(BankDriver.java:48) [classes/:?]
+	at com.revature.BankDriver.main(BankDriver.java:34) [classes/:?]

@@ -29,7 +29,7 @@ public class UserDaoImpl implements Dao<User>{
 	@Override
 	public User get(int id) {
 		User s = new User();
-		Connection conn = cf.getConnection();
+		Connection conn = ConnectionFactory.getConnection();
 		ResultSet rs;
 		String query = "SELECT A.USER_ID,A.FIRSTNAME,A.LASTNAME,A.SOCIAL,A.BIRTHDATE,A.USER_LAST_LOGIN," + 
 				"A.PHONE,C.ROLE_TYPE,B.LOGIN_ID, B.LOGIN_USERNAME, B.LOGIN_PASSWORD " + 
@@ -69,7 +69,7 @@ public class UserDaoImpl implements Dao<User>{
 	
 	public User getBySSN(String social){
 		User s = null;
-		Connection conn = cf.getConnection();
+		Connection conn = ConnectionFactory.getConnection();
 		ResultSet rs;
 		String query = "SELECT * FROM TABLE(F_GETBYSSN(?))";
 		try (PreparedStatement ps = conn.prepareStatement(query)) {
@@ -103,7 +103,7 @@ public class UserDaoImpl implements Dao<User>{
 	
 	public User getByUsn(String username) {
 		User s = null;
-		Connection conn = cf.getConnection();
+		Connection conn = ConnectionFactory.getConnection();
 		ResultSet rs;
 		String query = "SELECT * FROM TABLE(F_GETBYUSN(?))";
 		
@@ -139,7 +139,7 @@ public class UserDaoImpl implements Dao<User>{
 	@Override
 	public List<User> getAll() {
 		List<User> userList = new ArrayList<User>();
-		Connection conn = cf.getConnection();
+		Connection conn = ConnectionFactory.getConnection();
 		try (PreparedStatement ps = conn.prepareStatement("SELECT * FROM V_USERINFO_LOGININFO")){
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
@@ -173,7 +173,7 @@ public class UserDaoImpl implements Dao<User>{
 
 	@Override
 	public void create(User t) throws SQLException {
-		Connection conn = cf.getConnection();
+		Connection conn = ConnectionFactory.getConnection();
 		String query = "call PR_INSERTNEWUSER(?, ?, ?, ?, ?, ?,?, ?)";
 		CallableStatement caller = conn.prepareCall(query);
 		caller.setString(1, t.getFirst());
@@ -195,7 +195,7 @@ public class UserDaoImpl implements Dao<User>{
 	}
 	@Override
 	public void update(User t, HashMap<String, String> params) throws SQLException {
-		Connection conn = cf.getConnection();
+		Connection conn = ConnectionFactory.getConnection();
 		if(params.containsKey("birthdate")) {
 			try {
 				@SuppressWarnings("unlikely-arg-type")
@@ -288,7 +288,7 @@ public class UserDaoImpl implements Dao<User>{
 	}
 	@Override
 	public void delete(User t) throws SQLException {
-		Connection conn = cf.getConnection();
+		Connection conn = ConnectionFactory.getConnection();
 		String query = "call PR_DELETEUSER(?, ?)";
 		CallableStatement caller = conn.prepareCall(query);
 		caller.setInt(1, t.getId());
@@ -301,7 +301,7 @@ public class UserDaoImpl implements Dao<User>{
 
 	@Override
 	public boolean checkExistence(String col, String value) {
-		Connection conn = cf.getConnection();
+		Connection conn = ConnectionFactory.getConnection();
 		Long i = 0L;
 		ResultSet rs;
 		String query = "Select COUNT(*) from BANK_USERS where "+col+" = ?";
@@ -318,6 +318,30 @@ public class UserDaoImpl implements Dao<User>{
 				e.printStackTrace();
 				return true;
 			}
+	}
+	
+	public List<StringBuilder> getUserTransactions(int id){
+		List<StringBuilder> tranList = new ArrayList<StringBuilder>();
+		
+		ResultSet rs;
+		Connection conn = ConnectionFactory.getConnection();
+		String query = "Select DATED,MESSAGE from TRANSACTION_LOGS WHERE USER_ID = ?";
+		try (PreparedStatement ps = conn.prepareStatement(query)){
+			ps.setLong(1, id);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				StringBuilder trans = new StringBuilder();
+				trans.append(rs.getDate(1));
+				trans.append(" - ");
+				trans.append(rs.getString(2));
+				tranList.add(trans);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return tranList;
 	}
 
 }
