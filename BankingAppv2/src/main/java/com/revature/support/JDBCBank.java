@@ -177,7 +177,7 @@ public class JDBCBank {
 			case 3:
 				System.out.println("Deleting all Users");
 				try {
-					makankosappo.deleteAllAccounts();
+					makankosappo.deleteAllUsers();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
