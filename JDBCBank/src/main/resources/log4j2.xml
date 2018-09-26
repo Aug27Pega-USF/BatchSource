@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<Console name="Console" target="System_out">
+			<PatternLayout>
+				<Pattern>
+					[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+				</Pattern>
+			</PatternLayout>
+		</Console>
+		<File name="File" fileName="TransactionLogs.txt">
+			<PatternLayout>
+				<Pattern>
+					[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+				</Pattern>
+			</PatternLayout>
+		</File>
+		<JDBC name="JDBC" tableName="STRUONG.TRANSACTIONLOG">
+		<ConnectionFactory class="proj.banking.utils.DB_ConnectionFactory" method="getConnection"/>
+			<Column name="EVENT_DATE" isEventTimestamp="true"/>
+			<Column name="TYPE" pattern="%X{transactionType}"/>
+			<Column name="ACC_NUMBER" pattern="%X{acc_number}"/>
+			<Column name="AMOUNT" pattern="%X{amount}"/>
+		</JDBC>
+		
+	</Appenders>
+	<Loggers>
+		<Logger name="TransactionLogger" level="info" additivity="false">
+			<AppenderRef ref="Console"/>
+			<AppenderRef ref="File"/>
+			<AppenderRef ref="JDBC"/>
+		</Logger>
+		<Root>
+			<AppenderRef ref="Console"/>
+			<AppenderRef ref="File"/>
+			<AppenderRef ref="JDBC"/>
+		</Root>
+	</Loggers>
+</Configuration>
