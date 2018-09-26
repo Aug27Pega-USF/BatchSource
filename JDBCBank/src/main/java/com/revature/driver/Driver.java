@@ -6,12 +6,86 @@ import java.util.Scanner;
 
 import com.revature.centers.RegistrationCenter;
 import com.revature.centers.UserCenter;
+import com.revature.daoimp.AccountDAOImp;
 import com.revature.daoimp.UserDAOImp;
 
 public class Driver {
 
 	
 	public static void main(String[] args) {
+		UserDAOImp u = new UserDAOImp();
+		AccountDAOImp a = new AccountDAOImp();
+		//Creation code to get different things to happen in database before presentation
+		/*
+		try {
+			u.createUser("robin","Password","Robin","Avila","116 Timbercreekpine cir","Winter Garden","FL",34787);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			u.createUser("robin","Password2","Robin","Avila","116 Timbercreekpine cir","Winter Garden","FL",34787);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			u.createUser("robin","Password3","Robin","Avila","116 Timbercreekpine cir","Winter Garden","FL",34787);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			u.createUser("chris","Password","Robin","Avila","116 Timbercreekpine cir","Winter Garden","FL",34787);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			u.createUser("chris","Password2","Robin","Avila","116 Timbercreekpine cir","Winter Garden","FL",34787);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			u.createUser("chris","Password3","Robin","Avila","116 Timbercreekpine cir","Winter Garden","FL",34787);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			a.createAccount(1, 1, 1000.00);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			a.createAccount(1, 2, 1000.00);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			a.createAccount(2, 1, 1000.00);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			a.createAccount(3, 1, 1000.00);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			a.createAccount(1, 1, 1000.00);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		*/
+		
+		
 		Scanner input = new Scanner (System.in);
 		int n;
 		do {
@@ -73,6 +147,8 @@ public class Driver {
 			}
 		}else if(n == 3){
 			break;
+		}else {
+			System.out.println("Entered and invalid number try again");
 		}
 
 	}while (n != 3);

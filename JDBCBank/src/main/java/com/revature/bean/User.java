@@ -11,16 +11,12 @@ public class User {
 	private String city;
 	private String state;
 	private int zip;
-	private int areaCode;
-	private int phone;
-	private int ssn;
-	private int lastFour;
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public User(int userID, int clearanceID, String userName, String password, String firstName, String lastName,
-			String address, String city, String state, int zip,int areaCode, int phone, int ssn, int lastFour) {
+			String address, String city, String state, int zip) {
 		super();
 		this.userID = userID;
 		this.clearanceID = clearanceID;
@@ -32,17 +28,8 @@ public class User {
 		this.city = city;
 		this.state = state;
 		this.zip = zip;
-		this.areaCode = areaCode;
-		this.phone = phone;
-		this.ssn = ssn;
-		this.lastFour = lastFour;
 	}
-	public int getAreaCode() {
-		return areaCode;
-	}
-	public void setAreaCode(int areaCode) {
-		this.areaCode = areaCode;
-	}
+
 	public int getUserID() {
 		return userID;
 	}
@@ -103,30 +90,12 @@ public class User {
 	public void setZip(int zip) {
 		this.zip = zip;
 	}
-	public int getPhone() {
-		return phone;
-	}
-	public void setPhone(int phone) {
-		this.phone = phone;
-	}
-	public int getSsn() {
-		return ssn;
-	}
-	public void setSsn(int ssn) {
-		this.ssn = ssn;
-	}
-	public int getLastFour() {
-		return lastFour;
-	}
-	public void setLastFour(int lastFour) {
-		this.lastFour = lastFour;
-	}
+
 	@Override
 	public String toString() {
 		return "User [userID=" + userID + ", clearanceID=" + clearanceID + ", userName=" + userName + ", password="
 				+ password + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
-				+ ", city=" + city + ", state=" + state + ", zip=" + zip + ", phone=" + phone + ", ssn=" + ssn
-				+ ", lastFour=" + lastFour + "]";
+				+ ", city=" + city + ", state=" + state + ", zip=" + zip + "]";
 	}
 	
 	

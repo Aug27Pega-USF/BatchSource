@@ -14,7 +14,8 @@ import com.revature.util.ConnFactory;
 
 public class TransactionDAOImp implements TransactionDAO{
 	public static ConnFactory cf = ConnFactory.getInstance();
-
+	
+	//This method is primarily called in other methods to go off as soon as any type of money transaction is done
 	public void createTransaction(int accountID, double transactionAmount,int typeID, double endingBalance)
 			throws SQLException {
 		Connection conn = cf.getConnection();
@@ -29,12 +30,13 @@ public class TransactionDAOImp implements TransactionDAO{
 		
 	}
 
+	//Used to get transaction list of a certain account number
 	public void getTransactionList(int accountID) throws SQLException {
 		Connection conn = cf.getConnection();
 		PreparedStatement stmt = conn.prepareStatement("SELECT TRANSACTIONS.TRANSACTIONID, TRANSACTIONS.ACCOUNTID AS ACCOUNT_NUM,"
 													+"TRANS_TYPE.TYPEDESC AS DEPOSIT_WITHDRAWL,TRANSACTIONS.TRANSACTIONVALUE,"
 													+"TRANSACTIONS.ENDINGBALANCE FROM TRANSACTIONS INNER JOIN TRANS_TYPE ON "
-													+ "TRANSACTIONS.TYPEID= TRANS_TYPE.TYPEID WHERE TRANSACTIONS.ACCOUNTID=?");
+													+ "TRANSACTIONS.TYPEID= TRANS_TYPE.TYPEID WHERE TRANSACTIONS.ACCOUNTID=? ORDER BY TRANSACTIONS.TRANSACTIONID ASC");
 		stmt.setInt(1,accountID);
 		ResultSet rs = stmt.executeQuery();	
 		   ResultSetMetaData rsmd = rs.getMetaData();
@@ -53,7 +55,6 @@ public class TransactionDAOImp implements TransactionDAO{
 		try {
 			System.in.read();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		System.out.println();

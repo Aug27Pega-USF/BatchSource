@@ -11,8 +11,8 @@ import com.revature.daoimp.UserDAOImp;
 public class UserCenter {
 
 	
-
-	public static void userCenter(int userId) {
+	//User center options
+	public static void userCenter(int userId) throws SQLException {
 		Scanner input = new Scanner (System.in);
 		int n;
 		do {
@@ -24,6 +24,7 @@ public class UserCenter {
 		System.out.println("Press 5 to make a withdrawl from one of your accounts");
 		System.out.println("Press 6 to delete a certain account");
 		System.out.println("Press 7 To view your transactions related to your account");
+		System.out.println("Press 8 to change the username and password");
 		
 		n = input.nextInt();
 		if(n ==1) {
@@ -126,10 +127,10 @@ public class UserCenter {
 				System.out.println("What account id would you like to pull from");
 				int accountId = input.nextInt();
 				System.out.println("How much would you like to withdrawl");
-				double deposit = input.nextDouble();
+				double withdrawl = input.nextDouble();
 				AccountDAOImp ca = new AccountDAOImp();
 				try {
-					ca.withdrawlUpdateAccount(accountId,userId,deposit);
+					ca.withdrawlUpdateAccount(accountId,userId,withdrawl);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -179,12 +180,29 @@ public class UserCenter {
 				System.out.println();
 			}
 
+		}else if(n ==8) {
+			System.out.println("Updating username and password for system. Is this correct (Y/N)?");
+			Scanner input1 = new Scanner (System.in);
+			String c7 = input1.next();
+			if(c7.equalsIgnoreCase("Y")) {
+				System.out.println("Asking questions to change");
+				System.out.println("Enter new username you would like to use");
+				Scanner input2 = new Scanner (System.in);
+				String userName = input2.nextLine();
+				System.out.println("Enter new password you would like to use");
+				String password = input2.nextLine();
+				UserDAOImp uu = new UserDAOImp();
+				uu.updateUser(userId,userName,password);
+				
+			}else {
+				System.out.println();
+			}
 		}
 		
 		}while(n != 9);
 	}
 	
-	
+	//administrator options
 	public static void adminCenter(int userId) {
 		Scanner input = new Scanner (System.in);
 		int n;
@@ -194,9 +212,9 @@ public class UserCenter {
 		System.out.println("Press  2 to view a certain Users information");
 		System.out.println("Press  3 to view all users");
 		System.out.println("Press  4 to view account(s) associated with a certain User");
-		//System.out.println("Press  5 to Update account(s) of a User");
-		//System.out.println("Press  6 to Update a User");
-		//System.out.println("Press  7 to Delete a User");
+		System.out.println("Press  5 to Empty account of a User for deletion");
+		System.out.println("Press  6 to Update a User");
+		System.out.println("Press  7 to Delete a User");
 		System.out.println("To Exit to main menu press 9");
 		n = input.nextInt();
 		if(n ==1) {
@@ -244,9 +262,11 @@ public class UserCenter {
 			System.out.println("View all Accounts of a certain User. Is this correct (Y/N)?");
 			String c = input.next();
 			if(c.equalsIgnoreCase("Y")) {
-				UserDAOImp gul = new UserDAOImp();
+				AccountDAOImp gua = new AccountDAOImp();
+				System.out.println("Which User would you like to you at");
+				int userID = input.nextInt();
 				try {
-					gul.getUserList();
+					gua.getAccountList(userID);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -255,9 +275,70 @@ public class UserCenter {
 			}else {
 				System.out.println();
 			}
-		}
-		
-		
+		}else if(n ==5){
+			System.out.println("Make a Withdrawl To Delete and Account. Is this correct (Y/N)?");
+			String c4 = input.next();
+			if(c4.equalsIgnoreCase("Y")) {
+				System.out.println("What User id would you like to pull Account from");
+				int userID = input.nextInt();
+				System.out.println("What account id would you like to pull from");
+				int accountId = input.nextInt();
+				System.out.println("How much is needed to withdrawl to close");
+				double withdrawl = input.nextDouble();
+				AccountDAOImp ca = new AccountDAOImp();
+				try {
+					ca.withdrawlUpdateAccount(accountId,userID,withdrawl);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else {
+				System.out.println();
+				}
+			}else if(n ==6){
+				System.out.println("Updating username and password for system. Is this correct (Y/N)?");
+				Scanner input1 = new Scanner (System.in);
+				String c7 = input1.next();
+				if(c7.equalsIgnoreCase("Y")) {
+					Scanner input2 = new Scanner (System.in);
+					System.out.println("Which User would you like to update");
+					int userID = input2.nextInt();
+					System.out.println("Enter new username you would like to use");
+					Scanner input3 = new Scanner (System.in);
+					String userName = input3.nextLine();
+					System.out.println("Enter new password you would like to use");
+					String password = input3.nextLine();
+					UserDAOImp uu = new UserDAOImp();
+					try {
+						uu.updateUser(userID,userName,password);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}else {
+				System.out.println();
+				}
+			}else if(n ==7){
+				System.out.println("Delete a User. Is this correct (Y/N)?");
+				//Scanner input = new Scanner (System.in);
+				String c7 = input.next();
+				if(c7.equalsIgnoreCase("Y")) {
+					System.out.println("Which User would you like to update");
+					int userID = input.nextInt();
+					UserDAOImp ud = new UserDAOImp();
+					try {
+						ud.deleteUser(userID);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}else {
+				System.out.println();
+				}
+			}else {
+				System.out.println();
+				}
+			
 		}while(n != 9);
 	}
 

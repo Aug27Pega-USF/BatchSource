@@ -9,6 +9,7 @@ import com.revature.daoimp.UserDAOImp;
 public class RegistrationCenter {
 
 	public static void registration() {
+		//Registration center will ask questions related to Database to create a new User
 		Scanner input = new Scanner (System.in);		
 		System.out.println("Welcome to the Regristration Center");
 		System.out.println("You will be asked a series of questions in order to register you");
@@ -17,11 +18,10 @@ public class RegistrationCenter {
 		try {
 			System.in.read();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
-		/*System.out.println("create a username");		
+		System.out.println("create a username");		
 		String userName = input.nextLine();
 		System.out.println("create a password");
 		String password = input.nextLine();
@@ -37,42 +37,19 @@ public class RegistrationCenter {
 		String state = input.nextLine();
 		System.out.println("Type in Zip code");
 		int zip = input.nextInt();
-		System.out.println("Type in Area Code");
-		int areaCode = input.nextInt();
-		System.out.println("Type in phone number");
-		int phone = input.nextInt();
-		System.out.println("Type in SSN number");
-		int ssn = input.nextInt();
-		System.out.println("Type in Last Four of SSN");
-		int lastfour = input.nextInt();*/
 		
 		
 		UserDAOImp usim = new UserDAOImp();
 		try {
-			/*System.out.println(usim.getUserList());
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}*/
-		
-			usim.createUser("chrisavila", "password2", "chris", "avila", "550 buthead lane", "Orlando", "FL", 32819, 407,6151303, 523271400,1400);
-			//usim.createUser(userName, password, firstName, lastName, address, city, state, zip, areaCode, phone, ssn, lastfour);
+			//CreateUser will run then afterwards getNewUser which will grab the last user entered into the Database
+			usim.createUser(userName, password, firstName, lastName, address, city, state, zip);
 			usim.getNewUserList();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 
 	}
-	public static int lastFour(int number)
-	{
-	     
-	    String temp = Integer.toString(number);
-	    int[] guess = new int[temp.length()];
-	    int lastfour = guess[temp.length() - 6];
-
-	    return lastfour;
-	}
+	
 
 }
