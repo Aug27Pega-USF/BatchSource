@@ -47,6 +47,7 @@ public class EmployeeAccount extends CustomerAccount {
 		System.out.println("= 4. Create New User                           =");
 		System.out.println("= 5. View All Customer Accounts                =");
 		System.out.println("= 6. View Waiting Approvals                    =");
+		System.out.println("= 7. Approval Accounts                         =");
 		System.out.println("= 0. Logout                                    =");
 	}
 	
@@ -92,9 +93,9 @@ public class EmployeeAccount extends CustomerAccount {
 			break;
 		case 4:
 			if(createNewUser() == NewUser.SUCCESS) {
-				
+				System.out.println("\tNew user successfully created");
 			} else {
-				
+				System.out.println("\tError creating new user");
 			}
 			break;
 		case 5:
@@ -102,6 +103,11 @@ public class EmployeeAccount extends CustomerAccount {
 			break;
 		case 6:
 			viewWaitingApprovals();
+			scan.nextLine();
+			break;
+		case 7:
+			approveAccount();
+			scan.nextLine();
 			break;
 		default:
 			break;
@@ -109,7 +115,6 @@ public class EmployeeAccount extends CustomerAccount {
 	}
 	
 	void viewWaitingApprovals() {
-		Scanner scan = new Scanner(System.in);
 		List<String[]> approvalList = null;
 		
 		try {
@@ -126,11 +131,26 @@ public class EmployeeAccount extends CustomerAccount {
 			for(String s[] : approvalList) {
 				System.out.println(s[0] + " \t| $" + String.format("%.2f", Double.parseDouble(s[2])) + "\t| " + s[1]);
 			} 
-			
-			scan.nextLine();
 		}
 	}
 	
+	void approveAccount() {
+		Scanner scan = new Scanner(System.in);
+		int bankAccountNumber;
+		
+		viewWaitingApprovals();
+		bankAccountNumber = scan.nextInt();
+		try {
+			if( bankService.approveAccount(bankAccountNumber) == true) {
+				System.out.println("Account " + bankAccountNumber + " was approved");
+			} else {
+				System.out.println("Account " + bankAccountNumber + " was invalid");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	void printAllCustomerList(int getUserLevels) {
 		Scanner scan = new Scanner(System.in);
 		List<UserAccountInfo> userList = null;

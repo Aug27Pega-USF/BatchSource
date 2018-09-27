@@ -39,14 +39,17 @@ public class Driver {
 						break;
 				}
 				userAcc = requestLogin(selection, userID, password);
+				if(userAcc == null) {
+					System.out.println("\tLogin/password invalid");
+				}
 			}
 			userID = password = "";
 			if(selection == 0) {
 				System.out.println("================================================");
-				System.out.println("	Thank you for your business");
+				System.out.println("\tThank you for banking with us");
 			} else if(userAcc == null && selection != 4) {
 				System.out.println("================================================");
-				System.out.println("	Invalid login information");
+				System.out.println("\tInvalid login information");
 			}
 			if(userAcc != null) {
 				while(userAcc.userAccInfo != null) {
@@ -97,11 +100,11 @@ public class Driver {
 	static UserAccount requestLogin(Integer selection, String userID, String password) throws Exception {
 		switch(selection) {
 		case 1:
-			return new Login().checkLogin(userID, password, 1);
+			return new Login().checkLogin(1, userID, password);
 		case 2:
-			return new Login().checkLogin(userID, password, 2);
+			return new Login().checkLogin(2, userID, password);
 		case 3:
-			return new Login().checkLogin(userID, password, 3);
+			return new Login().checkLogin(3, userID, password);
 		case 4:
 			if((new Login().registerUserLogin(userID, password)) == NewUser.SUCCESS) {
 				System.out.println("Login was successfully created");

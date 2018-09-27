@@ -17,7 +17,8 @@ public interface Banking {
 	double getBankAccountBalance(int userAccNum, int bankAccountNum) throws SQLException;
 	//public int login(int UserLevel, String userID, String password) throws SQLException;
 	UserAccountInfo getUserInfo(int userAccountNum) throws SQLException;
-	List<String []> getWaitingApproval() throws SQLException ;
+	List<String []> getWaitingApproval() throws SQLException;
+	boolean approveAccount(int bankAccountNumber) throws SQLException;
 	NewBankAccountStatus newBankAccount(int newAccNum, int primaryID, int jointID, double initialDeposit) throws SQLException;
 	CloseStatus closeUserBankAccount(int userAccNumber, int bankAccountNumber) throws SQLException;
 	TransactionStatus updateBalance(int userID, int accountNum, double newBalance) throws SQLException;

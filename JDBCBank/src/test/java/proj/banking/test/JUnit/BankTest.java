@@ -249,50 +249,28 @@ class BankTest {
 			}
 			
 			@Test
-			void SuccessOpenCloseAccountWithZeroDeposit() throws SQLException {
+			void successOpenCloseAccountWithZeroDeposit() throws SQLException {
 				assertEquals(NewBankAccountStatus.SUCCESS, bank.newBankAccount(1000000001, 999999999, 0, 0));
 				assertEquals(CloseStatus.SUCCESS, bank.closeUserBankAccount(999999999, 1000000001));
+			}
+			
+			@Test
+			void approveAnAccount() throws SQLException{
+				bank.newBankAccount(1000000002, 999999999, 0, 0.00);
+				assertEquals(true, bank.approveAccount(1000000002));
+				bank.closeUserBankAccount(999999999, 1000000002);
+			}
+			
+			@Test
+			void approveNonExistingAccount() throws SQLException{
+				assertEquals(false, bank.approveAccount(1000000009));
 			}
 		}
 		
 		/*
 		@Nested
 		class LoginTest {
-			@Test
-			void incorrectUsernamePassword() throws SQLException {
-				assertEquals(0, bank.login(1, "user", "pass"));
-				assertEquals(0, bank.login(1, "user01", "pass"));
-				assertEquals(0, bank.login(1, "user", "pass01"));
-				assertEquals(0, bank.login(2, "emp", "pass"));
-				assertEquals(0, bank.login(2, "emp01", "pass"));
-				assertEquals(0, bank.login(2, "emp", "emppass"));
-				assertEquals(0, bank.login(3, "ad", "pass"));
-				assertEquals(0, bank.login(3, "admin01", "pass"));
-				assertEquals(0, bank.login(3, "admin", "adpass"));
-			}
 			
-			@Test
-			void incorrectUserLevel() throws SQLException {
-				assertEquals(0, bank.login(1, "emp01", "emppass"));
-				assertEquals(0, bank.login(2, "user01", "pass01"));
-				assertEquals(0, bank.login(3, "emp01", "emppass"));
-			}
-			
-			@Test
-			void correctCustomerLogin() throws SQLException {
-				assertEquals(cust1.getUserAccNum(), bank.login(1, "user01", "pass01"));
-				assertEquals(cust2.getUserAccNum(), bank.login(1, "user02", "pass02"));
-			}
-			
-			@Test
-			void correctEmployeeLogin() throws SQLException {
-				assertEquals(emp.getUserAccNum(), bank.login(2, "emp01", "emppass"));
-			}
-			
-			@Test
-			void correctAdminLogin() throws SQLException {
-				assertEquals(admin.getUserAccNum(), bank.login(3, "admin01", "adpass"));
-			}
 		}
 		*/
 		

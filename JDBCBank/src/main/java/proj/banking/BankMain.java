@@ -82,6 +82,23 @@ public class BankMain implements Banking{
 	}
 	
 	@Override
+	public boolean approveAccount(int bankAccountNumber) throws SQLException {
+		PreparedStatement ps;
+		int approvalStatus = -1;
+		
+		ps = dbConnection.prepareStatement("UPDATE BANK_ACCOUNTS SET WAITINGAPPROVAL='N' "
+				+ "WHERE BANK_ACC_NUM=? AND WAITINGAPPROVAL='Y'");
+		ps.setInt(1, bankAccountNumber);
+		approvalStatus = ps.executeUpdate();
+		
+		if(approvalStatus == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	@Override
 	public NewBankAccountStatus newBankAccount(int newAccNum, int primaryID, int jointID, double initialDeposit) throws SQLException {
 		//String newAccStatus;
 		CallableStatement cs;
@@ -129,16 +146,6 @@ public class BankMain implements Banking{
 		}
 	}
 	
-	/*
-	public boolean getApprovalStatus(int bankAccountNumber) {
-		for(BankAccounts acc : approvalWaitingList) {
-			if(acc.getAccountNumber() == bankAccountNumber) {
-				return true;
-			}
-		}
-		return false;
-	}
-	*/
 	@Override
 	public List<BankAccounts> getUserBankAccounts(int userAccountNumber) throws SQLException{
 		PreparedStatement ps;

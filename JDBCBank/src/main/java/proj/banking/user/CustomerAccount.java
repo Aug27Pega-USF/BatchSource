@@ -10,6 +10,9 @@ import proj.banking.bean.UserAccountInfo;
 import proj.banking.user.UserAccount;
 import proj.banking.utils.Banking;
 import proj.banking.utils.Enums.CloseStatus;
+import proj.banking.utils.Enums.NewBankAccountStatus;
+import proj.banking.utils.Enums.NewUser;
+import proj.banking.utils.Enums.TransactionStatus;
 import proj.banking.utils.Enums.TransactionType;
 
 public class CustomerAccount extends UserAccount{
@@ -130,6 +133,7 @@ public class CustomerAccount extends UserAccount{
 	}
 	
 	void transactions(int selection, int transactionAccNum, List<BankAccounts> userBankAccounts) throws NumberFormatException, SQLException {
+		TransactionStatus status = null;
 		Scanner scan = new Scanner(System.in);
 		int inputOption, transferOption;
 		double amount;
@@ -143,24 +147,35 @@ public class CustomerAccount extends UserAccount{
 			amount = scan.nextDouble();
 			switch(selection) {
 			case 1:
-				bankService.transaction(TransactionType.WITHDRAW, 
+				status = bankService.transaction(TransactionType.WITHDRAW, 
 						transactionAccNum, userBankAccounts.get(inputOption - 1).getAccountNumber(), 0, amount);
+				
 				break;
 			case 2:
-				bankService.transaction(TransactionType.DEPOSIT, 
+				status = bankService.transaction(TransactionType.DEPOSIT, 
 						transactionAccNum, userBankAccounts.get(inputOption - 1).getAccountNumber(), 0, amount);
 				break;
 			case 3:
 				System.out.print("Enter transfer account option: ");
 				transferOption = scan.nextInt();
 				//TODO: implement check to see if select is higher than actual bank accounts
-				bankService.transaction(
+				status = bankService.transaction(
 						TransactionType.TRANSFER, 
 						transactionAccNum, 
 						userBankAccounts.get(inputOption - 1).getAccountNumber(), 
 						userBankAccounts.get(transferOption - 1).getAccountNumber(), 
 						amount);
 				break;
+			}
+			if(status != null) {
+				switch(status) {
+				case SUCCESS:
+					System.out.println("\tTransaction Successful");
+					break;
+				case FAILED:
+					System.out.println("\tTransaction Unsucessful");
+					break;
+				}
 			}
 		} else {
 			System.out.println("\nNo accounts to perform transactions on\n");
@@ -170,6 +185,8 @@ public class CustomerAccount extends UserAccount{
 	void openNewBankAccount(int userAccNum) {
 		int jointHolderID;
 		double initialDeposit;
+		NewBankAccountStatus newBankStatus;
+		
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.print("Joint account holder ID: ");
@@ -178,7 +195,18 @@ public class CustomerAccount extends UserAccount{
 		System.out.print("Enter an initial deposit: ");
 		initialDeposit = scan.nextDouble();
 		try {
-			bankService.newBankAccount(0, userAccNum, jointHolderID, initialDeposit);
+			newBankStatus = bankService.newBankAccount(0, userAccNum, jointHolderID, initialDeposit);
+			switch(newBankStatus) {
+			case SUCCESS:
+				System.out.println("\tNew account was successfuly created");
+				break;
+			case INVALID_DEPOSIT:
+				System.out.println("\tInvalid deposit amount");
+				break;
+			default:
+				System.out.println("\tError creating new bank account");
+				break;
+			}
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -194,13 +222,13 @@ public class CustomerAccount extends UserAccount{
 			status = bankService.closeUserBankAccount(userAccNumber, userBankAccounts.get(selection - 1).getAccountNumber());
 			switch(status) {
 			case SUCCESS:
-				System.out.println("Bank account has been closed.");
+				System.out.println("\tBank account has been closed.");
 				break;
 			case ACTIVE_FUNDS:
-				System.out.println("Funds are still available. Please withdraw or transfer all funds before closing the account.");
+				System.out.println("\tFunds are still available. \nPlease withdraw or transfer all funds before closing the account.");
 				break;
 			default:
-				System.out.println("There was a problem with closing the account.");
+				System.out.println("\tThere was a problem with closing the account.");
 				break;
 			}
 		} catch (SQLException e) {
@@ -209,8 +237,8 @@ public class CustomerAccount extends UserAccount{
 		}
 	}
 	void changePersonalInfo(UserAccountInfo userInfo) {
+		NewUser updateStatus;
 		Scanner scan = new Scanner(System.in);
-		String newEntry;
 		int selection;
 		
 		System.out.println("Update: ");
@@ -228,7 +256,21 @@ public class CustomerAccount extends UserAccount{
 		
 		if(selection >= 1 && selection <= 8) {
 			try {
-				bankService.updatePersonalInfo(userInfo, selection);
+				updateStatus = bankService.updatePersonalInfo(userInfo, selection);
+				switch(updateStatus) {
+				case SUCCESS:
+					System.out.println("\tUpdate Successful");
+					break;
+				case NO_FIRST:
+					System.out.println("\tInvalid first name");
+					break;
+				case NO_LAST:
+					System.out.println("\tInvalid last name");
+					break;
+				default:
+					System.out.println("\tError while updating information");
+					break;
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -237,16 +279,31 @@ public class CustomerAccount extends UserAccount{
 	}
 	
 	void changeLoginInfo(int userAccNum) {
+		NewUser updateStatus;
 		Scanner scan = new Scanner(System.in);
 		String newUserName, newPassword;
 		
 		System.out.print("Enter new username: ");
-		newUserName = scan.next();
+		newUserName = scan.nextLine();
 		System.out.print("Enter new password: ");
-		newPassword = scan.next();
+		newPassword = scan.nextLine();
 		
 		try {
-			bankService.updateLoginInfo(userAccNum, newUserName, newPassword);
+			updateStatus = bankService.updateLoginInfo(userAccNum, newUserName, newPassword);
+			switch(updateStatus) {
+			case SUCCESS:
+				System.out.println("\tUpdate Successful");
+				break;
+			case INVALID_USERNAME:
+				System.out.println("\tInvalid username");
+				break;
+			case INVALID_PASSWORD:
+				System.out.println("\tInvalid password");
+				break;
+			default:
+				System.out.println("\tError while updating login");
+				break;
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -254,6 +311,7 @@ public class CustomerAccount extends UserAccount{
 	}
 	
 	void logout() throws SQLException {
+		System.out.println("\tLogging out");
 		userAccInfo = null;
 		bankService = null;
 		dbConnection.close();

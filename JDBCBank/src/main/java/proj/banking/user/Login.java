@@ -12,12 +12,12 @@ import proj.banking.utils.Banking;
 import proj.banking.utils.DB_ConnectionFactory;
 import proj.banking.utils.Enums.NewUser;
 
-public class Login implements UserLogin{
+public class Login implements UserLoginInterface{
 	Banking bankService;
 	Connection dbConnection;
 	
 	@Override
-	public UserAccount checkLogin(String userID, String password, int accountLevel) throws SQLException, Exception{
+	public UserAccount checkLogin(int accountLevel, String userID, String password) throws SQLException, Exception{
 		if(accountLevel >= 1 && accountLevel <= 3) {
 			Connection newConnection = DB_ConnectionFactory.getConnection();
 			ResultSet rs;
