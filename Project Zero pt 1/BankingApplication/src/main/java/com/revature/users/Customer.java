@@ -22,6 +22,7 @@ public class Customer extends Account
 	public String password;
 	int num;
 	int userChoice;
+	int withd;
 	boolean quit = false;
 	Scanner in = new Scanner(System.in);
 	public ArrayList<Account> accounts;
@@ -67,13 +68,6 @@ public class Customer extends Account
 		             break;
 	                  
 				 case 3: // withdraw money                      
-	                   
-	                if(acc_balance==0)
-	                System.out.print("Your Account is Empty.\n");
-	             
-	                System.out.print("Enter Amout Of Money : ");   
-	                int withd = in.nextInt(); 
-	                
 	                        
 					if(withd > acc_balance)
 					{
@@ -88,7 +82,7 @@ public class Customer extends Account
 	                  break;    
 	                 
 				 case 5: //display all bank info
-					 display();
+					 display(userName, acc_num, acc_balance);
 					 break;
 					 
 				 case 0:

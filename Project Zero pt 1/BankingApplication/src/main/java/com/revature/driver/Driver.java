@@ -3,7 +3,7 @@ package com.revature.driver;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -29,11 +29,15 @@ public class Driver{
 		static long acc_num;
 		static float acc_balance;
 		static int stat;
+		String userName;
+		String password;
+		ArrayList <Customer> users;
 		static Level out = Level.LOGOUT;
+		
 	
 		
 	
-		public static void user(Level level)
+		public static void user(Level level) throws SQLException
 		{
 			while(level != out)
 			{
@@ -77,7 +81,7 @@ public class Driver{
 				}
 			}
 		}
-		public static void main(String [] args) 
+		public static void main(String [] args) throws SQLException 
 		{
 			System.out.println("WELCOME TO THE BANK");
 			System.out.println("Are you a: Customer, Employee, Admin or do  you want to logout?");

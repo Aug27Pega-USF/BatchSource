@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Homework/CoreJavaAssignment/src"/>
+	<classpathentry kind="src" path="Project Zero pt 1/BankingApplication/src/main/java"/>
+	<classpathentry kind="src" path="ProjectMayhem"/>
+	<classpathentry kind="output" path="Homework/CoreJavaAssignment/bin"/>
+</classpath>

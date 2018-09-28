@@ -1,7 +1,6 @@
 package com.revature.account;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -31,15 +30,10 @@ public class Account {
 
 		Account.acc_num = acc_num;
 		acc_balance = 0.00f;
-		stat = 1;
 		custAccount = custOnAccount;
 	}
-	
-	public Account(String userName2, String password2, int acc_num2, ArrayList<Customer> users) {
-		// TODO Auto-generated constructor stub
-	}
 
-	public Account(int i, int j, int k, float f) {
+	public Account(int i, int j, float f) {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -65,12 +59,10 @@ public class Account {
 		acc_num = (int)((Math.random() * 900000000)+ 10000000);
 		System.out.println("Your Account number is: " + acc_num );
 		System.out.println("Your starting balance is: " + acc_balance);
-		System.out.println("Your account is currently pending approval \n");
-		stat = 1; 
 		
 		try
 		{
-			accountimpl.addAccountInfo(acc_num, stat, acc_balance);
+			accountimpl.addAccountInfo(acc_num, acc_balance);;
 			
 			System.out.println("Account info added!");
 		}
@@ -83,24 +75,38 @@ public class Account {
 	
 	public void deposit (int money)
 	{
-		if(stat != 2)
-		{
-			System.out.println("This accout has not yet been activated");
-		}
-		else 
-		{
+		System.out.println("Enter a userID to deposit");
+		userID = in.nextInt();
 			if (money >=0)
 			acc_balance = acc_balance + money;
+			
+		
+		try {
+			accountimpl.doDeposit(money,userID);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		accountimpl.doDeposit(money,userID);
 	}
-	public int withdraw(int take)
+	public void withdraw(int take)
 	{
+		System.out.println("Enter a userID to Withdraw");
+		userID = in.nextInt();
+		
+		System.out.println("Enter amount you want to withdraw");
+		take = in.nextInt();
+		
 		if (acc_balance != 0)
 		acc_balance = acc_balance - take;
-		System.out.println("Current Balance is: "+ acc_balance);
+		
+		try {
+			accountimpl.doWithdrawal(take, userID);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		return take;
+		
 	}
 	//transfer between accounts 
 	//doesnt work.....
@@ -114,7 +120,7 @@ public class Account {
 	{
 		System.out.println("Your Balance is:" + acc_balance);
 	}
-	public void display()
+	public  void display(String userName, int acc_num, float acc_balance)
 	{
 		System.out.println("Acount User: " + userName);
 		System.out.println("Account Number: " + acc_num);

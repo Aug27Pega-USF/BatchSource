@@ -1,5 +1,6 @@
 package com.revature.DAOimpl;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,15 +42,14 @@ public class AccountDaoImpl implements AccountDAO
 		ps.executeUpdate();
 	}
 	@Override
-	public void addAccountInfo(int acc_num, int stat, float bal) throws SQLException{
+	public void addAccountInfo(int acc_num, float bal) throws SQLException{
 		conn= cf.getConnection();
 		String [] primaryKeys =new String[1];
 		primaryKeys[0]= "UserID";
-		String sql = "INSERT INTO ACCOUNTS VALUES (USERSEQ.NEXTVAL,?,?,?)";
+		String sql = "INSERT INTO ACCOUNTS VALUES (USERSEQ.NEXTVAL,?,?)";
 		PreparedStatement ps = conn.prepareStatement(sql,primaryKeys);
 		ps.setInt(1, acc_num);
-		ps.setInt(2, stat);
-		ps.setFloat(3,bal);
+		ps.setFloat(2,bal);
 		ps.executeUpdate();
 		
 		
@@ -58,9 +58,9 @@ public class AccountDaoImpl implements AccountDAO
 	public void deleteAccount(int user_ID) 
 	{
 		conn = cf.getConnection();	
-		String sql = "DELETE * FROM ACCOUNTS WHERE USERID = " + user_ID;
+		String sql = "DELETE * FROM ACCOUNTS WHERE USERID =  ?";
 		try {
-			stmt.execute(sql);
+			stmt.execute(sql);	
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Failed to remove account. Please try again.");
@@ -71,16 +71,13 @@ public class AccountDaoImpl implements AccountDAO
 	public List<Account> getAllAccounts() 
 	{	
 		List<Account> list = new ArrayList<Account>();
-	String sql = "SELECT * FROM ACCOUNT";
+	String sql = "SELECT * FROM ACCOUNTS";
 	Account s=null;
 	try {
 		Statement stmt1 = conn.createStatement();
 		ResultSet rs = stmt1.executeQuery(sql);
 		while (rs.next()) {
-			s = new Account( userid = rs.getInt(1),
-			acct_num = rs.getInt(2),
-			statid = rs.getInt(3),
-			bal = rs.getFloat(4));
+			s = new Account( rs.getInt(1), rs.getInt(2),rs.getFloat(3));
 		}
 		list.add(s);
 	} catch (SQLException e) {
@@ -89,35 +86,39 @@ public class AccountDaoImpl implements AccountDAO
 	}
 	return list;
 	}
+
 	@Override
-	public void approveAccount() 
+	public void doDeposit(double amount,int userID) throws SQLException 
 	{
-		String sql = "UPDATE * ACCOUNT SET STATID = " + 2 + " WHERE STATID = " + 1;
-		try
-		{
-			stmt.execute(sql);
-		}
-		catch(SQLException e)
-		{
-			e.printStackTrace();
-			System.out.println("Account could not be approved ");
-		}
+		String sql = "UPDATE ACCOUNTS SET BALANCE = ? WHERE USERID = ?";
+		CallableStatement call = conn.prepareCall(sql);
+		call.setDouble(1,amount);
+		call.setInt(2, userID);
+		call.executeUpdate();
 	
+		System.out.println("Balance was updated");
+
 	}
 	@Override
-	public void doDeposit(double amount,int userID) 
-	{
-		String sql = "UPDATE ACCOUNT SET BALANCE = " + amount  + "WHERE USERID = " + userID;
-		try
-		{
-			stmt.execute(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("Balance not updated. Please try again.");
-		}
+	public void doWithdrawal(double amount, int userID) throws SQLException {
+		String sql = "UPDATE ACCOUNTS SET BALANCE = ? WHERE USERID = ?";
+		CallableStatement call = conn.prepareCall(sql);
+		call.setDouble(1,amount);
+		call.setInt(2, userID);
+		call.executeUpdate();
+	
+		System.out.println("withdraw was made");
 		
 	}
-	
+	@Override
+	public void doDelete(int userID) throws SQLException  {
+	        Connection conn = cf.getConnection();
+	        String sql= "{call DELETE_ACCT(?)";
+	        CallableStatement call= conn.prepareCall(sql);
+	        call.getInt(userID);
+	        call.execute();
+	}
+
 	
 	
 }

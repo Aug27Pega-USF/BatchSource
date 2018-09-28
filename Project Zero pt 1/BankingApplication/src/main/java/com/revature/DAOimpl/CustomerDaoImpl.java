@@ -25,7 +25,7 @@ public class CustomerDaoImpl implements CustomerDAO
 	{
 		String [] primaryKeys =new String[1];
 		primaryKeys[0]= "userID";
-		String sql = "INSERT INTO LOGIN VALUES (USERID.NEXTVAL, ?)";
+		String sql = "INSERT INTO CUSTOMER VALUES (USERID.NEXTVAL, ?)";
 		
 		PreparedStatement ps = 
 				conn.prepareStatement(sql,primaryKeys);

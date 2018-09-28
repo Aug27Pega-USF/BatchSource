@@ -27,8 +27,7 @@ public class Admin extends Employee {
     		break;
     	case 2:
     		person.getAccounts();
-    		
-    		
+    	
     		break;
     	case 3:
     		break;

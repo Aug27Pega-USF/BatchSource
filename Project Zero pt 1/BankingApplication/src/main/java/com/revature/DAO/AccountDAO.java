@@ -12,14 +12,17 @@ public interface AccountDAO {
 	public abstract void createLogin(String userName, String password) throws SQLException;
 	
 	//create account info
-	public void addAccountInfo(int acc_num,int status,float bal) throws SQLException;
+	public void addAccountInfo(int acc_num,float bal) throws SQLException;
 	
 	public void deleteAccount(int acc_id);
 	//get all the accounts that are made
 	public List<Account> getAllAccounts();
-	//approve pending accounts
-	public void approveAccount();
-	//for withdraw,deposit, and transfer
-	public void doDeposit(double amount, int userID);
+	//deposit and update info in database
+	public void doDeposit(double amount, int userID) throws SQLException;
+	//withdraw money  and update database
+	public void doWithdrawal(double amout, int userID) throws SQLException;
+	//MY CALLABLE FUNCTION
+	public void doDelete(int userID) throws SQLException;
+
 	
 }
