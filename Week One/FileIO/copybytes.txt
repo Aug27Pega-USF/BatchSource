@@ -1,3 +1,0 @@
-This is a test to demonstrate byte streams using FileInputStream and FileOutputStream.
-
-ByteSteams are used for the input and output of 8-bit bytes
