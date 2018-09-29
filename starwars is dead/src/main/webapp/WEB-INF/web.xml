@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>switcher</display-name>
+  <servlet>
+    <description></description>
+    <display-name>PersonServlet</display-name>
+    <servlet-name>PersonServlet</servlet-name>
+    <servlet-class>starwars.PersonServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PersonServlet</servlet-name>
+    <url-pattern>/PersonSearch</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PlanetServlet</display-name>
+    <servlet-name>PlanetServlet</servlet-name>
+    <servlet-class>starwars.PlanetServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PlanetServlet</servlet-name>
+    <url-pattern>/PlanetSearch</url-pattern>
+  </servlet-mapping>
+</web-app>
