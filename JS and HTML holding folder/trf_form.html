@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>TRF Form</title>
+</head>
+
+<body>
+    <form action="trf_form" method="POST">
+        First Name: <input type="text" id="first_name">
+        <br />
+        Last Name: <input type="text" id="last_name" />
+        <br />
+        Basic Employee Info Placeholder: <input type="text" id="employee_info" />
+        <br />
+        Date: <input type="date" id="date" min="today" required />
+        <br />
+        Time: <input type="time" id="time" />
+        <br />
+        Location: <input type="text" id="location" />
+        <br />
+        Description: <input type="text" id="description" />
+        <br />
+        Cost: $<input type="number" id="cost" min="0.00" step="0.01" />
+        <br />
+        Grading Format: <input type="text" id="grading_format" />
+        <br />
+        Type of Event: <select id="event_type">
+            <option value="university_courses">University Courses</option>
+            <option value="seminars">Seminars</option>
+            <option value="cp_classes">Certification Preparation Classes</option>
+            <option value="certification">Certification</option>
+            <option value="technical_training">Technical Training</option>
+            <option value="other">Other</option>
+        </select>
+        <br />
+        Work-Related Justification: <input type="text" id="justification" />
+        <br />
+        <p id=projected_reimbursment>Projected Reimbursement: </p>
+        <input type="submit" value="Submit" />
+    </form>
+    <script type="text/javascript" src="trf_form.js">
+    </script>
+
+</body>
+
+</html>
