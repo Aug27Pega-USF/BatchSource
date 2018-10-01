@@ -7,23 +7,28 @@
 </head>
 
 <body>
-    <h4>Tuition Reimbursment Form</h4>
+    <h2 style="position: relative; margin-top: 0px;">Tuition Reimbursment Form</h2>
+    <h3 style="margin:0;padding: 0;">Required:</h3>
     <form action="trf_form" method="POST">
+        <strong>Employee Information:</strong>
+        <br>
         First Name: <input type="text" id="first_name" pattern="[A-Za-z]+" required>
         <br />
-        Last Name: <input type="text" id="last_name" pattern="[A-Za-z]+" required />
+        Last Name:  <input type="text" id="last_name" pattern="[A-Za-z]+" required />
         <br />
         Basic Employee Info Placeholder: <input type="text" id="employee_info" required/>
         <br />
-        Date: <input type="date" id="date" min="today" required />
+        <strong>Event Information:</strong>
+        <br>
+        Event Date: <input type="date" id="date"  required />
         <br />
-        Time: <input type="time" id="time" required/>
+        Event Time: <input type="time" id="time" value="00:00" required/>
         <br />
-        Location: <input type="text" id="location" required/>
+        Event Location: <input type="text" id="location" required/>
         <br />
-        Description: <input type="text" id="description" required/>
+        Event Description: <input type="text" id="description" required/>
         <br />
-        Cost: $<input type="number" id="cost" min="0.00" step="0.01" required />
+        Event Cost: $<input type="number" id="cost" min="0.00" step="0.01" required />
         <br />
         Grading Format: <select id="grading_format" required>
             <option value="Presentation">Presentation</option>
@@ -44,7 +49,7 @@
         <br />
         Work-Related Justification: <input type="text" id="justification" required/>
         <br />
-        <strong>Optional:</strong>
+        <h3  style="margin:0;padding: 0;">Optional:</h3>
         <div>
                 Event Related Forms:
                 <label for="file">Choose file(s) to upload</label>

@@ -24,13 +24,26 @@ function pr_calculation(){
     }
 }
 
+function default70(){
+    if(document.getElementById("percentage_pass").value==70){
+        document.getElementById("grade_default").innerHTML="(Default)";
+    } else if(document.getElementById("percentage_pass").value==""){
+        document.getElementById("percentage_pass").value=70;
+        document.getElementById("grade_default").innerHTML="(Default)";
+    }
+    else{
+        document.getElementById("grade_default").innerHTML="";
+    }
+}
+
 function passing_grade(){
     let g_format = document.getElementById("grading_format").value;
     if(g_format=="Percentage"){
-        document.getElementById("passing_grade").innerHTML="Passing Grade (%): <input type=\"number\"  id=\"percentage_pass\" min=\"0\" step=\"1\" required/>";
+        document.getElementById("passing_grade").innerHTML="Passing Grade (%): <input type=\"number\"  id=\"percentage_pass\" min=\"0\" max=\"110\" step=\"1\" value = \"70\" required/> <div id= \"grade_default\" style=\"display: inline-block;\">(Default)</div>";
+        document.getElementById("percentage_pass").setAttribute("onchange", "default70()"); 
         document.getElementById("passing_grade").style.display="block"
     }else if(g_format=="Letter Grade"){
-        document.getElementById("passing_grade").innerHTML="Passing Grade: <select id=\"letter_pass\" required><option value=\"A+\">A+</option><option value=\"A\">A</option><option value=\"A-\">A-</option><option value=\"B+\">B+</option><option value=\"B\">B</option><option value=\"B-\">B-</option><option value=\"C+\">C+</option><option value=\"C\">C</option><option value=\"C-\">C-</option><option value=\"D+\">D+</option><option value=\"D\">D</option><option value=\"D-\">D-</option></select>";
+        document.getElementById("passing_grade").innerHTML="Passing Grade: <select id=\"letter_pass\" required><option value=\"A+\">A+</option><option value=\"A\">A</option><option value=\"A-\">A-</option><option value=\"B+\">B+</option><option value=\"B\">B</option><option value=\"B-\">B-</option><option value=\"C+\">C+</option><option value=\"C\">C</option><option value=\"C-\" selected=\"selected\">C- (default)</option><option value=\"D+\">D+</option><option value=\"D\">D</option><option value=\"D-\">D-</option></select>";
         document.getElementById("passing_grade").style.display="block"
     }else{
         document.getElementById("passing_grade").innerHTML="";
@@ -42,6 +55,7 @@ window.onload=function(){
     document.getElementById("cost").setAttribute("onchange", "pr_calculation()")
     document.getElementById("event_type").setAttribute("onchange", "pr_calculation()")
     var today = new Date();
+    today.setDate(today.getDate()+7)
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!
     var yyyy = today.getFullYear();
@@ -54,5 +68,6 @@ window.onload=function(){
     
     today = yyyy+'-'+mm+'-'+dd;
     document.getElementById("date").setAttribute("min", today);
+    document.getElementById("date").setAttribute("value", today);
     document.getElementById("grading_format").setAttribute("onchange", "passing_grade()")
 }
