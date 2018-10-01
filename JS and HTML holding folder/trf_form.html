@@ -7,26 +7,33 @@
 </head>
 
 <body>
+    <h4>Tuition Reimbursment Form</h4>
     <form action="trf_form" method="POST">
-        First Name: <input type="text" id="first_name">
+        First Name: <input type="text" id="first_name" pattern="[A-Za-z]+" required>
         <br />
-        Last Name: <input type="text" id="last_name" />
+        Last Name: <input type="text" id="last_name" pattern="[A-Za-z]+" required />
         <br />
-        Basic Employee Info Placeholder: <input type="text" id="employee_info" />
+        Basic Employee Info Placeholder: <input type="text" id="employee_info" required/>
         <br />
         Date: <input type="date" id="date" min="today" required />
         <br />
-        Time: <input type="time" id="time" />
+        Time: <input type="time" id="time" required/>
         <br />
-        Location: <input type="text" id="location" />
+        Location: <input type="text" id="location" required/>
         <br />
-        Description: <input type="text" id="description" />
+        Description: <input type="text" id="description" required/>
         <br />
-        Cost: $<input type="number" id="cost" min="0.00" step="0.01" />
+        Cost: $<input type="number" id="cost" min="0.00" step="0.01" required />
         <br />
-        Grading Format: <input type="text" id="grading_format" />
-        <br />
-        Type of Event: <select id="event_type">
+        Grading Format: <select id="grading_format" required>
+            <option value="Presentation">Presentation</option>
+            <option value="Pass/Fail">Pass/Fail</option>
+            <option value="Percentage">Percentage</option>
+            <option value="Letter Grade">Letter Grade</option>
+        </select>
+        <br>
+        <p id="passing_grade" style="display:none;"></p>
+        Type of Event: <select id="event_type" required>
             <option value="university_courses">University Courses</option>
             <option value="seminars">Seminars</option>
             <option value="cp_classes">Certification Preparation Classes</option>
@@ -35,8 +42,25 @@
             <option value="other">Other</option>
         </select>
         <br />
-        Work-Related Justification: <input type="text" id="justification" />
+        Work-Related Justification: <input type="text" id="justification" required/>
         <br />
+        <strong>Optional:</strong>
+        <div>
+                Event Related Forms:
+                <label for="file">Choose file(s) to upload</label>
+                <input type="file" id="file" name="file" accept= ".pdf, .png, .jpeg, .txt, .doc" multiple> 
+        </div>
+        <div>
+                Direct Supervisor Approval:
+                <label for="file">Choose Outlook file to upload</label>
+                <input type="file" id="file" name="file" accept= ".msg"> 
+        </div>
+        <div>
+                Department Head Approval:
+                <label for="file">Choose Outlook file to upload</label>
+                <input type="file" id="file" name="file" accept= ".msg"> 
+        </div>
+        Work Time Missed (Hours): <input type="number" id="work_missed" min="0." step="1">
         <p id=projected_reimbursment>Projected Reimbursement: </p>
         <input type="submit" value="Submit" />
     </form>

@@ -24,6 +24,20 @@ function pr_calculation(){
     }
 }
 
+function passing_grade(){
+    let g_format = document.getElementById("grading_format").value;
+    if(g_format=="Percentage"){
+        document.getElementById("passing_grade").innerHTML="Passing Grade (%): <input type=\"number\"  id=\"percentage_pass\" min=\"0\" step=\"1\" required/>";
+        document.getElementById("passing_grade").style.display="block"
+    }else if(g_format=="Letter Grade"){
+        document.getElementById("passing_grade").innerHTML="Passing Grade: <select id=\"letter_pass\" required><option value=\"A+\">A+</option><option value=\"A\">A</option><option value=\"A-\">A-</option><option value=\"B+\">B+</option><option value=\"B\">B</option><option value=\"B-\">B-</option><option value=\"C+\">C+</option><option value=\"C\">C</option><option value=\"C-\">C-</option><option value=\"D+\">D+</option><option value=\"D\">D</option><option value=\"D-\">D-</option></select>";
+        document.getElementById("passing_grade").style.display="block"
+    }else{
+        document.getElementById("passing_grade").innerHTML="";
+        document.getElementById("passing_grade").style.display="none"
+    }
+}
+
 window.onload=function(){
     document.getElementById("cost").setAttribute("onchange", "pr_calculation()")
     document.getElementById("event_type").setAttribute("onchange", "pr_calculation()")
@@ -40,4 +54,5 @@ window.onload=function(){
     
     today = yyyy+'-'+mm+'-'+dd;
     document.getElementById("date").setAttribute("min", today);
+    document.getElementById("grading_format").setAttribute("onchange", "passing_grade()")
 }
