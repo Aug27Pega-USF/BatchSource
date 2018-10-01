@@ -1,3 +1,5 @@
+let availablereimbursement=1000; //THIS WILL NEED TO TAKE IN VALUES FROM SQL.
+
 function pr_calculation(){
     var cost;
     if(document.getElementById("cost").checkValidity()){
@@ -17,6 +19,9 @@ function pr_calculation(){
         reimbursement=Math.round(cost*90)/100;
     }else if(event_type=="other"){
         reimbursement=Math.round(cost*30)/100;
+    }
+    if(reimbursement>availablereimbursement){
+        reimbursement=availablereimbursement;
     }
     document.getElementById("projected_reimbursment").innerHTML="Projected Reimbursement: $"+reimbursement.toFixed(2);
     }else{
