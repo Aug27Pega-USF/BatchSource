@@ -20,7 +20,7 @@ public class UsersDAOImpl implements UsersDAO {
 	
 	public void createUsers(String username, String password, String firstName, String lastName) throws SQLException {
 		Connection conn =cf.getConnection();
-		PreparedStatement stmt = conn.prepareStatement("INSERT INTO USERS(USER_ID,USERNAME,PASSWORD,FIRSTNAME,LASTNAME,USER_TYPE) VAULES(USERSSEQ.NEXTVAL , ?, ?, ?, ?, ?");
+		PreparedStatement stmt = conn.prepareStatement("INSERT INTO USERS(USER_ID,USERNAME,PASSWORD,FIRSTNAME,LASTNAME,USER_TYPE) VALUES(USERSSEQ.NEXTVAL , ?, ?, ?, ?, ?)");
 		stmt.setString(1, username);
 		stmt.setString(2, password);
 		stmt.setString(3, firstName);  
