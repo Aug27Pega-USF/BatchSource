@@ -5,8 +5,10 @@ import java.util.Scanner;
 
 import jdbc.bank.DAOIMPL.AccountsDAOimpl;
 import jdbc.bank.DAOIMPL.UsersDAOimpl;
+import jdbc.bank.DAOIMPL.transactionsDAOimpl;
 
 public class bankapp implements bankMain{
+	static int selector;
 	public static Scanner sc = new Scanner(System.in);	
 	public void newUser() throws SQLException {
 	
@@ -38,19 +40,55 @@ public class bankapp implements bankMain{
 		password = sc.next();
 		udl.userLogin( userName, password);
 		AccountsDAOimpl adm = new AccountsDAOimpl();
-		System.out.println("MEMBER: ");
-		System.out.println(userName);
+		System.out.println("MEMBER: "+ userName);
 		adm.getAccounts(userName);
 		
 	}
-	public void AccountInfo() throws SQLException {
-		
 	
+	
+	public void AccountUpdateW() throws SQLException {
+		String username;
+		int account_id;
+		double balance;
+		double amount;
+		System.out.println("SECURITY CHECK");
+		System.out.println("ENTER YOUR USERNAME:");
+		username = sc.next();
+		System.out.println("ENTER YOUR ACCOUNT#");
+		account_id=sc.nextInt();
+		System.out.println("AMOUNT YOU WISH TO WITHDRAW");
+		amount = sc.nextDouble();
+		System.out.println("YOUR NEW BALANCE IS:");
+		transactionsDAOimpl tw = new transactionsDAOimpl();
+		tw.doWithdraw(account_id, amount, username);
+		AccountsDAOimpl ai = new AccountsDAOimpl();
+		ai.getInfo(username)
+		;
+	}
+	public void AccountUpdateD() throws SQLException {
+		String username;
+		int account_id;
+		double balance;
+		double amount;
+		System.out.println("SECURITY CHECK");
+		System.out.println("ENTER YOUR USERNAME:");
+		username = sc.next();
+		System.out.println("ENTER YOUR ACCOUNT#");
+		account_id=sc.nextInt();
+		System.out.println("AMOUNT YOU WISH TO DEPOSIT");
+		amount = sc.nextDouble();
+		System.out.println("YOUR NEW BALANCE IS:");
+		transactionsDAOimpl tw = new transactionsDAOimpl();
+		tw.doDeposit(account_id, amount, username);
+		AccountsDAOimpl ai = new AccountsDAOimpl();
+		ai.getInfo(username)
+		;
+	}
 	
 		
 	}
 		
-	}
+	
 
 	
 	

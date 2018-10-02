@@ -7,5 +7,6 @@ public interface bankMain {
 	
 public abstract void newUser() throws SQLException;
 public abstract void Login() throws SQLException;
-public abstract void AccountInfo() throws SQLException;
+public abstract void AccountUpdateW() throws SQLException;
+public abstract void AccountUpdateD() throws SQLException;
 }

@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import APP.bankapp;
 import jdbc.bank.DAOIMPL.AccountsDAOimpl;
+import jdbc.bank.DAOIMPL.transactionsDAOimpl;
 
 
 
@@ -25,7 +26,7 @@ public class application {
 		static void accountMenu() {
 			System.out.println("1.Withdraw");
 			System.out.println("2.Deposit");
-			System.out.println("5.Sign Out");
+			System.out.println("3.Close Account");
 			System.out.println("Your Decision: ");
 		}
 public static void main(String[] args) throws Exception{
@@ -44,8 +45,7 @@ public static void main(String[] args) throws Exception{
 	introMenu();
 	selector = sc.nextInt();
 	introMenuD(selector);
-	selector = sc.nextInt();
-	break;
+	
 
 	
 	
@@ -54,39 +54,55 @@ public static void main(String[] args) throws Exception{
 		Integer selector1;
 		bankapp bal = new bankapp();
 		bal.Login();
+		
 		AccountsDAOimpl ga = new AccountsDAOimpl();
 		
 		accountMenu();
 		
 		selector1 = sc.nextInt();
-		AccountMenuD(selector1);
-		switch(selector1){
+		do{AccountMenuD(selector1);
+		
+		switch(selector1) {
 		
 		case 1:
+			bankapp auw = new bankapp();
+			auw.AccountUpdateW();
+			accountMenu();
+			AccountMenuD(selector1);
+			break;
 		
 		case 2:
-			
-		case 5:
-	
-		}
+		bankapp aud = new bankapp();
+		aud.AccountUpdateD();
+		accountMenu();
+		AccountMenuD(selector1);
+		break;
 	
 	}
+	}while(selector == 4);
+
+	}
 	break;
-	}while(selector >4);
+	}while(selector == 4);
 	
 
-}
+	}
+
+
+	
+
+
 static void introMenuD(Integer selector) {
 switch (selector) {
 case 1 :
 	System.out.println("1. New Account");
-	break;
+	
 case 2:
 	System.out.println("2. Login");
-	break;
+	
 case 3:
 	System.out.println("3. Return");
-	break;
+	
 }
 }
 
@@ -95,13 +111,13 @@ switch (selector) {
 
 case 1 :
 	System.out.println("1. Withdraw");
-	break;
+	
 case 2:
 	System.out.println("2. Deposit");
-	break;
+	
 case 3:
-	System.out.println("=5. Return");
-	break;
+	System.out.println("3. Close Account");
+	
 }
 }
 }
