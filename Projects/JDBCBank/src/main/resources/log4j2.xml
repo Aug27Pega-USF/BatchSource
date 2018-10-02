@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info">
+    <Appenders>
+    	 <JDBC name="databaseAppender" tableName="KMEDARA.TRANSACTION_LOGS">
+     		 <ConnectionFactory class="com.revature.util.ConnectionFactory" method="getConnection" />
+     		 <Column name="USER_ID"  pattern="%X{user_id}"/>
+      		 <Column name="DATED" isEventTimestamp="true"/>
+      		 <Column name="LOGGER" pattern="%logger" />
+      		 <Column name="LOGLEVEL" pattern="%level"/>
+      		 <Column name="MESSAGE" pattern="%message" />
+      		 <Column name="EXCEPTION" pattern="%ex{full}" />
+        </JDBC>
+      <!--   <Http name="httpAppender" url="http://localhost/test.html">
+ 
+      <Property name="X-Java-Runtime" value="$${java:runtime}" />
+      <JsonLayout properties="true"/>
+      
+    </Http> -->
+        <Console name="Console" target="System_out">
+            <PatternLayout>
+                <Pattern>
+                %highlight{%d [%t] %-5level: %msg%n%throwable}
+
+                </Pattern>
+            </PatternLayout>
+        </Console>
+        <File name="deskFile" fileName="C:/Users/kmeda/Desktop/desklogging.log">
+            <PatternLayout header="${java:version} - ${java:os}\n">
+                <Pattern>
+                    [%-5level] %d{yyyy-MM-dd 12HH:mm:ss} [%t] %c{1} - %msg%n
+                </Pattern>
+            </PatternLayout>
+        </File>
+        <File name="projectFile" fileName="projectlogging.log">
+            <PatternLayout>
+                <Pattern>
+                    [%-5level] %d{yyyy-MM-dd 12HH:mm:ss} [%t] %c{1} - 
+                    %msg%n
+                </Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>   
+        <Logger name="Stanley" level = "trace" additivity= "false">
+         <AppenderRef ref="Console"/> 
+        <!--<AppenderRef ref="httpAppender"/>  -->  
+          <AppenderRef ref = "projectFile"/>  
+          <AppenderRef ref = "databaseAppender"/>
+        </Logger>
+        <Root >
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref = "deskFile"/>
+            <AppenderRef ref = "projectFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
