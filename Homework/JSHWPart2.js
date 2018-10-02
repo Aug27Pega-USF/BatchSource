@@ -24,11 +24,11 @@ Define function getPeopleInSales()
 Print the names of all the people in the sales department.*/
 
 function getPeopleInSales(){
-    var aTags = document.getElementsByTagName("td");
+    var aTags = document.getElementsByClassName("empName");
     var found=[];
     var index=0;
     for (var i = 0; i < aTags.length; i++) {
-      if (aTags[i].className=="empName") {
+      if (aTags[i].nextElementSibling.textContent=="Sales") {
         found[index]=aTags[i].textContent;
         index++;
       }
