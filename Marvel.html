@@ -1,0 +1,24 @@
+// Public Key
+// fc0e2b2bcfc273962ce941db43aa2039
+
+$(function(){
+var marvelAPI = 'https://gateway.marvel.com/v1/public/comics';
+$.getJSON( marvelAPI, {
+    apikey: '4a9a73a7c988a6851fffd4dc19b21e72'
+  })
+    .done(function( response ) {
+      var results = response.data.results;
+      var resultsLen = results.length;
+      var output = '<ul>'; 
+      
+      for(var i=0; i<resultsLen; i++){
+        if(results[i].images.length > 0) {
+          var imgPath = results[i].images[0].path + '/standard_xlarge.' + results[i].images[0].extension;
+          output += '<li><img src="' + imgPath + '"><br>'+results[i].title+'</li>';
+        }
+      }  
+      output += '</ul>'
+      $('#results').append(output);
+  });
+   
+});

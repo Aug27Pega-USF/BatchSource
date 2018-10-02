@@ -11,11 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Scanner;
-import java.util.Set;
-import java.util.stream.Stream;
 //execute query for select
 //execute update for DML
 
@@ -83,11 +80,8 @@ public class Bank {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-
-        
-        
-        
+		 	
+		System.out.println("Welcome to the Bank of Revature");
         System.out.println("Choose account type or exit: (1)Customer (2)Employee (3)Exit");
         
         while (true) {
@@ -254,7 +248,7 @@ public class Bank {
         String name = null;
 
        
-        System.out.println("(1)View Accounts (2)Create Account (3)Main Menu");
+        System.out.println("(1)View Accounts (2)Create Account (3)Go to Account (4)Main Menu");
         int choice = sc.nextInt();
 		switch(choice) {
 			case 1:
@@ -267,7 +261,7 @@ public class Bank {
 			           System.out.print(me.getKey()+":");
 			           System.out.println(me.getValue());
 			       }*/
-				try (PreparedStatement stmt = conn.prepareStatement("SELECT * FROM USERS WHERE USERID = ?")) {			
+				try (PreparedStatement stmt = conn.prepareStatement("SELECT * FROM ACCOUNT WHERE USERID = ?")) {			
 					
 					stmt.setString(1, current.getUserID());
 					
@@ -309,6 +303,34 @@ public class Bank {
 				AccountMenu(account);				
 				break;
 			case 3:
+				System.out.println(current);
+				System.out.println("Enter an account name: ");
+	            name = sc.next();
+			/*	try (PreparedStatement stmt = conn.prepareStatement("SELECT ACCOUNTID FROM ACCOUNT WHERE USERID = ?" 
+				        + " AND NAME = ?")) {
+				        stmt.setString(1, myUserID);
+				        stmt.setString(2, name);
+				        rs = stmt.executeQuery();
+				        rs.next();
+				        account = new Account(current.getUserID(), 0.00,rs.getInt("ACCOUNTID"),name );
+				        accountMap.put(name, account);	
+				      }*/
+				try (PreparedStatement stmt = conn.prepareStatement("SELECT * FROM ACCOUNT WHERE USERID = ?" 
+				        + " AND NAME = ?")) {
+				        stmt.setString(1, current.getUserID());
+				        stmt.setString(2, name);
+				        rs = stmt.executeQuery();
+				        rs.next();
+				        account = new Account(current.getUserID(),rs.getDouble("BALANCE"),rs.getInt("ACCOUNTID"),name );
+				        accountMap.put(name, account);	
+				        System.out.println("account is: " + account);
+				      	AccountMenu(account);
+				      	} catch (Exception e){
+				      		System.out.println("Account may not exist: ");
+				      		CustomerMenu(current);
+				      	}
+				break;
+			case 4:
 				main(new String[0]);
 				break;
 				
@@ -438,10 +460,9 @@ public class Bank {
 				    rs = stmt.executeQuery();
 				  
 				    if (rs.next()){
-				    	System.out.println("Inside of : if (rs.next()) ");
 						//Account accounttoedit = accountMap.get(editaccount);
 
-						System.out.println("What would you like to edit? (1)Balance (2)Name (3)Account Name");
+						System.out.println("What would you like to edit? (1)Balance (2)Name (3)Delete account");
 						int choice2 = sc.nextInt();
 						switch (choice2) {
 						case 1:
@@ -449,16 +470,17 @@ public class Bank {
 							double editbalance = sc.nextDouble();
 							//TODO SQL set new balance
 							
-							try (PreparedStatement stmt2 = conn.prepareStatement("UPDATE ACCOUNT SET BALANCE = ?"
-									+ "WHERE USERID = ?)")) {
-								System.out.println("Inside update:");
+							
+							try (PreparedStatement stmt2 = conn.prepareStatement("UPDATE ACCOUNT SET BALANCE = ? "
+									+ "WHERE USERID = ?")) {
 						        stmt2.setDouble(1, editbalance);
 						        stmt2.setString(2, editaccount);
 						        stmt2.executeUpdate();
 						      }
+							
 							try (PreparedStatement stmt2 = conn.prepareStatement("SELECT * FROM ACCOUNT "
-									+ "WHERE USERID = " + editaccount +")")) {
-						        stmt2.setDouble(1, editbalance);
+									+ "WHERE USERID = ?")) {
+						        stmt2.setString(1, editaccount);
 						        stmt2.executeUpdate();
 						      }
 						
@@ -471,12 +493,25 @@ public class Bank {
 							System.out.println("Set the new account name for this user ");
 							String editname = sc.next();
 							//TODO SQL set new name 
-							
+							try (PreparedStatement stmt2 = conn.prepareStatement("UPDATE ACCOUNT SET NAME = ?" + " WHERE ACCOUNTID = ?")) {
+			                    //System.out.println("Inside update:");
+			                    stmt2.setString(1, editname);
+			                    stmt2.setInt(2, account.getAccountID());
+			                    stmt2.executeUpdate();
+						      }
 							
 							//accounttoedit.setName(editname);
 							System.out.println("Name updated");
 							break;
-						case 3:System.out.println("Account Name updated");
+						case 3:
+							System.out.println("Which account by name do you want to delete?");
+							String delAccountName = null;
+							try (PreparedStatement stmt2 = conn.prepareStatement("DELETE FROM TABLE WHERE NAME = ? AND ACCOUNTID = ?")) {
+			       
+			                    stmt2.setString(1, delAccountName);
+			                    stmt2.setInt(2, account.getAccountID());
+			                    stmt2.executeUpdate();
+						      }
 							break;
 						case 4:
 							break;
@@ -484,11 +519,14 @@ public class Bank {
 				    }//end of if(rs.next())
 				    
 				}
+				AdminMenu(current);
 			case 3:
 				System.out.println("Enter an account name: ");
 				name = sc.next();
 		        //String[] usernames = new String[]{current.getName(), null};
-
+				//WHAT IS THIS!!!
+				
+				
 		        try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO ACCOUNT (USERID, BALANCE, ACCOUNTID, NAME) "
 						+ "VALUES (?,?,?,?)")) {
 			        stmt.setString(1, current.getUserID());
@@ -510,8 +548,8 @@ public class Bank {
 				
 		
 		//}
-	}
 		}
+	}
 	
 	
 	
@@ -596,7 +634,7 @@ public class Bank {
 
 	}
 	private static void AccountMenu(Account account) throws SQLException {
-		System.out.println("(1)View Balance (2)Deposit (3)Withdrawal (4)Transfer funds (5)Main Menu ");	
+		System.out.println("(1)View Balance (2)Deposit (3)Withdrawal (4)Main Menu ");	
 		//TODO SQL new balance
 		double balance = account.getBalance();
 		
@@ -609,7 +647,16 @@ public class Bank {
 			case 2:
 				System.out.println("How much would you like to deposit? ");
 				double deposit = sc.nextDouble();
-				if (deposit > 0) {					
+				
+				if (deposit > 0) {
+					
+					try (PreparedStatement stmt2 = conn.prepareStatement("UPDATE ACCOUNT SET BALANCE = ?" + " WHERE ACCOUNTID = ?")) {
+	                    System.out.println("Inside update:");
+	                    stmt2.setDouble(1, balance + deposit);
+	                    System.out.println("balance: " + balance + " deposit: " + deposit);
+	                    stmt2.setInt(2, account.getAccountID());
+	                    stmt2.executeUpdate();
+				      }
 					account.setBalance(balance += deposit);
 					System.out.println("You deposited $" + deposit + " your balance is now $" + balance);
 					AccountMenu(account);
@@ -618,11 +665,17 @@ public class Bank {
 					AccountMenu(account);
 				}
 				break;
-			case 3:
+			case 3://withdrawal
 				System.out.println("Your balance is " + balance + " how much would you like to withdraw? ");
 				
 				double withdrawal = sc.nextDouble();
 				if (withdrawal < balance) {
+					try (PreparedStatement stmt2 = conn.prepareStatement("UPDATE ACCOUNT SET BALANCE = ?" + " WHERE ACCOUNTID = ?")) {	                    
+						stmt2.setDouble(1, balance - withdrawal);
+	                    stmt2.setInt(2, account.getAccountID());
+	                    stmt2.executeUpdate();
+				      }
+					
 					account.setBalance(balance -= withdrawal);
 					System.out.println("You withdrew $" + withdrawal + " your balance is now $" + balance);
 					AccountMenu(account);
@@ -631,12 +684,12 @@ public class Bank {
 					AccountMenu(account);
 				}
 				break;
-			case 4: 
+			/*case 4: 
 				//TODO Possibly remove
 				
 				
 				
-				System.out.println("What is the account name to your transfering funds with? ");
+				System.out.println("What is the account name you're transfering funds to? ");
 				String accountnameoftransfer = sc.next();
 				if (accountMap.containsKey(accountnameoftransfer)) {
 					System.out.println("Account found!");
@@ -657,8 +710,8 @@ public class Bank {
 					System.out.println("Account not found.");
 					AccountMenu(account);
 				}
-				break;
-			case 5:
+				break;*/
+			case 4:
 				main(new String[0]);
 				break;
 
