@@ -5,14 +5,24 @@ import java.util.Arrays;
 
 public class Account implements Serializable {
 	private static final long serialVersionUID = 1L;
+	private int accountid;
 	private double balance;
-	private String name;
-	private String[] usernames = new String[2];
+	private String type;
+	private int user;
 	
-	public Account(double balance, String name, String[] usernames) {
+	public Account(int account_id, String type, double balance, int user_id) {
+		this.accountid = account_id;
+		this.type = type;
+		this.user= user_id;
 		this.balance = balance;
-		this.name = name;
-		this.usernames = usernames;
+	}
+	
+	public int getAccountid() {
+		return accountid;
+	}
+
+	public void setAccountid(int accountid) {
+		this.accountid = accountid;
 	}
 
 	public double getBalance() {
@@ -23,25 +33,24 @@ public class Account implements Serializable {
 		this.balance = balance;
 	}
 
-	public String getName() {
-		return name;
+	public String getType() {
+		return type;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setType(String type) {
+		this.type= type;
 	}
 
-	public String[] getUsernames() {
-		return usernames;
+	public int getUser() {
+		return user;
 	}
 
-	public void setUsernames(String[] usernames) {
-		this.usernames = usernames;
+	public void setUser(int user) {
+		this.user= user;
 	}
 
 	@Override
 	public String toString() {
-		return "Account [balance=" + balance + ", name=" + name + ", usernames=" + Arrays.toString(usernames)
-				+ "]";
+		return "Account [Account ID: " + accountid + ", balance = " + balance + ", type: " + type + ", user ID: " + user + "\n]";
 	}
 }
