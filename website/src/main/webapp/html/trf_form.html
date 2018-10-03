@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>TRF Form</title>
+</head>
+
+<body>
+	<div class=navigation-bar>
+	<a href="http://localhost:8080/website/html/EmployeeHome.html" class="btn-primary" id="Employee-Home-Link">Home</a>
+	<a href="http://localhost:8080/website/html/trf_form.html" class="btn-primary" id="TRF-link">Tuition Reimbursement Form</a>
+	<a href="http://localhost:8080/website/html/ViewUpdateTRF.html" class="btn-primary" id="TRF-link">View and Update TRF</a>
+	<a href="http://localhost:8080/website/html/MessagesEmployee.html" class="btn-primary" id="Messages-link">Messages</a>
+	<a href="http://localhost:8080/website/html/ApprovalPage.html" class="btn-primary" id="Approve-link"></a>
+	<a href="http://localhost:8080/website/html/Login.html" class="btn-primary" id="Logout-link">Logout</a>
+	</div>
+    <h2 style="position: relative; margin-top: 0px;">Tuition Reimbursement Form</h2>
+    <h3 style="margin:0;padding: 0;">Required:</h3>
+    <form action="TRF.do" method="POST">
+        <strong>Employee Information:</strong>
+        <br>
+        First Name: <input type="text" id="first_name" name="first_name" pattern="[A-Za-z]+" required>
+        <br />
+        Last Name:  <input type="text" id="last_name" name="last_name" pattern="[A-Za-z]+" required />
+        <br />
+        Basic Employee Info Placeholder: <input type="text" name="employee_info" id="employee_info" required/>
+        <br />
+        <strong>Event Information:</strong>
+        <br>
+        Event Date: <input type="date" id="date" name="date" required />
+        <br />
+        Event Time: <input type="time" id="time" name="time" value="00:00" required/>
+        <br />
+        Event Location: <input type="text" id="location" name="location" required/>
+        <br />
+        Event Description: <input type="text" id="description" name="description" required/>
+        <br />
+        Event Cost: $<input type="number" id="cost" name="cost" min="0.00" step="0.01" required />
+        <br />
+        Grading Format: <select id="grading_format" name="grading_format"  required>
+            <option value="Presentation">Presentation</option>
+            <option value="Pass/Fail">Pass/Fail</option>
+            <option value="Percentage">Percentage</option>
+            <option value="Letter Grade">Letter Grade</option>
+        </select>
+        <br>
+        <p id="passing_grade" name="passing_grade" style="display:none;"></p>
+        Type of Event: <select id="event_type" name="event_type" required>
+            <option value="university_courses">University Courses</option>
+            <option value="seminars">Seminars</option>
+            <option value="cp_classes">Certification Preparation Classes</option>
+            <option value="certification">Certification</option>
+            <option value="technical_training">Technical Training</option>
+            <option value="other">Other</option>
+        </select>
+        <br />
+        Work-Related Justification: <input type="text" id="justification" name="justification" required/>
+        <br />
+        <h3  style="margin:0;padding: 0;">Optional:</h3>
+        <div>
+                Event Related Forms:
+                <label for="file">Choose file(s) to upload</label>
+                <input type="file" id="eventfile" name="eventfile" accept= ".pdf, .png, .jpeg, .txt, .doc" multiple> 
+        </div>
+        <div>
+                Direct Supervisor Approval:
+                <label for="file">Choose Outlook file to upload</label>
+                <input type="file" id="dsapprovalfile" name="dsapprovalfile" accept= ".msg"> 
+        </div>
+        <div>
+                Department Head Approval:
+                <label for="file">Choose Outlook file to upload</label>
+                <input type="file" id="dhapprovalfile" name="dhapprovalfile" accept= ".msg"/> 
+        </div>
+        Work Time Missed (Hours): <input type="number" id="work_missed" name="work_missed" min="0." step="1" />
+        <br>
+        Projected Reimbursement: $<input type="number" id=projected_reimbursment name=projected_reimbursment readonly>
+        <input type="submit" value="Submit" />
+    </form>
+    <script type="text/javascript" src="../js/trf_form.js">
+    </script>
+
+</body>
+
+</html>

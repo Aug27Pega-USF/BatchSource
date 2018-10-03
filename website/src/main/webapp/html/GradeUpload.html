@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Grade Upload</title>
+</head>
+<body>
+    <h2 style="position: relative; margin-top: 0px;">Grade Upload</h2>
+    <form action="upload_grade" method="POST">
+        Please Input Grade:
+        <select id="letter_pass" required><option value="A+">A+</option><option value="A">A</option><option value="A-">A-</option><option value="B+">B+</option><option value="B">B</option><option value="B-">B-</option><option value="C+">C+</option><option value="C">C</option><option value="C-">C-</option><option value="D+">D+</option><option value="D">D</option><option value="D-">D-</option></select>
+        <br>
+        <label for="file">Please upload Proof of Grade in a PDF format.</label>
+        <input type="file" id="file" name="file" accept= ".pdf" required> 
+        <br>
+        <input type="submit" value="Submit" />
+    </form>
+</body>
+</html>
