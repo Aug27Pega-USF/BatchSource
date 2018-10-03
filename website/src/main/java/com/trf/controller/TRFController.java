@@ -19,10 +19,10 @@ public class TRFController {
 		String employee_info= request.getParameter("employee_info");
 		String dateStr= request.getParameter("date");
 		String timeStr= request.getParameter("time");
-		Timestamp ts=Timestamp.valueOf(dateStr+" "+timeStr+":00");
+		String datetime=dateStr+" "+timeStr;
 		String location=request.getParameter("location");
 		String description=request.getParameter("description");
-		double cost=Double.parseDouble(request.getParameter("cost"));
+		String cost=request.getParameter("cost");
 		String grading_format=request.getParameter("grading_format");
 		
 		String passing_grade="";
@@ -32,38 +32,36 @@ public class TRFController {
 			passing_grade=request.getParameter("percentage_pass");
 		}
 		String event_type=request.getParameter("event_type");
-		int event_type_id=0;
 		switch(event_type) {
 			case "university_courses":
-				event_type_id=1;
+				event_type="1";
 				break;
 			case "seminars":
-				event_type_id=2;
+				event_type="2";
 				break;
 			case "cp_classes":
-				event_type_id=3;
+				event_type="3";
 				break;
 			case "certification":
-				event_type_id=4;
+				event_type="4";
 				break;
 			case "technical_training":
-				event_type_id=5;
+				event_type="5";
 				break;
 			case "other":
-				event_type_id=6;
+				event_type="6";
 				break;
 			default:
 				return "EmployeeHome.html";
 		}
 		String justification=request.getParameter("justification");
 		String work_missed=request.getParameter("work_missed");
-		int work_missed_num=0;
 		if (work_missed!="") {
-			work_missed_num=Integer.parseInt(work_missed);
+			work_missed="0";
 		}
-		double projected_reimbursement=Double.parseDouble(request.getParameter("projected_reimbursement"));
+		String projected_reimbursement=request.getParameter("projected_reimbursement");
 		TRFDaoImpl trfDaoImpl = new TRFDaoImpl();
-		TRF trf= new TRF(1,first_name,last_name,employee_info,ts,location,description,cost,grading_format,passing_grade,event_type_id,justification,'N','N','N', work_missed_num,projected_reimbursement);
+		TRF trf= new TRF(1,first_name,last_name,employee_info,datetime,location,description,cost,grading_format,passing_grade,event_type,justification,'N','N','N', work_missed,projected_reimbursement);
 		
 		
 		
