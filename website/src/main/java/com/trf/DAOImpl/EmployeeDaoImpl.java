@@ -12,13 +12,6 @@ import com.trf.util.ConnFactory;
 
 public class EmployeeDaoImpl implements EmployeeDao {
 	public static ConnFactory cf = ConnFactory.getInstance();
-	static {
-		try {
-			Class.forName("oracle.jbdc.driver.OracleDriver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
 
 	@Override
 	public List<Employee> selectBasicInfoById(int id) {
@@ -44,6 +37,22 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+	
+	public String getLevel(int employeeid) {
+		Connection conn = cf.getConnection();
+		String sql = "SELECT GET_EMP_LEVEL(?) FROM DUAL";
+		try {
+			PreparedStatement prest = conn.prepareStatement(sql);
+			prest.setInt(1, employeeid);;
+			ResultSet rs = prest.executeQuery();
+			rs.next();
+			String account_level = rs.getString(1);
+			return account_level;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return "";
 	}
 
 }

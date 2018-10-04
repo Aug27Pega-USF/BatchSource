@@ -77,7 +77,7 @@ public class TRFController {
 		}
 		
 		String projected_reimbursement=request.getParameter("projected_reimbursement");	
-		
+		System.out.println(request.getSession().getAttribute("EmployeeID"));
 		TRFDaoImpl trfDaoImpl = new TRFDaoImpl();
 		TRF trf= new TRF(1,first_name,last_name,employee_info,datetime,location,description,cost,grading_format,passing_grade,event_type,justification,eventfiles,ds_approval,dh_approval, work_missed,projected_reimbursement);
 		trfDaoImpl.insertTRF(trf);
