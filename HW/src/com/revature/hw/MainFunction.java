@@ -9,15 +9,15 @@ public class MainFunction {
 
 	
 
-	public static void main(String[] args) {
+	
 		
 
 
 
 		
-		class Driver {
+		static class Driver {
 
-			public void main(String args[])
+			public static void main(String args[])
 			{
 				//output Q1
 				bubbleSort();
@@ -65,7 +65,7 @@ public class MainFunction {
 			 /*
 			 * Question one perform bubble sort on an array
 			 */
-			void bubbleSort() 
+			static void bubbleSort() 
 			{
 				int array[] = {1,0,5,6,3,2,3,7,9,8,4};
 				int n = array.length;
@@ -86,7 +86,7 @@ public class MainFunction {
 			/*
 			 * Question two display the first 25 fib numbers starting at 0
 			 */
-			void fibNumbers()
+			static void fibNumbers()
 			{
 				int n = 25;
 				int start = 1;
@@ -107,7 +107,7 @@ public class MainFunction {
 			/*
 			 * Question three reverse a string
 			 */
-			void reverseString()
+			static void reverseString()
 			{
 				String reverse = "Roll Tide";
 				for(int i = 0; i <reverse.length(); i++)
@@ -121,7 +121,7 @@ public class MainFunction {
 			/*
 			 * Question four write program to compute N factorial
 			 */
-			void factorial()
+			static void factorial()
 			{
 				
 				int num = 1;
@@ -136,7 +136,7 @@ public class MainFunction {
 			/*
 			 * Question five substring method 
 			 */
-			String subString(String word, int idx)
+			static String subString(String word, int idx)
 			{
 				 String part = "";
 				for (int i = 0; i < idx; i++)
@@ -145,7 +145,7 @@ public class MainFunction {
 				}
 				return part;
 			}
-			/*
+			static /*
 			 * Question six find even number without mod 
 			 */
 			void evenNumbers()
@@ -163,7 +163,7 @@ public class MainFunction {
 			/*
 			 * Question eight find all the Palindromes
 			 */
-			void Palindrome ()
+			static void Palindrome ()
 			{
 				ArrayList <String> Set = new ArrayList<String>();
 				ArrayList <String> PalSet = new ArrayList<String>();
@@ -197,7 +197,7 @@ public class MainFunction {
 				System.out.println();
 					
 			}
-			boolean isPal(String str)
+			static boolean isPal(String str)
 			{
 				String pal = "";
 				
@@ -218,7 +218,7 @@ public class MainFunction {
 			/*
 			 * Question 9
 			 */
-			void primes()
+			static void primes()
 			{
 				int n = 100,m;
 				
@@ -240,7 +240,7 @@ public class MainFunction {
 			       }
 			       
 			}
-			boolean isprime(int n)
+			static boolean isprime(int n)
 			{
 					boolean flag = false;
 			       for(int i=2;i<=n/2;i++)
@@ -259,7 +259,7 @@ public class MainFunction {
 			/*
 			 * Question 10 minimum of two numbers using ternary operators
 			 */
-			void min()
+			static void min()
 			{
 				int a = 100;
 				int b = 90;
@@ -272,7 +272,7 @@ public class MainFunction {
 			/*
 			 * Question 11 float-variables
 			 */
-			void access()
+			static void access()
 			{
 				Float num = new Float();
 				System.out.println("Variable 1: " + num);
@@ -283,7 +283,7 @@ public class MainFunction {
 			/*
 			 * Question 12 
 			 */
-			void evenNums()
+			static void evenNums()
 			{
 				int number [] = new int[100];
 			      
@@ -305,7 +305,7 @@ public class MainFunction {
 			/*
 			 * Question 13
 			 */
-			void triangle()
+			static void triangle()
 			{
 				int count = 1;
 			       for (int i=1;i<=4;i++)
@@ -329,7 +329,7 @@ public class MainFunction {
 			/*
 			 * Question 14 implement switch cases
 			 */
-			void swithCase()
+			static void swithCase()
 			{
 				@SuppressWarnings("resource")
 				Scanner sc = new Scanner(System.in);
@@ -391,4 +391,4 @@ public class MainFunction {
 
 	}
 
-}
+
