@@ -13,7 +13,6 @@ public class LoginController {
 		String username= request.getParameter("username"); //this is from the html page.
 		String password= request.getParameter("password");
 		EmployeeDaoImpl employeeDaoImpl = new EmployeeDaoImpl();
-		Employee employee= new Employee();
 		int employeeid=employeeDaoImpl.login(username,password);
 		
 		if (employeeid!=0) {

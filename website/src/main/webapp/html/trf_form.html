@@ -20,9 +20,9 @@
     <form action="TRF.do" method="POST">
         <strong>Employee Information:</strong>
         <br>
-        First Name: <input type="text" id="first_name" name="first_name" pattern="[A-Za-z]+" required>
+        First Name: <input type="text" id="first_name" name="first_name" pattern="[A-Za-z\-]+" required>
         <br />
-        Last Name:  <input type="text" id="last_name" name="last_name" pattern="[A-Za-z]+" required />
+        Last Name:  <input type="text" id="last_name" name="last_name" pattern="[A-Za-z\-]+" required />
         <br />
         Basic Employee Info Placeholder: <input type="text" name="employee_info" id="employee_info" required/>
         <br />
@@ -73,9 +73,9 @@
                 <label for="file">Choose Outlook file to upload</label>
                 <input type="file" id="dhapprovalfile" name="dhapprovalfile" accept= ".msg"/> 
         </div>
-        Work Time Missed (Hours): <input type="number" id="work_missed" name="work_missed" min="0." step="1" />
+        Work Time Missed (Hours): <input type="number" id="work_missed" name="work_missed" min="0" step="1" value="0"/>
         <br>
-        Projected Reimbursement: $<input type="number" id=projected_reimbursment name=projected_reimbursment readonly>
+        Projected Reimbursement: $<input type="text" id=projected_reimbursement name=projected_reimbursement readonly>
         <input type="submit" value="Submit" />
     </form>
     <script type="text/javascript" src="../js/trf_form.js">

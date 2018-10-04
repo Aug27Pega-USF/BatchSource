@@ -23,9 +23,9 @@ function pr_calculation(){
     if(reimbursement>availablereimbursement){
         reimbursement=availablereimbursement;
     }
-    document.getElementById("projected_reimbursment").value=reimbursement.toFixed(2);
+    document.getElementById("projected_reimbursement").value=reimbursement.toFixed(2);
     }else{
-        document.getElementById("projected_reimbursment").value="";
+        document.getElementById("projected_reimbursement").value="";
     }
 }
 

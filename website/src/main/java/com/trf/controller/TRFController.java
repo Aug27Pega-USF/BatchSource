@@ -52,12 +52,34 @@ public class TRFController {
 		}
 		String justification=request.getParameter("justification");
 		String work_missed=request.getParameter("work_missed");
-		if (work_missed!="") {
+		
+		if (work_missed=="") {
 			work_missed="0";
 		}
-		String projected_reimbursement=request.getParameter("projected_reimbursement");
+		String eventfiles=request.getParameter("eventfile");
+		if (eventfiles!="") {
+			eventfiles="Y";
+		}else {
+			eventfiles="N";
+		}
+		String ds_approval=request.getParameter("dsapprovalfile");
+		if (ds_approval!="") {
+			ds_approval="Y";
+		}else {
+			ds_approval="N";
+		}
+		
+		String dh_approval=request.getParameter("dhapprovalfile");
+		if (dh_approval!="") {
+			dh_approval="Y";
+		}else {
+			dh_approval="N";
+		}
+		
+		String projected_reimbursement=request.getParameter("projected_reimbursement");	
+		
 		TRFDaoImpl trfDaoImpl = new TRFDaoImpl();
-		TRF trf= new TRF(1,first_name,last_name,employee_info,datetime,location,description,cost,grading_format,passing_grade,event_type,justification,"N","N","N", work_missed,projected_reimbursement);
+		TRF trf= new TRF(1,first_name,last_name,employee_info,datetime,location,description,cost,grading_format,passing_grade,event_type,justification,eventfiles,ds_approval,dh_approval, work_missed,projected_reimbursement);
 		trfDaoImpl.insertTRF(trf);
 		return "EmployeeHome.html";
 	}
