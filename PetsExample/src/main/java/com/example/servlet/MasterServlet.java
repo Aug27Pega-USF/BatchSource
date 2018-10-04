@@ -7,19 +7,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class MasterServlet extends HttpServlet {
+import com.example.controller.RequestHelper;
 
+
+public class MasterServlet extends HttpServlet{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+		throws ServletException, IOException {
+		String jsonStuff = RequestHelper.process(request, response);
+		
+		
+
+		
+	}
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+		throws ServletException, IOException {
+
+		String targetURL = RequestHelper.process(request, response);
+		request.getRequestDispatcher(targetURL).forward(request, response);
+		
 		
 	}
 	
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String targetURL = RequestHelper.process(request, response);
-		request.getRequestDispatcher(targetURL).forward(request, response);
-	}
-
 }
+

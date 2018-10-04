@@ -1,37 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="ISO-8859-1"><title>Pets Sanctuary</title>
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
-<meta charset="ISO-8859-1">
-<title>Register</title>
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	crossorigin="anonymous">
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!-- Website CSS style -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Website Font style -->
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-<link rel=stylesheet type="text/css" href="../css/Style.css">
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/Style.css">
+<!-- Google Fonts -->
+<link href='https://fonts.googleapis.com/css?family=Passion+One'
+	rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Oxygen'
+	rel='stylesheet' type='text/css'>
+<link rel=stylesheet type="text/css" href="../css/style.css">
+
 </head>
 <body>
-	<form class="" method="POST" action="Register.do">
 
-		<div class="form-group">
-			<label for="name">Pet's Name</label>
-			<div class="input-group">
-				<input type="text" class="form-control" name="name" id="name"
-					placeholder="Enter pet's name" />
+	<div class="container">
+		<div class="row_main">
+			<div class="main-login main-center">
+				<form class="" method="POST" action="Register.do">
+
+					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">Pet's
+							Name:</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa"
+									aria-hidden="true"></i></span> <input type="text" class="form-control"
+									name="name" id="name" placeholder="Enter your pet's name" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">Pet's
+							Type:</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa"
+									aria-hidden="true"></i></span> <input type="text" class="form-control"
+									name="type" id="type" placeholder="Enter your pet's type" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form group">
+						<div class="row">
+							<div class="col-sm-6 col-sm-offset-3">
+								<input type="Submit" class="form-control btn btn-info"
+									id="SubmitButton" value="Register">
+							</div>
+							<br /> <br />
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
-		<div class="form-group">
-			<label for="type">Pet's Type</label>
-			<div class="input-group">
-				<input type="text" class="form-control" name="type" id="type"
-					placeholder="Enter pet's type" />
-			</div>
-		</div>
+	</div>
 
-		<div class="form-group">
-			<input type="Submit" class="form-control btn btn-info"
-				id="SubmitButton" value="Register">
-		</div>
 
-	</form>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

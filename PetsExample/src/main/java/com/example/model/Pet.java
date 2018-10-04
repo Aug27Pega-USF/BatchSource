@@ -1,39 +1,37 @@
 package com.example.model;
 
 public class Pet {
-	
-	String Name, Type;
-	
+
+	String name, type;
+
 	public Pet() {
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
 	public String getType() {
-		return Type;
+		return type;
 	}
 
 	public void setType(String type) {
-		Type = type;
+		this.type = type;
 	}
 
 	public Pet(String name, String type) {
 		super();
-		Name = name;
-		Type = type;
+		this.name = name;
+		this.type = type;
 	}
 
 	@Override
 	public String toString() {
-		return "Pet [Name=" + Name + ", Type=" + Type + "]";
+		return "Pets [name=" + name + ", type=" + type + "]";
 	}
-	
-	
 
 }
