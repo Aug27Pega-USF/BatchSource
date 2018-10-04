@@ -8,6 +8,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 public class ConnFactory {
 	private static ConnFactory cf = new ConnFactory();
@@ -24,22 +28,14 @@ public class ConnFactory {
 	
 	public Connection getConnection() {
 		Connection conn =null;
-		
 		try {
-			Properties prop = new Properties();
-			prop.load(new FileReader("database.properties"));
-			Class.forName(prop.getProperty("driver"));
-			conn =  DriverManager.getConnection(prop.getProperty("url"),prop.getProperty("usr"),
-					prop.getProperty("password"));
-		} catch (SQLException e) {
+			Context initContext = new InitialContext();
+			Context envContext  = (Context)initContext.lookup("java:/comp/env");
+			DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");
+			conn = ds.getConnection();
+		} catch (NamingException e) {
 			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
+		}catch (SQLException e) {
 			e.printStackTrace();
 		}
 	

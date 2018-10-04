@@ -1,6 +1,5 @@
 package com.trf.beans;
 
-import java.sql.Timestamp;
 
 public class TRF {
 	int TRF_id;

@@ -1,12 +1,8 @@
 package com.trf.controller;
 
-import java.sql.Timestamp;
-
 import javax.servlet.http.HttpServletRequest;
 
-import com.trf.DAOImpl.EmployeeDaoImpl;
 import com.trf.DAOImpl.TRFDaoImpl;
-import com.trf.beans.Employee;
 import com.trf.beans.TRF;
 
 public class TRFController {
@@ -61,10 +57,8 @@ public class TRFController {
 		}
 		String projected_reimbursement=request.getParameter("projected_reimbursement");
 		TRFDaoImpl trfDaoImpl = new TRFDaoImpl();
-		TRF trf= new TRF(1,first_name,last_name,employee_info,datetime,location,description,cost,grading_format,passing_grade,event_type,justification,'N','N','N', work_missed,projected_reimbursement);
-		
-		
-		
+		TRF trf= new TRF(1,first_name,last_name,employee_info,datetime,location,description,cost,grading_format,passing_grade,event_type,justification,"N","N","N", work_missed,projected_reimbursement);
+		trfDaoImpl.insertTRF(trf);
 		return "EmployeeHome.html";
 	}
 }
