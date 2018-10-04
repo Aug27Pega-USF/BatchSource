@@ -1,27 +1,20 @@
 package com.revature.hw;
 
+import java.awt.geom.Arc2D.Float;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainFunction {
 
+	
+
 	public static void main(String[] args) {
 		
 
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Scanner;
 
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Scanner;
 
-import java.util.ArrayList;
-		import java.util.Date;
-		import java.util.Scanner;
-
-		import FloatingNumbers.floatnums;
+		
 		class Driver {
 
 			public void main(String args[])
@@ -40,8 +33,8 @@ import java.util.ArrayList;
 				//output Q6
 				evenNumbers();
 				//output Q7
-				employee person = new employee();
-				person.comparison();
+				//employee person = new employee();
+				//person.comparison();
 				//output 8
 				Palindrome();
 				//output 9
@@ -55,9 +48,9 @@ import java.util.ArrayList;
 				//output 13
 				triangle();
 				//output 14
-				swithCase();
+				swithCase(); }
 				//Output 15
-				calculate work = new calculate();
+				/*calculate work = new calculate();
 				work.add();
 				work.sub();
 				work.multiply();
@@ -72,7 +65,7 @@ import java.util.ArrayList;
 			 /*
 			 * Question one perform bubble sort on an array
 			 */
-			static void bubbleSort() 
+			void bubbleSort() 
 			{
 				int array[] = {1,0,5,6,3,2,3,7,9,8,4};
 				int n = array.length;
@@ -114,7 +107,7 @@ import java.util.ArrayList;
 			/*
 			 * Question three reverse a string
 			 */
-			static void reverseString()
+			void reverseString()
 			{
 				String reverse = "Roll Tide";
 				for(int i = 0; i <reverse.length(); i++)
@@ -128,7 +121,7 @@ import java.util.ArrayList;
 			/*
 			 * Question four write program to compute N factorial
 			 */
-			static void factorial()
+			void factorial()
 			{
 				
 				int num = 1;
@@ -281,9 +274,9 @@ import java.util.ArrayList;
 			 */
 			void access()
 			{
-				floatnums num = new floatnums();
-				System.out.println("Variable 1: " + num.num1);
-				System.out.println("Variable 2: " + num.num2);
+				Float num = new Float();
+				System.out.println("Variable 1: " + num);
+				System.out.println("Variable 2: " + num);
 				System.out.println();
 				
 			}
