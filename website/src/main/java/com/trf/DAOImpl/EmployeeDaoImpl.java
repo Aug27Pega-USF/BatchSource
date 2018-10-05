@@ -1,5 +1,6 @@
 package com.trf.DAOImpl;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -62,5 +63,61 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		return "";
 	}
+	
+	public String DSApprove(int trfid) {
+        Connection conn = cf.getConnection();
+        String sql = "{call DSAPPROVE(?)";
+        try {
+            CallableStatement cs = conn.prepareCall(sql);
+            cs.setInt(1, trfid);
+            cs.execute();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return "";
+    }
+    public String DHApprove(int trfid) {
+        Connection conn = cf.getConnection();
+        String sql = "{call DHAPPROVE(?)}";
+        try {
+            DSApprove(trfid);
+            CallableStatement cs = conn.prepareCall(sql);
+            cs.setInt(1, trfid);
+            cs.execute();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return "";
+    }
+    public String BCApprove(int trfid) {
+        Connection conn = cf.getConnection();
+        String sql = "{call BCAPPROVE(?)}";
+        try {
+            DSApprove(trfid);
+            DHApprove(trfid);
+            CallableStatement cs = conn.prepareCall(sql);
+            cs.setInt(1, trfid);
+            cs.execute();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return "";
+    }
+    public String denied(int trfid) {
+        Connection conn = cf.getConnection();
+        String sql = "{call TRF_DENIED(?)}";
+        try {
+            CallableStatement cs = conn.prepareCall(sql);
+            cs.setInt(1, trfid);
+            cs.execute();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return "";
+    }
 
 }

@@ -17,8 +17,9 @@ public class RequestHelper {
 	case "/website/html/EmpJSON.do":
 		System.out.println("in empjson do");
 		return HomeController.EmployeeJSON(request, response);
-	case "/website/html/Home.do":
-		return null;
+	case "/website/html/TRFviewJSON.do":
+		System.out.println("trfview");
+		return TRFController.viewTRFJSON(request, response);
 	case "/website/html/TRF.do":
 		System.out.println("in trf do");
 		return TRFController.submitTRF(request);

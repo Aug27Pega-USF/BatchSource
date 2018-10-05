@@ -1,8 +1,16 @@
 package com.trf.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trf.DAOImpl.TRFDaoImpl;
+import com.trf.DAOImpl.TRFPacketDaoImpl;
+import com.trf.beans.TRFPacket;
 import com.trf.beans.Employee;
 import com.trf.beans.TRF;
 
@@ -90,5 +98,19 @@ public class TRFController {
 		TRF trf= new TRF(first_name,last_name,employee_info,datetime,location,description,cost,grading_format,passing_grade,event_type,justification,eventfiles,ds_approval,dh_approval, work_missed,projected_reimbursement,employee_id);
 		trfDaoImpl.insertTRF(trf);
 		return "EmployeeHome.html";
+	}
+	
+	public static String viewTRFJSON(HttpServletRequest request, HttpServletResponse response) {
+		TRFPacketDaoImpl tpdi = new  TRFPacketDaoImpl();
+		System.out.println(request.getSession().getAttribute("EmployeeID"));
+		ArrayList<TRFPacket> trf_list=tpdi.getTRFPacketsbyID(Integer.parseInt(String.valueOf(request.getSession().getAttribute("EmployeeID"))));
+		try {
+			response.getWriter().write(new ObjectMapper().writeValueAsString(trf_list));
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
