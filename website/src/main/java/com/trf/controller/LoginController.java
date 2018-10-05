@@ -3,6 +3,7 @@ package com.trf.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import com.trf.DAOImpl.EmployeeDaoImpl;
+import com.trf.beans.Employee;
 
 public class LoginController {
 	public static String Login(HttpServletRequest request) {
@@ -15,6 +16,9 @@ public class LoginController {
 		int employeeid=employeeDaoImpl.login(username,password);
 		if (employeeid!=0) {
 			request.getSession().invalidate();
+			Employee emp= employeeDaoImpl.getEmployeebyId(employeeid);
+			request.getSession().setAttribute("Employee", emp);
+			System.out.println(request.getSession().getAttribute("Employee"));
 			request.getSession().setAttribute("EmployeeID", employeeid);
 			request.getSession().setAttribute("Level", employeeDaoImpl.getLevel(employeeid));
 			if(String.valueOf(request.getSession().getAttribute("Level")).equals("B")) {

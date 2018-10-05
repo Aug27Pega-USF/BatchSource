@@ -15,7 +15,7 @@ public class MasterServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
+		String jsonStuff = RequestHelper.process(request, response);
 	}
 	
 	@Override

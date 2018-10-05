@@ -24,7 +24,7 @@ public class TRFController {
 		String passing_grade="";
 		if(grading_format=="Letter Grade") {
 			passing_grade=request.getParameter("letter_pass");
-		}else if(grading_format=="Percentage"){
+		}else if(grading_format=="Percentage"){	
 			passing_grade=request.getParameter("percentage_pass");
 		}
 		String event_type=request.getParameter("event_type");
@@ -77,9 +77,9 @@ public class TRFController {
 		}
 		
 		String projected_reimbursement=request.getParameter("projected_reimbursement");	
-		System.out.println(request.getSession().getAttribute("EmployeeID"));
+		String employee_id = String.valueOf(request.getSession().getAttribute("EmployeeID"));
 		TRFDaoImpl trfDaoImpl = new TRFDaoImpl();
-		TRF trf= new TRF(1,first_name,last_name,employee_info,datetime,location,description,cost,grading_format,passing_grade,event_type,justification,eventfiles,ds_approval,dh_approval, work_missed,projected_reimbursement);
+		TRF trf= new TRF(first_name,last_name,employee_info,datetime,location,description,cost,grading_format,passing_grade,event_type,justification,eventfiles,ds_approval,dh_approval, work_missed,projected_reimbursement,employee_id);
 		trfDaoImpl.insertTRF(trf);
 		return "EmployeeHome.html";
 	}

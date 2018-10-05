@@ -14,9 +14,19 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	public static ConnFactory cf = ConnFactory.getInstance();
 
 	@Override
-	public List<Employee> selectBasicInfoById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Employee getEmployeebyId(int id) {
+		Employee emp = null;
+		Connection conn = cf.getConnection();
+		try {
+			PreparedStatement prest = conn.prepareStatement("SELECT USER_ID, REFERSTO, USER_TYPE_ID, FIRST_NAME, LAST_NAME, BASIC_INFO_PLACEHOLDER, AVAILABLE_REIMBURSEMENT, PENDING_REIMBURSEMENT, AWARDED_REIMBURSEMENT FROM EMPLOYEE WHERE USER_ID=?");
+			prest.setString(1, Integer.toString(id));
+			ResultSet rs = prest.executeQuery();
+			rs.next();
+			emp = new Employee(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8), rs.getString(9));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return emp;
 	}
 
 	public int login(String username, String password) {

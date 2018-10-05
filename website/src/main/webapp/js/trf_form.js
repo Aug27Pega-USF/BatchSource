@@ -1,5 +1,6 @@
 let availablereimbursement=1000; //THIS WILL NEED TO TAKE IN VALUES FROM SQL.
-
+var level = '<%= session.getAttribute("level") %>';
+var employeeid = '<%= session.getAttribute("EmployeeID") %>';
 function pr_calculation(){
     var cost;
     if(document.getElementById("cost").checkValidity()){

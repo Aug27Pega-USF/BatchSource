@@ -14,7 +14,7 @@ public class TRFDaoImpl implements TRFDao{
 	public int insertTRF(TRF t) {
 		Connection conn= cf.getConnection();
 		try {
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO TUITION_REIMBURSEMENT_FORM VALUES(?,?,?,?,TO_DATE(?,'YYYY-MM-DD hh24:mi'),?,?,?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO TUITION_REIMBURSEMENT_FORM VALUES(?,?,?,?,TO_DATE(?,'YYYY-MM-DD hh24:mi'),?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			ps.setString(1, "0");
 			ps.setString(2, t.getFirst_name());
 			ps.setString(3, t.getLast_name());
@@ -32,6 +32,7 @@ public class TRFDaoImpl implements TRFDao{
 			ps.setString(15, t.getHead_approval_exist());
 			ps.setString(16, t.getWork_time_missed());
 			ps.setString(17, t.getProjected_reimbursement());
+			ps.setString(18, t.getEmployee_id());
 			return ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

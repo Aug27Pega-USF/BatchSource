@@ -19,13 +19,15 @@ public class TRF {
     String head_approval_exist;
     String work_time_missed;
     String projected_reimbursement;
-	public TRF(int tRF_id, String first_name, String last_name, String basic_info_placeholder, String datetime,
+    String employee_id;
+
+	public TRF(String first_name, String last_name, String basic_info_placeholder, String datetime,
 			String location, String description, String cost, String grading_format, String passing_grade,
 			String event_type_id, String justification, String optional_attachments_exist,
 			String supervisor_approval_exist, String head_approval_exist, String work_time_missed,
-			String projected_reimbursement) {
+			String projected_reimbursement, String employee_id) {
 		super();
-		TRF_id = tRF_id;
+		TRF_id = 0;
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.basic_info_placeholder = basic_info_placeholder;
@@ -42,6 +44,7 @@ public class TRF {
 		this.head_approval_exist = head_approval_exist;
 		this.work_time_missed = work_time_missed;
 		this.projected_reimbursement = projected_reimbursement;
+		this.employee_id = employee_id;
 	}
 	public int getTRF_id() {
 		return TRF_id;
@@ -145,6 +148,14 @@ public class TRF {
 	public void setProjected_reimbursement(String projected_reimbursement) {
 		this.projected_reimbursement = projected_reimbursement;
 	}
+	
+	
+	public String getEmployee_id() {
+		return employee_id;
+	}
+	public void setEmployee_id(String employee_id) {
+		this.employee_id = employee_id;
+	}
 	@Override
 	public String toString() {
 		return "TRF [TRF_id=" + TRF_id + ", first_name=" + first_name + ", last_name=" + last_name
@@ -154,8 +165,9 @@ public class TRF {
 				+ justification + ", optional_attachments_exist=" + optional_attachments_exist
 				+ ", supervisor_approval_exist=" + supervisor_approval_exist + ", head_approval_exist="
 				+ head_approval_exist + ", work_time_missed=" + work_time_missed + ", projected_reimbursement="
-				+ projected_reimbursement + "]";
+				+ projected_reimbursement + ", employee_id=" + employee_id + "]";
 	}
+	
 	
     
 }
