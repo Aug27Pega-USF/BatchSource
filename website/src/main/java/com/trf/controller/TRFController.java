@@ -3,6 +3,7 @@ package com.trf.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import com.trf.DAOImpl.TRFDaoImpl;
+import com.trf.beans.Employee;
 import com.trf.beans.TRF;
 
 public class TRFController {
@@ -75,7 +76,14 @@ public class TRFController {
 		}else {
 			dh_approval="N";
 		}
-		
+		Employee emp = (Employee) request.getSession().getAttribute("Employee");
+		String id = emp.getUser_type_id();
+		if (id.equals("H")) {
+			dh_approval="Y";
+			ds_approval="Y";
+		}else if (id.equals("S")) {
+			ds_approval="Y";
+		}
 		String projected_reimbursement=request.getParameter("projected_reimbursement");	
 		String employee_id = String.valueOf(request.getSession().getAttribute("EmployeeID"));
 		TRFDaoImpl trfDaoImpl = new TRFDaoImpl();

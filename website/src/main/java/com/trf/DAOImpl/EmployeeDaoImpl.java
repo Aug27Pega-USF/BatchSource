@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-
 import com.trf.DAO.EmployeeDao;
 import com.trf.beans.Employee;
 import com.trf.util.ConnFactory;

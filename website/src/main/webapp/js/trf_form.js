@@ -1,6 +1,5 @@
-let availablereimbursement=1000; //THIS WILL NEED TO TAKE IN VALUES FROM SQL.
-var level = '<%= session.getAttribute("level") %>';
-var employeeid = '<%= session.getAttribute("EmployeeID") %>';
+let availablereimbursement=document.getElementsByTagName("body")[0].dataset.available_reimbursement;
+
 function pr_calculation(){
     var cost;
     if(document.getElementById("cost").checkValidity()){
@@ -24,7 +23,7 @@ function pr_calculation(){
     if(reimbursement>availablereimbursement){
         reimbursement=availablereimbursement;
     }
-    document.getElementById("projected_reimbursement").value=reimbursement.toFixed(2);
+    document.getElementById("projected_reimbursement").value=reimbursement;
     }else{
         document.getElementById("projected_reimbursement").value="";
     }
@@ -75,5 +74,25 @@ window.onload=function(){
     today = yyyy+'-'+mm+'-'+dd;
     document.getElementById("date").setAttribute("min", today);
     document.getElementById("date").setAttribute("value", today);
-    document.getElementById("grading_format").setAttribute("onchange", "passing_grade()")
+    document.getElementById("grading_format").setAttribute("onchange", "passing_grade()");
+    employeeAutoUpdate(document.getElementsByTagName("body")[0].dataset.isready);
+}
+
+function employeeAutoUpdate(x){
+	if (!x){
+		setTimeout(employeeAutoUpdate.bind(document.getElementsByTagName("body")[0].dataset.isready), 500);
+	}
+    document.getElementById("first_name").value=document.getElementsByTagName("body")[0].dataset.first_name;
+    document.getElementById("last_name").value=document.getElementsByTagName("body")[0].dataset.last_name;
+    document.getElementById("employee_info").value=document.getElementsByTagName("body")[0].dataset.basic_info_placeholder;
+    availablereimbursement=document.getElementsByTagName("body")[0].dataset.available_reimbursement;
+    if (document.getElementsByTagName("body")[0].dataset.user_type_id=="H"){
+    	document.getElementById("supervisortext").textContent="Upload not necessary.";
+    	document.getElementById("headtext").textContent="Upload not necessary.";
+    	document.getElementById("dhapprovalfile").style.visibility="hidden";
+    	document.getElementById("dsapprovalfile").style.visibility="hidden";
+    }else if (document.getElementsByTagName("body")[0].dataset.user_type_id=="S"){
+    	document.getElementById("supervisortext").textContent="Upload not necessary.";
+    	document.getElementById("dsapprovalfile").style.visibility="hidden";
+    };
 }

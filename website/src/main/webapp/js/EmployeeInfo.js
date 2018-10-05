@@ -1,7 +1,8 @@
-//window.addEventListener("load", getEmpInfo());
-window.onload = function(e){ 
+window.addEventListener("load", getEmpInfo());
+/*window.onload = function(e){ 
    getEmpInfo();
-}
+}*/
+
 function getEmpInfo() {
 	
 	let xhttp = new XMLHttpRequest();
@@ -28,4 +29,5 @@ function setValues(emp){
 	e_info.available_reimbursement = emp.available_reimbursement;
 	e_info.pending_reimbursement = emp.pending_reimbursement;
 	e_info.awarded_reimbursement = emp.awarded_reimbursement;
+	e_info.isready = "true";
 }
