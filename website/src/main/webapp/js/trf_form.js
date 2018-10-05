@@ -23,7 +23,9 @@ function pr_calculation(){
     if(reimbursement>availablereimbursement){
         reimbursement=availablereimbursement;
     }
-    document.getElementById("projected_reimbursement").value=reimbursement;
+    var reimbursementnumber=Number.parseFloat(reimbursement).toFixed(2);
+    document.getElementById("projected_reimbursement").value=reimbursementnumber;
+    
     }else{
         document.getElementById("projected_reimbursement").value="";
     }
@@ -44,11 +46,11 @@ function default70(){
 function passing_grade(){
     let g_format = document.getElementById("grading_format").value;
     if(g_format=="Percentage"){
-        document.getElementById("passing_grade").innerHTML="Passing Grade (%): <input type=\"number\"  id=\"percentage_pass\" min=\"0\" max=\"110\" step=\"1\" value = \"70\" required/> <div id= \"grade_default\" style=\"display: inline-block;\">(Default)</div>";
+        document.getElementById("passing_grade").innerHTML="Passing Grade (%): <input type=\"number\"  id=\"percentage_pass\" name=\"percentage_pass\" min=\"0\" max=\"110\" step=\"1\" value = \"70\" required/> <div id= \"grade_default\" style=\"display: inline-block;\">(Default)</div>";
         document.getElementById("percentage_pass").setAttribute("onchange", "default70()"); 
         document.getElementById("passing_grade").style.display="block"
     }else if(g_format=="Letter Grade"){
-        document.getElementById("passing_grade").innerHTML="Passing Grade: <select id=\"letter_pass\" required><option value=\"A+\">A+</option><option value=\"A\">A</option><option value=\"A-\">A-</option><option value=\"B+\">B+</option><option value=\"B\">B</option><option value=\"B-\">B-</option><option value=\"C+\">C+</option><option value=\"C\">C</option><option value=\"C-\" selected=\"selected\">C- (default)</option><option value=\"D+\">D+</option><option value=\"D\">D</option><option value=\"D-\">D-</option></select>";
+        document.getElementById("passing_grade").innerHTML="Passing Grade: <select id=\"letter_pass\" name=\"letter_pass\" required><option value=\"A+\">A+</option><option value=\"A\">A</option><option value=\"A-\">A-</option><option value=\"B+\">B+</option><option value=\"B\">B</option><option value=\"B-\">B-</option><option value=\"C+\">C+</option><option value=\"C\">C</option><option value=\"C-\" selected=\"selected\">C- (default)</option><option value=\"D+\">D+</option><option value=\"D\">D</option><option value=\"D-\">D-</option></select>";
         document.getElementById("passing_grade").style.display="block"
     }else{
         document.getElementById("passing_grade").innerHTML="";

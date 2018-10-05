@@ -1,7 +1,4 @@
 window.addEventListener("load", getEmpInfo());
-/*window.onload = function(e){ 
-   getEmpInfo();
-}*/
 
 function getEmpInfo() {
 	
