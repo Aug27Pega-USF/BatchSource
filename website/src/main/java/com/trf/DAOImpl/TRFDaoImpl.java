@@ -14,7 +14,7 @@ public class TRFDaoImpl implements TRFDao{
 	public int insertTRF(TRF t) {
 		Connection conn= cf.getConnection();
 		try {
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO TUITION_REIMBURSEMENT_FORM VALUES(?,?,?,?,TO_DATE(?,'YYYY-MM-DD hh24:mi'),?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO TUITION_REIMBURSEMENT_FORM (TRF_ID, FIRST_NAME, LAST_NAME, BASIC_INFO_PLACEHOLDER, EVENT_DATETIME, EVENT_LOCATION, EVENT_DESCRIPTION, EVENT_COST, GRADING_FORMAT, PASSING_GRADE, EVENT_TYPE_ID, WORK_RELATED_JUSTIFICATION, OPTIONAL_ATTACHMENTS_EXIST, SUPERVISOR_APPROVAL_EXIST, HEAD_APPROVAL_EXIST, WORK_TIME_MISSED, PROJECTED_REIMBURSEMENT, USER_ID)VALUES(?,?,?,?,TO_DATE(?,'YYYY-MM-DD hh24:mi'),?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			ps.setString(1, "0");
 			ps.setString(2, t.getFirst_name());
 			ps.setString(3, t.getLast_name());
