@@ -31,9 +31,9 @@ public class TRFController {
 		String grading_format=request.getParameter("grading_format");
 		
 		String passing_grade="";
-		if(grading_format=="Letter Grade") {
+		if(grading_format.equals("Letter Grade")) {
 			passing_grade=request.getParameter("letter_pass");
-		}else if(grading_format=="Percentage"){	
+		}else if(grading_format.equals("Percentage")){	
 			passing_grade=request.getParameter("percentage_pass");
 		}
 		String event_type=request.getParameter("event_type");

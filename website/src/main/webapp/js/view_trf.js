@@ -17,18 +17,30 @@ function view_trf() {
 
 function setValues(trf_list){
 	for (i=0; i<trf_list.length; i++){
-		<th>Event Type</th><th>Grading Format</th><th>Passing Grade</th><th>Justification</th><th>Current Status</th></tr></thead>
+		if (trf_list[i].passing_grade==null){
+			trf_list[i].passing_grade="N/A"
+		}
+		let current_status="Approved";
+		if(trf_list[i].supervisor_approval_exist=="N"){
+			current_status="Waiting for Direct Supervisor Approval";
+		} else if (trf_list[i].head_approval_exist=="N"){
+			current_status="Waiting for Department Head Approval";
+		} else if (trf_list[i].benco_approval_exist=="N"){
+			current_status="Waiting for Benefits Coordinator Approval";
+		}
+		let pr_re = Number.parseFloat(trf_list[i].projected_reimbursement).toFixed(2);
+		
 		var eachrow= "<tr>" + "<td>" + trf_list[i].trf_id + "</td>"
-		+ "<td>" + trf_list[i].trf_id + "</td>"
-		+ "<td>" + trf_list[i].projected_reimbursement + "</td>"
+		+ "<td>" + "$"+ pr_re + "</td>"
 		+ "<td>" + trf_list[i].datetime + "</td>"
 		+ "<td>" + trf_list[i].location + "</td>"
-		+ "<td>" + trf_list[i].event type  + "</td>"
-		+ "<td>" + trf_list[i].trf_id + "</td>"
-		+ "<td>" + trf_list[i].trf_id + "</td>"
+		+ "<td>" + trf_list[i].description + "</td>"
+		+ "<td>" + trf_list[i].event_type_id  + "</td>"
+		+ "<td>" + trf_list[i].grading_format+ "</td>"
+		+ "<td>" + trf_list[i].passing_grade + "</td>"
+		+ "<td>" + trf_list[i].justification + "</td>"
+		+ "<td>" + current_status + "</td>"
 		+ "</tr>";
-		
-		
-		
+		document.getElementById("trfbody").innerHTML+=eachrow;
 	}
 }
