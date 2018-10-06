@@ -14,7 +14,7 @@ function pr_calculation(){
     } else if(event_type=="cp_classes"){
         reimbursement=Math.round(cost*75)/100;
     } else if(event_type=="certification"){
-        reimbursement=cost;
+        reimbursement=Math.round(cost*100)/100;
     } else if(event_type=="technical_training"){
         reimbursement=Math.round(cost*90)/100;
     }else if(event_type=="other"){

@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trf.DAOImpl.TRFDaoImpl;
+import com.trf.DAOImpl.TRFFullDaoImpl;
 import com.trf.DAOImpl.TRFPacketDaoImpl;
 import com.trf.beans.TRFPacket;
 import com.trf.beans.Employee;
 import com.trf.beans.TRF;
+import com.trf.beans.TRFFull;
 
 public class TRFController {
 	public static String submitTRF(HttpServletRequest request) {
@@ -104,6 +106,19 @@ public class TRFController {
 		TRFPacketDaoImpl tpdi = new  TRFPacketDaoImpl();
 		System.out.println(request.getSession().getAttribute("EmployeeID"));
 		ArrayList<TRFPacket> trf_list=tpdi.getTRFPacketsbyID(Integer.parseInt(String.valueOf(request.getSession().getAttribute("EmployeeID"))));
+		try {
+			response.getWriter().write(new ObjectMapper().writeValueAsString(trf_list));
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static String BC_viewTRFJSON(HttpServletRequest request, HttpServletResponse response) {
+		TRFFullDaoImpl tfdi = new  TRFFullDaoImpl();
+		ArrayList<TRFFull> trf_list=tfdi.getTRFFullbyID_BC(String.valueOf(request.getSession().getAttribute("Level")));
 		try {
 			response.getWriter().write(new ObjectMapper().writeValueAsString(trf_list));
 		} catch (JsonProcessingException e) {

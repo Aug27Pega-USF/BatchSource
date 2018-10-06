@@ -64,7 +64,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return "";
 	}
 	
-	public String DSApprove(int trfid) {
+	public void DSApprove(int trfid) {
         Connection conn = cf.getConnection();
         String sql = "{call DSAPPROVE(?)";
         try {
@@ -75,9 +75,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return "";
     }
-    public String DHApprove(int trfid) {
+    public void DHApprove(int trfid) {
         Connection conn = cf.getConnection();
         String sql = "{call DHAPPROVE(?)}";
         try {
@@ -89,9 +88,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return "";
     }
-    public String BCApprove(int trfid) {
+    public void BCApprove(int trfid) {
         Connection conn = cf.getConnection();
         String sql = "{call BCAPPROVE(?)}";
         try {
@@ -104,9 +102,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return "";
     }
-    public String denied(int trfid) {
+    public void denied(int trfid) {
         Connection conn = cf.getConnection();
         String sql = "{call TRF_DENIED(?)}";
         try {
@@ -117,7 +114,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return "";
     }
 
 }
