@@ -120,11 +120,6 @@ BEGIN
 END;
 /
 
-INSERT ALL
-INTO TUITION_REIMBURSEMENT_FORM (0, FIRST_NAME, LAST_NAME, BASIC_INFO_PLACEHOLDER, EVENT_DATETIME, EVENT_LOCATION, ) VALUES
-
-SELECT * FROM dual;
-
 
 
 CREATE OR REPLACE FUNCTION LOGIN(IUSERNAME VARCHAR2, IPASSWORD VARCHAR2)
@@ -181,3 +176,9 @@ BEGIN
     COMMIT;
 END;
 /
+
+--this should find everyone down.
+select user_id from employee where refersto=7 and USER_TYPE_ID='S'; 
+select user_id from employee where refersto=7 and USER_TYPE_ID='E'; --these trf reports do not need supervisor approval
+SELECT c.user_id FROM EMPLOYEE a JOIN EMPLOYEE b ON (b.refersto = a.user_id) JOIN EMPLOYEE c ON (c.refersto = b.user_id) where a.user_id=7;
+--these trf reports need supervisor approval

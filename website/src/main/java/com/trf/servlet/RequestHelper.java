@@ -24,6 +24,9 @@ public class RequestHelper {
 	case "/website/html/BC_TRFviewJSON.do":
 		System.out.println("bc_trfview");
 		return TRFController.BC_viewTRFJSON(request, response);
+	case "/website/html/DSDH_viewJSON.do":
+		System.out.println("dsdh_trfview");
+		return TRFController.DSDH_viewTRFJSON(request,response);
 	case "/website/html/TRF.do":
 		System.out.println("in trf do");
 		return TRFController.submitTRF(request);
@@ -33,6 +36,18 @@ public class RequestHelper {
 	case "/website/html/BCDeny.do":
 		System.out.println("bcdeny");
 		return ApproveController.bcdeny(request);
+	case "/website/html/DSApprove.do":
+		System.out.println("dsapprove");
+		return ApproveController.dsapprovedeny(request);
+	case "/website/html/DSDeny.do":
+		System.out.println("dsdeny");
+		return ApproveController.dsdeny(request);
+	case "/website/html/DHApprove.do":
+		System.out.println("dhapprove");
+		return ApproveController.dhapprovedeny(request);
+	case "/website/html/DHDeny.do":
+		System.out.println("dhdeny");
+		return ApproveController.dhdeny(request);
 	default:
 		return "/html/Login.html";
 	}

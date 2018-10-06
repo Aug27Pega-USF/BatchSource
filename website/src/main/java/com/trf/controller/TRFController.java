@@ -128,4 +128,24 @@ public class TRFController {
 		}
 		return null;
 	}
+	
+	public static String DSDH_viewTRFJSON(HttpServletRequest request, HttpServletResponse response) {
+		TRFFullDaoImpl tfdi = new  TRFFullDaoImpl();
+		ArrayList<TRFFull> trf_list = null;
+		if (String.valueOf(request.getSession().getAttribute("Level")).equals("H")) {
+			System.out.println("returning head in dsdh_viewtrfjson in trfcontroller");
+			trf_list=tfdi.getTRFFullbyID_DH(Integer.parseInt(String.valueOf(request.getSession().getAttribute("EmployeeID"))));
+		} else if (String.valueOf(request.getSession().getAttribute("Level")).equals("S")) {
+			System.out.println("returning supervisor in dsdh_viewtrfjson in trfcontroller");
+			trf_list=tfdi.getTRFFullbyID_DS(Integer.parseInt(String.valueOf(request.getSession().getAttribute("EmployeeID"))));
+		}
+		try {
+			response.getWriter().write(new ObjectMapper().writeValueAsString(trf_list));
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

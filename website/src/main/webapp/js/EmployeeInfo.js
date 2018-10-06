@@ -6,16 +6,19 @@ function getEmpInfo() {
 	xhttp.onreadystatechange = function() {
 		if(xhttp.readyState == 4 && xhttp.status==200) {
 			let emp = JSON.parse(xhttp.responseText);
-			setValues(emp);
+			if (emp.user_type_id=='H' || emp.user_type_id=='S'){
+				document.getElementById("Approve-link").innerHTML="Approve TRF"
+			}
+			setemployeeValues(emp);
 		}
 	}
-	
+		
 	xhttp.open("GET", 'http://localhost:8080/website/html/EmpJSON.do', true); 
 	xhttp.send();
 	
 }
 
-function setValues(emp){
+function setemployeeValues(emp){
 	let e_info = document.getElementsByTagName("body")[0].dataset;
 	e_info.id = emp.user_id;
 	e_info.refersto = emp.refersto;

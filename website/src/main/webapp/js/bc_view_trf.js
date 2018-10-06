@@ -21,14 +21,6 @@ function setValues(trf_list){
 		if (trf_list[i].passing_grade==null){
 			trf_list[i].passing_grade="N/A"
 		}
-		let current_status="Approved";
-		if(trf_list[i].supervisor_approval_exist=="N"){
-			current_status="Waiting for Direct Supervisor Approval";
-		} else if (trf_list[i].head_approval_exist=="N"){
-			current_status="Waiting for Department Head Approval";
-		} else if (trf_list[i].benco_approval_exist=="N"){
-			current_status="Waiting for Benefits Coordinator Approval";
-		}
 		let pr_re = Number.parseFloat(trf_list[i].projected_reimbursement).toFixed(2);
 		let event_cost = Number.parseFloat(trf_list[i].event_cost).toFixed(2);
 		
@@ -40,7 +32,7 @@ function setValues(trf_list){
 		+ "<td>" + trf_list[i].event_datetime + "</td>"
 		+ "<td>" + trf_list[i].event_location + "</td>"
 		+ "<td>" + trf_list[i].event_description + "</td>"
-		+ "<td>" + event_cost + "</td>"
+		+ "<td>" + "$"+ event_cost + "</td>"
 		+ "<td>" + trf_list[i].grading_format + "</td>"
 		+ "<td>" + trf_list[i].passing_grade + "</td>"
 		+ "<td>" + trf_list[i].event_type_id + "</td>"
