@@ -16,7 +16,7 @@ public class TRFMessageDAOImpl implements TRFMessageDAO {
 	@Override
 	public ArrayList<TRFMessage> getMessageById(int id) {
 		ArrayList<TRFMessage> msg_list = new ArrayList<TRFMessage>();
-		String sql = "SELECT * FROM MESSAGES WHERE USER_ID = ? ORDER BY MESSAGE_DATE";
+		String sql = "SELECT * FROM MESSAGES WHERE USER_ID = ? ORDER BY MESSAGE_DATE DESC";
 		Connection conn = cf.getConnection();
 		try {
 			PreparedStatement prest = conn.prepareStatement(sql);
@@ -32,6 +32,54 @@ public class TRFMessageDAOImpl implements TRFMessageDAO {
 		return msg_list;
 	}
 
+	
+	public String getpassinggrade(int trf_id) {
+		String sql = "SELECT PASSING_GRADE FROM TUITION_REIMBURSEMENT_FORM WHERE TRF_ID=?";
+		Connection conn = cf.getConnection();
+		String r="";
+		try {
+			PreparedStatement prest = conn.prepareStatement(sql);
+			prest.setString(1, Integer.toString(trf_id));
+			ResultSet rs = prest.executeQuery();
+			while (rs.next()) {
+				 r=rs.getString(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if (r.equals("")) {
+			return r;
+		}else {
+			r=" Passing Grade was " + r + ".";
+		}
+		return r;
+	}
+	
+	public void denyGrade(int trf_id) {
+		Connection conn= cf.getConnection();
+		try {
+			PreparedStatement ps = conn.prepareStatement("UPDATE MESSAGES SET FLAG='GD' WHERE TRF_ID=? AND FLAG='GC'");
+			ps.setInt(1, trf_id);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	public void approveGrade(int trf_id) {
+		Connection conn= cf.getConnection();
+		try {
+			PreparedStatement ps = conn.prepareStatement("UPDATE MESSAGES SET FLAG='GA' WHERE TRF_ID=? AND FLAG='GC'");
+			ps.setInt(1, trf_id);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	
+	
 	public void addMessage(int uid, int tid, String flag) {
 		Connection conn = cf.getConnection();
 		if (uid == 0) {
@@ -79,6 +127,18 @@ public class TRFMessageDAOImpl implements TRFMessageDAO {
 			case "UP":
 				msg = "TRF has been provided additional information";
 				break;
+			case "PR":
+				msg = "Employee has provided proof of presentation.";
+				break;
+			case "GC":
+				msg = "Employee has provided proof of grade." + getpassinggrade(tid);
+				break;
+			case "BG":
+				msg = "BenCo has denied your TRF on basis of Grade.";
+				break;
+			case "MA":
+				msg = "Your TRF has been accepted. Reimbursement has been awarded.";
+				break;
 			}
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, uid);
@@ -91,5 +151,7 @@ public class TRFMessageDAOImpl implements TRFMessageDAO {
 			e.printStackTrace();
 		}
 	}
+
+
 
 }

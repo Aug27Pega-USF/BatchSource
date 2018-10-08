@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trf.DAOImpl.EmployeeDaoImpl;
 import com.trf.DAOImpl.TRFDaoImpl;
 import com.trf.DAOImpl.TRFFullDaoImpl;
+import com.trf.DAOImpl.TRFMessageDAOImpl;
 import com.trf.DAOImpl.TRFPacketDaoImpl;
 import com.trf.beans.TRFPacket;
 import com.trf.beans.Employee;
@@ -158,5 +159,25 @@ public class TRFController {
 		String trf_id = request.getParameter("TRF_ID");
 		request.getSession().setAttribute("TRF_ID", trf_id);
 		return "BenCoApproval.html";
+	}
+
+	public static String submitPresentation(HttpServletRequest request) {//change the supervisor_approval_exist on trf from Y to A, send a message to direct supervisor asking for presentation approval.
+		String trf_id = request.getParameter("TRF_ID");
+		TRFDaoImpl tdi= new TRFDaoImpl();
+		tdi.submitPresentation(Integer.parseInt(trf_id));// changes supervisor_approval_exist
+		TRFMessageDAOImpl tmdi = new TRFMessageDAOImpl();
+		EmployeeDaoImpl edi = new EmployeeDaoImpl();
+		int supervisor= edi.get_boss(Integer.parseInt(trf_id), 2);
+		tmdi.addMessage(supervisor, Integer.parseInt(trf_id), "PR");
+		return "EmployeeHome.html";
+	}
+
+	public static String submitGrade(HttpServletRequest request) {//change the benco approval from y to a, and send message to benco (-1) with message GC
+		String trf_id = request.getParameter("TRF_ID");
+		TRFDaoImpl tdi= new TRFDaoImpl();
+		tdi.submitGrade(Integer.parseInt(trf_id));// changes benco approval
+		TRFMessageDAOImpl tmdi = new TRFMessageDAOImpl();
+		tmdi.addMessage(-1, Integer.parseInt(trf_id), "GC");
+		return "EmployeeHome.html";
 	}
 }

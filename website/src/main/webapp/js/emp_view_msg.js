@@ -19,9 +19,9 @@ function setMessages(msg_list) {
 		var button = "";
 		switch (msg_list[i].flag) {
 		case "RI":
-			button = "<form action='SubmitInfo.do' method='POST' accept= '.pdf, .png, .jpeg, .txt, .doc' required> <input type='text' name='TRF_ID' style='display:none' value='"
+			button = "<form action='SubmitInfo.do' method='POST'> <input type='text' name='TRF_ID' style='display:none' value='"
 				+ msg_list[i].trfid
-				+ "'//> <input type='file' name='filename'//><input type='submit' value='Submit' //> </form>";
+				+ "'//> <input type='file' name='filename' accept= '.pdf, .png, .jpeg, .txt, .doc' required//><input type='submit' value='Submit' //> </form>";
 			break;
 		case "AA":
 			button = "<form action='AcceptChanges.do' method='POST'><input type='text' name='TRF_ID' style='display:none' value='"
@@ -29,6 +29,7 @@ function setMessages(msg_list) {
 				+ "'//><input type='submit' value='Accept Changes'//></form><form action='WithdrawApplication.do' method='POST'><input type='text' name='TRF_ID' style='display:none' value='"
 				+ msg_list[i].trfid
 				+ "'//><input type='submit' value='Withdraw Application'//></form>"
+				break;
 		case "RE":
 			button = "Additional Info Submitted";
 			break;
@@ -38,6 +39,26 @@ function setMessages(msg_list) {
 		case "WA":
 			button = "Application Withdrawn";
 			break;
+		case "GD":
+			button = "Grade Check Denied";
+			break;
+		case "GA":
+			button = "Grade Check Accepted";
+			break;
+		case "PR":
+            button = button = "<form action='ApprovePresentation.do' method='POST'><input type='text' name='TRF_ID' style='display:none' value='"
+                + msg_list[i].trfid
+                + "'//><input type='submit' value='Approve'//></form><form action='DenyPresentation.do' method='POST'><input type='text' name='TRF_ID' style='display:none' value='"
+                + msg_list[i].trfid
+                + "'//><input type='submit' value='Deny'//></form>";
+            break;
+        case "GC":
+            button = button = "<form action='ApproveGrade.do' method='POST'><input type='text' name='TRF_ID' style='display:none' value='"
+                + msg_list[i].trfid
+                + "'//><input type='submit' value='Approve'//></form><form action='DenyGrade.do' method='POST'><input type='text' name='TRF_ID' style='display:none' value='"
+                + msg_list[i].trfid
+                + "'//><input type='submit' value='Deny'//></form>";
+            break;
 		}
 
 		var eachrow = "<tr>"

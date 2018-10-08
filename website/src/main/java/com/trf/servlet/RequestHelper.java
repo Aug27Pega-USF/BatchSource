@@ -65,6 +65,27 @@ public class RequestHelper {
 	case "/website/html/updateReimbursement.do":
 		System.out.println("updateReimbursement");
 		return ReimbursementController.viewREJSON(request,response);
+	case "/website/html/UpdateReimbursement.do":
+		System.out.println("UpdateReimbursement");
+		return ReimbursementController.updateReimbursement(request);
+	case "/website/html/AcceptChanges.do":
+		System.out.println("accept changes");
+		return ApproveController.acceptchanges(request);
+	case "/website/html/WithdrawApplication.do":
+		System.out.println("withdraw application");
+		return ApproveController.withdrawapplication(request);
+	case "/website/html/SubmitPresentation.do":
+		System.out.println("submitPresentation");
+		return TRFController.submitPresentation(request);
+	case "/website/html/SubmitGradingFormat.do":
+		System.out.println("submit grade");
+		return TRFController.submitGrade(request);
+	case "/website/html/ApproveGrade.do":
+		System.out.println("approve grade");
+		return ApproveController.approveGrade(request);
+	case "/website/html/DenyGrade.do":
+		System.out.println("deny grade");
+		return ApproveController.denyGrade(request);
 	default:
 		return "/html/Login.html";
 	}

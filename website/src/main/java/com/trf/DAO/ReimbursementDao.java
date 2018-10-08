@@ -1,4 +1,4 @@
-package com.trf.controller;
+package com.trf.DAO;
 
 public interface ReimbursementDao {
 

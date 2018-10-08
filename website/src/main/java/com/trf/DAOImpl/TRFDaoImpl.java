@@ -40,4 +40,52 @@ public class TRFDaoImpl implements TRFDao{
 		return 0;
 	}
 	
+	public void updateTRFExceed(String exceedreason, int trf_id) {
+		Connection conn= cf.getConnection();
+		try {
+			PreparedStatement ps = conn.prepareStatement("UPDATE TUITION_REIMBURSEMENT_FORM SET EXCEEDREASON=? WHERE TRF_ID=?");
+			ps.setString(1, exceedreason);
+			ps.setInt(2, trf_id);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void updateTRFRei(float projected_rei, int trf_id) {
+		Connection conn= cf.getConnection();
+		try {
+			PreparedStatement ps = conn.prepareStatement("UPDATE TUITION_REIMBURSEMENT_FORM SET PROJECTED_REIMBURSEMENT=? WHERE TRF_ID=?");
+			ps.setFloat(1, projected_rei);
+			ps.setInt(2, trf_id);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void submitPresentation(int trf_id) {
+		Connection conn= cf.getConnection();
+		try {
+			PreparedStatement ps = conn.prepareStatement("UPDATE TUITION_REIMBURSEMENT_FORM SET SUPERVISOR_APPROVAL_EXIST='A' WHERE TRF_ID=?");
+			ps.setInt(1, trf_id);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void submitGrade(int trf_id) {
+		Connection conn= cf.getConnection();
+		try {
+			PreparedStatement ps = conn.prepareStatement("UPDATE TUITION_REIMBURSEMENT_FORM SET BC_APPROVAL='A' WHERE TRF_ID=?");
+			ps.setInt(1, trf_id);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 }

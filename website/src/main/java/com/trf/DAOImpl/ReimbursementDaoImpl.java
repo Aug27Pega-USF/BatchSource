@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.trf.controller.ReimbursementDao;
+import com.trf.DAO.ReimbursementDao;
 import com.trf.util.ConnFactory;
 
 public class ReimbursementDaoImpl implements ReimbursementDao{

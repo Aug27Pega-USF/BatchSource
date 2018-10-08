@@ -16,7 +16,6 @@ public class LoginController {
 		EmployeeDaoImpl employeeDaoImpl = new EmployeeDaoImpl();
 		int employeeid=employeeDaoImpl.login(username,password);
 		if (employeeid!=0) {
-			request.getSession().invalidate();
 			Employee emp= employeeDaoImpl.getEmployeebyId(employeeid);
 			request.getSession().setAttribute("Employee", emp);
 			System.out.println(request.getSession().getAttribute("Employee"));

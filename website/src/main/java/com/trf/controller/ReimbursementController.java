@@ -7,7 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.trf.DAOImpl.EmployeeDaoImpl;
 import com.trf.DAOImpl.ReimbursementDaoImpl;
+import com.trf.DAOImpl.TRFDaoImpl;
+import com.trf.DAOImpl.TRFMessageDAOImpl;
 import com.trf.beans.Reimbursement;
 
 public class ReimbursementController {
@@ -30,8 +33,27 @@ public class ReimbursementController {
 	}
 
 	public static String updateReimbursement(HttpServletRequest request) { //takes in values.
-		// TODO Auto-generated method stub
-		return null;
+		float previous_reimbursement= Float.parseFloat((String.valueOf(request.getParameter("current_re"))));
+		float new_reimbursement= Float.parseFloat((String.valueOf(request.getParameter("reimbursement"))));
+		float previous_available= Float.parseFloat((String.valueOf(request.getParameter("avail_re"))));
+		int trf_id= Integer.parseInt((String.valueOf(request.getParameter("TRF_ID"))));
+		String exceedreason= String.valueOf(request.getParameter("exceedreason"));
+		TRFDaoImpl tdi = new TRFDaoImpl();
+		TRFMessageDAOImpl tmdi = new TRFMessageDAOImpl();
+		EmployeeDaoImpl edi = new EmployeeDaoImpl();
+		if (new_reimbursement==previous_reimbursement) {
+			return "BenCoTRF.html";
+		}
+		tdi.updateTRFRei(new_reimbursement, trf_id); //update trf reimbursement
+		if (new_reimbursement<previous_reimbursement) {
+			tmdi.addMessage(0, trf_id, "AA");
+			edi.updateInfo(trf_id); //set trf denied->'A'
+		}
+		if ((new_reimbursement-previous_reimbursement)> previous_available) {
+				tdi.updateTRFExceed(exceedreason, trf_id);
+		}
+		edi.updateEmpRei(new_reimbursement-previous_reimbursement, trf_id); //update employee
+		return "BenCoTRF.html";
 	}
 
 }

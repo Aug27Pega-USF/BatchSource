@@ -166,4 +166,99 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return 0;
 	}
 
+	public void updateEmpRei(float rei_change, int trf_id) { //if positive, available rei-rei_change, pendingrei+rei_change.
+		System.out.println("Rei_change:" + rei_change);
+		Connection conn= cf.getConnection();
+		if (rei_change > 0 ) {
+		try {
+			CallableStatement cs = conn.prepareCall("{call REIINCREASE(?,?)");
+			cs.setInt(1, trf_id);
+			cs.setFloat(2, rei_change);
+			cs.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		}else if (rei_change < 0 ) {
+		try {
+			rei_change=-rei_change;
+			CallableStatement cs = conn.prepareCall("{call REIDECREASE(?,?)");
+			cs.setInt(1, trf_id);
+			cs.setFloat(2, rei_change);
+			cs.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		}
+	}
+
+	public void updateInfo(int trf_id) {
+		Connection conn = cf.getConnection();
+		String sql = "{call TRF_REQUESTINFO(?)}";
+        try {
+            CallableStatement cs = conn.prepareCall(sql);
+            cs.setInt(1, trf_id);
+            cs.execute();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+		
+	}
+	
+	public void withdraw_app(int trf_id) {
+		Connection conn = cf.getConnection();
+		String sql = "{call TRF_WITHDRAW(?)}";
+        try {
+            CallableStatement cs = conn.prepareCall(sql);
+            cs.setInt(1, trf_id);
+            cs.execute();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+	}
+	
+	public void accept_changes(int trf_id) {
+		Connection conn = cf.getConnection();
+		String sql = "{call TRF_ACCEPT(?)}";
+        try {
+            CallableStatement cs = conn.prepareCall(sql);
+            cs.setInt(1, trf_id);
+            cs.execute();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+	}
+	
+	public int get_boss(int trf_id, int employee_level) {
+		Connection conn = cf.getConnection();
+		String sql = "SELECT GET_BOSS(?,?) FROM DUAL";
+		try {
+			PreparedStatement prest = conn.prepareStatement(sql);
+			prest.setInt(1, employee_level);
+			prest.setInt(2, trf_id);
+			ResultSet rs = prest.executeQuery();
+			rs.next();
+			int employee_id = rs.getInt(1);
+			return employee_id;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	public void TRFAwarded(int trf_id) {
+		Connection conn = cf.getConnection();
+		String sql = "{call TRF_AWARD(?)}";
+		try {
+            CallableStatement cs = conn.prepareCall(sql);
+            cs.setInt(1, trf_id);
+            cs.execute();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+	}
+	
 }
