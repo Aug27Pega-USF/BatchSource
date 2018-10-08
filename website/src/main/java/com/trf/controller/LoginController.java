@@ -10,6 +10,7 @@ public class LoginController {
 		if (request.getMethod().equals("GET")) {
 			return "Login.html";
 		}
+		request.getSession().invalidate();
 		String username= request.getParameter("username"); //this is from the html page.
 		String password= request.getParameter("password");
 		EmployeeDaoImpl employeeDaoImpl = new EmployeeDaoImpl();

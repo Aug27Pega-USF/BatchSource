@@ -44,3 +44,4 @@ function setValues(trf_list){
 		document.getElementById("trfbody").innerHTML+=eachrow;
 	}
 }
+

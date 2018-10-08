@@ -1,10 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta charset="ISO-8859-1">
+<title>Changing Reimbursement</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+<link rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 </head>
 <body>
+ <a href="http://localhost:8080/website/html/BenCoTRF.html" class="btn-primary" id="BenCo-trf-link"><button>Back</button></a>
+  <a href="http://localhost:8080/website/html/Login.html" class="btn-primary" id="Logout-link"><button>Logout</button></a>
+<form action="UpdateReimbursement.do" method="POST">
+	<span id=trf_id>TRF ID: Loading...</span>
+	<br/>
+	Reimbursement: $<input id = "reimbursement" name="reimbursement" type="number" min="0.00" step="0.01" required>
+	<input id=TRF_ID name="TRF_ID" style='display:none'/>
+	<input id=avail_re name="avail_re" style='display:none'/>
+	<input id=current_re name="current_re" style='display:none'/>
+	<br/>
+	<p id="exceedreason" style="display:none;"></p>
+	<input type="submit" value="Update Reimbursement" />
+</form>
 
+ GET A JS WHICH GETS CURRENT REIMBURSEMENT OF TRF, AVAILABLE REIMBURSEMENT OF USER_ID OF TRF.
+ WE HAVE A FORM WITH A NUMBER TEXT INPUT AND A DEFAULT VALUE SET BY CURRENT REIMBURSEMENT OF TRF.
+ IF CHANGED NUMBER IS HIGHER THAN DEFAULT, a REQUIRED textbox will pop up for exceed reason if and only if
+ the increase would be greater than the available reimbursement. Otherwise, nothing changes.
+ THE SUBMIT BUTTON WILL CHANGE THE REIMBURSEMENT ON THE TRF, and the reimbursement on the user.
+ if the user reimbursement would cause available to be less than 0, we set it to 0. (SQL?)
+ 
+ IF CHANGED NUMBER IS LOWER THAN DEFAULT, a message will be sent that the reimbursement has been lowered.
+ 
+ 
 </body>
+<script type="text/javascript" src="../js/get_reimbursement.js"></script>
 </html>

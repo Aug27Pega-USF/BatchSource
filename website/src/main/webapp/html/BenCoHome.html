@@ -3,12 +3,20 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Home</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+<link rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 </head>
 <body>
-	<div class=navigation-bar>
-	<a href="http://localhost:8080/website/html/BenCoHome.html" class="btn-primary" id="BenCo-Home-Link">Home</a>
-	<a href="http://localhost:8080/website/html/BenCoTRF.html" class="btn-primary" id="BenCo-trf-link">Pending TRF</a>
-	<a href="http://localhost:8080/website/html/Login.html" class="btn-primary" id="Logout-link">Logout</a>
-	</div>
+<div class=navigation-bar>
+    <a href="http://localhost:8080/website/html/BenCoHome.html" class="btn-primary" id="BenCo-Home-Link"><button>Home</button></a>
+    <a href="http://localhost:8080/website/html/BenCoTRF.html" class="btn-primary" id="BenCo-trf-link"><button>Pending TRF</button></a>
+    <a href="http://localhost:8080/website/html/Login.html" class="btn-primary" id="Logout-link"><button>Logout</button></a>
+    </div>
 </body>
+	<table>
+	<thead><tr><th>TimeStamp</th><th>TRF_ID</th><th>Message</th><th>Action</th></tr></thead>
+	<tbody id="trfbody"></tbody>
+	</table>
+	<script type="text/javascript" src="../js/emp_view_msg.js"></script>
 </html>

@@ -116,4 +116,54 @@ public class EmployeeDaoImpl implements EmployeeDao {
         }
     }
 
+	public int requestinfo(String trf_id, String user_level) {
+		Connection conn = cf.getConnection();
+		String sql = "{call TRF_REQUESTINFO(?)}";
+        try {
+            CallableStatement cs = conn.prepareCall(sql);
+            cs.setString(1, trf_id);
+            cs.execute();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+		sql = "SELECT GET_BOSS(?,?) FROM DUAL";
+		try {
+			PreparedStatement prest = conn.prepareStatement(sql);
+			String employee_level="1"; //if employee
+			switch(user_level){
+				case "Direct Supervisor":
+					employee_level="2";
+					break;
+				case "Department Head":
+					employee_level="3";
+					break;
+			}
+			prest.setString(1, employee_level);
+			prest.setString(2, trf_id);
+			ResultSet rs = prest.executeQuery();
+			rs.next();
+			int employee_id = rs.getInt(1);
+			return employee_id;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+
+	public int submitinfo(String trf_id) {
+		Connection conn = cf.getConnection();
+		String sql = "{call TRF_GIVENINFO(?)}";
+        try {
+            CallableStatement cs = conn.prepareCall(sql);
+            cs.setString(1, trf_id);
+            cs.execute();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+		return 0;
+	}
+
 }

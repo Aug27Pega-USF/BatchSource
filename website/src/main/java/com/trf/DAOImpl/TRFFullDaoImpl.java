@@ -5,10 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import com.trf.DAO.TRFFullDAO;
 import com.trf.beans.TRFFull;
 import com.trf.util.ConnFactory;
 
-public class TRFFullDaoImpl {
+public class TRFFullDaoImpl implements TRFFullDAO{
 	public static ConnFactory cf = ConnFactory.getInstance();
 
 	public ArrayList<TRFFull> getTRFFullbyID_BC(String Level) {

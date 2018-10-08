@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.trf.DAOImpl.EmployeeDaoImpl;
 import com.trf.DAOImpl.TRFDaoImpl;
 import com.trf.DAOImpl.TRFFullDaoImpl;
 import com.trf.DAOImpl.TRFPacketDaoImpl;
@@ -99,6 +100,10 @@ public class TRFController {
 		TRFDaoImpl trfDaoImpl = new TRFDaoImpl();
 		TRF trf= new TRF(first_name,last_name,employee_info,datetime,location,description,cost,grading_format,passing_grade,event_type,justification,eventfiles,ds_approval,dh_approval, work_missed,projected_reimbursement,employee_id);
 		trfDaoImpl.insertTRF(trf);
+		int employeeid=Integer.parseInt(employee_id);
+		EmployeeDaoImpl employeeDaoImpl = new EmployeeDaoImpl();
+		emp = employeeDaoImpl.getEmployeebyId(employeeid);
+		request.getSession().setAttribute("Employee", emp);
 		return "EmployeeHome.html";
 	}
 	
@@ -147,5 +152,11 @@ public class TRFController {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public static String adjust(HttpServletRequest request) {
+		String trf_id = request.getParameter("TRF_ID");
+		request.getSession().setAttribute("TRF_ID", trf_id);
+		return "BenCoApproval.html";
 	}
 }
