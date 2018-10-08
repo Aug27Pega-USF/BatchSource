@@ -118,4 +118,24 @@ public class ApproveController {
 		return "BenCoHome.html";
 	}
 
+	public static String approvePresentation(HttpServletRequest request) {
+		String trf_id= request.getParameter("TRF_ID");
+		EmployeeDaoImpl edi = new EmployeeDaoImpl();
+		edi.TRFAwarded(Integer.parseInt(trf_id)); //this does everything.
+		TRFMessageDAOImpl tmdi = new TRFMessageDAOImpl();
+		tmdi.addMessage(0, Integer.parseInt(trf_id), "MA");
+		tmdi.approvePresentation(Integer.parseInt(trf_id)); //this changes the message flag.
+		return "EmployeeHome.html";
+	}
+
+	public static String denyPresentation(HttpServletRequest request) {
+		String trf_id= request.getParameter("TRF_ID");
+		EmployeeDaoImpl edi = new EmployeeDaoImpl();
+		edi.denied(Integer.parseInt(trf_id));//this denies the application
+		TRFMessageDAOImpl tmdi = new TRFMessageDAOImpl();
+		tmdi.addMessage(0, Integer.parseInt(trf_id), "PY"); //this sends the message.
+		tmdi.denyPresentation(Integer.parseInt(trf_id)); //this changes the message flag
+		return "EmployeeHome.html";
+	}
+
 }

@@ -26,6 +26,7 @@ public class TRFMessageDAOImpl implements TRFMessageDAO {
 				msg_list.add(
 						new TRFMessage(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5)));
 			}
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -44,6 +45,7 @@ public class TRFMessageDAOImpl implements TRFMessageDAO {
 			while (rs.next()) {
 				 r=rs.getString(1);
 			}
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -61,6 +63,7 @@ public class TRFMessageDAOImpl implements TRFMessageDAO {
 			PreparedStatement ps = conn.prepareStatement("UPDATE MESSAGES SET FLAG='GD' WHERE TRF_ID=? AND FLAG='GC'");
 			ps.setInt(1, trf_id);
 			ps.executeUpdate();
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -72,14 +75,38 @@ public class TRFMessageDAOImpl implements TRFMessageDAO {
 			PreparedStatement ps = conn.prepareStatement("UPDATE MESSAGES SET FLAG='GA' WHERE TRF_ID=? AND FLAG='GC'");
 			ps.setInt(1, trf_id);
 			ps.executeUpdate();
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 	}
 
+	public void denyPresentation(int trf_id) {
+		Connection conn= cf.getConnection();
+		try {
+			PreparedStatement ps = conn.prepareStatement("UPDATE MESSAGES SET FLAG='PD' WHERE TRF_ID=? AND FLAG='PR'");
+			ps.setInt(1, trf_id);
+			ps.executeUpdate();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
-	
+	public void approvePresentation(int trf_id) {
+		Connection conn= cf.getConnection();
+		try {
+			PreparedStatement ps = conn.prepareStatement("UPDATE MESSAGES SET FLAG='PA' WHERE TRF_ID=? AND FLAG='PR'");
+			ps.setInt(1, trf_id);
+			ps.executeUpdate();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	public void addMessage(int uid, int tid, String flag) {
 		Connection conn = cf.getConnection();
 		if (uid == 0) {
@@ -139,6 +166,9 @@ public class TRFMessageDAOImpl implements TRFMessageDAO {
 			case "MA":
 				msg = "Your TRF has been accepted. Reimbursement has been awarded.";
 				break;
+			case "PY":
+				msg = "Supervisor has denied your TRF on basis of Presentation.";
+				break;
 			}
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, uid);
@@ -146,11 +176,14 @@ public class TRFMessageDAOImpl implements TRFMessageDAO {
 			ps.setInt(3, tid);
 			ps.setString(4, flag);
 			ps.executeUpdate();
-
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
+
+
+
 
 
 

@@ -51,7 +51,9 @@ public class TRFFullDaoImpl implements TRFFullDAO{
 							percentage, event_type, rs.getString(12), rs.getString(13), rs.getString(14),
 							rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19),
 							rs.getString(20), rs.getString(21)));
+					
 				}
+				conn.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -99,6 +101,7 @@ public class TRFFullDaoImpl implements TRFFullDAO{
 						rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20),
 						rs.getString(21)));
 			}
+			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -185,6 +188,7 @@ public class TRFFullDaoImpl implements TRFFullDAO{
 						rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20),
 						rs.getString(21)));
 			}
+			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

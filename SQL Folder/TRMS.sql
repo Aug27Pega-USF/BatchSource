@@ -1,4 +1,5 @@
 --these drops are for updating the forms, everything needs to be deleted or improperly formatted data would persist.    
+DROP TABLE MESSAGES;
 DROP TABLE TUITION_REIMBURSEMENT_FORM;
 DROP TABLE EVENT_TYPE_LOOKUP;
 DROP SEQUENCE trf_seq;

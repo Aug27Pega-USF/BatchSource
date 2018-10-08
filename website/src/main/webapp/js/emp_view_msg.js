@@ -45,6 +45,12 @@ function setMessages(msg_list) {
 		case "GA":
 			button = "Grade Check Accepted";
 			break;
+		case "PD":
+			button = "Presentation Check Denied";
+			break;
+		case "PA":
+			button = "Presentation Check Accepted";
+			break;
 		case "PR":
             button = button = "<form action='ApprovePresentation.do' method='POST'><input type='text' name='TRF_ID' style='display:none' value='"
                 + msg_list[i].trfid

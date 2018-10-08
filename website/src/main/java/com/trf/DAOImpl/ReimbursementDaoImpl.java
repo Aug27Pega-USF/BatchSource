@@ -17,6 +17,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 			prest.setString(1, Integer.toString(trf_id));
 			ResultSet rs = prest.executeQuery();
 			rs.next();
+			conn.close();
 			return rs.getString(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -30,6 +31,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 			prest.setString(1, Integer.toString(trf_id));
 			ResultSet rs = prest.executeQuery();
 			rs.next();
+			conn.close();
 			return rs.getString(1);
 		} catch (SQLException e) {
 			e.printStackTrace();

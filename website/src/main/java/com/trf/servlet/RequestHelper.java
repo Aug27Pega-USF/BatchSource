@@ -86,6 +86,12 @@ public class RequestHelper {
 	case "/website/html/DenyGrade.do":
 		System.out.println("deny grade");
 		return ApproveController.denyGrade(request);
+	case "/website/html/ApprovePresentation.do":
+		System.out.println("approve presentation");
+		return ApproveController.approvePresentation(request);
+	case "/website/html/DenyPresentation.do":
+		System.out.println("deny presentation");
+		return ApproveController.denyPresentation(request);
 	default:
 		return "/html/Login.html";
 	}

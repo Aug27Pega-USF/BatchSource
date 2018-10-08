@@ -33,6 +33,7 @@ public class TRFDaoImpl implements TRFDao{
 			ps.setString(16, t.getWork_time_missed());
 			ps.setString(17, t.getProjected_reimbursement());
 			ps.setString(18, t.getEmployee_id());
+			conn.close();
 			return ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -47,6 +48,7 @@ public class TRFDaoImpl implements TRFDao{
 			ps.setString(1, exceedreason);
 			ps.setInt(2, trf_id);
 			ps.executeUpdate();
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -60,6 +62,7 @@ public class TRFDaoImpl implements TRFDao{
 			ps.setFloat(1, projected_rei);
 			ps.setInt(2, trf_id);
 			ps.executeUpdate();
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -71,6 +74,7 @@ public class TRFDaoImpl implements TRFDao{
 			PreparedStatement ps = conn.prepareStatement("UPDATE TUITION_REIMBURSEMENT_FORM SET SUPERVISOR_APPROVAL_EXIST='A' WHERE TRF_ID=?");
 			ps.setInt(1, trf_id);
 			ps.executeUpdate();
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -82,6 +86,7 @@ public class TRFDaoImpl implements TRFDao{
 			PreparedStatement ps = conn.prepareStatement("UPDATE TUITION_REIMBURSEMENT_FORM SET BC_APPROVAL='A' WHERE TRF_ID=?");
 			ps.setInt(1, trf_id);
 			ps.executeUpdate();
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

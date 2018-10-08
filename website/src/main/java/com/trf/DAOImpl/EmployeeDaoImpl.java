@@ -22,6 +22,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			ResultSet rs = prest.executeQuery();
 			rs.next();
 			emp = new Employee(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8), rs.getString(9));
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -41,6 +42,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			if (account_id != 0) {
 				System.out.println("Succesfully logged in " + username + ".");
 			}
+			conn.close();
 			return account_id;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -57,6 +59,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			ResultSet rs = prest.executeQuery();
 			rs.next();
 			String account_level = rs.getString(1);
+			conn.close();
 			return account_level;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -71,6 +74,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             CallableStatement cs = conn.prepareCall(sql);
             cs.setInt(1, trfid);
             cs.execute();
+            conn.close();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -84,6 +88,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             CallableStatement cs = conn.prepareCall(sql);
             cs.setInt(1, trfid);
             cs.execute();
+            conn.close();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -98,6 +103,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             CallableStatement cs = conn.prepareCall(sql);
             cs.setInt(1, trfid);
             cs.execute();
+            conn.close();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -110,6 +116,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             CallableStatement cs = conn.prepareCall(sql);
             cs.setInt(1, trfid);
             cs.execute();
+            conn.close();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -144,6 +151,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			ResultSet rs = prest.executeQuery();
 			rs.next();
 			int employee_id = rs.getInt(1);
+			conn.close();
 			return employee_id;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -159,6 +167,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             CallableStatement cs = conn.prepareCall(sql);
             cs.setString(1, trf_id);
             cs.execute();
+            conn.close();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -175,6 +184,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			cs.setInt(1, trf_id);
 			cs.setFloat(2, rei_change);
 			cs.execute();
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -185,6 +195,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			cs.setInt(1, trf_id);
 			cs.setFloat(2, rei_change);
 			cs.execute();
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -198,6 +209,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             CallableStatement cs = conn.prepareCall(sql);
             cs.setInt(1, trf_id);
             cs.execute();
+            conn.close();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -212,6 +224,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             CallableStatement cs = conn.prepareCall(sql);
             cs.setInt(1, trf_id);
             cs.execute();
+            conn.close();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -225,6 +238,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             CallableStatement cs = conn.prepareCall(sql);
             cs.setInt(1, trf_id);
             cs.execute();
+            conn.close();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -241,6 +255,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			ResultSet rs = prest.executeQuery();
 			rs.next();
 			int employee_id = rs.getInt(1);
+			conn.close();
 			return employee_id;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -255,10 +270,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
             CallableStatement cs = conn.prepareCall(sql);
             cs.setInt(1, trf_id);
             cs.execute();
+            conn.close();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+		
 	}
 	
 }
