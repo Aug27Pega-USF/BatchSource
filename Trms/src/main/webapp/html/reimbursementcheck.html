@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Reimbursement Check</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="reimbursementcheck.css" type="text/css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a href="#" class="navbar-brand">TRMS Runtime</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenu">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Reimbursement Request</a>
+                </li>
+                <li class="nav-item">
+                    <a href="http://localhost:8080/Trms/html/TransactionHistoryM.html" class="nav-link">Reimbursement History</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Reimbursement Check</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a href="#" class="nav-link">Pending Reimbursement</a>
+                </li> -->
+            </ul>
+        </div>
+    </nav>
+    <!-- class="container-fluid Cityscape" -->
+    <form action="" class="container-fluid Cityscape2">
+        <h1>Reimbursement Check</h1>
+        <!-- <button type="CreateNewExpense" class="btn btn-primary">+ Create New Expense</button> -->
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <label for="ReimbursementID">Reimbursement ID</label>
+                    <input type="text" name="ReimbursementID" id="ReimbursementID" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <label for="firstname">Firstname</label>
+                    <input type="text" name="firstname" id="firstname" class="form-control" readonly>
+                </div>
+            </div>
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <label for="lastname">Lastname</label>
+                    <input type="text" name="lastname" id="lastname" class="form-control" readonly>
+                    <small class="form-text text-muted">
+                        This should be your last name.
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <label for="Employee ID">Employee ID</label>
+                    <input type="text" name="EmployeeID" id="EmployeeID" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+        <h2>Training Information</h2>
+        <!-- does the date need to be a range or is just one ok? -->
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <label for="Date">Date Of Training</label>
+                    <input type="date" name="Date" id="Date" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <label for="StartTime">Start Time</label>
+                    <input type="time" name="StartTime" id="StartTime" class="form-control" readonly>
+                </div>
+            </div>
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <label for="EndTime">End Time</label>
+                    <input type="time" name="EndTime" id="EndTime" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control">
+            </div> -->
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <label for="Location">Location</label>
+                    <input type="text" name="Location" id="Location" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-3">
+                <div class="form-gruop">
+                    <label for="Cost">Cost</label>
+                    <input type="text" name="Cost" id="Cost" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+        <!-- types of grading formats -->
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <label for="GradingFormats">Grading Formats</label>
+                    <select name="GradingFormats" id="GradingFormats" class="form-control" readonly>
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!-- how do I get it to show whatever the person wrote in only? TypeOfEvent, Description, Work Related Justifications, MinimumPassingGrade -->
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <label for="TypeOfEvent">Type Of Event</label>
+                    <select name="TypeOfEvent" id="TypeOfEvent" class="form-control" readonly>
+                        <option value="Certification">Certification</option>
+                        <option value="TechincalTraining">Techincal Training</option>
+                        <option value="UniversityCourses">University Courses</option>
+                        <option value="CertificationPreperationCourse">Certification Preperation Course</option>
+                        <option value="Seminars">Seminars</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <h6>Description</h6>
+                    <textarea id="Description" rows="3" cols="80" class="form-control" readonly>Your Text Here</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <h6>Work Related Justifications</h6>
+                    <textarea id="WorkRelatedJustifications" rows="3" cols="80" class="form-control" readonly>Your Text Here</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <label for="MinimumPassingGrade">Minimum Passing Grade</label>
+                    <select name="MinimumPassingGrade" id="MinimumPassingGrade" class="form-control" readonly>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                        <option value="Pass">Pass</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <label for="MissedWorkTime">Missed Work Time</label>
+                    <input name="MissedWorkTime" id="MissedWorkTime" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <label for="MissedWorkTime">Missed Work Time</label>
+                    <input name="MissedWorkTime" id="MissedWorkTime" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <label for="Status">Status</label>
+                    <input name="Status" id="Status" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <label for="TotalAmount">Total Amount</label>
+                    <input name="TotalAmount" id="TotalAmount" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <label for="ProjectedReimbursement">Projected Reimbursement</label>
+                    <input name="ProjectedReimbursement" id="ProjectedReimbursement" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <label for="CreatedDate">Created Date</label>
+                    <input type="date" name="CreatedDate" id="CreatedDate" class="form-control" readonly>
+                </div>
+            </div>
+            <div class="col col-sm-3">
+                <div class="form-group">
+                    <label for="SubmittedDate">Submitted Date</label>
+                    <input type="date" name="SubmittedDate" id="SubmittedDate" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>

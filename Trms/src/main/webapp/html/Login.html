@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login TRMS</title>
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="style1.css" type="text/css" rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body class="Picture">
+	<div class="container-fluid Cityscape">
+		<div class="row">
+			<div class="col-md-4 col-sm-4 col-xs-12"></div>
+			<div class="col-md-4 col-sm-4 col-xs-12">
+
+				<form class="form-container" method="POST" action="Login.do">
+					<h1>Runtime Login</h1>
+					<div class="form-group">
+						<label for="Username">Username</label> <input type="text"
+							class="form-control" name="Username" id="Username"
+							placeholder="Username" required>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Password</label> <input
+							type="password" class="form-control" name="Password1"
+							id="Password1" placeholder="Password" required>
+					</div>
+					<div class="checkbox">
+						<label> <input type="checkbox"> Remember me
+						</label>
+					</div>
+					<div class="CreateAcc">
+						<a href="">Create Account</a><br />
+					</div>
+					<div class="form-group">
+						<button type="submit" id="LoginButton"
+							class="btn btn-success btn-block">Submit</button>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-4 col-sm-4 col-xs-12"></div>
+		</div>
+	</div>
+</body>
+
+</html>

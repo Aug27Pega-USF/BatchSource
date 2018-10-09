@@ -1,0 +1,19 @@
+.btn{
+    float: right;
+    background-color:green;
+}
+h1{
+    text-align: center;
+    color: black;
+}
+body,html{
+    height: 100%;
+    color: rgb(255, 255, 255);
+    background-color: rgb(5, 5, 83);
+}
+form.Cityscape2{
+    background: url('Cityscape2.jpg') no-repeat; 
+    background-size: cover;
+    width: 100%; 
+    height: 100%;
+} 

@@ -1,0 +1,29 @@
+.main-form {
+    width: 450px;
+    margin: auto;
+}
+.btn{
+    float: right;
+    background-color:green;
+}
+[type |="cancel"]{
+    float: left;
+    background-color:green;
+    color: white;
+}
+h1{
+    text-align: center;
+}
+h2{
+    text-align: center;
+}
+body,html{
+    height: 100%;
+    color: rgb(255, 255, 255);
+    background-color: rgb(5, 5, 83);
+}
+form.Cityscape2{
+    background: url('Cityscape2.jpg');
+    background: cover;
+    background-size: 100%;
+} 

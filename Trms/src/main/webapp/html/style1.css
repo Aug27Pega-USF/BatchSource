@@ -1,0 +1,27 @@
+* {
+	color: #fff;
+}
+
+body, html {
+	height: 100%;
+}
+
+.Cityscape {
+	background: url("Cityscape.jpg") no-repeat;
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+.form-container {
+	border: 0px solid #fff;
+	padding: 30px 40px;
+	margin-top: 20%;
+	-webkit-box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);
+	box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);
+}
+
+div.CreateAcc, div.checkbox{
+	display: inline;
+}
