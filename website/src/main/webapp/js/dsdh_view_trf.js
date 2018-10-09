@@ -33,13 +33,20 @@ function dssetValues(trf_list){
 		}
 		let pr_re = Number.parseFloat(trf_list[i].projected_reimbursement).toFixed(2);
 		let event_cost = Number.parseFloat(trf_list[i].event_cost).toFixed(2);
+		let datetime= trf_list[i].event_datetime;
+		let urgent="";
+		let today= new Date();
+		let newdate= new Date(datetime.slice(5,7)+"/"+datetime.slice(8,10)+"/"+datetime.slice(0,4));
+		if ((newdate-today)/86400000<14){
+			urgent="<br>URGENT: EVENT STARTS IN ABOUT "+ Math.round((newdate-today)/86400000)+ " DAYS!";
+		}
 		
 		var eachrow= "<tr>" 
 		+ "<td>" + trf_list[i].trf_ID + "</td>"
 		+ "<td>" + trf_list[i].first_Name + " " +trf_list[i].last_name + "</td>"
 		+ "<td>" + trf_list[i].user_id + "</td>"
 		+ "<td>" + trf_list[i].basic_info_placeholder + "</td>"
-		+ "<td>" + trf_list[i].event_datetime + "</td>"
+		+ "<td>" + datetime + urgent + "</td>"
 		+ "<td>" + trf_list[i].event_location + "</td>"
 		+ "<td>" + trf_list[i].event_description + "</td>"
 		+ "<td>" + "$"+ event_cost + "</td>"
@@ -64,13 +71,19 @@ function dhsetValues(trf_list){
 		}
 		let pr_re = Number.parseFloat(trf_list[i].projected_reimbursement).toFixed(2);
 		let event_cost = Number.parseFloat(trf_list[i].event_cost).toFixed(2);
-		
+		let datetime= trf_list[i].event_datetime;
+		let urgent="";
+		let today= new Date();
+		let newdate= new Date(datetime.slice(5,7)+"/"+datetime.slice(8,10)+"/"+datetime.slice(0,4));
+		if ((newdate-today)/86400000<14){
+			urgent="<br>URGENT: EVENT STARTS IN ABOUT "+ Math.round((newdate-today)/86400000)+ " DAYS!";
+		}
 		var eachrow= "<tr>" 
 		+ "<td>" + trf_list[i].trf_ID + "</td>"
 		+ "<td>" + trf_list[i].first_Name + " " +trf_list[i].last_name + "</td>"
 		+ "<td>" + trf_list[i].user_id + "</td>"
 		+ "<td>" + trf_list[i].basic_info_placeholder + "</td>"
-		+ "<td>" + trf_list[i].event_datetime + "</td>"
+		+ "<td>" + datetime + urgent + "</td>"
 		+ "<td>" + trf_list[i].event_location + "</td>"
 		+ "<td>" + trf_list[i].event_description + "</td>"
 		+ "<td>" + "$"+ event_cost + "</td>"

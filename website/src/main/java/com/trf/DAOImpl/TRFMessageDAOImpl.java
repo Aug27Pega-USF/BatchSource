@@ -245,7 +245,7 @@ public class TRFMessageDAOImpl implements TRFMessageDAO {
 				msg = "Supervisor has denied your TRF on basis of Presentation.";
 				break;
 			}
-			msg+= " "+ add_message;
+			msg+= " Deny Reason: "+ add_message;
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, uid);
 			ps.setString(2, msg);
