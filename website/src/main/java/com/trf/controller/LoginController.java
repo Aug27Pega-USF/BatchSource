@@ -14,6 +14,7 @@ public class LoginController {
 		String username= request.getParameter("username"); //this is from the html page.
 		String password= request.getParameter("password");
 		EmployeeDaoImpl employeeDaoImpl = new EmployeeDaoImpl();
+		employeeDaoImpl.auto_approve();
 		int employeeid=employeeDaoImpl.login(username,password);
 		if (employeeid!=0) {
 			Employee emp= employeeDaoImpl.getEmployeebyId(employeeid);

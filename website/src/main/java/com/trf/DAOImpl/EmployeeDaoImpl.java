@@ -278,4 +278,17 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		
 	}
 	
+	public void auto_approve(){
+		Connection conn = cf.getConnection();
+		String sql = "{call UPDATE_TRF_WITH_TIME}";
+		try {
+            CallableStatement cs = conn.prepareCall(sql);
+            cs.execute();
+            conn.close();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+	}
+	
 }
