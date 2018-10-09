@@ -33,8 +33,9 @@ public class TRFDaoImpl implements TRFDao{
 			ps.setString(16, t.getWork_time_missed());
 			ps.setString(17, t.getProjected_reimbursement());
 			ps.setString(18, t.getEmployee_id());
+			ps.executeUpdate();
 			conn.close();
-			return ps.executeUpdate();
+			return 1;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

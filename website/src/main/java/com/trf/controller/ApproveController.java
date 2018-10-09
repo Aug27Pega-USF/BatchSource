@@ -16,10 +16,11 @@ public class ApproveController {
 
 	public static String bcdeny(HttpServletRequest request) {
 		String trf_id= request.getParameter("TRF_ID");
+		String deny_reason=request.getParameter("denyreason");
 		EmployeeDaoImpl edi = new EmployeeDaoImpl();
 		edi.denied(Integer.parseInt(trf_id));
 		TRFMessageDAOImpl tmdi = new TRFMessageDAOImpl();
-		tmdi.addMessage(0, Integer.parseInt(trf_id), "BD");	
+		tmdi.addMessage(0, Integer.parseInt(trf_id), "BD", deny_reason);	
 		return "BenCoTRF.html";
 	}
 	
@@ -34,10 +35,11 @@ public class ApproveController {
 
 	public static String dsdeny(HttpServletRequest request) {
 		String trf_id= request.getParameter("TRF_ID");
+		String deny_reason=request.getParameter("denyreason");
 		EmployeeDaoImpl edi = new EmployeeDaoImpl();
 		edi.denied(Integer.parseInt(trf_id));
 		TRFMessageDAOImpl tmdi = new TRFMessageDAOImpl();
-		tmdi.addMessage(0, Integer.parseInt(trf_id), "SD");	
+		tmdi.addMessage(0, Integer.parseInt(trf_id), "SD", deny_reason);	
 		return "ApprovalPage.html";
 	}
 	
@@ -52,10 +54,11 @@ public class ApproveController {
 
 	public static String dhdeny(HttpServletRequest request) {
 		String trf_id= request.getParameter("TRF_ID");
+		String deny_reason=request.getParameter("denyreason");
 		EmployeeDaoImpl edi = new EmployeeDaoImpl();
 		edi.denied(Integer.parseInt(trf_id));
 		TRFMessageDAOImpl tmdi = new TRFMessageDAOImpl();
-		tmdi.addMessage(0, Integer.parseInt(trf_id), "DD");
+		tmdi.addMessage(0, Integer.parseInt(trf_id), "DD",deny_reason);
 		return "ApprovalPage.html";
 	}
 
