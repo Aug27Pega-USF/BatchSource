@@ -12,10 +12,17 @@
 <!-- Material Design Bootstrap -->
 <link href="../css/mdb.min.css" rel="stylesheet">
 <!-- Your custom styles (optional) -->
-<link href="../css/LoginTest.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
  <a href="http://localhost:8080/website/html/BenCoTRF.html" class="btn-primary" id="BenCo-trf-link"><button>Back</button></a>
   <a href="http://localhost:8080/website/html/Login.html" class="btn-primary" id="Logout-link"><button>Logout</button></a>
+  </nav>
+  <h2 class="text-center font-weight-bold">Adjust Reimbursement</h2>
+  <div class="container">
+		<div class="row justify-content-center">
+		<div class="card">
+		<div class="card-body">
 <form action="UpdateReimbursement.do" method="POST">
 	<span id=trf_id>TRF ID: Loading...</span>
 	<span id="Avail_re"></span>
@@ -28,6 +35,7 @@
 	<span id="exceedreason" style="display:none;"></span>
 	<input id="update_rei" type="submit" value="Update Reimbursement" style='display:none'/>
 </form>
+</div></div></div></div>
  
 </body>
 <!-- SCRIPTS -->

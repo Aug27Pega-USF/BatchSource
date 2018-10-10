@@ -84,7 +84,7 @@ function employeeAutoUpdate(x){
 	if (!x){
 		setTimeout(employeeAutoUpdate.bind(document.getElementsByTagName("body")[0].dataset.isready), 500);
 	}
-	document.getElementById("maxrei").textContent="Maximum Reimbursement: $"+document.getElementsByTagName("body")[0].dataset.available_reimbursement;
+	document.getElementById("maxrei").textContent="Current Available Reimbursement: $"+document.getElementsByTagName("body")[0].dataset.available_reimbursement;
     document.getElementById("first_name").value=document.getElementsByTagName("body")[0].dataset.first_name;
     document.getElementById("last_name").value=document.getElementsByTagName("body")[0].dataset.last_name;
     document.getElementById("employee_info").value=document.getElementsByTagName("body")[0].dataset.basic_info_placeholder;

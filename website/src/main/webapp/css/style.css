@@ -1,0 +1,17 @@
+div.dataTables_wrapper {
+        width: 1750px;
+        margin: 0 auto;
+   }
+   
+th {
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+  border-left: 1px solid #dddddd;
+}
+
+th.dt-center, td.dt-center { text-align: center; }
+
+.card{
+background: radial-gradient(ellipse at center, rgba(219,216,219,1) 0%, rgba(184,184,184,1) 79%, rgba(184,184,184,1) 100%);
+}

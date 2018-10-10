@@ -57,7 +57,7 @@ function dssetValues(trf_list){
 		+ "<td>" + trf_list[i].attachments_exist + "</td>"
 		+ "<td>" + trf_list[i].work_missed + "</td>"
 		+ "<td>" + "$"+ pr_re + "</td>"
-		+ "<td>" + "<form action=\"DSApprove.do\" method=\"POST\"><input type=\"text\" name=\"TRF_ID\" style=\"display:none\" value=\""+ trf_list[i].trf_ID + "\"/><input type=\"submit\" value=\"Approve\"/></form><form action=\"DSDeny.do\" method=\"POST\"><input type=\"text\" name=\"TRF_ID\" style=\"display:none\" value=\""+ trf_list[i].trf_ID + "\"//><br>Deny Reason:<input type='text' name='denyreason' required><input type=\"submit\" value=\"Deny\"/></form>"+ "</td>" //HTML JANK
+		+ "<td>" + "<form action=\"DSApprove.do\" method=\"POST\"><input type=\"text\" name=\"TRF_ID\" style=\"display:none\" value=\""+ trf_list[i].trf_ID + "\"/><input type=\"submit\" value=\"Approve\"/></form><form action=\"DSDeny.do\" method=\"POST\"><input type=\"text\" name=\"TRF_ID\" style=\"display:none\" value=\""+ trf_list[i].trf_ID + "\"//>Deny Reason:<input type='text' style='width:100px' name='denyreason' required><input type=\"submit\" value=\"Deny\"/></form>"+ "</td>" //HTML JANK
 		+ "<td>" + "<form action=\"Request.do\" method=\"POST\"><input type=\"text\" name=\"TRF_ID\" style=\"display:none\" value=\""+ trf_list[i].trf_ID + "\"/><select name=\"user_level\" required><option value=\"Employee\">Employee</option></select><input type=\"submit\" value=\"Request More Information\"/></form>" + "</td>" //HTML JANK
 		+ "</tr>";
 		document.getElementById("trfbody").innerHTML+=eachrow;
@@ -94,7 +94,7 @@ function dhsetValues(trf_list){
 		+ "<td>" + trf_list[i].attachments_exist + "</td>"
 		+ "<td>" + trf_list[i].work_missed + "</td>"
 		+ "<td>" + "$"+ pr_re + "</td>"
-		+ "<td>" + "<form action=\"DHApprove.do\" method=\"POST\"><input type=\"text\" name=\"TRF_ID\" style=\"display:none\" value=\""+ trf_list[i].trf_ID + "\"/><input type=\"submit\" value=\"Approve\"/></form><form action=\"DHDeny.do\" method=\"POST\"><input type=\"text\" name=\"TRF_ID\" style=\"display:none\" value=\""+ trf_list[i].trf_ID + "\"//><br>Deny Reason:<input type='text' name='denyreason' required><input type=\"submit\" value=\"Deny\"/></form>"+ "</td>" //HTML JANK
+		+ "<td>" + "<form action=\"DHApprove.do\" method=\"POST\"><input type=\"text\" name=\"TRF_ID\" style=\"display:none\" value=\""+ trf_list[i].trf_ID + "\"/><input type=\"submit\" value=\"Approve\"/></form><form action=\"DHDeny.do\" method=\"POST\"><input type=\"text\" name=\"TRF_ID\" style=\"display:none\" value=\""+ trf_list[i].trf_ID + "\"//>Deny Reason:<input type='text' name='denyreason' style='width:100px' required><input type=\"submit\" value=\"Deny\"/></form>"+ "</td>" //HTML JANK
 		+ "<td>" + "<form action=\"Request.do\" method=\"POST\"><input type=\"text\" name=\"TRF_ID\" style=\"display:none\" value=\""+ trf_list[i].trf_ID + "\"/><select name=\"user_level\" required><option value=\"Employee\">Employee</option><option value=\"Direct Supervisor\">Direct Supervisor</option></select><input type=\"submit\" value=\"Request More Information\"/></form>" + "</td>" //HTML JANK
 		+ "</tr>";
 		document.getElementById("trfbody").innerHTML+=eachrow;

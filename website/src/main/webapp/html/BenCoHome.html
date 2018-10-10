@@ -1,38 +1,62 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Benefits Coordinator Home</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- Bootstrap core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-<!-- Material Design Bootstrap -->
-<link href="../css/mdb.min.css" rel="stylesheet">
-<!-- Your custom styles (optional) -->
-<link href="../css/LoginTest.css" rel="stylesheet">
+    <title>Benefits Coordinator Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="../css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
 </head>
+
 <body>
-<div class=navigation-bar>
-    <a href="http://localhost:8080/website/html/BenCoHome.html" class="btn-primary" id="BenCo-Home-Link"><button>Home</button></a>
-    <a href="http://localhost:8080/website/html/BenCoTRF.html" class="btn-primary" id="BenCo-trf-link"><button>Pending TRF</button></a>
-    <a href="http://localhost:8080/website/html/Login.html" class="btn-primary" id="Logout-link"><button>Logout</button></a>
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a href="http://localhost:8080/website/html/BenCoHome.html" class="btn-primary" id="BenCo-Home-Link"><button>Home</button></a>
+        <a href="http://localhost:8080/website/html/BenCoTRF.html" class="btn-primary" id="BenCo-trf-link"><button>Pending
+                TRF</button></a>
+        <a href="http://localhost:8080/website/html/Login.html" class="btn-primary" id="Logout-link"><button>Logout</button></a>
+    </nav>
 </body>
-	<table class="table table-bordered">
-	<thead><tr><th>TimeStamp</th><th>TRF_ID</th><th>Message</th><th>Action</th></tr></thead>
-	<tbody id="trfbody"></tbody>
-    </table>
-    <!-- SCRIPTS -->
-  <!-- JQuery -->
-  <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="../js/popper.min.js"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="../js/mdb.min.js"></script>
-	<script type="text/javascript" src="../js/emp_view_msg.js"></script>
+<h2 class="text-center font-weight-bold">Benefits Coordinator Home</h2>
+<h3 class="text-center">Messages</h3>
+<div id="example_wrapper" class="dataTables_wrapper no-footer" style="width:1000px">
+    <div class="dataTables_scroll">
+        <div class="dataTables_scrollBody" style="position: relative; overflow: auto; width: 100%;">
+            <table id="trf" class="display nowrap dataTable no-footer cell-border" style="width: 100%;" role="grid"
+                aria-describedby="example_info">
+                <thead>
+                    <tr role="row">
+                        <th tabindex="0" rowspan="1" colspan="1" style="width: 73px;">TimeStamp</th>
+                        <th tabindex="0" rowspan="1" colspan="1" style="width: 72px;">TRF ID</th>
+                        <th tabindex="0" rowspan="1" colspan="1" style="width: 72px;">Message</th>
+                        <th tabindex="0" rowspan="1" colspan="1" style="width: 175px;">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="trfbody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- SCRIPTS -->
+<!-- JQuery -->
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="../js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../js/table.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="../js/mdb.min.js"></script>
+<script type="text/javascript" src="../js/emp_view_msg.js"></script>
+
 </html>

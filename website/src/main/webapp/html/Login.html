@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,45 +13,60 @@
     <!-- Material Design Bootstrap -->
     <link href="../css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
-    <link href="../css/LoginTest.css" rel="stylesheet">
+    <link href="../css/Login.css" rel="stylesheet">
 </head>
+
 <body>
-<div class="bg">
-	<div id="login">
-        <h3 class="text-center text-black pt-5">Generic Pega Company</h3>
-        <div class="card-body">
-            <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" class="col-md-6">
-                    <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="Login.do" method="POST">
-                            <h3 class="text-center text-purple">Employee Login</h3>
-                            <div class="form-group">
-                                <label for="username" class="text-info">Username:</label><br>
-                                <input type="text" name="username" id="username" class="form-control">
+    <div class="bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div id="login" class="col-6">
+                    <h3 class="text-center text-black pt-5 h1">Generic Pega Company</h3>
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="login-row" class="row justify-content-center align-items-center">
+                                <div id="login-column" class="col-md-12">
+                                    <div id="login-box" class="col-md-24">
+                                        <form id="login-form" class="form" action="Login.do" method="POST">
+                                            <h3 class="text-center text-primary">Employee Login</h3>
+                                            <div class="form-group">
+                                                <label for="username" class="text-info font-weight-bold">Username:</label><br>
+                                                <input type="text" name="username" id="username" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password" class="text-info font-weight-bold">Password:</label><br>
+                                                <input type="password" name="password" id="password" class="form-control">
+												
+											</div>
+											
+                                            <div class="form-group center-block justify-content-center row">
+                                                <input type="submit" name="LoginButton" class="btn btn-info btn-block col-8"
+													value="Login">
+													
+											</div>
+				
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="password" class="text-info">Password:</label><br>
-                                <input type="password" name="password" id="password" class="form-control">
-                            </div>
-                            <div class="form-group center-block">
-                                <input type="submit" name="LoginButton" class="btn btn-info btn-md btn-block" value="Login">
-                            </div>
-                        </form>
+                        </div>
                     </div>
+                    
                 </div>
+                
             </div>
         </div>
     </div>
-    </div>
-    
+
 </body>
 <!-- SCRIPTS -->
-  <!-- JQuery -->
-  <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="../js/popper.min.js"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="../js/mdb.min.js"></script>
+<!-- JQuery -->
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="../js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="../js/mdb.min.js"></script>
+
 </html>

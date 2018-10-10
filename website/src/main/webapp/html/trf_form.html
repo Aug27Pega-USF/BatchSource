@@ -13,21 +13,27 @@
     <!-- Material Design Bootstrap -->
     <link href="../css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
-    <link href="../css/LoginTest.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
 </head>
 
 <body>
-	<div class=navigation-bar>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a href="http://localhost:8080/website/html/EmployeeHome.html" class="btn-primary" id="Employee-Home-Link"><button>Home</button></a>
     <a href="http://localhost:8080/website/html/trf_form.html" class="btn-primary" id="TRF-link"><button>Tuition Reimbursement Form</button></a>
     <a href="http://localhost:8080/website/html/ViewUpdateTRF.html" class="btn-primary" id="TRF-link"><button>View TRF and Submit Proof</button></a>
     <a href="http://localhost:8080/website/html/ApprovalPage.html" class="btn-primary" id="Approve-link"></a>
     <a href="http://localhost:8080/website/html/Login.html" class="btn-primary" id="Logout-link"><button>Logout</button></a>
-	</div>
-    <h2 style="position: relative; margin-top: 0px;">Tuition Reimbursement Form</h2>
-    <h3 style="margin:0;padding: 0;">Required:</h3>
+        </nav>
+    <h2 class="text-center font-weight-bold">Tuition Reimbursement Form</h2>
+    
+    <div class="container">
+            <div class="row justify-content-center">
+            <div class="card">
+            <div class="card-body">
+                    <h3 class="text-left">Required:</h3>
     <form action="TRF.do" method="POST">
-        <strong>Employee Information:</strong>
+        
+        <strong>Employee Information:</strong> <span class="text-muted">(autofilled)</span>
         <br>
         First Name: <input type="text" id="first_name" name="first_name" pattern="[A-Za-z\-]+" readonly required>
         <br />
@@ -43,7 +49,7 @@
         <br />
         Event Location: <input type="text" id="location" name="location" required/>
         <br />
-        Event Description: <input type="text" id="description" name="description" required/>
+        Event Description:<br><input type="text" id="description" name="description" style="height:50px; width:250px;" required/>
         <br />
         Event Cost: $<input type="number" id="cost" name="cost" min="0.00" step="0.01" required />
         <br />
@@ -64,7 +70,7 @@
             <option value="other">Other</option>
         </select>
         <br />
-        Work-Related Justification: <input type="text" id="justification" name="justification" required/>
+        Work-Related Justification:<br><input type="text" id="justification" name="justification" style="height:50px; width:250px;" required/>
         <br />
         <h3  style="margin:0;padding: 0;">Optional:</h3>
         <div>
@@ -84,11 +90,12 @@
         </div>
         Work Time Missed (Hours): <input type="number" id="work_missed" name="work_missed" min="0" step="1" value="0"/>
         <br>
-        Projected Reimbursement: $<input type="text" id=projected_reimbursement name=projected_reimbursement readonly> <span id=maxrei>Maximum Reimbursement: </span>
+        <div id=maxrei>Current Available Reimbursement: </div>
+        Projected Reimbursement: $<input type="text" id=projected_reimbursement name=projected_reimbursement readonly> 
         <br>
         <input type="submit" value="Submit" />
     </form>
-
+</div></div></div></div>
 
 </body>
     <!-- SCRIPTS -->

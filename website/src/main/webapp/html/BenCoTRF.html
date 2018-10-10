@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="utf-8">
 <title>Pending TRF Queue</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -12,35 +12,67 @@
 <!-- Material Design Bootstrap -->
 <link href="../css/mdb.min.css" rel="stylesheet">
 <!-- Your custom styles (optional) -->
-<link href="../css/LoginTest.css" rel="stylesheet">
+<link href="../css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
 </head>
 <body>
-	<div class=navigation-bar>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a href="http://localhost:8080/website/html/BenCoHome.html" class="btn-primary" id="BenCo-Home-Link"><button>Home</button></a>
     <a href="http://localhost:8080/website/html/BenCoTRF.html" class="btn-primary" id="BenCo-trf-link"><button>Pending TRF</button></a>
     <a href="http://localhost:8080/website/html/Login.html" class="btn-primary" id="Logout-link"><button>Logout</button></a>
-    </div>
-    <table class="table table-bordered">
-    <thead> <tr>
-    <th>TRF ID</th>
-    <th>Employee Name</th>
-    <th>Employee ID</th>
-    <th>Basic Info</th>
-    <th>Event Date/Time</th>
-    <th>Event Location</th>
-    <th>Event Description</th>
-    <th>Event Cost</th>
-    <th>Grading Format</th>
-    <th>Passing Grade</th>
-    <th>Event Type</th>
-    <th>Work-Related Justification</th>
-    <th>Attachments</th>
-    <th>Work Time Missed</th>
-    <th>Projected Reimbursement</th>
-    <th>Approve / Deny</th>
-  </tr></thead>
-	<tbody id="trfbody"></tbody>
-	</table>
+        </nav>
+        <h2 class="text-center  font-weight-bold">Approve Tuition Reimbursement Forms</h2>
+        <div id="example_wrapper" class="dataTables_wrapper no-footer">
+                <div class="dataTables_scroll">
+                    <div class="dataTables_scrollBody" style="position: relative; overflow: auto; width: 100%;">
+                        <table id="trf" class="display nowrap dataTable no-footer cell-border" style="width: 100%;" role="grid"
+                            aria-describedby="example_info">
+                            <thead>
+                                    <tr role="row">
+                                        <th tabindex="0"  rowspan="1" colspan="1" style="width: 73px;">TRF ID</th>
+                                        <th  tabindex="0"  rowspan="1" colspan="1" style="width: 72px;"
+                                             >Employee name</th>
+                                        <th  tabindex="0"  rowspan="1" colspan="1" style="width: 72px;"
+                                           >Employee ID</th>      
+                                        <th  tabindex="0"  rowspan="1" colspan="1" style="width: 175px;"
+                                           >Basic Info</th>
+                                        <th  tabindex="0"  rowspan="1" colspan="1" style="width: 77px;"
+                                            >Event Date/Time</th>
+                                        <th  tabindex="0"  rowspan="1" colspan="1" style="width: 28px;"
+                                           >Event Location</th>
+                                        <th  tabindex="0"  rowspan="1" colspan="1" style="width: 67px;"
+                                           >Event Description</th>
+                                        <th  tabindex="0"  rowspan="1" colspan="1" style="width: 57px;"
+                                           >Event Cost</th>
+                                        <th  tabindex="0"  rowspan="1" colspan="1" style="width: 72px;"
+                                           >Grading Format</th>
+                                        <th  tabindex="0"  rowspan="1" colspan="1" style="width: 72px;"
+                                           >Passing Grade</th>
+                                        <th  tabindex="0"  rowspan="1" colspan="1" style="width: 72px;"
+                                           >Event Type</th>
+                                        <th  tabindex="0"  rowspan="1" colspan="1" style="width: 168px;"
+                                           >Work-Related Justification</th>
+                                        <th  tabindex="0"  rowspan="1" colspan="1" style="width: 72px;"
+                                           >Attachments</th>
+                                        <th  tabindex="0"  rowspan="1" colspan="1" style="width: 72px;"
+                                           >Work Time Missed</th>
+                                        <th  tabindex="0"  rowspan="1" colspan="1" style="width: 72px;"
+                                           >Projected Reimbursement</th>      
+                                        <th  tabindex="0"  rowspan="1" colspan="1" style="width: 168px;"
+                                           >Approve/Deny</th>       
+                                        <th  tabindex="0"  rowspan="1" colspan="1" style="width: 168px;"
+                                           >Request More Information</th>         
+                                        <th  tabindex="0"  rowspan="1" colspan="1" style="width: 168px;"
+                                           >Adjust Reimbursement Amount</th>       
+                                    </tr>
+                                </thead>
+            
+                            <tbody id="trfbody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 </body>
 <!-- SCRIPTS -->
   <!-- JQuery -->
@@ -50,6 +82,8 @@
   <!-- Bootstrap core JavaScript -->
   <script type="text/javascript" src="../js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="../js/table.js"></script>
   <script type="text/javascript" src="../js/mdb.min.js"></script>
 <script type="text/javascript" src="../js/bc_view_trf.js"></script>
 </html>
