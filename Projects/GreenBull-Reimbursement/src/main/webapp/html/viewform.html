@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Reimbursement Form</title>
+<link rel="stylesheet" type="text/css" href="../css/view.css"
+	media="all">
+<script type="text/javascript" src="../js/view.js"></script>
+<script type="text/javascript" src="../js/calendar.js"></script>
+<script src="jquery-3.3.1.min.js"></script>
+</head>
+<body id="main_body" class="gradiant">
+
+	<img id="top" src="" alt="">
+	<div id="form_container">
+
+		<h1>
+			<a>Reimbursement Form</a>
+		</h1>
+		<form method="POST" id="form_29462" class="appnitro"
+			action="Back.do">
+			<div class="form_description">
+				<h2>Reimbursement Form</h2>
+				<p></p>
+			</div>
+			<ul>
+
+				<li id="li_1"><label class="description" for="element_1">Name
+				</label> <span> <!--   <input id="FirstName" name="fname" type="text" class="element text" maxlength="255" size="8" value="" />-->
+						<input type="text" id="reimbursementFirstName" name="fname"
+						value=reimb.fname size="8" readonly> <label>First</label>
+				</span> <span> <input id="reimbursementLastName" name="lname"
+						class="element text" maxlength="255" size="14" value=reimb.lname readonly />
+						<label>Last</label>
+				</span></li>
+				<li class="section_break">
+					<h3>Reimbursement Information</h3>
+					<p></p>
+				</li>
+				<li id="li_4"><label class="description" for="element_4">Date
+						of event </label> <span> <input id="reimbursementMonth"
+						name="Month" class="element text" size="2" maxlength="2" value=""
+						type="text" readonly> / <label for="element_4_1">MM</label>
+				</span> <span> <input id="reimbursementDay" name="Day"
+						class="element text" size="2" maxlength="2" value="" type="text" readonly>
+						/ <label for="element_4_2">DD</label>
+				</span> <span> <input id="reimbursementYear" name="Year"
+						class="element text" size="4" maxlength="4" value="" type="text" readonly>
+						<label for="element_4_3">YYYY</label>
+				</span></li>
+
+
+				<table>
+					<tr>
+						<th><label for="id_application_method">Application
+								method:</label></th>
+						<td><select name="application_method"
+							id="reimbursementApplicationMethod" disabled>
+								<option value="">Pick first</option>
+								<option value="University Course">University Course</option>
+								<option value="Seminar">Seminar</option>
+								<option value="3">Certification Preparation Class</option>
+								<option value="4">Certification</option>
+								<option value="5">Technical Training</option>
+								<option value="6">Other</option>
+						</select></td>
+					</tr>
+
+					<tr>
+						<th><label for="id_A">Course Name:</label></th>
+						<td><input id="reimbursementCourseName" name="CourseName"
+							type="text" maxlength="255" value=""
+							placeholder="Required for Course" readonly/></td>
+					</tr>
+
+					<tr>
+						<th><label for="id_B">Grade:</label></th>
+						<td><input id="reimbursementGrade" name="Grade" type="text"
+							maxlength="255" value="" placeholder="Required for Course" readonly/></td>
+					</tr>
+				</table>
+
+
+				<li id="li_2"><label class="description" for="element_2">Address
+				</label>
+					<div>
+						<input id="reimbursementAddress" name="Street_Address"
+							class="element text large" value="" type="text" readonly> <label
+							for="element_2_1">Street Address</label>
+					</div>
+
+					<div class="left">
+						<input id="reimbursementCity" name="City"
+							class="element text medium" value="" type="text" readonly> <label
+							for="element_2_3">City</label>
+					</div>
+
+					<div class="right">
+						<input id="reimbursementState" name="State"
+							class="element text medium" value="" type="text" readonly> <label
+							for="element_2_4">State / Province / Region</label>
+					</div>
+
+					<div class="left">
+						<input id="reimbursementZipcode" name="ZipCode"
+							class="element text medium" maxlength="15" value="" type="text" readonly>
+						<label for="element_2_5">Postal / Zip Code</label>
+					</div></li>
+				<li id="li_7"><label class="description" for="element_7">Description
+						and Work Justification </label>
+					<div>
+						<textarea id="reimbursementWorkDescription"
+							name="WorkJustification" class="element textarea medium" readonly></textarea>
+					</div></li>
+
+				<li id="li_9"><label class="description" for="element_9">Cost
+				</label> <span class="symbol">$</span> <span> <input
+						id="reimbursementCost" name="Cost" class="element text currency"
+						size="10" value="" type="text" readonly/> <label for="element_9_1">Dollars</label>
+
+				</span></li>
+				<li id="li_10"><label class="description" for="WorkTimeMissed">Work
+						time missed </label>
+					<div>
+						<input id="reimbursementWorkTimeMissed" name="WorkTimeMissed"
+							class="element text medium" type="text" maxlength="255" value="" readonly/>
+					</div></li>
+				<li id="li_12"><label class="description" for="TypeOfApproval">Type
+						of Approval </label>
+					<div>
+						<select class="element select medium"
+							id="reimbursementApprovalType" name="TypeOfApproval" disabled>
+							<option value="" selected="selected"></option>
+							<option value="1">Presentation</option>
+							<option value="2">Grade</option>
+							<option value="3">Presentation and Grade</option>
+
+						</select>
+					</div></li>
+
+				<li class="buttons"><input type="hidden" name="form_id"
+					value="29462" /> <!--  <input id="saveForm" class="button_text" type="submit" name="submit" value="Submit" /> -->
+					<input type="Submit" class="form-control btn-primary"
+					id="closeForm" name="closebutton" value="Back"></li>
+			</ul>
+		</form>
+	</div>
+	
+	<div id="placeholder"></div>
+	<script src="../js/viewForm.js" type="text/javascript"></script>
+</body>
+</html>
+
+<!--  
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body id="main_body" class="gradiant">
+    <div id="empName">EmployeeName</div>!
+    <div id="reimb">reimbursement</div>!
+    
+	<form method="POST" action="Closeform.do">
+    	<input type="Submit" class="form-control btn-primary" name="button" id="CloseButton" value="Close">
+    </form>
+    
+    <div id="placeholder"></div>
+    
+    <script type="text/javascript" src="../js/viewForm.js"></script>
+</body>
+</html>
+-->

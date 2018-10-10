@@ -1,0 +1,49 @@
+html{
+
+    font-family: "Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+}
+
+body{
+    height: 100vh;
+    margin: 0px;
+}
+form {
+    text-align: center;
+    padding-top: 100px;
+}
+
+h2 {
+    font-size: 40px;
+    margin: 0px;
+}
+
+.gradiant{
+    background: linear-gradient(rgb(217, 255, 212), green);
+}
+#Greenbull{
+    display: inline-block;
+}
+
+.Greenbull2{
+    float: right;
+}
+.form-control btn-primary{
+	display: inline-block;
+}
+#ConfirmButton{
+	padding: 10px 25px;
+    font-size: 16px;
+    background-color: darkgreen;
+    color: white;
+    cursor: pointer;
+    width: 175px;
+}
+
+#ExitButton{
+	padding: 10px 25px;
+    font-size: 16px;
+    background-color: darkgreen;
+    color: white;
+    cursor: pointer;
+    width: 175px;
+}

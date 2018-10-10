@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Reimbursement Form</title>
+<link rel="stylesheet" type="text/css" href="../css/view.css"
+	media="all">
+<script type="text/javascript" src="../js/view.js"></script>
+<script type="text/javascript" src="../js/calendar.js"></script>
+<script src="jquery-3.3.1.min.js"></script>
+</head>
+<body id="main_body" class="gradiant">
+
+	<img id="top" src="" alt="">
+	<div id="form_container">
+
+		<h1>
+			<a>Reimbursement Form</a>
+		</h1>
+		<div id="empName">EmployeeName</div>
+		
+		<form method="POST" action= "Back.do"  role="form">
+        	<input type="submit" id="logout" class="button" name= "nf" value="Logout">
+		</form>
+		
+		<form method="POST" id="form_29462" class="appnitro"
+			 action="Form.do">
+			<div class="form_description">
+				<h2>Reimbursement Form</h2>
+				<p></p>
+			</div>
+			<ul>
+
+				<li id="li_1"><label class="description" for="element_1">Name
+				</label> <span> <!--   <input id="FirstName" name="fname" type="text" class="element text" maxlength="255" size="8" value="" />--> 
+						<input type="text" id="fname" name="fname" value="" size="8">
+						<label>First</label>
+				</span> <span> <input id="LastName" name="lname"
+						class="element text" maxlength="255" size="14" value="" /> <label>Last</label>
+				</span></li>
+				<li class="section_break">
+					<h3>Reimbursement Information</h3>
+					<p></p>
+				</li>
+				<li id="li_4"><label class="description" for="element_4">Date
+						of event </label> <span> <input id="element_4_1" name="Month" 
+						class="element text" size="2" maxlength="2" value="" type="text">
+						/ <label for="element_4_1">MM</label>
+				</span> <span> <input id="element_4_2" name="Day"
+						class="element text" size="2" maxlength="2" value="" type="text">
+						/ <label for="element_4_2">DD</label>
+				</span> <span> <input id="element_4_3" name="Year"
+						class="element text" size="4" maxlength="4" value="" type="text">
+						<label for="element_4_3">YYYY</label>
+				</span> <span id="calendar_4"> <img id="cal_img_4"
+						class="datepicker" src="../Images/calendar.gif" alt="Pick a date.">
+				</span> 
+				<script type="text/javascript">
+					Calendar.setup({
+						inputField : "element_4_3",
+						baseField : "element_4",
+						displayArea : "calendar_4",
+						button : "cal_img_4",
+						ifFormat : "%B %e, %Y",
+						onSelect : selectDate
+					});
+				</script></li>
+
+		  
+				<table>
+					<tr>
+						<th><label for="id_application_method">Application
+								method:</label></th>
+						<td><select name="application_method"
+							id="id_application_method">
+								<option value="">Pick first</option>
+								<option value="University Course">University Course</option>
+								<option value="Seminar">Seminar</option>
+								<option value="3">Certification Preparation Class</option>
+								<option value="4">Certification</option>
+								<option value="5">Technical Training</option>
+								<option value="6">Other</option>
+						</select></td>
+					</tr>
+
+					<tr>
+						<th><label for="id_A">Course Name:</label></th>
+						<td><input id="id_A" name="CourseName" type="text"
+							maxlength="255" value="" placeholder="Required for Course" /></td>
+					</tr>
+
+					<tr>
+						<th><label for="id_B">Grade:</label></th>
+						<td><input id="id_B" name="Grade" 
+							type="text" maxlength="255" value="" placeholder="Required for Course" /></td>
+					</tr>
+				</table>
+
+
+				<li id="li_2"><label class="description" for="element_2">Address
+				</label>
+					<div>
+						<input id="element_2_1" name="Street_Address"
+							class="element text large" value="" type="text"> <label
+							for="element_2_1">Street Address</label>
+					</div>
+
+					<div class="left">
+						<input id="element_2_3" name="City"
+							class="element text medium" value="" type="text"> <label
+							for="element_2_3">City</label>
+					</div>
+
+					<div class="right">
+						<input id="element_2_4" name="State"
+							class="element text medium" value="" type="text"> <label
+							for="element_2_4">State / Province / Region</label>
+					</div>
+
+					<div class="left">
+						<input id="element_2_5" name="ZipCode"
+							class="element text medium" maxlength="15" value="" type="text">
+						<label for="element_2_5">Postal / Zip Code</label>
+					</div></li>
+				<li id="li_7"><label class="description" for="element_7">Description
+						and Work Justification </label>
+					<div>
+						<textarea id="element_7" name="WorkJustification"
+							class="element textarea medium"></textarea>
+					</div></li>
+
+				<li id="li_9"><label class="description" for="element_9">Cost
+				</label> <span class="symbol">$</span> <span> <input id="element_9_1"
+						name="Cost" class="element text currency" size="10"
+						value="" type="text" /> . <label for="element_9_1">Dollars</label>
+
+				</span></li>
+				<li id="li_10"><label class="description" for="WorkTimeMissed">Work
+						time missed </label>
+					<div>
+						<input id="WorkTimeMissed" name="WorkTimeMissed"
+							class="element text medium" type="text" maxlength="255" value="" />
+					</div></li>
+				<li id="li_12"><label class="description" for="TypeOfApproval">Type
+						of Approval </label>
+					<div>
+						<select class="element select medium" id="TypeOfApproval"
+							name="TypeOfApproval">
+							<option value="" selected="selected"></option>
+							<option value="1">Presentation</option>
+							<option value="2">Grade</option>
+							<option value="3">Presentation and Grade</option>
+
+						</select>
+					</div></li>
+				<li id="li_11"><label class="description" for="element_11">Attachments
+				</label>
+					<div>
+						<input id="element_11" name="Attachments" class="element file"
+							type="file" />
+					</div></li>
+
+				<li class="buttons"><input type="hidden" name="form_id"
+					value="29462" /> 
+					<!--  <input id="saveForm" class="button_text" type="submit" name="submit" value="Submit" /> -->
+					<input type="Submit" class="form-control btn-primary" id="saveForm" type="submit" name="submit" value="Submit">
+				</li>
+			</ul>
+		</form>
+	</div>
+	
+	<script type="text/javascript" src="../js/form.js"></script>
+</body>
+</html>
