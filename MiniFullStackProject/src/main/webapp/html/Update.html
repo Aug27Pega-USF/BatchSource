@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+<meta charset="ISO-8859-1">
+<title>Update Page</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<!-- <link rel="stylesheet" type="text/css" href="../css/Style.css"> -->
+</head>
+<body>
+	<h2>Verify login then update your information</h2>
+	<form id="update-form" method="POST" action="Update.do" role="form">
+		<div class="form-group">
+			<label for="uname">Username</label>
+			<div class="input-group">
+				<input type="text" class="form-control" name="uname" id="uname"
+					placeholder="Please enter your username" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="upassword">Password</label>
+			<div class="input-group">
+				<input type="text" class="form-control" name="upassword"
+					id="upassword" placeholder="Please enter your password" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="fname">First Name</label>
+			<div class="input-group">
+				<input type="text" class="form-control" name="fname" id="fname"
+					placeholder="Please enter your new first name" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="lname">Last Name</label>
+			<div class="input-group">
+				<input type="text" class="form-control" name="lname" id="lname"
+					placeholder="Please enter your new last name" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="street">Street</label>
+			<div class="input-group">
+				<input type="text" class="form-control" name="street" id="street"
+					placeholder="Please enter new street address" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="city">City</label>
+			<div class="input-group">
+				<input type="text" class="form-control" name="city" id="city"
+					placeholder="Please enter new city" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="state">State</label>
+			<div class="input-group">
+				<input type="text" class="form-control" name="state" id="state"
+					placeholder="Please enter new state" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="country">Country</label>
+			<div class="input-group">
+				<input type="text" class="form-control" name="country" id="country"
+					placeholder="Please enter new country" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="zipcode">Zip Code</label>
+			<div class="input-group">
+				<input type="number" class="form-control" name="zipcode"
+					id="zipcode" min="1001" max="99950" step="1"
+					placeholder="Please enter new zipcode" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="color">Favorite Color</label>
+			<div class="input-group">
+				<input type="text" class="form-control" name="color" id="color"
+					placeholder="Please type in your new favorite color" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="animal">Favorite Animal</label>
+			<div class="input-group">
+				<input type="text" class="form-control" name="animal" id="animal"
+					placeholder="Please type in your new favorite animal" />
+			</div>
+		</div>
+		<div class="form-group">
+			<input type="Submit" class="form-control btn btn-info"
+				id="SubmitButton" value="Update" />
+		</div>
+	</form>
+</body>
+</html>

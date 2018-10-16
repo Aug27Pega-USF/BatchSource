@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+<meta charset="ISO-8859-1">
+<title>Login Page</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+</head>
+<body>
+	<a href="http://localhost:8081/MiniFullStackProject/html/Register.html"
+		class="btn-primary" id="register-form-link">Register</a>
+	<br />
+	<form id="login-form" method="POST" action="Login.do" role="form">
+		<div class="form-group">
+			<input type="text" name="uname" id="uname" class="form-control"
+				placeholder="Enter username" value="" />
+		</div>
+		<div class="form-group">
+			<input type="text" name="upassword" id="upassword" class="form-control"
+				placeholder="Enter password" value="" />
+		</div>
+		<div class="form-group">
+			<input type="Submit" class="form-control btn-primary"
+				id="LoginButton" value="Login" />
+		</div>
+	</form>
+
+</body>
+</html>
