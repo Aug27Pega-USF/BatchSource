@@ -32,8 +32,8 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("doPost of LoginServlet");
-		response.sendRedirect("home");
-		//request.getRequestDispatcher("home.html").forward(request, response);
+		//response.sendRedirect("home");
+		request.getRequestDispatcher("home.html").forward(request, response);
 	}
 
 }
